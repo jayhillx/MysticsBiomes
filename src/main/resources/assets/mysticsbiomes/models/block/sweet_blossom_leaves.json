@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/leaves",
+  "textures": {
+    "all": "mysticsbiomes:block/sweet_blossom_leaves"
+  }
+}

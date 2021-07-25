@@ -1,0 +1,19 @@
+modLoader="javafml"
+
+loaderVersion="[36,)"
+
+license="All rights reserved"
+
+[[mods]]
+
+modId="mysticsbiomes"
+
+version="1.16.5.1.1.1"
+
+displayName="Mystic's Biomes"
+
+authors="jayhill"
+
+description='''
+Explore a world full of color.
+'''

@@ -1,0 +1,32 @@
+{
+  "itemGroup.mysticsBiomes": "Mystic's Biomes",
+  "biome.mysticsbiomes.strawberry_fields": "Strawberry Fields",
+
+  "item.mysticsbiomes.strawberries": "Strawberries",
+  "item.mysticsbiomes.sweet_strawberries": "Sweet Strawberries",
+  "item.mysticsbiomes.strawberry_milk_bucket": "Strawberry Milk Bucket",
+
+  "entity.mysticsbiomes.strawberry_cow": "Strawberry Cow",
+
+  "block.mysticsbiomes.strawberry_bush": "Strawberry Bush",
+
+  "block.mysticsbiomes.strawberry_blossom_leaves": "Strawberry Blossom Leaves",
+  "block.mysticsbiomes.strawberry_blossom_sapling": "Strawberry Blossom Sapling",
+  "block.mysticsbiomes.sweet_blossom_leaves": "Sweet Blossom Leaves",
+  "block.mysticsbiomes.sweet_blossom_sapling": "Sweet Blossom Sapling",
+  "block.mysticsbiomes.strawberry_planks": "Strawberry Planks",
+  "block.mysticsbiomes.strawberry_stairs": "Strawberry Stairs",
+  "block.mysticsbiomes.strawberry_slab": "Strawberry Slab",
+  "block.mysticsbiomes.strawberry_fence": "Strawberry Fence",
+  "block.mysticsbiomes.strawberry_fence_gate": "Strawberry Fence Gate",
+  "block.mysticsbiomes.strawberry_door": "Strawberry Door",
+  "block.mysticsbiomes.strawberry_trapdoor": "Strawberry Trapdoor",
+  "block.mysticsbiomes.stripped_strawberry_log": "Stripped Strawberry Log",
+  "block.mysticsbiomes.stripped_strawberry_wood": "Stripped Strawberry Wood",
+  "block.mysticsbiomes.strawberry_log": "Strawberry Log",
+  "block.mysticsbiomes.strawberry_wood": "Strawberry Wood",
+
+  "block.mysticsbiomes.potted_strawberry_blossom_sapling": "Potted Strawberry Blossom Sapling",
+  "block.mysticsbiomes.potted_sweet_blossom_sapling": "Potted Sweet Blossom Sapling"
+
+}

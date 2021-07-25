@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/door_top",
+  "textures": {
+    "top": "mysticsbiomes:block/strawberry_door_top",
+    "bottom": "mysticsbiomes:block/strawberry_door_bottom"
+  }
+}
