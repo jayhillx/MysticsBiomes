@@ -1,0 +1,123 @@
+{
+"itemGroup.mysticsbiomesTab": "Mystic's Biomes",
+"item.mysticsbiomes.logo": "Mystic's Biomes Logo",
+"biome.mysticsbiomes.lavender_meadow": "薰衣草甸",
+"biome.mysticsbiomes.strawberry_fields": "草莓田野",
+"biome.mysticsbiomes.cherry_blossom_forest": "櫻花森林",
+"biome.mysticsbiomes.ethereal_forest": "空靈森林",
+
+ 
+
+"entity.mysticsbiomes.strawberry_cow": "草莓牛",
+
+ 
+
+"item.mysticsbiomes.strawberries": "草莓",
+"item.mysticsbiomes.strawberry_milk_bucket": "草莓牛奶桶",
+"item.mysticsbiomes.strawberry_cow_spawn_egg": "草莓牛生怪蛋",
+"block.mysticsbiomes.strawberry_cake": "草莓蛋糕",
+
+ 
+
+"block.mysticsbiomes.flowering_vine": "開花藤蔓",
+"block.mysticsbiomes.bush": "灌木叢",
+"block.mysticsbiomes.strawberry_bush": "草莓灌木叢",
+"block.mysticsbiomes.petunia": "矮牽牛",
+"block.mysticsbiomes.lavender": "薰衣草",
+"block.mysticsbiomes.white_wildflower": "白色野花",
+"block.mysticsbiomes.pink_wildflower": "粉色野花",
+"block.mysticsbiomes.magenta_mushroom": "洋紅色蘑菇",
+"block.mysticsbiomes.magenta_mushroom_block": "洋紅色蘑菇方塊",
+"block.mysticsbiomes.orb_lantern": "球形燈籠",
+
+ 
+
+"block.mysticsbiomes.stripped_ethereal_log": "剝皮空靈原木",
+"block.mysticsbiomes.stripped_ethereal_wood": "剝皮空靈木塊",
+"block.mysticsbiomes.ethereal_log": "空靈原木",
+"block.mysticsbiomes.ethereal_wood": "空靈木塊",
+"block.mysticsbiomes.ethereal_planks": "空靈木材",
+"block.mysticsbiomes.vertical_ethereal_planks": "空靈橫紋木材",
+"block.mysticsbiomes.ethereal_slab": "空靈木半磚",
+"block.mysticsbiomes.ethereal_vertical_slab": "空靈木垂直半磚",
+"block.mysticsbiomes.ethereal_stairs": "空靈木階梯",
+"block.mysticsbiomes.ethereal_fence": "空靈木柵欄",
+"block.mysticsbiomes.ethereal_fence_gate": "空靈木柵欄門",
+"block.mysticsbiomes.ethereal_door": "空靈木門",
+"block.mysticsbiomes.ethereal_trapdoor": "空靈木地板門",
+
+ 
+
+"block.mysticsbiomes.stripped_lavender_log": "剝皮薰衣草原木",
+"block.mysticsbiomes.stripped_lavender_wood": "剝皮薰衣草木塊",
+"block.mysticsbiomes.lavender_log": "薰衣草原木",
+"block.mysticsbiomes.lavender_wood": "薰衣草木塊",
+"block.mysticsbiomes.lavender_planks": "薰衣草木材",
+"block.mysticsbiomes.vertical_lavender_planks": "薰衣草橫紋木材",
+"block.mysticsbiomes.lavender_slab": "薰衣草半磚",
+"block.mysticsbiomes.lavender_vertical_slab": "薰衣草垂直半磚",
+"block.mysticsbiomes.lavender_stairs": "薰衣草階梯",
+"block.mysticsbiomes.lavender_fence": "薰衣草柵欄",
+"block.mysticsbiomes.lavender_fence_gate": "薰衣草柵欄門",
+"block.mysticsbiomes.lavender_door": "薰衣草門",
+"block.mysticsbiomes.lavender_trapdoor": "薰衣草地板門",
+
+ 
+
+"block.mysticsbiomes.stripped_strawberry_log": "剝皮草莓原木",
+"block.mysticsbiomes.stripped_strawberry_wood": "剝皮草莓木塊",
+"block.mysticsbiomes.strawberrry_log": "草莓原木",
+"block.mysticsbiomes.strawberry_wood": "草莓木塊",
+"block.mysticsbiomes.strawberry_planks": "草莓木材",
+"block.mysticsbiomes.vertical_strawberry_planks": "草莓橫紋木材",
+"block.mysticsbiomes.strawberry_slab": "草莓木半磚",
+"block.mysticsbiomes.strawberry_vertical_slab": "草莓垂直半磚",
+"block.mysticsbiomes.strawberry_stairs": "草莓木階梯",
+"block.mysticsbiomes.strawberry_fence": "草莓木柵欄",
+"block.mysticsbiomes.strawberry_fence_gate": "草莓木柵欄門",
+"block.mysticsbiomes.strawberry_door": "草莓木門",
+"block.mysticsbiomes.strawberry_trapdoor": "草莓木地板門",
+
+ 
+
+"block.mysticsbiomes.stripped_cherry_log": "剝皮櫻花原木",
+"block.mysticsbiomes.stripped_cherry_wood": "剝皮櫻花木塊",
+"block.mysticsbiomes.cherry_log": "櫻花原木",
+"block.mysticsbiomes.cherry_wood": "櫻花木塊",
+"block.mysticsbiomes.cherry_planks": "櫻花木材",
+"block.mysticsbiomes.vertical_cherry_planks": "櫻花橫紋木材",
+"block.mysticsbiomes.cherry_slab": "櫻花木半磚",
+"block.mysticsbiomes.cherry_vertical_slab": "櫻花垂直半磚",
+"block.mysticsbiomes.cherry_stairs": "櫻花木階梯",
+"block.mysticsbiomes.cherry_fence": "櫻花木柵欄",
+"block.mysticsbiomes.cherry_fence_gate": "櫻花木柵欄門",
+"block.mysticsbiomes.cherry_door": "櫻花木門",
+"block.mysticsbiomes.cherry_trapdoor": "櫻花木地板門",
+
+ 
+
+"block.mysticsbiomes.ethereal_leaves": "空靈樹葉",
+"block.mysticsbiomes.lavender_blossom_leaves": "薰衣草樹葉",
+"block.mysticsbiomes.sweet_blossom_leaves": "甜花樹葉",
+"block.mysticsbiomes.strawberry_blossom_leaves": "草莓樹葉",
+"block.mysticsbiomes.pink_cherry_blossom_leaves": "粉色櫻花樹葉",
+"block.mysticsbiomes.white_cherry_blossom_leaves": "白色櫻花樹葉",
+
+ 
+
+"block.mysticsbiomes.ethereal_leaf_carpet": "空靈樹葉地毯",
+"block.mysticsbiomes.lavender_blossom_leaf_carpet": "薰衣草樹葉地毯",
+"block.mysticsbiomes.sweet_blossom_leaf_carpet": "甜花樹葉地毯",
+"block.mysticsbiomes.strawberry_blossom_leaf_carpet": "草莓樹葉地毯",
+"block.mysticsbiomes.pink_cherry_blossom_leaf_carpet": "粉色櫻花樹葉地毯",
+"block.mysticsbiomes.white_cherry_blossom_leaf_carpet": "白色櫻花樹葉地毯",
+
+ 
+
+"block.mysticsbiomes.ethereal_sapling": "空靈木樹苗",
+"block.mysticsbiomes.lavender_blossom_sapling": "薰衣草木樹苗",
+"block.mysticsbiomes.sweet_blossom_sapling": "甜花木樹苗",
+"block.mysticsbiomes.strawberry_blossom_sapling": "草莓木樹苗",
+"block.mysticsbiomes.pink_cherry_blossom_sapling": "粉色櫻花木樹苗",
+"block.mysticsbiomes.white_cherry_blossom_sapling": "白色櫻花木樹苗"
+}
