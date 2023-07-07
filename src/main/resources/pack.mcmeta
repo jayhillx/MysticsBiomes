@@ -1,6 +1,8 @@
 {
-    "pack": {
-        "description": "Mystic's Biomes resources",
-        "pack_format": 6
-    }
+  "pack": {
+    "description": {
+      "text": "${mod_name} resources"
+    },
+    "pack_format": 15
+  }
 }

@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/inner_stairs",
-  "textures": {
-    "bottom": "mysticsbiomes:block/strawberry_planks",
-    "top": "mysticsbiomes:block/strawberry_planks",
-    "side": "mysticsbiomes:block/strawberry_planks"
-  }
-}

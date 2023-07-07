@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/leaves",
-  "textures": {
-    "all": "mysticsbiomes:block/strawberry_blossom_leaves"
-  }
-}

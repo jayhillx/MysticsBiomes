@@ -1,19 +1,18 @@
 modLoader="javafml"
 
-loaderVersion="[36,)"
+loaderVersion="${loader_version_range}"
 
-license="All rights reserved"
+license="${mod_license}"
+
+logoFile="logo.png"
 
 [[mods]]
+modId="${mod_id}"
 
-modId="mysticsbiomes"
+version="${minecraft_version}-${mod_version}"
 
-version="1.16.5.1.1.1"
+displayName="${mod_name}"
 
-displayName="Mystic's Biomes"
+authors="${mod_authors}"
 
-authors="jayhill"
-
-description='''
-Explore a world full of color.
-'''
+description='''${mod_description}'''
