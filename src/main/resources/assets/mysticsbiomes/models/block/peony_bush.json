@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/template_azalea",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "top": "mysticsbiomes:block/peony_bush_top",
+    "side": "mysticsbiomes:block/peony_bush_side"
+  }
+}

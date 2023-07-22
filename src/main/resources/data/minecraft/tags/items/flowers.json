@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "mysticsbiomes:strawberry_blossoms",
+    "mysticsbiomes:pink_cherry_blossoms",
+    "mysticsbiomes:white_cherry_blossoms",
+    "mysticsbiomes:budding_peony_leaves",
+    "mysticsbiomes:jacaranda_blossoms"
+  ]
+}

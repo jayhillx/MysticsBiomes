@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "mysticsbiomes:block/jacaranda_slab"
+    },
+    "type=double": {
+      "model": "mysticsbiomes:block/jacaranda_planks"
+    },
+    "type=top": {
+      "model": "mysticsbiomes:block/jacaranda_slab_top"
+    }
+  }
+}

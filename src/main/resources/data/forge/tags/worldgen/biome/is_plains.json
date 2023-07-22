@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "mysticsbiomes:strawberry_fields",
+      "required": false
+    },
+    {
+      "id": "mysticsbiomes:lavender_meadow",
+      "required": false
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "mysticsbiomes:jacaranda_log",
+    "mysticsbiomes:jacaranda_wood",
+    "mysticsbiomes:stripped_jacaranda_log",
+    "mysticsbiomes:stripped_jacaranda_wood"
+  ]
+}

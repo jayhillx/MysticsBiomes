@@ -1,0 +1,9 @@
+{
+  "variants": {
+    "": [
+      { "model": "mysticsbiomes:block/budding_peony_leaves", "weight": 1 },
+      { "model": "mysticsbiomes:block/budding_peony_leaves_variant", "weight": 1 },
+      { "model": "mysticsbiomes:block/budding_peony_leaves_variant2", "weight": 1 }
+    ]
+  }
+}

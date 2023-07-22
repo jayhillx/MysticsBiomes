@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "mysticsbiomes:lavender_meadow",
+      "required": false
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "": [{
+        "model": "mysticsbiomes:block/strawberry_blossoms", "weight": 5
+      }, {
+        "model": "mysticsbiomes:block/strawberry_blossoms_variant", "weight": 3
+      }
+    ]
+  }
+}

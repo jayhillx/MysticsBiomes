@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "mysticsbiomes:strawberry_sapling",
+    "mysticsbiomes:pink_cherry_blossom_sapling",
+    "mysticsbiomes:white_cherry_blossom_sapling",
+    "mysticsbiomes:peony_bush",
+    "mysticsbiomes:jacaranda_sapling"
+  ]
+}

@@ -16,3 +16,14 @@ displayName="${mod_name}"
 authors="${mod_authors}"
 
 description='''${mod_description}'''
+
+[[dependencies.${mod_id}]]
+modId="terrablender"
+
+mandatory=true
+
+versionRange="[3.0.0.167,)"
+
+ordering="AFTER"
+
+side="BOTH"

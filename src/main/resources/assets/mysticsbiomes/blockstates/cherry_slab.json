@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "mysticsbiomes:block/cherry_slab"
+    },
+    "type=double": {
+      "model": "mysticsbiomes:block/cherry_planks"
+    },
+    "type=top": {
+      "model": "mysticsbiomes:block/cherry_slab_top"
+    }
+  }
+}

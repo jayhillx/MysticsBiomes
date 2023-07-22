@@ -1,0 +1,35 @@
+{
+  "variants": {
+    "age=0": {
+      "model": "mysticsbiomes:block/strawberry_bush_stage0"
+    },
+    "age=1": {
+      "model": "mysticsbiomes:block/strawberry_bush_stage1"
+    },
+    "age=2": [{
+      "model": "mysticsbiomes:block/strawberry_bush_stage2", "weight": 2
+    }, {
+      "model": "mysticsbiomes:block/strawberry_bush_stage2_variant", "weight": 2
+    }],
+    "age=3": [{
+      "model": "mysticsbiomes:block/strawberry_bush_stage3", "weight": 2
+    }, {
+      "model": "mysticsbiomes:block/strawberry_bush_stage3_variant", "weight": 2
+    }],
+    "age=4": [{
+      "model": "mysticsbiomes:block/strawberry_bush_stage4", "weight": 2
+    }, {
+      "model": "mysticsbiomes:block/strawberry_bush_stage4_variant", "weight": 2
+    }],
+    "age=5": [{
+      "model": "mysticsbiomes:block/strawberry_bush_stage5", "weight": 2
+    }, {
+      "model": "mysticsbiomes:block/strawberry_bush_stage5_variant", "weight": 2
+    }],
+    "age=6": [{
+      "model": "mysticsbiomes:block/strawberry_bush_stage6", "weight": 2
+    }, {
+      "model": "mysticsbiomes:block/strawberry_bush_stage6_variant", "weight": 2
+    }]
+  }
+}

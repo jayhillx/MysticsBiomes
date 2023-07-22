@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "mysticsbiomes:cherry_log",
+    "mysticsbiomes:cherry_wood",
+    "mysticsbiomes:stripped_cherry_log",
+    "mysticsbiomes:stripped_cherry_wood"
+  ]
+}

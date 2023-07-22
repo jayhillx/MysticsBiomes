@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "mysticsbiomes:strawberry_fields",
+      "required": false
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "boat",
+  "pattern": [
+    "# #",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "mysticsbiomes:jacaranda_planks"
+    }
+  },
+  "result": {
+    "item": "mysticsbiomes:jacaranda_boat"
+  }
+}

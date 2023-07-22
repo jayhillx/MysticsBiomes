@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "boat",
+  "pattern": [
+    "# #",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "mysticsbiomes:strawberry_planks"
+    }
+  },
+  "result": {
+    "item": "mysticsbiomes:strawberry_boat"
+  }
+}

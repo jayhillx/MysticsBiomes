@@ -1,0 +1,12 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "mysticsbiomes:block/jacaranda_leaves", "weight": 2
+      },
+      {
+        "model": "mysticsbiomes:block/jacaranda_leaves_variant", "weight": 2
+      }
+    ]
+  }
+}
