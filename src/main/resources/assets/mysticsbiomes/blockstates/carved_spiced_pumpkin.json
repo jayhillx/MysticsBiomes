@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "mysticsbiomes:block/carved_spiced_pumpkin",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "mysticsbiomes:block/carved_spiced_pumpkin"
+    },
+    "facing=south": {
+      "model": "mysticsbiomes:block/carved_spiced_pumpkin",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "mysticsbiomes:block/carved_spiced_pumpkin",
+      "y": 270
+    }
+  }
+}

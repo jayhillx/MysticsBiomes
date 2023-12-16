@@ -18,18 +18,20 @@ public class MysticBiomes {
     public static final ResourceKey<Biome> STRAWBERRY_FIELDS = createKey(Registries.BIOME, "strawberry_fields");
     public static final ResourceKey<Biome> BAMBOO_BLOSSOM_FOREST = createKey(Registries.BIOME, "bamboo_blossom_forest");
     public static final ResourceKey<Biome> LAVENDER_MEADOW = createKey(Registries.BIOME, "lavender_meadow");
+    public static final ResourceKey<Biome> AUTUMNAL_GROVE = createKey(Registries.BIOME, "autumnal_grove");
 
     public static void registerRegionProvider() {
         Regions.register(new MysticBiomeProvider(4));
     }
 
-    public static void registerBiomes(BootstapContext<Biome> context) {
+    public static void bootstrap(BootstapContext<Biome> context) {
         HolderGetter<ConfiguredWorldCarver<?>> carver = context.lookup(Registries.CONFIGURED_CARVER);
         HolderGetter<PlacedFeature> placedFeature = context.lookup(Registries.PLACED_FEATURE);
 
         context.register(STRAWBERRY_FIELDS, OverworldBiomes.strawberryFields(placedFeature, carver));
         context.register(BAMBOO_BLOSSOM_FOREST, OverworldBiomes.bambooBlossomForest(placedFeature, carver));
         context.register(LAVENDER_MEADOW, OverworldBiomes.lavenderMeadow(placedFeature, carver));
+        context.register(AUTUMNAL_GROVE, OverworldBiomes.autumnalGrove(placedFeature, carver));
     }
 
 }

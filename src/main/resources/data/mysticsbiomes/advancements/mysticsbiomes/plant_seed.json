@@ -1,0 +1,37 @@
+{
+  "parent": "minecraft:husbandry/root",
+  "criteria": {
+    "pumpkin_stem": {
+      "conditions": {
+        "location": [
+          {
+            "block": "mysticsbiomes:spiced_pumpkin_stem",
+            "condition": "minecraft:block_state_property"
+          }
+        ]
+      },
+      "trigger": "minecraft:placed_block"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.husbandry.plant_seed.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "minecraft:wheat"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.husbandry.plant_seed.title"
+    }
+  },
+  "requirements": [
+    [
+      "pumpkin_stem"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

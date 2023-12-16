@@ -12,10 +12,9 @@ public class FallingLeafParticle extends TextureSheetParticle {
 
     protected FallingLeafParticle(ClientLevel level, double x, double y, double z) {
         super(level, x, y, z);
-
         this.quadSize *= 1.0F;
         this.lifetime = 80;
-        this.rotSpeed = ((float) Math.random() - 0.5F) * 0.1F;
+        this.rotSpeed = ((float) Math.random() - 0.2F) * 0.1F;
         this.roll = (float) Math.random() * ((float) Math.PI * 2F);
     }
 
@@ -35,9 +34,8 @@ public class FallingLeafParticle extends TextureSheetParticle {
             if (this.onGround) {
                 this.oRoll = this.roll = 0.0F;
             }
-
             this.move(this.xd, this.yd, this.zd);
-            this.yd -= 0.003F;
+            this.yd -= 0.001F;
             this.yd = Math.max(this.yd, -0.14F);
         }
     }
@@ -52,7 +50,6 @@ public class FallingLeafParticle extends TextureSheetParticle {
 
         public Particle createParticle(SimpleParticleType option, ClientLevel level, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
             FallingLeafParticle particle = new FallingLeafParticle(level, x, y, z);
-
             particle.pickSprite(this.sprite);
             return particle;
         }

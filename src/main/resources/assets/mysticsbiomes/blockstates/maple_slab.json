@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "mysticsbiomes:block/maple_slab"
+    },
+    "type=double": {
+      "model": "mysticsbiomes:block/maple_planks"
+    },
+    "type=top": {
+      "model": "mysticsbiomes:block/maple_slab_top"
+    }
+  }
+}

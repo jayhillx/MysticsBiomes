@@ -41,10 +41,6 @@ public class MysticVanillaCompat {
             BlockDataUtils.flammable(MysticBlocks.CHERRY_TRAPDOOR.get(), 5, 20);
             BlockDataUtils.flammable(MysticBlocks.CHERRY_DOOR.get(), 5, 20);
 
-            BlockDataUtils.flammable(MysticBlocks.PEONY_LEAVES.get(), 30, 60);
-            BlockDataUtils.flammable(MysticBlocks.BUDDING_PEONY_LEAVES.get(), 30, 60);
-            BlockDataUtils.flammable(MysticBlocks.PEONY_BUSH.get(), 30, 60);
-
             BlockDataUtils.flammable(MysticBlocks.JACARANDA_BLOSSOMS.get(), 30, 60);
             BlockDataUtils.flammable(MysticBlocks.JACARANDA_LEAVES.get(), 30, 60);
             BlockDataUtils.flammable(MysticBlocks.JACARANDA_LOG.get(), 5, 5);
@@ -60,6 +56,31 @@ public class MysticVanillaCompat {
             BlockDataUtils.flammable(MysticBlocks.JACARANDA_PRESSURE_PLATE.get(), 5, 20);
             BlockDataUtils.flammable(MysticBlocks.JACARANDA_TRAPDOOR.get(), 5, 20);
             BlockDataUtils.flammable(MysticBlocks.JACARANDA_DOOR.get(), 5, 20);
+            
+            BlockDataUtils.flammable(MysticBlocks.MAPLE_LEAVES.get(), 30, 60);
+            BlockDataUtils.flammable(MysticBlocks.ORANGE_MAPLE_LEAVES.get(), 30, 60);
+            BlockDataUtils.flammable(MysticBlocks.YELLOW_MAPLE_LEAVES.get(), 30, 60);
+            BlockDataUtils.flammable(MysticBlocks.MAPLE_LOG.get(), 5, 5);
+            BlockDataUtils.flammable(MysticBlocks.WHITE_MAPLE_LOG.get(), 5, 5);
+            BlockDataUtils.flammable(MysticBlocks.STRIPPED_MAPLE_LOG.get(), 5, 5);
+            BlockDataUtils.flammable(MysticBlocks.MAPLE_WOOD.get(), 5, 5);
+            BlockDataUtils.flammable(MysticBlocks.WHITE_MAPLE_WOOD.get(), 5, 5);
+            BlockDataUtils.flammable(MysticBlocks.STRIPPED_MAPLE_WOOD.get(), 5, 5);
+            BlockDataUtils.flammable(MysticBlocks.MAPLE_PLANKS.get(), 5, 20);
+            BlockDataUtils.flammable(MysticBlocks.MAPLE_STAIRS.get(), 5, 20);
+            BlockDataUtils.flammable(MysticBlocks.MAPLE_SLAB.get(), 5, 20);
+            BlockDataUtils.flammable(MysticBlocks.MAPLE_FENCE.get(), 5, 20);
+            BlockDataUtils.flammable(MysticBlocks.MAPLE_FENCE_GATE.get(), 5, 20);
+            BlockDataUtils.flammable(MysticBlocks.MAPLE_BUTTON.get(), 5, 20);
+            BlockDataUtils.flammable(MysticBlocks.MAPLE_PRESSURE_PLATE.get(), 5, 20);
+            BlockDataUtils.flammable(MysticBlocks.MAPLE_TRAPDOOR.get(), 5, 20);
+            BlockDataUtils.flammable(MysticBlocks.MAPLE_DOOR.get(), 5, 20);
+
+            BlockDataUtils.flammable(MysticBlocks.PEONY_LEAVES.get(), 30, 60);
+            BlockDataUtils.flammable(MysticBlocks.BUDDING_PEONY_LEAVES.get(), 30, 60);
+            BlockDataUtils.flammable(MysticBlocks.PEONY_BUSH.get(), 30, 60);
+            BlockDataUtils.flammable(MysticBlocks.STRAWBERRY_BUSH.get(), 60, 100);
+            BlockDataUtils.flammable(MysticBlocks.LAVENDER.get(), 60, 100);
         }
 
         public static void registerCompostables() {
@@ -78,9 +99,23 @@ public class MysticVanillaCompat {
             BlockDataUtils.compostable(MysticItems.BUDDING_PEONY_LEAVES.get(), 0.6F);
             BlockDataUtils.compostable(MysticItems.PEONY_LEAVES.get(), 0.3F);
             BlockDataUtils.compostable(MysticItems.PEONY_BUSH.get(), 0.65F);
+
+            BlockDataUtils.compostable(MysticItems.MAPLE_LEAVES.get(), 0.6F);
+            BlockDataUtils.compostable(MysticItems.MAPLE_LEAF_PILE.get(), 0.2F);
+            BlockDataUtils.compostable(MysticItems.MAPLE_SAPLING.get(), 0.3F);
+            BlockDataUtils.compostable(MysticItems.ORANGE_MAPLE_LEAVES.get(), 0.6F);
+            BlockDataUtils.compostable(MysticItems.ORANGE_MAPLE_LEAF_PILE.get(), 0.2F);
+            BlockDataUtils.compostable(MysticItems.ORANGE_MAPLE_SAPLING.get(), 0.3F);
+            BlockDataUtils.compostable(MysticItems.YELLOW_MAPLE_LEAVES.get(), 0.6F);
+            BlockDataUtils.compostable(MysticItems.YELLOW_MAPLE_LEAF_PILE.get(), 0.2F);
+            BlockDataUtils.compostable(MysticItems.YELLOW_MAPLE_SAPLING.get(), 0.3F);
+
+            BlockDataUtils.compostable(MysticItems.JACARANDA_BLOSSOMS.get(), 0.6F);
+            BlockDataUtils.compostable(MysticItems.JACARANDA_SAPLING.get(), 0.3F);
+            BlockDataUtils.compostable(MysticItems.LAVENDER.get(), 0.65F);
         }
     }
-
+    
     public static class Client {
 
         public static void registerRenderLayers() {

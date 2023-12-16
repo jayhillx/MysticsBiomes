@@ -1,0 +1,28 @@
+{
+  "variants": {
+    "layers=1": {
+      "model": "mysticsbiomes:block/maple_leaf_pile2"
+    },
+    "layers=2": {
+      "model": "mysticsbiomes:block/maple_leaf_pile4"
+    },
+    "layers=3": {
+      "model": "mysticsbiomes:block/maple_leaf_pile6"
+    },
+    "layers=4": {
+      "model": "mysticsbiomes:block/maple_leaf_pile8"
+    },
+    "layers=5": {
+      "model": "mysticsbiomes:block/maple_leaf_pile10"
+    },
+    "layers=6": {
+      "model": "mysticsbiomes:block/maple_leaf_pile12"
+    },
+    "layers=7": {
+      "model": "mysticsbiomes:block/maple_leaf_pile14"
+    },
+    "layers=8": {
+      "model": "mysticsbiomes:block/maple_leaves"
+    }
+  }
+}

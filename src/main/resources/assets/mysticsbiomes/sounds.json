@@ -1,0 +1,23 @@
+{
+  "block.butterfly_nest.enter": {
+    "sounds": [
+      "minecraft:block/beehive/enter",
+      {
+        "name": "minecraft:block/cave_vines/step",
+        "volume": 0.7
+      }
+    ],
+    "subtitle": "subtitles.block.butterfly_nest.enter"
+  },
+  "block.butterfly_nest.exit": {
+    "sounds": [
+      "minecraft:block/beehive/exit",
+      {
+        "name": "minecraft:block/cave_vines/step",
+        "pitch": 0.3,
+        "volume": 0.7
+      }
+    ],
+    "subtitle": "subtitles.block.butterfly_nest.exit"
+  }
+}

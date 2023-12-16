@@ -1,0 +1,42 @@
+{
+  "parent": "mysticsbiomes:mysticsbiomes/root",
+  "criteria": {
+    "befriend": {
+      "trigger": "minecraft:player_interacted_with_entity",
+      "conditions": {
+        "tag": {
+          "items": [
+            {
+              "tag": "minecraft:small_flowers"
+            }
+          ]
+        },
+        "entity": {
+          "type": "mysticsbiomes:caterpillar"
+        }
+      }
+    }
+  },
+  "display": {
+    "title": {
+      "translate": "advancements.mysticsbiomes.befriend_caterpillar.title"
+    },
+    "description": {
+      "translate": "advancements.mysticsbiomes.befriend_caterpillar.description"
+    },
+    "icon": {
+      "item": "mysticsbiomes:glass_jar",
+      "nbt": "{CapturedBug:{Variant:7}}"
+    },
+    "frame": "task",
+    "hidden": false,
+    "show_toast": true,
+    "announce_to_chat": true
+  },
+  "requirements": [
+    [
+      "befriend"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

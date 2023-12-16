@@ -31,7 +31,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import java.util.List;
 
 public class StrawberryCow extends Animal {
@@ -40,6 +39,11 @@ public class StrawberryCow extends Animal {
 
     public StrawberryCow(EntityType<? extends StrawberryCow> entity, Level level) {
         super(entity, level);
+    }
+
+    protected void defineSynchedData() {
+        super.defineSynchedData();
+        this.entityData.define(DATA_TYPE, Type.NORMAL.type);
     }
 
     protected void registerGoals() {
@@ -53,9 +57,18 @@ public class StrawberryCow extends Animal {
         this.goalSelector.addGoal(7, new RandomLookAroundGoal(this));
     }
 
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(DATA_TYPE, Type.NORMAL.type);
+    public static AttributeSupplier.Builder createAttributes() {
+        return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 10.0D).add(Attributes.MOVEMENT_SPEED, 0.2F);
+    }
+
+    public void addAdditionalSaveData(CompoundTag tag) {
+        super.addAdditionalSaveData(tag);
+        tag.putString("Type", this.getVariant().getSerializedName());
+    }
+
+    public void readAdditionalSaveData(CompoundTag tag) {
+        super.readAdditionalSaveData(tag);
+        this.setVariant(Type.byType(tag.getString("Type")));
     }
 
     public void setVariant(Type type) {
@@ -67,54 +80,20 @@ public class StrawberryCow extends Animal {
     }
 
     @Override
-    public void addAdditionalSaveData(CompoundTag tag) {
-        super.addAdditionalSaveData(tag);
+    public StrawberryCow getBreedOffspring(ServerLevel level, AgeableMob mob) {
+        StrawberryCow offspring = MysticEntities.STRAWBERRY_COW.get().create(level);
 
-        if (this.getVariant() != null) {
-            tag.putString("Type", this.getVariant().getSerializedName());
+        if (offspring != null) {
+            offspring.setVariant(this.sweetOffspring ? Type.SWEET : Type.NORMAL);
         }
+        return offspring;
     }
 
-    @Override
-    public void readAdditionalSaveData(CompoundTag tag) {
-        super.readAdditionalSaveData(tag);
-
-        if (tag.contains("Type")) {
-            this.setVariant(Type.byType(tag.getString("Type")));
-        }
-    }
-
-    public static AttributeSupplier.Builder createAttributes() {
-        return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 10.0D).add(Attributes.MOVEMENT_SPEED, 0.2F);
-    }
-
-    protected SoundEvent getAmbientSound() {
-        return SoundEvents.COW_AMBIENT;
-    }
-
-    protected SoundEvent getHurtSound(@Nonnull DamageSource source) {
-        return SoundEvents.COW_HURT;
-    }
-
-    protected SoundEvent getDeathSound() {
-        return SoundEvents.COW_DEATH;
-    }
-
-    protected void playStepSound(@Nonnull BlockPos pos, @Nonnull BlockState state) {
-        this.playSound(SoundEvents.COW_STEP, 0.15F, 1.0F);
-    }
-
-    protected float getSoundVolume() {
-        return 0.4F;
-    }
-
-    public boolean isFood(ItemStack stack) {
-        return stack.is(Items.WHEAT) || stack.is(MysticItems.STRAWBERRY.get()) || stack.is(MysticItems.SWEET_STRAWBERRY.get());
-    }
-
+    /**
+     * Sweet Strawberry cows give off a regeneration effect to entities near it.
+     */
     public void tick() {
         super.tick();
-
         if (this.getVariant() == Type.SWEET) {
             List<Entity> list = this.level().getEntities(this, new AABB(this.getX(), this.getY(), this.getZ(), this.getX() + 2.0D, this.getY() + 2.0D, this.getZ() + 2.0D), Entity::isAlive);
 
@@ -128,8 +107,32 @@ public class StrawberryCow extends Animal {
         }
     }
 
-    @Nonnull
-    public InteractionResult mobInteract(Player player, @Nonnull InteractionHand hand) {
+    protected SoundEvent getAmbientSound() {
+        return SoundEvents.COW_AMBIENT;
+    }
+
+    protected SoundEvent getHurtSound(DamageSource source) {
+        return SoundEvents.COW_HURT;
+    }
+
+    protected SoundEvent getDeathSound() {
+        return SoundEvents.COW_DEATH;
+    }
+
+    protected void playStepSound(BlockPos pos, BlockState state) {
+        this.playSound(SoundEvents.COW_STEP, 0.15F, 1.0F);
+    }
+
+    protected float getSoundVolume() {
+        return 0.4F;
+    }
+
+    protected float getStandingEyeHeight(Pose pose, EntityDimensions dimensions) {
+        return this.isBaby() ? dimensions.height * 0.95F : 1.3F;
+    }
+
+    @Override
+    public InteractionResult mobInteract(Player player, InteractionHand hand) {
         ItemStack stack = player.getItemInHand(hand);
 
         if (stack.is(MysticItems.SWEET_STRAWBERRY.get())) {
@@ -147,39 +150,14 @@ public class StrawberryCow extends Animal {
         }
     }
 
-    @Nullable
-    public StrawberryCow getBreedOffspring(@Nonnull ServerLevel level, @Nonnull AgeableMob mob) {
-        StrawberryCow cow = MysticEntities.STRAWBERRY_COW.get().create(level);
-
-        if (cow != null) {
-            cow.setVariant(this.getOffspringType((StrawberryCow)mob));
-        }
-        return cow;
-    }
-
-    private Type getOffspringType(StrawberryCow cow) {
-        Type thisVariant = this.getVariant();
-        Type variant = cow.getVariant();
-        Type type;
-        if (this.sweetOffspring) {
-            type = Type.SWEET;
-        } else if (thisVariant == variant && this.random.nextInt(1024) == 0) {
-            type = thisVariant == Type.SWEET ? Type.NORMAL : Type.SWEET;
-        } else {
-            type = this.random.nextBoolean() ? thisVariant : variant;
-        }
-        return type;
-    }
-
-    protected float getStandingEyeHeight(@Nonnull Pose pose, @Nonnull EntityDimensions dimensions) {
-        return this.isBaby() ? dimensions.height * 0.95F : 1.3F;
+    public boolean isFood(ItemStack stack) {
+        return stack.is(Items.WHEAT) || stack.is(MysticItems.STRAWBERRY.get()) || stack.is(MysticItems.SWEET_STRAWBERRY.get());
     }
 
     public enum Type implements StringRepresentable {
         NORMAL("normal"),
         SWEET("sweet");
 
-        public static final StringRepresentable.EnumCodec<Type> CODEC = StringRepresentable.fromEnum(Type::values);
         final String type;
 
         Type(String type) {
@@ -192,7 +170,7 @@ public class StrawberryCow extends Animal {
         }
 
         static Type byType(String type) {
-            return CODEC.byName(type, NORMAL);
+            return StringRepresentable.fromEnum(Type::values).byName(type, NORMAL);
         }
     }
 

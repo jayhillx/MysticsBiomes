@@ -1,0 +1,22 @@
+{
+  "replace": false,
+  "values": [
+    "mysticsbiomes:strawberry_candle_cake",
+    "mysticsbiomes:strawberry_candle_cake_white",
+    "mysticsbiomes:strawberry_candle_cake_orange",
+    "mysticsbiomes:strawberry_candle_cake_magenta",
+    "mysticsbiomes:strawberry_candle_cake_light_blue",
+    "mysticsbiomes:strawberry_candle_cake_yellow",
+    "mysticsbiomes:strawberry_candle_cake_lime",
+    "mysticsbiomes:strawberry_candle_cake_pink",
+    "mysticsbiomes:strawberry_candle_cake_gray",
+    "mysticsbiomes:strawberry_candle_cake_light_gray",
+    "mysticsbiomes:strawberry_candle_cake_cyan",
+    "mysticsbiomes:strawberry_candle_cake_purple",
+    "mysticsbiomes:strawberry_candle_cake_blue",
+    "mysticsbiomes:strawberry_candle_cake_brown",
+    "mysticsbiomes:strawberry_candle_cake_green",
+    "mysticsbiomes:strawberry_candle_cake_red",
+    "mysticsbiomes:strawberry_candle_cake_black"
+  ]
+}

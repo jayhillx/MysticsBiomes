@@ -1,0 +1,69 @@
+{
+  "type": "minecraft:random_patch",
+  "config": {
+    "feature": {
+      "feature": {
+        "type": "minecraft:simple_block",
+        "config": {
+          "to_place": {
+            "type": "minecraft:weighted_state_provider",
+            "entries": [
+              {
+                "data": {
+                  "Name": "mysticsbiomes:strawberry_bush",
+                  "Properties": {
+                    "age": "2",
+                    "cropped": "false"
+                  }
+                },
+                "weight": 1
+              },
+              {
+                "data": {
+                  "Name": "mysticsbiomes:strawberry_bush",
+                  "Properties": {
+                    "age": "3",
+                    "cropped": "false"
+                  }
+                },
+                "weight": 1
+              },
+              {
+                "data": {
+                  "Name": "mysticsbiomes:strawberry_bush",
+                  "Properties": {
+                    "age": "4",
+                    "cropped": "false"
+                  }
+                },
+                "weight": 1
+              },
+              {
+                "data": {
+                  "Name": "mysticsbiomes:strawberry_bush",
+                  "Properties": {
+                    "age": "5",
+                    "cropped": "false"
+                  }
+                },
+                "weight": 1
+              }
+            ]
+          }
+        }
+      },
+      "placement": [
+        {
+          "type": "minecraft:block_predicate_filter",
+          "predicate": {
+            "type": "minecraft:matching_blocks",
+            "blocks": "minecraft:air"
+          }
+        }
+      ]
+    },
+    "tries": 400,
+    "xz_spread": 9,
+    "y_spread": 2
+  }
+}

@@ -1,32 +1,33 @@
 {
   "parent": "minecraft:recipes/root",
-  "rewards": {
-    "recipes": [
-      "mysticsbiomes:cherry_planks"
-    ]
-  },
   "criteria": {
-    "has_log": {
-      "trigger": "minecraft:inventory_changed",
+    "has_logs": {
       "conditions": {
         "items": [
           {
             "tag": "mysticsbiomes:cherry_logs"
           }
         ]
-      }
+      },
+      "trigger": "minecraft:inventory_changed"
     },
     "has_the_recipe": {
-      "trigger": "minecraft:recipe_unlocked",
       "conditions": {
         "recipe": "mysticsbiomes:cherry_planks"
-      }
+      },
+      "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_log",
+      "has_logs",
       "has_the_recipe"
     ]
-  ]
+  ],
+  "rewards": {
+    "recipes": [
+      "mysticsbiomes:cherry_planks"
+    ]
+  },
+  "sends_telemetry_event": false
 }

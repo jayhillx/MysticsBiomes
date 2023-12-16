@@ -1,0 +1,57 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:alternatives",
+          "children": [
+            {
+              "type": "minecraft:item",
+              "conditions": [
+                {
+                  "condition": "minecraft:match_tool",
+                  "predicate": {
+                    "enchantments": [
+                      {
+                        "enchantment": "minecraft:silk_touch",
+                        "levels": {
+                          "min": 1
+                        }
+                      }
+                    ]
+                  }
+                }
+              ],
+              "functions": [
+                {
+                  "function": "minecraft:copy_nbt",
+                  "ops": [
+                    {
+                      "op": "replace",
+                      "source": "Butterflies",
+                      "target": "BlockEntityTag.Butterflies"
+                    }
+                  ],
+                  "source": "block_entity"
+                },
+                {
+                  "block": "mysticsbiomes:butterfly_nest",
+                  "function": "minecraft:copy_state"
+                }
+              ],
+              "name": "mysticsbiomes:butterfly_nest"
+            },
+            {
+              "type": "minecraft:item",
+              "name": "mysticsbiomes:butterfly_nest"
+            }
+          ]
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "mysticsbiomes:blocks/butterfly_nest"
+}

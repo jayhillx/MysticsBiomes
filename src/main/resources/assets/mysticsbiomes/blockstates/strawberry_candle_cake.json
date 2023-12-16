@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "lit=false": {
+      "model": "mysticsbiomes:block/strawberry_candle_cake"
+    },
+    "lit=true": {
+      "model": "mysticsbiomes:block/strawberry_candle_cake_lit"
+    }
+  }
+}

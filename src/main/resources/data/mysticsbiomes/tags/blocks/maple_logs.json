@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "mysticsbiomes:maple_log",
+    "mysticsbiomes:maple_wood",
+    "mysticsbiomes:white_maple_log",
+    "mysticsbiomes:white_maple_wood",
+    "mysticsbiomes:stripped_maple_log",
+    "mysticsbiomes:stripped_maple_wood"
+  ]
+}
