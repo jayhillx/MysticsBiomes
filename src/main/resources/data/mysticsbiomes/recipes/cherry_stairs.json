@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "wooden_stairs",
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "mysticsbiomes:cherry_planks"
+    }
+  },
+  "result": {
+    "item": "mysticsbiomes:cherry_stairs",
+    "count": 4
+  }
+}

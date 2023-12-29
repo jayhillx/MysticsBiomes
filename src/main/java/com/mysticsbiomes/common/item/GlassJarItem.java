@@ -1,10 +1,10 @@
 package com.mysticsbiomes.common.item;
 
 import com.mysticsbiomes.common.entity.animal.Butterfly;
-import com.mysticsbiomes.common.entity.animal.Caterpillar;
+import com.mysticsbiomes.init.MysticEntities;
+import com.mysticsbiomes.init.MysticItems;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
@@ -12,69 +12,52 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.animal.Bee;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.Vec3;
 
 import java.util.List;
 
-/**
- * Multifunctional item, used for foods such as strawberry jam, or to store bugs & insects.
- */
 public class GlassJarItem extends Item {
+    private final Butterfly.Type type;
 
-    public GlassJarItem(Properties properties) {
+    public GlassJarItem(Butterfly.Type type, Properties properties) {
         super(properties);
-    }
-
-    private int getIdByEntityType(LivingEntity entity) {
-        if (entity instanceof Butterfly butterfly) {
-            return butterfly.getVariant().getId();
-        } else if (entity instanceof Caterpillar) {
-            return 7;
-        } else if (entity instanceof Bee) {
-            return 8;
-        } else {
-            return 0;
-        }
+        this.type = type;
     }
 
     @Override
     public InteractionResult interactLivingEntity(ItemStack stack, Player player, LivingEntity entity, InteractionHand hand) {
-        CompoundTag tag = stack.getOrCreateTagElement("CapturedBug");
-
-        if (!tag.contains("EntityData")) {
+        if (this.type == null) {
             if (!player.level().isClientSide) {
-                if (entity instanceof Butterfly || entity instanceof Caterpillar || entity instanceof Bee) {
-                    CompoundTag entityTag = entity.serializeNBT();
+                if (entity instanceof Butterfly butterfly) {
+                    ItemStack butterflyJar = this.getItemByType(butterfly.getVariant()).getDefaultInstance();
 
-                    tag.put("EntityData", entityTag);
-                    tag.putInt("Variant", this.getIdByEntityType(entity));
-                    tag.putString("Type", entity.getType().getDescription().getString());
-                    if (entity.getCustomName() != null) {
-                        tag.putString("Name", entity.getCustomName().getString());
-                    }
-
-                    if (player.isCreative()) { // duplicate to add separate item in creative.
-                        ItemStack newStack = new ItemStack(this);
-                        newStack.getOrCreateTag().put("CapturedBug", tag);
-                        player.addItem(newStack);
-                    }
-
+                    CompoundTag tag = new CompoundTag();
+                    tag.put("EntityData", butterfly.serializeNBT());
+                    butterflyJar.getOrCreateTag().put("Butterfly", tag);
                     entity.discard();
-                    player.inventoryMenu.broadcastChanges();
 
+                    if (!player.isCreative()) {
+                        if (stack.getCount() > 1) {
+                            stack.shrink(1);
+                            player.addItem(butterflyJar);
+                        } else {
+                            player.setItemInHand(hand, butterflyJar);
+                        }
+                    } else {
+                        player.addItem(butterflyJar);
+                    }
+                    player.inventoryMenu.broadcastChanges();
                     return InteractionResult.SUCCESS;
                 }
             }
-            return InteractionResult.FAIL;
-        } else {
-            return InteractionResult.PASS;
         }
+        return InteractionResult.PASS;
     }
 
     @Override
@@ -82,41 +65,53 @@ public class GlassJarItem extends Item {
         Player player = context.getPlayer();
         Level level = context.getLevel();
         ItemStack stack = context.getItemInHand();
-        Direction direction = context.getClickedFace();
-        BlockPos pos = context.getClickedPos().offset(direction.getStepX(), direction.getStepY(), direction.getStepZ());
+        BlockPos pos = context.getClickedPos().offset(context.getClickedFace().getStepX(), context.getClickedFace().getStepY(), context.getClickedFace().getStepZ());
 
-        if (stack.getOrCreateTag().contains("CapturedBug") && player != null && player.mayUseItemAt(pos, direction, stack)) {
-            if (!player.level().isClientSide) {
-                CompoundTag itemTag = stack.getOrCreateTagElement("CapturedBug");
-                CompoundTag entityTag = itemTag.getCompound("EntityData");
+        if (stack.getItem() == this.getItemByType(this.type) && !level.isClientSide) {
+            if (player != null) {
+                Vec3 vec3 = new Vec3(pos.getX() + 0.5D, pos.getY(), pos.getZ() + 0.5D);
 
-                Entity entity = EntityType.loadEntityRecursive(entityTag, level, mob -> mob);
-                if (entity != null) {
-                    entity.setPos(pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5);
-                    level.addFreshEntity(entity);
+                if (stack.getTag() != null) { // loads from already caught butterfly.
+                    CompoundTag tag = stack.getTag().getCompound("Butterfly").getCompound("EntityData");
+
+                    Entity entity = EntityType.loadEntityRecursive(tag, level, mob -> mob);
+                    if (entity != null) {
+                        entity.setPos(vec3);
+                        level.addFreshEntity(entity);
+                    }
+                } else { // loaded from a fresh butterfly jar item; like a spawn egg.
+                    Butterfly butterfly = new Butterfly(MysticEntities.BUTTERFLY.get(), level);
+                    butterfly.setPos(vec3);
+                    butterfly.setVariant(this.type);
+                    level.addFreshEntity(butterfly);
                 }
 
-                stack.removeTagKey("CapturedBug");
+                if (!player.isCreative()) {
+                    player.setItemInHand(context.getHand(), new ItemStack(MysticItems.GLASS_JAR.get()));
+                }
+                return InteractionResult.SUCCESS;
             }
-
-            return InteractionResult.SUCCESS;
-        } else {
-            return InteractionResult.PASS;
         }
+        return InteractionResult.PASS;
     }
 
     @Override
     public Component getName(ItemStack stack) {
-        return Component.translatable(this.getDescriptionId(stack)).withStyle(stack.getOrCreateTag().contains("CapturedBug") ? ChatFormatting.AQUA : ChatFormatting.WHITE);
+        return this.type != null ?  Component.translatable("item.mysticsbiomes.butterfly_jar").withStyle(ChatFormatting.AQUA): super.getName(stack);
     }
 
     @Override
     public void appendHoverText(ItemStack stack, Level level, List<Component> components, TooltipFlag flag) {
-        if (stack.getOrCreateTag().contains("CapturedBug")) {
-            CompoundTag tag = stack.getOrCreateTagElement("CapturedBug");
-
-            components.add(Component.literal("Contains " + (!tag.contains("Name") ? tag.getString("Type") : tag.getString("Name") + " [" + tag.getString("Type") + "]")).withStyle(ChatFormatting.GRAY));
+        if (this.type != null) {
+            components.add(Component.translatable("entity.mysticsbiomes.butterfly.type." + type.getSerializedName()).withStyle(ChatFormatting.GRAY, ChatFormatting.ITALIC));
         }
+    }
+
+    public Item getItemByType(Butterfly.Type type) {
+        if (type == Butterfly.Type.APRICOT) return MysticItems.ORANGE_BUTTERFLY_JAR.get();
+        if (type == Butterfly.Type.JELLY) return MysticItems.BLUE_BUTTERFLY_JAR.get();
+        if (type == Butterfly.Type.JULY) return MysticItems.CYAN_BUTTERFLY_JAR.get();
+        else return null;
     }
 
 }

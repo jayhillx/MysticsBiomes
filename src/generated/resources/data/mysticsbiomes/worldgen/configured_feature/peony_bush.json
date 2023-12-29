@@ -21,7 +21,7 @@
           "data": {
             "Name": "mysticsbiomes:budding_peony_leaves",
             "Properties": {
-              "distance": "12",
+              "distance": "16",
               "persistent": "false",
               "waterlogged": "true"
             }
@@ -32,7 +32,7 @@
           "data": {
             "Name": "mysticsbiomes:peony_leaves",
             "Properties": {
-              "distance": "12",
+              "distance": "16",
               "persistent": "false",
               "waterlogged": "true"
             }

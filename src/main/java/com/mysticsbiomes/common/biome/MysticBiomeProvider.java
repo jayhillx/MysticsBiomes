@@ -23,12 +23,11 @@ public class MysticBiomeProvider extends Region {
 
     @Override
     public void addBiomes(Registry<Biome> registry, Consumer<Pair<Climate.ParameterPoint, ResourceKey<Biome>>> mapper) {
-
         this.addModifiedVanillaOverworldBiomes(mapper, builder -> {
             builder.replaceBiome(Biomes.SUNFLOWER_PLAINS, MysticBiomes.STRAWBERRY_FIELDS);
             builder.replaceBiome(Biomes.SNOWY_PLAINS, MysticBiomes.BAMBOO_BLOSSOM_FOREST);
             builder.replaceBiome(Biomes.MEADOW, MysticBiomes.LAVENDER_MEADOW);
-            builder.replaceBiome(Biomes.FLOWER_FOREST, MysticBiomes.AUTUMNAL_GROVE);
+            builder.replaceBiome(Biomes.TAIGA, MysticBiomes.AUTUMNAL_GROVE);
         });
     }
 

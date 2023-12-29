@@ -1,0 +1,41 @@
+{
+  "parent": "mysticsbiomes:mysticsbiomes/root",
+  "criteria": {
+    "get_cakes": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mysticsbiomes:pink_frosted_cake",
+              "mysticsbiomes:orange_frosted_cake",
+              "mysticsbiomes:yellow_frosted_cake",
+              "mysticsbiomes:lime_frosted_cake",
+              "mysticsbiomes:cyan_frosted_cake",
+              "mysticsbiomes:purple_frosted_cake"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "icon": {
+      "item": "mysticsbiomes:pink_frosted_cake"
+    },
+    "title": {
+      "translate": "advancements.mysticsbiomes.craft_rainbow_cakes.title"
+    },
+    "description": {
+      "translate": "advancements.mysticsbiomes.craft_rainbow_cakes.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true
+  },
+  "requirements": [
+    [
+      "get_cakes"
+    ]
+  ]
+}

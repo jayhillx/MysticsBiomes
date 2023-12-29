@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:bowl"
+    },
+    {
+      "item": "minecraft:ice"
+    },
+    {
+      "item": "mysticsbiomes:strawberry_milk_bucket"
+    },
+    {
+      "item": "mysticsbiomes:strawberry"
+    }
+  ],
+  "result": {
+    "item": "mysticsbiomes:strawberry_ice_cream"
+  }
+}

@@ -31,7 +31,7 @@ public class ButterflyNestDecorator extends TreeDecorator {
     }
 
     protected TreeDecoratorType<?> type() {
-        return MysticFeatures.TreeDecorators.BUTTERFLY_NEST.get();
+        return MysticFeatures.BUTTERFLY_NEST.get();
     }
 
     public void place(TreeDecorator.Context context) {
@@ -55,7 +55,7 @@ public class ButterflyNestDecorator extends TreeDecorator {
                         for (int k = 0; k < j; ++k) {
                             CompoundTag tag = new CompoundTag();
                             tag.putString("id", BuiltInRegistries.ENTITY_TYPE.getKey(MysticEntities.BUTTERFLY.get()).toString());
-                            blockEntity.storeButterfly(tag, random.nextInt(599), false, false);
+                            blockEntity.storeButterfly(tag, random.nextInt(599), false);
                         }
                     });
                 }

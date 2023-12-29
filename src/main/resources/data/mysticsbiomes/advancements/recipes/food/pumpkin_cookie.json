@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_spiced_pumpkin": {
+    "has_pumpkin": {
       "conditions": {
         "items": [
           {
             "items": [
-              "mysticsbiomes:spiced_pumpkin"
+              "minecraft:pumpkin"
             ]
           }
         ]
@@ -22,7 +22,7 @@
   },
   "requirements": [
     [
-      "has_spiced_pumpkin",
+      "has_pumpkin",
       "has_the_recipe"
     ]
   ],

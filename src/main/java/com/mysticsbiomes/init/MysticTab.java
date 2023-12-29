@@ -55,10 +55,13 @@ public class MysticTab {
         output.accept(MysticItems.CHERRY_CHEST_BOAT.get());
 
         output.accept(MysticItems.MAPLE_LEAVES.get());
+        output.accept(MysticItems.MAPLE_LEAF_PILE.get());
         output.accept(MysticItems.MAPLE_SAPLING.get());
         output.accept(MysticItems.ORANGE_MAPLE_LEAVES.get());
+        output.accept(MysticItems.ORANGE_MAPLE_LEAF_PILE.get());
         output.accept(MysticItems.ORANGE_MAPLE_SAPLING.get());
         output.accept(MysticItems.YELLOW_MAPLE_LEAVES.get());
+        output.accept(MysticItems.YELLOW_MAPLE_LEAF_PILE.get());
         output.accept(MysticItems.YELLOW_MAPLE_SAPLING.get());
         output.accept(MysticItems.MAPLE_LOG.get());
         output.accept(MysticItems.WHITE_MAPLE_LOG.get());
@@ -79,15 +82,6 @@ public class MysticTab {
         output.accept(MysticItems.MAPLE_HANGING_SIGN.get());
         output.accept(MysticItems.MAPLE_BOAT.get());
         output.accept(MysticItems.MAPLE_CHEST_BOAT.get());
-
-        output.accept(MysticItems.SPICED_PUMPKIN.get());
-        output.accept(MysticItems.CARVED_SPICED_PUMPKIN.get());
-        output.accept(MysticItems.SPICED_JACK_O_LANTERN.get());
-        output.accept(MysticItems.SPICED_PUMPKIN_SEEDS.get());
-
-        output.accept(MysticItems.MAPLE_LEAF_PILE.get());
-        output.accept(MysticItems.ORANGE_MAPLE_LEAF_PILE.get());
-        output.accept(MysticItems.YELLOW_MAPLE_LEAF_PILE.get());
 
         output.accept(MysticItems.JACARANDA_BLOSSOMS.get());
         output.accept(MysticItems.JACARANDA_LEAVES.get());
@@ -118,19 +112,35 @@ public class MysticTab {
         output.accept(MysticItems.BUTTERFLY_NEST.get());
 
         output.accept(MysticItems.GLASS_JAR.get());
-        output.accept(MysticItems.STRAWBERRY_JAM.get());
+        output.accept(MysticItems.ORANGE_BUTTERFLY_JAR.get());
+        output.accept(MysticItems.BLUE_BUTTERFLY_JAR.get());
+        output.accept(MysticItems.CYAN_BUTTERFLY_JAR.get());
+
         output.accept(MysticItems.STRAWBERRY.get());
         output.accept(MysticItems.SWEET_STRAWBERRY.get());
         output.accept(MysticItems.STRAWBERRY_CAKE.get());
-        output.accept(MysticItems.STRAWBERRY_MILK_BUCKET.get());
-        output.accept(MysticItems.STRAWBERRY_ICE_CREAM.get());
-        output.accept(MysticItems.PUMPKIN_ICE_CREAM.get());
+        output.accept(MysticItems.PINK_FROSTED_CAKE.get());
+        output.accept(MysticItems.ORANGE_FROSTED_CAKE.get());
+        output.accept(MysticItems.YELLOW_FROSTED_CAKE.get());
+        output.accept(MysticItems.LIME_FROSTED_CAKE.get());
+        output.accept(MysticItems.CYAN_FROSTED_CAKE.get());
+        output.accept(MysticItems.PURPLE_FROSTED_CAKE.get());
         output.accept(MysticItems.PUMPKIN_COOKIE.get());
+        output.accept(MysticItems.PUMPKIN_ICE_CREAM.get());
+        output.accept(MysticItems.STRAWBERRY_ICE_CREAM.get());
+        output.accept(MysticItems.STRAWBERRY_MILK_BUCKET.get());
+
+        output.accept(MysticItems.PINK_EGG.get());
+        output.accept(MysticItems.ORANGE_EGG.get());
+        output.accept(MysticItems.YELLOW_EGG.get());
+        output.accept(MysticItems.LIME_EGG.get());
+        output.accept(MysticItems.CYAN_EGG.get());
+        output.accept(MysticItems.PURPLE_EGG.get());
 
         output.accept(MysticItems.STRAWBERRY_COW_SPAWN_EGG.get());
+        output.accept(MysticItems.RAINBOW_CHICKEN_SPAWN_EGG.get());
         output.accept(MysticItems.RED_PANDA_SPAWN_EGG.get());
         output.accept(MysticItems.BUTTERFLY_SPAWN_EGG.get());
-        output.accept(MysticItems.CATERPILLAR_SPAWN_EGG.get());
     }).build());
 
 }

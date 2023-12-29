@@ -20,7 +20,7 @@
       "state": {
         "Name": "mysticsbiomes:strawberry_blossoms",
         "Properties": {
-          "distance": "12",
+          "distance": "16",
           "persistent": "false",
           "waterlogged": "true"
         }

@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "lit=false": {
+      "model": "mysticsbiomes:block/lime_frosted_candle_cake_gray"
+    },
+    "lit=true": {
+      "model": "mysticsbiomes:block/lime_frosted_candle_cake_gray_lit"
+    }
+  }
+}

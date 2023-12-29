@@ -15,7 +15,10 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 
 public class MysticFeatures {
+    public static final DeferredRegister<TreeDecoratorType<?>> TREE_DECORATORS = DeferredRegister.create(Registries.TREE_DECORATOR_TYPE, MysticsBiomes.modId);
 
+    public static final RegistryObject<TreeDecoratorType<ButterflyNestDecorator>> BUTTERFLY_NEST = TREE_DECORATORS.register("butterfly_nest", () -> new TreeDecoratorType<>(ButterflyNestDecorator.CODEC));
+    
     public static class Configured {
         public static void bootstrap(BootstapContext<ConfiguredFeature<?, ?>> context) {
             MysticTreeFeatures.bootstrap(context);
@@ -28,12 +31,6 @@ public class MysticFeatures {
             MysticTreePlacements.bootstrap(context);
             MysticVegetationPlacements.bootstrap(context);
         }
-    }
-
-    public static class TreeDecorators {
-        public static final DeferredRegister<TreeDecoratorType<?>> TREE_DECORATORS = DeferredRegister.create(Registries.TREE_DECORATOR_TYPE, MysticsBiomes.modId);
-
-        public static final RegistryObject<TreeDecoratorType<ButterflyNestDecorator>> BUTTERFLY_NEST = TREE_DECORATORS.register("butterfly_nest", () -> new TreeDecoratorType<>(ButterflyNestDecorator.CODEC));
     }
 
 }

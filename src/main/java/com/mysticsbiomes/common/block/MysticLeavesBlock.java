@@ -27,14 +27,14 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import java.util.OptionalInt;
 
 public class MysticLeavesBlock extends Block {
-    public static final IntegerProperty DISTANCE = IntegerProperty.create("distance", 1, 12);
+    public static final IntegerProperty DISTANCE = IntegerProperty.create("distance", 1, 16);
     public static final BooleanProperty PERSISTENT = BlockStateProperties.PERSISTENT;
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
     private String type;
 
     public MysticLeavesBlock(Properties properties) {
         super(properties);
-        this.registerDefaultState(this.stateDefinition.any().setValue(DISTANCE, 12).setValue(PERSISTENT, false));
+        this.registerDefaultState(this.stateDefinition.any().setValue(DISTANCE, 16).setValue(PERSISTENT, false));
     }
 
     public MysticLeavesBlock(String particleType, Properties properties) {
@@ -103,7 +103,7 @@ public class MysticLeavesBlock extends Block {
     }
 
     private static BlockState updateDistance(BlockState state, LevelAccessor accessor, BlockPos pos) {
-        int i = 12;
+        int i = 16;
         BlockPos.MutableBlockPos mutablePos = new BlockPos.MutableBlockPos();
 
         for (Direction direction : Direction.values()) {
@@ -118,7 +118,7 @@ public class MysticLeavesBlock extends Block {
     }
 
     private static int getDistanceAt(BlockState state) {
-        return getOptionalDistanceAt(state).orElse(12);
+        return getOptionalDistanceAt(state).orElse(16);
     }
 
     @Override
@@ -131,7 +131,7 @@ public class MysticLeavesBlock extends Block {
 
     @Override
     public boolean isRandomlyTicking(BlockState state) {
-        return state.getValue(DISTANCE) == 12 && !state.getValue(PERSISTENT);
+        return state.getValue(DISTANCE) == 16 && !state.getValue(PERSISTENT);
     }
 
     public VoxelShape getBlockSupportShape(BlockState state, BlockGetter getter, BlockPos pos) {

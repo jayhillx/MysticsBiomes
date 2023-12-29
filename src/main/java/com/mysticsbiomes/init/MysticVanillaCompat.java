@@ -91,6 +91,13 @@ public class MysticVanillaCompat {
             BlockDataUtils.compostable(MysticItems.SWEET_STRAWBERRY.get(), 1.0F);
             BlockDataUtils.compostable(MysticItems.STRAWBERRY_CAKE.get(), 1.0F);
 
+            BlockDataUtils.compostable(MysticItems.PINK_FROSTED_CAKE.get(), 1.0F);
+            BlockDataUtils.compostable(MysticItems.ORANGE_FROSTED_CAKE.get(), 1.0F);
+            BlockDataUtils.compostable(MysticItems.YELLOW_FROSTED_CAKE.get(), 1.0F);
+            BlockDataUtils.compostable(MysticItems.LIME_FROSTED_CAKE.get(), 1.0F);
+            BlockDataUtils.compostable(MysticItems.CYAN_FROSTED_CAKE.get(), 1.0F);
+            BlockDataUtils.compostable(MysticItems.PURPLE_FROSTED_CAKE.get(), 1.0F);
+
             BlockDataUtils.compostable(MysticItems.PINK_CHERRY_BLOSSOMS.get(), 0.6F);
             BlockDataUtils.compostable(MysticItems.PINK_CHERRY_BLOSSOM_SAPLING.get(), 0.3F);
             BlockDataUtils.compostable(MysticItems.WHITE_CHERRY_BLOSSOMS.get(), 0.6F);
@@ -109,6 +116,8 @@ public class MysticVanillaCompat {
             BlockDataUtils.compostable(MysticItems.YELLOW_MAPLE_LEAVES.get(), 0.6F);
             BlockDataUtils.compostable(MysticItems.YELLOW_MAPLE_LEAF_PILE.get(), 0.2F);
             BlockDataUtils.compostable(MysticItems.YELLOW_MAPLE_SAPLING.get(), 0.3F);
+
+            BlockDataUtils.compostable(MysticItems.PUMPKIN_COOKIE.get(), 0.8F);
 
             BlockDataUtils.compostable(MysticItems.JACARANDA_BLOSSOMS.get(), 0.6F);
             BlockDataUtils.compostable(MysticItems.JACARANDA_SAPLING.get(), 0.3F);

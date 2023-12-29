@@ -1,7 +1,6 @@
 package com.mysticsbiomes.common.entity.animal;
 
 import com.google.common.collect.Maps;
-import com.google.common.collect.Sets;
 import com.mysticsbiomes.common.block.entity.ButterflyNestBlockEntity;
 import com.mysticsbiomes.init.MysticBlocks;
 import com.mysticsbiomes.init.MysticPoiTypes;
@@ -33,7 +32,6 @@ import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.ai.goal.TemptGoal;
 import net.minecraft.world.entity.ai.navigation.FlyingPathNavigation;
 import net.minecraft.world.entity.ai.navigation.PathNavigation;
-import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 import net.minecraft.world.entity.ai.util.AirAndWaterRandomPos;
 import net.minecraft.world.entity.ai.util.AirRandomPos;
 import net.minecraft.world.entity.ai.util.HoverRandomPos;
@@ -70,7 +68,6 @@ public class Butterfly extends Animal implements FlyingAnimal {
     private static final EntityDataAccessor<Integer> DATA_TYPE_ID = SynchedEntityData.defineId(Butterfly.class, EntityDataSerializers.INT);
     private static final EntityDataAccessor<Byte> DATA_FLAGS_ID = SynchedEntityData.defineId(Butterfly.class, EntityDataSerializers.BYTE);
     private boolean sleeping;
-    private boolean breeding;
     private boolean isInNest;
     private int ticksSinceLastSlept;
     private int stayOutOfNestCountdown;
@@ -78,16 +75,11 @@ public class Butterfly extends Animal implements FlyingAnimal {
     private int ticksSincePollinated;
     private int nectarPoints;
     @Nullable
-    private UUID befriendedPlayer;
-    @Nullable
     private BlockPos nestPos;
     @Nullable
     private Block givenFlower;
-
     Butterfly.PollinateGoal pollinateGoal;
     Butterfly.SpreadFlowersGoal spreadFlowersGoal;
-    public Butterfly.BreedingGoal breedingGoal;
-
     public AnimationState flyingAnimationState = new AnimationState();
 
     public Butterfly(EntityType<? extends Butterfly> type, Level level) {
@@ -103,18 +95,16 @@ public class Butterfly extends Animal implements FlyingAnimal {
     }
 
     protected void registerGoals() {
-        this.breedingGoal = new BreedingGoal();
-        this.goalSelector.addGoal(0, this.breedingGoal);
         this.spreadFlowersGoal = new Butterfly.SpreadFlowersGoal();
-        this.goalSelector.addGoal(1, this.spreadFlowersGoal);
-        this.goalSelector.addGoal(2, new TemptGoal(this, 1.25D, Ingredient.of(ItemTags.FLOWERS), false));
+        this.goalSelector.addGoal(0, this.spreadFlowersGoal);
+        this.goalSelector.addGoal(1, new TemptGoal(this, 1.25D, Ingredient.of(ItemTags.FLOWERS), false));
         this.pollinateGoal = new Butterfly.PollinateGoal();
-        this.goalSelector.addGoal(3, this.pollinateGoal);
-        this.goalSelector.addGoal(4, new Butterfly.EnterNestGoal());
-        this.goalSelector.addGoal(5, new Butterfly.GoToNestGoal());
-        this.goalSelector.addGoal(6, new Butterfly.LocateNestGoal());
-        this.goalSelector.addGoal(7, new Butterfly.WanderGoal());
-        this.goalSelector.addGoal(8, new FloatGoal(this));
+        this.goalSelector.addGoal(2, this.pollinateGoal);
+        this.goalSelector.addGoal(3, new Butterfly.EnterNestGoal());
+        this.goalSelector.addGoal(4, new Butterfly.GoToNestGoal());
+        this.goalSelector.addGoal(5, new Butterfly.LocateNestGoal());
+        this.goalSelector.addGoal(6, new Butterfly.WanderGoal());
+        this.goalSelector.addGoal(7, new FloatGoal(this));
     }
 
     public static AttributeSupplier.Builder createAttributes() {
@@ -128,7 +118,6 @@ public class Butterfly extends Animal implements FlyingAnimal {
 
         tag.putBoolean("HasVisibleNectar", this.hasVisibleNectar());
         tag.putBoolean("IsSleeping", this.isSleeping());
-        tag.putBoolean("IsBreeding", this.isBreeding());
         tag.putBoolean("IsInNest", this.isInNest());
         tag.putInt("NectarPoints", this.nectarPoints);
         tag.putInt("TicksSincePollinated", this.ticksSincePollinated);
@@ -137,10 +126,6 @@ public class Butterfly extends Animal implements FlyingAnimal {
 
         if (this.nestPos != null) {
             tag.put("NestPos", NbtUtils.writeBlockPos(this.nestPos));
-        }
-
-        if (this.befriendedPlayer != null) {
-            tag.putUUID("BefriendedPlayer", this.befriendedPlayer);
         }
     }
 
@@ -151,7 +136,6 @@ public class Butterfly extends Animal implements FlyingAnimal {
 
         this.setHasVisibleNectar(tag.getBoolean("HasVisibleNectar"));
         this.sleeping = tag.getBoolean("IsSleeping");
-        this.breeding = tag.getBoolean("IsBreeding");
         this.isInNest = tag.getBoolean("IsInNest");
         this.nectarPoints = tag.getInt("NectarPoints");
         this.ticksSincePollinated = tag.getInt("TicksSincePollinated");
@@ -161,11 +145,6 @@ public class Butterfly extends Animal implements FlyingAnimal {
         this.nestPos = null;
         if (tag.contains("NestPos")) {
             this.nestPos = NbtUtils.readBlockPos(tag.getCompound("NestPos"));
-        }
-
-        this.befriendedPlayer = null;
-        if (tag.contains("BefriendedPlayer")) {
-            this.befriendedPlayer = tag.getUUID("BefriendedPlayer");
         }
     }
 
@@ -343,9 +322,7 @@ public class Butterfly extends Animal implements FlyingAnimal {
     }
 
     private boolean wantsToEnterNest() {
-        if (this.isBreeding()) {
-            return true;
-        } else if (this.isBusy()) {
+        if (this.isBusy()) {
             return false;
         } else if (this.canEnterNest()) {
             boolean flag = this.level().isRaining() || this.level().isNight() || this.isTired() || this.hasNectar();
@@ -373,19 +350,6 @@ public class Butterfly extends Animal implements FlyingAnimal {
 
     public void setTicksSinceLastSlept(int ticks) {
         this.ticksSinceLastSlept = ticks;
-    }
-
-    public boolean isBreeding() {
-        return this.breeding;
-    }
-
-    public void setBreeding(boolean breeding) {
-        this.breeding = breeding;
-    }
-
-    /** @return was set if the butterfly was befriended as a caterpillar. */
-    private boolean hasBefriendedPlayer() {
-        return this.befriendedPlayer != null;
     }
 
     private boolean isBusy() {
@@ -439,7 +403,7 @@ public class Butterfly extends Animal implements FlyingAnimal {
         if (player.getItemInHand(hand).is(ItemTags.SMALL_FLOWERS)) {
 
             if (!this.level().isClientSide) {
-                if (this.canPollinate() && this.hasBefriendedPlayer()) {
+                if (this.canPollinate()) {
                     this.givenFlower = Block.byItem(player.getItemInHand(hand).getItem());
 
                     for (int i = 0; i < 5; ++i) {
@@ -647,7 +611,7 @@ public class Butterfly extends Animal implements FlyingAnimal {
                 BlockEntity blockEntity = Butterfly.this.level().getBlockEntity(Butterfly.this.nestPos);
 
                 if (blockEntity instanceof ButterflyNestBlockEntity entity) {
-                    entity.addOccupant(Butterfly.this, Butterfly.this.hasNectar(), Butterfly.this.isBreeding());
+                    entity.addOccupant(Butterfly.this, Butterfly.this.hasNectar());
                 }
             }
         }
@@ -781,7 +745,7 @@ public class Butterfly extends Animal implements FlyingAnimal {
     }
 
     /**
-     * The main feature of butterflies; they plant 3 flowers for every 1 flower they collect nectar from.
+     * Main feature; plant 3 flowers for every 1 flower they collect nectar from.
      */
     class SpreadFlowersGoal extends Goal {
         private int successfulTicks;
@@ -903,66 +867,6 @@ public class Butterfly extends Animal implements FlyingAnimal {
 
         public boolean isPlantingFlower() {
             return this.plantingFlower;
-        }
-    }
-
-    public class BreedingGoal extends Goal {
-        @Nullable
-        private Butterfly partner;
-        private final Set<Butterfly> partners = Sets.newHashSet();
-
-        BreedingGoal() {
-            this.setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.LOOK));
-        }
-
-        public boolean canUse() {
-            if (!Butterfly.this.isInLove()) {
-                return false;
-            } else {
-                this.partner = this.getBreedingPartner();
-                return this.partner != null;
-            }
-        }
-
-        public boolean canContinueToUse() {
-            return false;
-        }
-
-        public void start() {
-            Butterfly.this.setBreeding(true);
-            this.partners.add(Butterfly.this);
-
-            if (this.partner != null) {
-                if (this.partner.breedingGoal.getPartners().isEmpty()) {
-                    this.partner.addTag("Provider");
-                }
-            }
-        }
-
-        public void tick() {
-            if (Butterfly.this.nestPos != null) {
-                if (!Butterfly.this.hasReachedTarget(Butterfly.this.nestPos)) {
-                    Butterfly.this.pathfindDirectlyTowards(Butterfly.this.nestPos, 1.0D);
-                }
-            }
-        }
-
-        private Butterfly getBreedingPartner() {
-            List<Butterfly> nearbyButterflies = Butterfly.this.level().getNearbyEntities(Butterfly.class, TargetingConditions.forNonCombat().range(8.0D).ignoreLineOfSight(), Butterfly.this, Butterfly.this.getBoundingBox().inflate(8.0D));
-            double distance = Double.MAX_VALUE;
-
-            Butterfly partner = null;
-            for (Butterfly butterfly : nearbyButterflies) {
-                if (Butterfly.this.canMate(butterfly) && Butterfly.this.distanceToSqr(butterfly) < distance) {
-                    partner = butterfly;
-                    distance = Butterfly.this.distanceToSqr(butterfly);
-                }
-            }
-            return partner;
-        }
-
-        public Set<Butterfly> getPartners() {
-            return this.partners;
         }
     }
 

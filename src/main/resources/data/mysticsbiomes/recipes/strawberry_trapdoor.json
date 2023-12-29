@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "wooden_trapdoor",
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "mysticsbiomes:strawberry_planks"
+    }
+  },
+  "result": {
+    "item": "mysticsbiomes:strawberry_trapdoor",
+    "count": 2
+  }
+}

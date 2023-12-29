@@ -2,8 +2,8 @@ package com.mysticsbiomes.client.renderer.entity;
 
 import com.google.common.collect.Maps;
 import com.mysticsbiomes.MysticsBiomes;
-import com.mysticsbiomes.client.model.ButterflyModel;
-import com.mysticsbiomes.client.model.layer.MysticModelLayers;
+import com.mysticsbiomes.client.model.entity.ButterflyModel;
+import com.mysticsbiomes.client.model.entity.layer.MysticModelLayers;
 import com.mysticsbiomes.common.entity.animal.Butterfly;
 import net.minecraft.Util;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
@@ -16,7 +16,7 @@ import java.util.Map;
 
 @OnlyIn(Dist.CLIENT)
 public class ButterflyRenderer extends MobRenderer<Butterfly, ButterflyModel<Butterfly>> {
-    private static final Map<Integer, Map<Integer, ResourceLocation>> TEXTURE_BY_TYPE = Util.make(Maps.newHashMap(), (map) -> {
+    private static final Map<Integer, Map<Integer, ResourceLocation>> TEXTURES = Util.make(Maps.newHashMap(), (map) -> {
         for (Butterfly.Type type : Butterfly.Type.values()) {
             map.put(type.getId(), variant(type.getSerializedName()));
         }
@@ -27,21 +27,14 @@ public class ButterflyRenderer extends MobRenderer<Butterfly, ButterflyModel<But
     }
 
     public ResourceLocation getTextureLocation(Butterfly butterfly) {
-        Map<Integer, ResourceLocation> base = TEXTURE_BY_TYPE.get(butterfly.getVariant().getId());
-        if (butterfly.hasVisibleNectar()) {
-            return butterfly.isFlying() ? base.get(3) : base.get(4);
-        } else {
-            return butterfly.isFlying() ? base.get(1) : base.get(2);
-        }
+        Map<Integer, ResourceLocation> texture = TEXTURES.get(butterfly.getVariant().getId());
+        return butterfly.hasVisibleNectar() ? texture.get(2) : texture.get(1);
     }
 
-    /** @return a map containing the resource location to both flying and still textures. */
-    public static Map<Integer, ResourceLocation> variant(String type) {
+    private static Map<Integer, ResourceLocation> variant(String type) {
         Map<Integer, ResourceLocation> map = Maps.newHashMap();
         map.put(1, MysticsBiomes.modLoc("textures/entity/butterfly/" + type + ".png"));
-        map.put(2, MysticsBiomes.modLoc("textures/entity/butterfly/" + type + "_still.png"));
-        map.put(3, MysticsBiomes.modLoc("textures/entity/butterfly/" + type + "_nectar.png"));
-        map.put(4, MysticsBiomes.modLoc("textures/entity/butterfly/" + type + "_still_nectar.png"));
+        map.put(2, MysticsBiomes.modLoc("textures/entity/butterfly/" + type + "_nectar.png"));
         return map;
     }
 

@@ -6,6 +6,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.stats.Stats;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -32,6 +33,7 @@ public class StrawberryJamItem extends HoneyBottleItem {
 
         if (!level.isClientSide) {
             entity.removeEffect(MobEffects.MOVEMENT_SLOWDOWN);
+            entity.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 40));
         }
 
         if (stack.isEmpty()) {

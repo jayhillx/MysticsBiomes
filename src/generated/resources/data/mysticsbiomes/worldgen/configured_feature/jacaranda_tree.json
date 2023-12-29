@@ -27,7 +27,7 @@
           "data": {
             "Name": "mysticsbiomes:jacaranda_blossoms",
             "Properties": {
-              "distance": "12",
+              "distance": "16",
               "persistent": "false",
               "waterlogged": "true"
             }
@@ -38,7 +38,7 @@
           "data": {
             "Name": "mysticsbiomes:jacaranda_leaves",
             "Properties": {
-              "distance": "12",
+              "distance": "16",
               "persistent": "false",
               "waterlogged": "true"
             }

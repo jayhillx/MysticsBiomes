@@ -3,8 +3,9 @@ package com.mysticsbiomes.common.block.entity;
 import com.google.common.collect.Lists;
 import com.mysticsbiomes.common.block.ButterflyNestBlock;
 import com.mysticsbiomes.common.entity.animal.Butterfly;
-import com.mysticsbiomes.common.entity.animal.Caterpillar;
-import com.mysticsbiomes.init.*;
+import com.mysticsbiomes.init.MysticBlockEntities;
+import com.mysticsbiomes.init.MysticBlocks;
+import com.mysticsbiomes.init.MysticSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
@@ -16,7 +17,6 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.FireBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -96,18 +96,18 @@ public class ButterflyNestBlockEntity extends BlockEntity {
         return false;
     }
 
-    public void addOccupant(Entity entity, boolean hasNectar, boolean isBreeding) {
-        this.addOccupantWithPresetTicks(entity, hasNectar, isBreeding, 0);
+    public void addOccupant(Entity entity, boolean hasNectar) {
+        this.addOccupantWithPresetTicks(entity, hasNectar, 0);
     }
 
-    public void addOccupantWithPresetTicks(Entity entity, boolean hasNectar, boolean isBreeding, int ticksInNest) {
+    public void addOccupantWithPresetTicks(Entity entity, boolean hasNectar, int ticksInNest) {
         if (this.stored.size() < 3) {
             entity.stopRiding();
             entity.ejectPassengers();
 
             CompoundTag tag = new CompoundTag();
             entity.save(tag);
-            this.storeButterfly(tag, ticksInNest, hasNectar, isBreeding);
+            this.storeButterfly(tag, ticksInNest, hasNectar);
 
             if (this.level != null) {
                 BlockPos pos = this.getBlockPos();
@@ -119,12 +119,8 @@ public class ButterflyNestBlockEntity extends BlockEntity {
         }
     }
 
-    public void storeButterfly(CompoundTag tag, int ticksInNest, boolean hasNectar, boolean isBreeding) {
-        if (isBreeding) {
-            this.stored.add(new ButterflyData(tag, ticksInNest, 200));
-        } else {
-            this.stored.add(new ButterflyData(tag, ticksInNest, hasNectar ? 2400 : 600));
-        }
+    public void storeButterfly(CompoundTag tag, int ticksInNest, boolean hasNectar) {
+        this.stored.add(new ButterflyData(tag, ticksInNest, hasNectar ? 2400 : 600));
     }
 
     public void emptyAllLivingFromNest(@Nullable Player player, BlockState state, ReleaseStatus status) {
@@ -207,27 +203,6 @@ public class ButterflyNestBlockEntity extends BlockEntity {
                             butterfly.setTicksSinceLastSlept(0);
                         }
 
-                        if (status == ReleaseStatus.BREEDING) {
-                            if (butterfly.getTags().contains("Provider")) {
-                                Caterpillar caterpillar = MysticEntities.CATERPILLAR.get().create(butterfly.level());
-
-                                if (caterpillar != null) {
-                                    caterpillar.moveTo(d0, pos.getY() + 0.5D, d2, butterfly.getYRot(), butterfly.getXRot());
-                                    caterpillar.setPersistenceRequired();
-                                    butterfly.level().addFreshEntity(caterpillar);
-
-                                    butterfly.finalizeSpawnChildFromBreeding((ServerLevel)butterfly.level(), butterfly, butterfly);
-                                    if (butterfly.level().getGameRules().getBoolean(GameRules.RULE_DOMOBLOOT)) {
-                                        butterfly.level().addFreshEntity(new ExperienceOrb(butterfly.level(), caterpillar.getX(), caterpillar.getY(), caterpillar.getZ(), caterpillar.getRandom().nextInt(7) + 1));
-                                    }
-                                }
-                            }
-
-                            butterfly.removeTag("Provider");
-                            butterfly.breedingGoal.getPartners().clear();
-                            butterfly.setBreeding(false);
-                        }
-
                         setReleaseData(data.ticksInNest, butterfly);
                         if (occupants != null) {
                             occupants.add(butterfly);
@@ -276,8 +251,6 @@ public class ButterflyNestBlockEntity extends BlockEntity {
                     releaseStatus = ReleaseStatus.NECTAR_DELIVERED;
                 } else if (data.entityData.getBoolean("IsSleeping")) {
                     releaseStatus = ReleaseStatus.SLEEPING;
-                } else if (data.entityData.getBoolean("IsBreeding")) {
-                    releaseStatus = ReleaseStatus.BREEDING;
                 } else {
                     releaseStatus = ReleaseStatus.RELEASED;
                 }
@@ -310,7 +283,6 @@ public class ButterflyNestBlockEntity extends BlockEntity {
     public enum ReleaseStatus {
         NECTAR_DELIVERED,
         SLEEPING,
-        BREEDING,
         RELEASED,
         EMERGENCY
     }
