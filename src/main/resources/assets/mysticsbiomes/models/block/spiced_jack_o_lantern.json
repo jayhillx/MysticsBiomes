@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/orientable",
-  "textures": {
-    "front": "mysticsbiomes:block/spiced_jack_o_lantern",
-    "side": "mysticsbiomes:block/spiced_pumpkin_side",
-    "top": "mysticsbiomes:block/spiced_pumpkin_top"
-  }
-}
