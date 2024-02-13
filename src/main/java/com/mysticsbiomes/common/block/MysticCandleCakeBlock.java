@@ -81,7 +81,7 @@ public class MysticCandleCakeBlock extends AbstractCandleBlock {
     }
 
     public boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
-        return level.getBlockState(pos.below()).isSolid();
+        return level.getBlockState(pos.below()).getMaterial().isSolid();
     }
 
     public boolean isPathfindable(BlockState state, BlockGetter getter, BlockPos pos, PathComputationType type) {

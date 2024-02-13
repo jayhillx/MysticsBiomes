@@ -1,7 +1,7 @@
 package com.mysticsbiomes.client.model.entity;
 
 import com.mysticsbiomes.client.animation.ButterflyAnimation;
-import com.mysticsbiomes.common.entity.animal.Butterfly;
+import com.mysticsbiomes.common.animal.Butterfly;
 import net.minecraft.client.model.HierarchicalModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;

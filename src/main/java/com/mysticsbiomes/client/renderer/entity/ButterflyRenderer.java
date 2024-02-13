@@ -4,7 +4,7 @@ import com.google.common.collect.Maps;
 import com.mysticsbiomes.MysticsBiomes;
 import com.mysticsbiomes.client.model.entity.ButterflyModel;
 import com.mysticsbiomes.client.model.entity.layer.MysticModelLayers;
-import com.mysticsbiomes.common.entity.animal.Butterfly;
+import com.mysticsbiomes.common.animal.Butterfly;
 import net.minecraft.Util;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
@@ -31,7 +31,7 @@ public class ButterflyRenderer extends MobRenderer<Butterfly, ButterflyModel<But
         return butterfly.hasVisibleNectar() ? texture.get(2) : texture.get(1);
     }
 
-    private static Map<Integer, ResourceLocation> variant(String type) {
+    public static Map<Integer, ResourceLocation> variant(String type) {
         Map<Integer, ResourceLocation> map = Maps.newHashMap();
         map.put(1, MysticsBiomes.modLoc("textures/entity/butterfly/" + type + ".png"));
         map.put(2, MysticsBiomes.modLoc("textures/entity/butterfly/" + type + "_nectar.png"));

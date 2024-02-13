@@ -3,7 +3,7 @@ package com.mysticsbiomes.client.renderer.entity;
 import com.google.common.collect.Maps;
 import com.mysticsbiomes.MysticsBiomes;
 import com.mysticsbiomes.client.model.entity.layer.MysticModelLayers;
-import com.mysticsbiomes.common.entity.animal.RainbowChicken;
+import com.mysticsbiomes.common.animal.RainbowChicken;
 import net.minecraft.Util;
 import net.minecraft.client.model.ChickenModel;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;

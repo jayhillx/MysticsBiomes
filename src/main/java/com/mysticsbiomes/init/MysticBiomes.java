@@ -1,37 +1,24 @@
 package com.mysticsbiomes.init;
 
+import com.mysticsbiomes.MysticsBiomes;
 import com.mysticsbiomes.common.biome.MysticBiomeProvider;
 import com.mysticsbiomes.common.biome.OverworldBiomes;
-import net.minecraft.core.HolderGetter;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.data.worldgen.BootstapContext;
-import net.minecraft.resources.ResourceKey;
+import net.minecraft.core.Registry;
 import net.minecraft.world.level.biome.Biome;
-import net.minecraft.world.level.levelgen.carver.ConfiguredWorldCarver;
-import net.minecraft.world.level.levelgen.placement.PlacedFeature;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.RegistryObject;
 import terrablender.api.Regions;
 
-import static com.mysticsbiomes.MysticsBiomes.createKey;
-
 public class MysticBiomes {
+    public static final DeferredRegister<Biome> BIOMES = DeferredRegister.create(Registry.BIOME_REGISTRY, MysticsBiomes.modId);
 
-    public static final ResourceKey<Biome> STRAWBERRY_FIELDS = createKey(Registries.BIOME, "strawberry_fields");
-    public static final ResourceKey<Biome> BAMBOO_BLOSSOM_FOREST = createKey(Registries.BIOME, "bamboo_blossom_forest");
-    public static final ResourceKey<Biome> LAVENDER_MEADOW = createKey(Registries.BIOME, "lavender_meadow");
-    public static final ResourceKey<Biome> AUTUMNAL_GROVE = createKey(Registries.BIOME, "autumnal_grove");
+    public static final RegistryObject<Biome> STRAWBERRY_FIELDS = BIOMES.register("strawberry_fields", OverworldBiomes::strawberryFields);
+    public static final RegistryObject<Biome> BAMBOO_BLOSSOM_FOREST = BIOMES.register("bamboo_blossom_forest", OverworldBiomes::bambooBlossomForest);
+    public static final RegistryObject<Biome> LAVENDER_MEADOW = BIOMES.register("lavender_meadow", OverworldBiomes::lavenderMeadow);
+    public static final RegistryObject<Biome> AUTUMNAL_GROVE = BIOMES.register("autumnal_grove", OverworldBiomes::autumnalGrove);
 
     public static void registerRegionProvider() {
-        Regions.register(new MysticBiomeProvider(4));
-    }
-
-    public static void bootstrap(BootstapContext<Biome> context) {
-        HolderGetter<ConfiguredWorldCarver<?>> carver = context.lookup(Registries.CONFIGURED_CARVER);
-        HolderGetter<PlacedFeature> placedFeature = context.lookup(Registries.PLACED_FEATURE);
-
-        context.register(STRAWBERRY_FIELDS, OverworldBiomes.strawberryFields(placedFeature, carver));
-        context.register(BAMBOO_BLOSSOM_FOREST, OverworldBiomes.bambooBlossomForest(placedFeature, carver));
-        context.register(LAVENDER_MEADOW, OverworldBiomes.lavenderMeadow(placedFeature, carver));
-        context.register(AUTUMNAL_GROVE, OverworldBiomes.autumnalGrove(placedFeature, carver));
+        Regions.register(new MysticBiomeProvider(MysticConfig.COMMON.biomeRegionWeight.get()));
     }
 
 }

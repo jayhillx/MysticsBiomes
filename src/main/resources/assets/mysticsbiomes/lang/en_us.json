@@ -1,5 +1,5 @@
 {
-  "itemGroup.mysticsbiomes.tab": "Mystic's Biomes",
+  "itemGroup.itemGroup.mysticsbiomes.tab": "Mystic's Biomes",
 
   "biome.mysticsbiomes.strawberry_fields": "Strawberry Fields",
   "biome.mysticsbiomes.bamboo_blossom_forest": "Bamboo Blossom Forest",
@@ -23,7 +23,6 @@
   "block.mysticsbiomes.strawberry_trapdoor": "Strawberry Trapdoor",
   "block.mysticsbiomes.strawberry_door": "Strawberry Door",
   "block.mysticsbiomes.strawberry_sign": "Strawberry Sign",
-  "block.mysticsbiomes.strawberry_hanging_sign": "Strawberry Hanging Sign",
   
   "block.mysticsbiomes.pink_cherry_blossoms": "Pink Cherry Blossoms",
   "block.mysticsbiomes.pink_cherry_blossom_sapling": "Pink Cherry Blossom Sapling",
@@ -45,7 +44,6 @@
   "block.mysticsbiomes.cherry_trapdoor": "Cherry Trapdoor",
   "block.mysticsbiomes.cherry_door": "Cherry Door",
   "block.mysticsbiomes.cherry_sign": "Cherry Sign",
-  "block.mysticsbiomes.cherry_hanging_sign": "Cherry Hanging Sign",
 
   "block.mysticsbiomes.jacaranda_blossoms": "Jacaranda Blossoms",
   "block.mysticsbiomes.jacaranda_leaves": "Jacaranda Leaves",
@@ -65,7 +63,6 @@
   "block.mysticsbiomes.jacaranda_trapdoor": "Jacaranda Trapdoor",
   "block.mysticsbiomes.jacaranda_door": "Jacaranda Door",
   "block.mysticsbiomes.jacaranda_sign": "Jacaranda Sign",
-  "block.mysticsbiomes.jacaranda_hanging_sign": "Jacaranda Hanging Sign",
 
   "block.mysticsbiomes.maple_leaves": "Maple Leaves",
   "block.mysticsbiomes.maple_leaf_pile": "Maple Leaf Pile",
@@ -95,9 +92,12 @@
   "block.mysticsbiomes.maple_trapdoor": "Maple Trapdoor",
   "block.mysticsbiomes.maple_door": "Maple Door",
   "block.mysticsbiomes.maple_sign": "Maple Sign",
-  "block.mysticsbiomes.maple_hanging_sign": "Maple Hanging Sign",
 
   "block.mysticsbiomes.butterfly_nest": "Butterfly Nest",
+
+  "block.mysticsbiomes.spring_bamboo": "Spring Bamboo",
+  "block.mysticsbiomes.spring_bamboo_sapling": "Spring Bamboo Shoot",
+  "block.mysticsbiomes.potted_spring_bamboo": "Potted Spring Bamboo",
 
   "block.mysticsbiomes.budding_peony_leaves": "Budding Peony Leaves",
   "block.mysticsbiomes.peony_leaves": "Peony Leaves",
@@ -250,13 +250,9 @@
   "item.mysticsbiomes.purple_egg": "Purple Egg",
 
   "item.mysticsbiomes.strawberry_boat": "Strawberry Boat",
-  "item.mysticsbiomes.strawberry_chest_boat": "Strawberry Chest Boat",
   "item.mysticsbiomes.cherry_boat": "Cherry Boat",
-  "item.mysticsbiomes.cherry_chest_boat": "Cherry Chest Boat",
   "item.mysticsbiomes.jacaranda_boat": "Jacaranda Boat",
-  "item.mysticsbiomes.jacaranda_chest_boat": "Jacaranda Chest Boat",
   "item.mysticsbiomes.maple_boat": "Maple Boat",
-  "item.mysticsbiomes.maple_chest_boat": "Maple Chest Boat",
 
   "item.mysticsbiomes.strawberry_cow_spawn_egg": "Strawberry Cow Spawn Egg",
   "item.mysticsbiomes.rainbow_chicken_spawn_egg": "Rainbow Chicken Spawn Egg",
@@ -272,7 +268,7 @@
   "entity.mysticsbiomes.rainbow_chicken.purple": "Purple Chicken",
   "entity.mysticsbiomes.red_panda": "Red Panda",
   "entity.mysticsbiomes.butterfly": "Butterfly",
-  "entity.mysticsbiomes.butterfly.type.apricot": "Apricot",
+  "entity.mysticsbiomes.butterfly.type.tangerine": "Tangerine",
   "entity.mysticsbiomes.butterfly.type.jelly": "Jelly",
   "entity.mysticsbiomes.butterfly.type.july": "July",
   "entity.mysticsbiomes.butterfly.type.candy": "Candy",
@@ -280,7 +276,6 @@
   "entity.mysticsbiomes.butterfly.type.mystic": "Mystic",
   "entity.mysticsbiomes.butterfly.type.marshmallow": "Marshmallow",
   "entity.mysticsbiomes.boat": "Boat",
-  "entity.mysticsbiomes.chest_boat": "Boat with Chest",
 
   "advancements.mysticsbiomes.root.title": "Mystic's Biomes",
   "advancements.mysticsbiomes.root.description": "Explore the world!",

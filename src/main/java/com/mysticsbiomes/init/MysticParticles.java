@@ -3,11 +3,9 @@ package com.mysticsbiomes.init;
 import com.mysticsbiomes.MysticsBiomes;
 import com.mysticsbiomes.client.particle.FallingLeafParticle;
 import com.mysticsbiomes.client.particle.LeafPileParticle;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.particle.ParticleEngine;
+import net.minecraft.core.Registry;
 import net.minecraft.core.particles.ParticleType;
 import net.minecraft.core.particles.SimpleParticleType;
-import net.minecraft.core.registries.Registries;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.RegisterParticleProvidersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -17,7 +15,7 @@ import net.minecraftforge.registries.RegistryObject;
 
 @Mod.EventBusSubscriber(modid = MysticsBiomes.modId, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class MysticParticles {
-    public static final DeferredRegister<ParticleType<?>> PARTICLES = DeferredRegister.create(Registries.PARTICLE_TYPE, MysticsBiomes.modId);
+    public static final DeferredRegister<ParticleType<?>> PARTICLES = DeferredRegister.create(Registry.PARTICLE_TYPE_REGISTRY, MysticsBiomes.modId);
 
     public static final RegistryObject<SimpleParticleType> FALLING_JACARANDA = PARTICLES.register("falling_jacaranda", () -> new SimpleParticleType(false));
     public static final RegistryObject<SimpleParticleType> FALLING_MAPLE = PARTICLES.register("maple_leaf", () -> new SimpleParticleType(false));
@@ -29,15 +27,13 @@ public class MysticParticles {
 
     @SubscribeEvent
     public static void registerParticles(RegisterParticleProvidersEvent event) {
-        ParticleEngine engine = Minecraft.getInstance().particleEngine;
-
-        engine.register(FALLING_JACARANDA.get(), FallingLeafParticle.Provider::new);
-        engine.register(FALLING_MAPLE.get(), FallingLeafParticle.Provider::new);
-        engine.register(FALLING_ORANGE_MAPLE.get(), FallingLeafParticle.Provider::new);
-        engine.register(FALLING_YELLOW_MAPLE.get(), FallingLeafParticle.Provider::new);
-        engine.register(LEAF_PILE_MAPLE.get(), LeafPileParticle.Provider::new);
-        engine.register(LEAF_PILE_ORANGE_MAPLE.get(), LeafPileParticle.Provider::new);
-        engine.register(LEAF_PILE_YELLOW_MAPLE.get(), LeafPileParticle.Provider::new);
+        event.register(FALLING_JACARANDA.get(), FallingLeafParticle.Provider::new);
+        event.register(FALLING_MAPLE.get(), FallingLeafParticle.Provider::new);
+        event.register(FALLING_ORANGE_MAPLE.get(), FallingLeafParticle.Provider::new);
+        event.register(FALLING_YELLOW_MAPLE.get(), FallingLeafParticle.Provider::new);
+        event.register(LEAF_PILE_MAPLE.get(), LeafPileParticle.Provider::new);
+        event.register(LEAF_PILE_ORANGE_MAPLE.get(), LeafPileParticle.Provider::new);
+        event.register(LEAF_PILE_YELLOW_MAPLE.get(), LeafPileParticle.Provider::new);
     }
 
 }

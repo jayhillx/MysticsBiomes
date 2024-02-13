@@ -2,7 +2,6 @@ package com.mysticsbiomes.init;
 
 import com.mysticsbiomes.common.util.BlockDataUtils;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
-import net.minecraft.client.renderer.blockentity.HangingSignRenderer;
 import net.minecraft.client.renderer.blockentity.SignRenderer;
 
 public class MysticVanillaCompat {
@@ -76,6 +75,8 @@ public class MysticVanillaCompat {
             BlockDataUtils.flammable(MysticBlocks.MAPLE_TRAPDOOR.get(), 5, 20);
             BlockDataUtils.flammable(MysticBlocks.MAPLE_DOOR.get(), 5, 20);
 
+            BlockDataUtils.flammable(MysticBlocks.SPRING_BAMBOO.get(), 60, 60);
+
             BlockDataUtils.flammable(MysticBlocks.PEONY_LEAVES.get(), 30, 60);
             BlockDataUtils.flammable(MysticBlocks.BUDDING_PEONY_LEAVES.get(), 30, 60);
             BlockDataUtils.flammable(MysticBlocks.PEONY_BUSH.get(), 30, 60);
@@ -130,7 +131,6 @@ public class MysticVanillaCompat {
         public static void registerRenderLayers() {
             // Use cutout_mipped for leaves, & cutout for flowers.
             BlockEntityRenderers.register(MysticBlockEntities.SIGN.get(), SignRenderer::new);
-            BlockEntityRenderers.register(MysticBlockEntities.HANGING_SIGN.get(), HangingSignRenderer::new);
         }
     }
 

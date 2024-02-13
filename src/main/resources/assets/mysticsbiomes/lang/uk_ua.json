@@ -27,7 +27,6 @@
   "block.mysticsbiomes.strawberry_trapdoor": "Полуничний люк",
   "block.mysticsbiomes.strawberry_door": "Полуничні двері",
   "block.mysticsbiomes.strawberry_sign": "Полунична табличка",
-  "block.mysticsbiomes.strawberry_hanging_sign": "Полунична вивіска",
 
   "block.mysticsbiomes.budding_peony_leaves": "Розпукле листя півонії",
   "block.mysticsbiomes.peony_leaves": "Листі півонії",
@@ -54,7 +53,6 @@
   "block.mysticsbiomes.cherry_trapdoor": "Вишневий люк",
   "block.mysticsbiomes.cherry_door": "Вишневі двері",
   "block.mysticsbiomes.cherry_sign": "Вишнева табличка",
-  "block.mysticsbiomes.cherry_hanging_sign": "Вишнева вивіска",
 
   "block.mysticsbiomes.jacaranda_blossoms": "Цвітіння жакаранди",
   "block.mysticsbiomes.jacaranda_leaves": "Листя жакаранди",
@@ -74,18 +72,14 @@
   "block.mysticsbiomes.jacaranda_trapdoor": "Люк із жакаранди",
   "block.mysticsbiomes.jacaranda_door": "Двері із жакаранди",
   "block.mysticsbiomes.jacaranda_sign": "Табличка із жакаранди",
-  "block.mysticsbiomes.jacaranda_hanging_sign": "Вивіска із жакаранди",
 
   "block.mysticsbiomes.lavender": "Лаванда",
 
   "block.mysticsbiomes.strawberry_cake": "Полуничний торт",
 
   "item.mysticsbiomes.strawberry_boat": "Полуничний човен",
-  "item.mysticsbiomes.strawberry_chest_boat": "Полуничний човен зі скринею",
   "item.mysticsbiomes.cherry_boat": "Вишневий човен",
-  "item.mysticsbiomes.cherry_chest_boat": "Вишневий човен зі скринею",
   "item.mysticsbiomes.jacaranda_boat": "Човен із жакаранди",
-  "item.mysticsbiomes.jacaranda_chest_boat": "Човен із жакаранди зі скринею",
   "item.mysticsbiomes.strawberry": "Полуниця",
   "item.mysticsbiomes.sweet_strawberry": "Солодка полуниця",
   "item.mysticsbiomes.strawberry_ice_cream": "Полуничне морозиво",

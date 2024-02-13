@@ -36,14 +36,13 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.gameevent.GameEvent;
-import net.minecraft.world.level.storage.loot.LootParams;
+import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.BlockHitResult;
 
 import javax.annotation.Nullable;
 import java.util.List;
 
-@SuppressWarnings("deprecation")
 public class ButterflyNestBlock extends BaseEntityBlock {
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
     public static final IntegerProperty NECTAR_LEVEL = IntegerProperty.create("nectar_level", 0, 5);
@@ -128,7 +127,7 @@ public class ButterflyNestBlock extends BaseEntityBlock {
         super.playerWillDestroy(level, pos, state, player);
     }
 
-    public List<ItemStack> getDrops(BlockState state, LootParams.Builder builder) {
+    public List<ItemStack> getDrops(BlockState state, LootContext.Builder builder) {
         Entity entity = builder.getOptionalParameter(LootContextParams.THIS_ENTITY);
         if (entity instanceof PrimedTnt || entity instanceof Creeper || entity instanceof WitherSkull || entity instanceof WitherBoss || entity instanceof MinecartTNT) {
             BlockEntity blockEntity = builder.getOptionalParameter(LootContextParams.BLOCK_ENTITY);

@@ -6,12 +6,12 @@ import net.minecraft.world.level.biome.*;
 
 public interface BiomeTemplate {
 
-    static Biome biome(float temperature, float downfall, int waterColor, int waterFogColor, int fogColor, MobSpawnSettings.Builder mobSpawns, BiomeGenerationSettings.Builder generation) {
-        return (new Biome.BiomeBuilder()).hasPrecipitation(true).temperature(temperature).downfall(downfall).specialEffects((new BiomeSpecialEffects.Builder()).waterColor(waterColor).waterFogColor(waterFogColor).fogColor(fogColor).skyColor(calculateSkyColor(temperature)).ambientMoodSound(AmbientMoodSettings.LEGACY_CAVE_SETTINGS).build()).mobSpawnSettings(mobSpawns.build()).generationSettings(generation.build()).build();
+    static Biome biome(Biome.Precipitation precipitation, float temperature, float downfall, int waterColor, int waterFogColor, int fogColor, MobSpawnSettings.Builder mobSpawns, BiomeGenerationSettings.Builder generation) {
+        return (new Biome.BiomeBuilder()).precipitation(precipitation).temperature(temperature).downfall(downfall).specialEffects((new BiomeSpecialEffects.Builder()).waterColor(waterColor).waterFogColor(waterFogColor).fogColor(fogColor).skyColor(calculateSkyColor(temperature)).ambientMoodSound(AmbientMoodSettings.LEGACY_CAVE_SETTINGS).build()).mobSpawnSettings(mobSpawns.build()).generationSettings(generation.build()).build();
     }
 
-    static Biome biome(float temperature, float downfall, int waterColor, int waterFogColor, int fogColor, int grassColor, int foliageColor, MobSpawnSettings.Builder mobSpawns, BiomeGenerationSettings.Builder generation) {
-        return (new Biome.BiomeBuilder()).hasPrecipitation(true).temperature(temperature).downfall(downfall).specialEffects((new BiomeSpecialEffects.Builder()).waterColor(waterColor).waterFogColor(waterFogColor).fogColor(fogColor).grassColorOverride(grassColor).foliageColorOverride(foliageColor).skyColor(calculateSkyColor(temperature)).ambientMoodSound(AmbientMoodSettings.LEGACY_CAVE_SETTINGS).build()).mobSpawnSettings(mobSpawns.build()).generationSettings(generation.build()).build();
+    static Biome biome(Biome.Precipitation precipitation, float temperature, float downfall, int waterColor, int waterFogColor, int fogColor, int grassColor, int foliageColor, MobSpawnSettings.Builder mobSpawns, BiomeGenerationSettings.Builder generation) {
+        return (new Biome.BiomeBuilder()).precipitation(precipitation).temperature(temperature).downfall(downfall).specialEffects((new BiomeSpecialEffects.Builder()).waterColor(waterColor).waterFogColor(waterFogColor).fogColor(fogColor).grassColorOverride(grassColor).foliageColorOverride(foliageColor).skyColor(calculateSkyColor(temperature)).ambientMoodSound(AmbientMoodSettings.LEGACY_CAVE_SETTINGS).build()).mobSpawnSettings(mobSpawns.build()).generationSettings(generation.build()).build();
     }
 
     static int calculateSkyColor(float temperature) {

@@ -3,6 +3,7 @@ package com.mysticsbiomes.common.biome;
 import com.mojang.datafixers.util.Pair;
 import com.mysticsbiomes.MysticsBiomes;
 import com.mysticsbiomes.init.MysticBiomes;
+import com.mysticsbiomes.init.MysticConfig;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
@@ -24,10 +25,18 @@ public class MysticBiomeProvider extends Region {
     @Override
     public void addBiomes(Registry<Biome> registry, Consumer<Pair<Climate.ParameterPoint, ResourceKey<Biome>>> mapper) {
         this.addModifiedVanillaOverworldBiomes(mapper, builder -> {
-            builder.replaceBiome(Biomes.SUNFLOWER_PLAINS, MysticBiomes.STRAWBERRY_FIELDS);
-            builder.replaceBiome(Biomes.SNOWY_PLAINS, MysticBiomes.BAMBOO_BLOSSOM_FOREST);
-            builder.replaceBiome(Biomes.MEADOW, MysticBiomes.LAVENDER_MEADOW);
-            builder.replaceBiome(Biomes.TAIGA, MysticBiomes.AUTUMNAL_GROVE);
+            if (MysticConfig.COMMON.enableStrawberryFields.get()) {
+                builder.replaceBiome(Biomes.SUNFLOWER_PLAINS, MysticBiomes.STRAWBERRY_FIELDS.getKey());
+            }
+            if (MysticConfig.COMMON.enableBambooBlossomForest.get()) {
+                builder.replaceBiome(Biomes.SNOWY_PLAINS, MysticBiomes.BAMBOO_BLOSSOM_FOREST.getKey());
+            }
+            if (MysticConfig.COMMON.enableLavenderMeadow.get()) {
+                builder.replaceBiome(Biomes.MEADOW, MysticBiomes.LAVENDER_MEADOW.getKey());
+            }
+            if (MysticConfig.COMMON.enableAutumnalGrove.get()) {
+                builder.replaceBiome(Biomes.TAIGA, MysticBiomes.AUTUMNAL_GROVE.getKey());
+            }
         });
     }
 

@@ -6,6 +6,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.tags.FluidTags;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.vehicle.ChestBoat;
 import net.minecraft.world.item.Item;
@@ -55,11 +56,11 @@ public class MysticChestBoat extends ChestBoat {
                         return;
                     }
 
-                    this.causeFallDamage(this.fallDistance, 1.0F, this.damageSources().fall());
+                    this.causeFallDamage(this.fallDistance, 1.0F, DamageSource.FALL);
 
-                    if (!this.level().isClientSide && !this.isRemoved()) {
+                    if (!this.level.isClientSide && !this.isRemoved()) {
                         this.kill();
-                        if (this.level().getGameRules().getBoolean(GameRules.RULE_DOENTITYDROPS)) {
+                        if (this.level.getGameRules().getBoolean(GameRules.RULE_DOENTITYDROPS)) {
                             for (int i = 0; i < 3; ++i) {
                                 this.spawnAtLocation(this.getModel().getPlanks());
                             }
@@ -72,7 +73,7 @@ public class MysticChestBoat extends ChestBoat {
                 }
 
                 this.resetFallDistance();
-            } else if (!this.level().getFluidState(this.blockPosition().below()).is(FluidTags.WATER) && y < 0.0D) {
+            } else if (!this.level.getFluidState(this.blockPosition().below()).is(FluidTags.WATER) && y < 0.0D) {
                 this.fallDistance -= (float)y;
             }
         }

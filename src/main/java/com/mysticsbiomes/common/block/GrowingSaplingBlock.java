@@ -1,6 +1,6 @@
 package com.mysticsbiomes.common.block;
 
-import net.minecraft.resources.ResourceKey;
+import net.minecraft.core.Holder;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.SaplingBlock;
 import net.minecraft.world.level.block.grower.AbstractTreeGrower;
@@ -18,13 +18,13 @@ public class GrowingSaplingBlock extends SaplingBlock {
     }
 
     public static class TreeGrower extends AbstractTreeGrower {
-        final ResourceKey<ConfiguredFeature<?, ?>> feature;
+        final Holder<? extends ConfiguredFeature<?, ?>> feature;
 
-        public TreeGrower(ResourceKey<ConfiguredFeature<?, ?>> feature) {
+        public TreeGrower(Holder<? extends ConfiguredFeature<?, ?>> feature) {
             this.feature = feature;
         }
 
-        protected ResourceKey<ConfiguredFeature<?, ?>> getConfiguredFeature(@Nonnull RandomSource source, boolean fancy) {
+        protected Holder<? extends ConfiguredFeature<?, ?>> getConfiguredFeature(@Nonnull RandomSource source, boolean fancy) {
             return this.feature;
         }
     }

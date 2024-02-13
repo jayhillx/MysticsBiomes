@@ -10,10 +10,10 @@ import static net.minecraft.world.level.block.state.properties.WoodType.register
 
 public class MysticWoodTypes {
 
-    public static final WoodType STRAWBERRY = register(new WoodType(MysticsBiomes.modId + ":strawberry", MysticBlockSetTypes.STRAWBERRY));
-    public static final WoodType CHERRY = register(new WoodType(MysticsBiomes.modId + ":cherry", MysticBlockSetTypes.CHERRY));
-    public static final WoodType JACARANDA = register(new WoodType(MysticsBiomes.modId + ":jacaranda", MysticBlockSetTypes.JACARANDA));
-    public static final WoodType MAPLE = register(new WoodType(MysticsBiomes.modId + ":maple", MysticBlockSetTypes.MAPLE));
+    public static final WoodType STRAWBERRY = register(WoodType.create(MysticsBiomes.modId + ":strawberry"));
+    public static final WoodType CHERRY = register(WoodType.create(MysticsBiomes.modId + ":cherry"));
+    public static final WoodType JACARANDA = register(WoodType.create(MysticsBiomes.modId + ":jacaranda"));
+    public static final WoodType MAPLE = register(WoodType.create(MysticsBiomes.modId + ":maple"));
 
     /**
      * Register new wood types. (Enqueued in {@link MysticsBiomes::clientSetup})

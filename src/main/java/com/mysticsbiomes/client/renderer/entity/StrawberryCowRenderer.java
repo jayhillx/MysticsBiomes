@@ -1,8 +1,9 @@
 package com.mysticsbiomes.client.renderer.entity;
 
 import com.mysticsbiomes.MysticsBiomes;
-import com.mysticsbiomes.client.model.entity.StrawberryCowModel;
-import com.mysticsbiomes.common.entity.animal.StrawberryCow;
+import com.mysticsbiomes.client.model.entity.layer.MysticModelLayers;
+import com.mysticsbiomes.common.animal.StrawberryCow;
+import net.minecraft.client.model.CowModel;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
@@ -10,11 +11,11 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
-public class StrawberryCowRenderer extends MobRenderer<StrawberryCow, StrawberryCowModel<StrawberryCow>> {
-    private static final ResourceLocation TEXTURE = MysticsBiomes.modLoc("textures/entity/strawberry_cow/normal.png");
+public class StrawberryCowRenderer extends MobRenderer<StrawberryCow, CowModel<StrawberryCow>> {
+    private static final ResourceLocation TEXTURE = MysticsBiomes.modLoc("textures/entity/cows/strawberry_cow.png");
 
     public StrawberryCowRenderer(EntityRendererProvider.Context context) {
-        super(context, new StrawberryCowModel<>(context.bakeLayer(StrawberryCowModel.LAYER)), 0.7F);
+        super(context, new CowModel<>(context.bakeLayer(MysticModelLayers.STRAWBERRY_COW)), 0.7F);
     }
 
     public ResourceLocation getTextureLocation(StrawberryCow cow) {

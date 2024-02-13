@@ -1,6 +1,7 @@
 package com.mysticsbiomes.common.block;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
@@ -36,7 +37,7 @@ public class GrowingBushBlock extends BushBlock implements BonemealableBlock {
         return SHAPE;
     }
 
-    public boolean isValidBonemealTarget(LevelReader reader, BlockPos pos, BlockState state, boolean valid) {
+    public boolean isValidBonemealTarget(BlockGetter reader, BlockPos pos, BlockState state, boolean valid) {
         return reader.getFluidState(pos.above()).isEmpty();
     }
 
@@ -49,13 +50,13 @@ public class GrowingBushBlock extends BushBlock implements BonemealableBlock {
     }
 
     public static class TreeGrower extends AbstractTreeGrower {
-        final ResourceKey<ConfiguredFeature<?, ?>> feature;
+        final Holder<? extends ConfiguredFeature<?, ?>> feature;
 
-        public TreeGrower(ResourceKey<ConfiguredFeature<?, ?>> feature) {
+        public TreeGrower(Holder<? extends ConfiguredFeature<?, ?>> feature) {
             this.feature = feature;
         }
 
-        protected ResourceKey<ConfiguredFeature<?, ?>> getConfiguredFeature(@Nonnull RandomSource source, boolean fancy) {
+        protected Holder<? extends ConfiguredFeature<?, ?>> getConfiguredFeature(@Nonnull RandomSource source, boolean fancy) {
             return this.feature;
         }
     }

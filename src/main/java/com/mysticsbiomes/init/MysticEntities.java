@@ -2,19 +2,17 @@ package com.mysticsbiomes.init;
 
 import com.mysticsbiomes.MysticsBiomes;
 import com.mysticsbiomes.client.model.entity.ButterflyModel;
-import com.mysticsbiomes.client.model.entity.StrawberryCowModel;
+import com.mysticsbiomes.client.model.entity.RedPandaModel;
 import com.mysticsbiomes.client.model.entity.layer.MysticModelLayers;
 import com.mysticsbiomes.client.renderer.entity.*;
-import com.mysticsbiomes.common.entity.MysticBoat;
-import com.mysticsbiomes.common.entity.MysticChestBoat;
-import com.mysticsbiomes.common.entity.animal.*;
-import com.mysticsbiomes.common.entity.MysticThrownEgg;
+import com.mysticsbiomes.common.animal.*;
+import com.mysticsbiomes.common.entity.*;
 import net.minecraft.client.model.BoatModel;
-import net.minecraft.client.model.ChestBoatModel;
 import net.minecraft.client.model.ChickenModel;
+import net.minecraft.client.model.CowModel;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
-import net.minecraft.core.registries.Registries;
+import net.minecraft.core.Registry;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.entity.SpawnPlacements;
@@ -31,11 +29,11 @@ import net.minecraftforge.registries.RegistryObject;
 
 @Mod.EventBusSubscriber(modid = MysticsBiomes.modId, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class MysticEntities {
-    public static final DeferredRegister<EntityType<?>> ENTITIES = DeferredRegister.create(Registries.ENTITY_TYPE, MysticsBiomes.modId);
+    public static final DeferredRegister<EntityType<?>> ENTITIES = DeferredRegister.create(Registry.ENTITY_TYPE_REGISTRY, MysticsBiomes.modId);
 
     public static final RegistryObject<EntityType<StrawberryCow>> STRAWBERRY_COW = ENTITIES.register("strawberry_cow", () -> EntityType.Builder.of(StrawberryCow::new, MobCategory.CREATURE).sized(0.9F, 1.4F).clientTrackingRange(10).build(MysticsBiomes.modId + ":strawberry_cow"));
     public static final RegistryObject<EntityType<RainbowChicken>> RAINBOW_CHICKEN = ENTITIES.register("rainbow_chicken", () -> EntityType.Builder.of(RainbowChicken::new, MobCategory.CREATURE).sized(0.4F, 0.7F).clientTrackingRange(10).build(MysticsBiomes.modId + ":rainbow_chicken"));
-    public static final RegistryObject<EntityType<RedPanda>> RED_PANDA = ENTITIES.register("red_panda", () -> EntityType.Builder.of(RedPanda::new, MobCategory.CREATURE).sized(0.9F, 1.4F).clientTrackingRange(10).build(MysticsBiomes.modId + ":red_panda"));
+    public static final RegistryObject<EntityType<RedPanda>> RED_PANDA = ENTITIES.register("red_panda", () -> EntityType.Builder.of(RedPanda::new, MobCategory.CREATURE).sized(0.5F, 0.6F).clientTrackingRange(10).build(MysticsBiomes.modId + ":red_panda"));
     public static final RegistryObject<EntityType<Butterfly>> BUTTERFLY = ENTITIES.register("butterfly", () -> EntityType.Builder.of(Butterfly::new, MobCategory.CREATURE).sized(0.5F, 0.3F).clientTrackingRange(10).build(MysticsBiomes.modId + ":butterfly"));
 
     public static final RegistryObject<EntityType<MysticThrownEgg>> RAINBOW_EGG = ENTITIES.register("rainbow_egg", () -> EntityType.Builder.<MysticThrownEgg>of(MysticThrownEgg::new, MobCategory.MISC).sized(0.25F, 0.25F).clientTrackingRange(4).updateInterval(10).build(MysticsBiomes.modId + ":rainbow_egg"));
@@ -63,13 +61,14 @@ public class MysticEntities {
 
         @SubscribeEvent
         public static void registerEntityLayers(EntityRenderersEvent.RegisterLayerDefinitions event) {
-            event.registerLayerDefinition(MysticModelLayers.STRAWBERRY_COW, StrawberryCowModel::createBodyLayer);
+            event.registerLayerDefinition(MysticModelLayers.STRAWBERRY_COW, CowModel::createBodyLayer);
             event.registerLayerDefinition(MysticModelLayers.RAINBOW_CHICKEN, ChickenModel::createBodyLayer);
+            event.registerLayerDefinition(MysticModelLayers.RED_PANDA, RedPandaModel::createBodyLayer);
             event.registerLayerDefinition(MysticModelLayers.BUTTERFLY, ButterflyModel::createBodyLayer);
 
             for (MysticBoat.Type type : MysticBoat.Type.values()) {
-                event.registerLayerDefinition(MysticBoatRenderer.createBoatModelName(type), BoatModel::createBodyModel);
-                event.registerLayerDefinition(MysticBoatRenderer.createChestBoatModelName(type), ChestBoatModel::createBodyModel);
+                event.registerLayerDefinition(MysticBoatRenderer.createBoatModelName(type), () -> BoatModel.createBodyModel(false));
+                event.registerLayerDefinition(MysticBoatRenderer.createChestBoatModelName(type), () -> BoatModel.createBodyModel(true));
             }
         }
 

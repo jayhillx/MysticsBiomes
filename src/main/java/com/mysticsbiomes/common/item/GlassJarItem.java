@@ -1,6 +1,6 @@
 package com.mysticsbiomes.common.item;
 
-import com.mysticsbiomes.common.entity.animal.Butterfly;
+import com.mysticsbiomes.common.animal.Butterfly;
 import com.mysticsbiomes.init.MysticEntities;
 import com.mysticsbiomes.init.MysticItems;
 import net.minecraft.ChatFormatting;
@@ -25,15 +25,15 @@ import java.util.List;
 public class GlassJarItem extends Item {
     private final Butterfly.Type type;
 
-    public GlassJarItem(Butterfly.Type type, Properties properties) {
-        super(properties);
+    public GlassJarItem(Butterfly.Type type) {
+        super(new Item.Properties().stacksTo(1));
         this.type = type;
     }
 
     @Override
     public InteractionResult interactLivingEntity(ItemStack stack, Player player, LivingEntity entity, InteractionHand hand) {
         if (this.type == null) {
-            if (!player.level().isClientSide) {
+            if (!player.level.isClientSide) {
                 if (entity instanceof Butterfly butterfly) {
                     ItemStack butterflyJar = this.getItemByType(butterfly.getVariant()).getDefaultInstance();
 
@@ -108,9 +108,13 @@ public class GlassJarItem extends Item {
     }
 
     public Item getItemByType(Butterfly.Type type) {
-        if (type == Butterfly.Type.APRICOT) return MysticItems.ORANGE_BUTTERFLY_JAR.get();
+        if (type == Butterfly.Type.TANGERINE) return MysticItems.ORANGE_BUTTERFLY_JAR.get();
         if (type == Butterfly.Type.JELLY) return MysticItems.BLUE_BUTTERFLY_JAR.get();
         if (type == Butterfly.Type.JULY) return MysticItems.CYAN_BUTTERFLY_JAR.get();
+        if (type == Butterfly.Type.CANDY) return MysticItems.LILAC_BUTTERFLY_JAR.get();
+        if (type == Butterfly.Type.VALENTINE) return MysticItems.PINK_BUTTERFLY_JAR.get();
+        if (type == Butterfly.Type.MYSTIC) return MysticItems.PURPLE_BUTTERFLY_JAR.get();
+        if (type == Butterfly.Type.MARSHMALLOW) return MysticItems.WHITE_BUTTERFLY_JAR.get();
         else return null;
     }
 

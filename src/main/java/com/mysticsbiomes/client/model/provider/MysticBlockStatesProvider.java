@@ -2,7 +2,7 @@ package com.mysticsbiomes.client.model.provider;
 
 import com.mysticsbiomes.MysticsBiomes;
 import com.mysticsbiomes.common.block.MysticCandleCakeBlock;
-import net.minecraft.data.PackOutput;
+import net.minecraft.data.DataGenerator;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraftforge.client.model.generators.BlockModelBuilder;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
@@ -11,8 +11,8 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 
 public class MysticBlockStatesProvider extends BlockStateProvider {
 
-    public MysticBlockStatesProvider(PackOutput output, ExistingFileHelper helper) {
-        super(output, MysticsBiomes.modId, helper);
+    public MysticBlockStatesProvider(DataGenerator generator, ExistingFileHelper helper) {
+        super(generator, MysticsBiomes.modId, helper);
     }
 
     @Override

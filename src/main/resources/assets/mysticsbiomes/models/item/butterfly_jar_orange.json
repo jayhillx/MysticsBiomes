@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "mysticsbiomes:item/glass_jar_butterfly_apricot"
+    "layer0": "mysticsbiomes:item/glass_jar_butterfly_tangerine"
   }
 }

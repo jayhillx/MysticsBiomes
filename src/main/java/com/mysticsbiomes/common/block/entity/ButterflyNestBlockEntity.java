@@ -2,7 +2,7 @@ package com.mysticsbiomes.common.block.entity;
 
 import com.google.common.collect.Lists;
 import com.mysticsbiomes.common.block.ButterflyNestBlock;
-import com.mysticsbiomes.common.entity.animal.Butterfly;
+import com.mysticsbiomes.common.animal.Butterfly;
 import com.mysticsbiomes.init.MysticBlockEntities;
 import com.mysticsbiomes.init.MysticBlocks;
 import com.mysticsbiomes.init.MysticSounds;
