@@ -1,0 +1,25 @@
+{
+  "feature": "mysticsbiomes:patch_spring_bamboo",
+  "placement": [
+    {
+      "type": "minecraft:noise_based_count",
+      "noise_factor": 120.0,
+      "noise_offset": 0.4,
+      "noise_to_count_ratio": 200
+    },
+    {
+      "type": "minecraft:rarity_filter",
+      "chance": 140
+    },
+    {
+      "type": "minecraft:in_square"
+    },
+    {
+      "type": "minecraft:heightmap",
+      "heightmap": "WORLD_SURFACE_WG"
+    },
+    {
+      "type": "minecraft:biome"
+    }
+  ]
+}

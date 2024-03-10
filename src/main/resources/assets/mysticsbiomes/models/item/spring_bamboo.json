@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "mysticsbiomes:item/spring_bamboo"
+  }
+}
