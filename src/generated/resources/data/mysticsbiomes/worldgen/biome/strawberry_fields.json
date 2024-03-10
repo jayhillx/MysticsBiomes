@@ -71,8 +71,8 @@
     ],
     [
       "minecraft:glow_lichen",
-      "mysticsbiomes:tree_strawberry",
-      "mysticsbiomes:plant_strawberry_bush",
+      "mysticsbiomes:tree_strawberry_checked",
+      "mysticsbiomes:patch_strawberry_bush",
       "mysticsbiomes:flower_pink_tulip",
       "mysticsbiomes:flower_white_tulip",
       "mysticsbiomes:patch_light_grass"

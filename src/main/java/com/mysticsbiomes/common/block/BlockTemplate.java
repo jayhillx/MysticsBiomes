@@ -13,13 +13,15 @@ import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
 
+import java.util.function.Supplier;
+
 public interface BlockTemplate {
 
-    static MysticLogBlock log(Block block, MapColor yColor, MapColor xzColor) {
-        return new MysticLogBlock(block, BlockBehaviour.Properties.of().mapColor((state) -> state.getValue(RotatedPillarBlock.AXIS) == Direction.Axis.Y ? yColor : xzColor).instrument(NoteBlockInstrument.BASS).strength(2.0F).sound(SoundType.WOOD).ignitedByLava());
+    static MysticLogBlock log(Supplier<Block> block, MapColor yColor, MapColor xzColor) {
+        return new MysticLogBlock(block.get(), BlockBehaviour.Properties.of().mapColor((state) -> state.getValue(RotatedPillarBlock.AXIS) == Direction.Axis.Y ? yColor : xzColor).instrument(NoteBlockInstrument.BASS).strength(2.0F).sound(SoundType.WOOD).ignitedByLava());
     }
 
-    static RotatedPillarBlock strippedLog(MapColor color) {
+    static RotatedPillarBlock rotatedPillar(MapColor color) {
         return new RotatedPillarBlock(BlockBehaviour.Properties.of().mapColor(color).instrument(NoteBlockInstrument.BASS).strength(2.0F).sound(SoundType.WOOD).ignitedByLava());
     }
 
@@ -73,14 +75,6 @@ public interface BlockTemplate {
 
     static MysticWallHangingSignBlock wallHangingSign(Block block, WoodType woodType) {
         return new MysticWallHangingSignBlock(BlockBehaviour.Properties.copy(block).lootFrom(() -> block), woodType);
-    }
-
-    static MysticLeavesBlock leaves(String particleType, SoundType soundType) {
-        return new MysticLeavesBlock(particleType, BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).strength(0.2F).randomTicks().sound(soundType).noOcclusion().isSuffocating(BlockTemplate::never).isViewBlocking(BlockTemplate::never).ignitedByLava().pushReaction(PushReaction.DESTROY).isRedstoneConductor(BlockTemplate::never));
-    }
-
-    static MysticLeavesBlock leaves(SoundType soundType) {
-        return leaves(null, soundType);
     }
 
     static FlowerPotBlock potted(Block block) {

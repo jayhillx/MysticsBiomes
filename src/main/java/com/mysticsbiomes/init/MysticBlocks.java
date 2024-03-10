@@ -8,6 +8,7 @@ import com.mysticsbiomes.common.world.feature.MysticTreeFeatures;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
 import net.minecraftforge.registries.DeferredRegister;
@@ -19,13 +20,13 @@ public class MysticBlocks {
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(Registries.BLOCK, MysticsBiomes.modId);
 
     // strawberry fields
-    public static final RegistryObject<Block> STRAWBERRY_BLOSSOMS = BLOCKS.register("strawberry_blossoms", () -> leaves(SoundType.AZALEA_LEAVES));
-    public static final RegistryObject<Block> STRAWBERRY_SAPLING = BLOCKS.register("strawberry_sapling", () -> new GrowingSaplingBlock(new GrowingSaplingBlock.TreeGrower(MysticTreeFeatures.STRAWBERRY_TREE), BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING)));
+    public static final RegistryObject<Block> STRAWBERRY_BLOSSOMS = BLOCKS.register("strawberry_blossoms", () -> new MysticLeavesBlock(SoundType.AZALEA_LEAVES));
+    public static final RegistryObject<Block> STRAWBERRY_SAPLING = BLOCKS.register("strawberry_sapling", () -> new MysticSaplingBlock(new MysticSaplingBlock.TreeGrower(MysticTreeFeatures.STRAWBERRY_TREE), BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING)));
 
-    public static final RegistryObject<Block> STRIPPED_STRAWBERRY_LOG = BLOCKS.register("stripped_strawberry_log", () -> strippedLog(MapColor.COLOR_PINK));
-    public static final RegistryObject<Block> STRAWBERRY_LOG = BLOCKS.register("strawberry_log", () -> log(STRIPPED_STRAWBERRY_LOG.get(), MapColor.TERRACOTTA_PINK, MapColor.COLOR_PINK));
-    public static final RegistryObject<Block> STRIPPED_STRAWBERRY_WOOD = BLOCKS.register("stripped_strawberry_wood", () -> strippedLog(MapColor.COLOR_PINK));
-    public static final RegistryObject<Block> STRAWBERRY_WOOD = BLOCKS.register("strawberry_wood", () -> log(STRIPPED_STRAWBERRY_WOOD.get(), MapColor.TERRACOTTA_PINK, MapColor.TERRACOTTA_PINK));
+    public static final RegistryObject<Block> STRIPPED_STRAWBERRY_LOG = BLOCKS.register("stripped_strawberry_log", () -> rotatedPillar(MapColor.COLOR_PINK));
+    public static final RegistryObject<Block> STRAWBERRY_LOG = BLOCKS.register("strawberry_log", () -> log(STRIPPED_STRAWBERRY_LOG, MapColor.TERRACOTTA_PINK, MapColor.COLOR_PINK));
+    public static final RegistryObject<Block> STRIPPED_STRAWBERRY_WOOD = BLOCKS.register("stripped_strawberry_wood", () -> rotatedPillar(MapColor.COLOR_PINK));
+    public static final RegistryObject<Block> STRAWBERRY_WOOD = BLOCKS.register("strawberry_wood", () -> log(STRIPPED_STRAWBERRY_WOOD, MapColor.TERRACOTTA_PINK, MapColor.TERRACOTTA_PINK));
     public static final RegistryObject<Block> STRAWBERRY_PLANKS = BLOCKS.register("strawberry_planks", () -> planks(MapColor.COLOR_PINK));
     public static final RegistryObject<Block> STRAWBERRY_STAIRS = BLOCKS.register("strawberry_stairs", () -> stairs(STRAWBERRY_PLANKS.get()));
     public static final RegistryObject<Block> STRAWBERRY_SLAB = BLOCKS.register("strawberry_slab", () -> slab(STRAWBERRY_PLANKS.get()));
@@ -64,15 +65,15 @@ public class MysticBlocks {
     public static final RegistryObject<Block> POTTED_STRAWBERRY_SAPLING = BLOCKS.register("potted_strawberry_sapling", () -> potted(STRAWBERRY_SAPLING.get()));
 
     // bamboo blossom forest
-    public static final RegistryObject<Block> PINK_CHERRY_BLOSSOMS = BLOCKS.register("pink_cherry_blossoms", () -> leaves("cherry", SoundType.CHERRY_LEAVES));
-    public static final RegistryObject<Block> PINK_CHERRY_BLOSSOM_SAPLING = BLOCKS.register("pink_cherry_blossom_sapling", () -> new GrowingSaplingBlock(new GrowingSaplingBlock.TreeGrower(MysticTreeFeatures.PINK_CHERRY_TREE), BlockBehaviour.Properties.copy(Blocks.CHERRY_SAPLING)));
-    public static final RegistryObject<Block> WHITE_CHERRY_BLOSSOMS = BLOCKS.register("white_cherry_blossoms", () -> leaves("cherry", SoundType.CHERRY_LEAVES));
-    public static final RegistryObject<Block> WHITE_CHERRY_BLOSSOM_SAPLING = BLOCKS.register("white_cherry_blossom_sapling", () -> new GrowingSaplingBlock(new GrowingSaplingBlock.TreeGrower(MysticTreeFeatures.WHITE_CHERRY_TREE), BlockBehaviour.Properties.copy(Blocks.CHERRY_SAPLING)));
+    public static final RegistryObject<Block> PINK_CHERRY_BLOSSOMS = BLOCKS.register("pink_cherry_blossoms", () -> new CherryLeavesBlock(BlockBehaviour.Properties.copy(Blocks.CHERRY_LEAVES)));
+    public static final RegistryObject<Block> PINK_CHERRY_BLOSSOM_SAPLING = BLOCKS.register("pink_cherry_blossom_sapling", () -> new MysticSaplingBlock(new MysticSaplingBlock.TreeGrower(MysticTreeFeatures.PINK_CHERRY_TREE), BlockBehaviour.Properties.copy(Blocks.CHERRY_SAPLING)));
+    public static final RegistryObject<Block> WHITE_CHERRY_BLOSSOMS = BLOCKS.register("white_cherry_blossoms", () -> new CherryLeavesBlock(BlockBehaviour.Properties.copy(Blocks.CHERRY_LEAVES)));
+    public static final RegistryObject<Block> WHITE_CHERRY_BLOSSOM_SAPLING = BLOCKS.register("white_cherry_blossom_sapling", () -> new MysticSaplingBlock(new MysticSaplingBlock.TreeGrower(MysticTreeFeatures.WHITE_CHERRY_TREE), BlockBehaviour.Properties.copy(Blocks.CHERRY_SAPLING)));
 
-    public static final RegistryObject<Block> STRIPPED_CHERRY_LOG = BLOCKS.register("stripped_cherry_log", () -> strippedLog(MapColor.COLOR_MAGENTA));
-    public static final RegistryObject<Block> CHERRY_LOG = BLOCKS.register("cherry_log", () -> log(STRIPPED_CHERRY_LOG.get(), MapColor.TERRACOTTA_BROWN, MapColor.COLOR_MAGENTA));
-    public static final RegistryObject<Block> STRIPPED_CHERRY_WOOD = BLOCKS.register("stripped_cherry_wood", () -> strippedLog(MapColor.COLOR_MAGENTA));
-    public static final RegistryObject<Block> CHERRY_WOOD = BLOCKS.register("cherry_wood", () -> log(STRIPPED_CHERRY_WOOD.get(), MapColor.TERRACOTTA_BROWN, MapColor.TERRACOTTA_BROWN));
+    public static final RegistryObject<Block> STRIPPED_CHERRY_LOG = BLOCKS.register("stripped_cherry_log", () -> rotatedPillar(MapColor.COLOR_MAGENTA));
+    public static final RegistryObject<Block> CHERRY_LOG = BLOCKS.register("cherry_log", () -> log(STRIPPED_CHERRY_LOG, MapColor.TERRACOTTA_BROWN, MapColor.COLOR_MAGENTA));
+    public static final RegistryObject<Block> STRIPPED_CHERRY_WOOD = BLOCKS.register("stripped_cherry_wood", () -> rotatedPillar(MapColor.COLOR_MAGENTA));
+    public static final RegistryObject<Block> CHERRY_WOOD = BLOCKS.register("cherry_wood", () -> log(STRIPPED_CHERRY_WOOD, MapColor.TERRACOTTA_BROWN, MapColor.TERRACOTTA_BROWN));
     public static final RegistryObject<Block> CHERRY_PLANKS = BLOCKS.register("cherry_planks", () -> planks(MapColor.COLOR_MAGENTA));
     public static final RegistryObject<Block> CHERRY_STAIRS = BLOCKS.register("cherry_stairs", () -> stairs(CHERRY_PLANKS.get()));
     public static final RegistryObject<Block> CHERRY_SLAB = BLOCKS.register("cherry_slab", () -> slab(CHERRY_PLANKS.get()));
@@ -86,24 +87,109 @@ public class MysticBlocks {
     public static final RegistryObject<Block> CHERRY_WALL_SIGN = BLOCKS.register("cherry_wall_sign", () -> wallSign(CHERRY_SIGN.get(), MysticWoodTypes.CHERRY));
     public static final RegistryObject<Block> CHERRY_HANGING_SIGN = BLOCKS.register("cherry_hanging_sign", () -> hangingSign(CHERRY_PLANKS.get(), MysticWoodTypes.CHERRY));
     public static final RegistryObject<Block> CHERRY_WALL_HANGING_SIGN = BLOCKS.register("cherry_wall_hanging_sign", () -> wallHangingSign(CHERRY_HANGING_SIGN.get(), MysticWoodTypes.CHERRY));
+    
+    public static final RegistryObject<Block> SPRING_BAMBOO = BLOCKS.register("spring_bamboo", () -> new SpringBambooStalkBlock(BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).forceSolidOn().randomTicks().instabreak().strength(1.0F).sound(SoundType.BAMBOO).noOcclusion().dynamicShape().offsetType(BlockBehaviour.OffsetType.XZ).ignitedByLava().pushReaction(PushReaction.DESTROY)));
+    public static final RegistryObject<Block> SPRING_BAMBOO_SAPLING = BLOCKS.register("spring_bamboo_sapling", () -> new SpringBambooSaplingBlock(BlockBehaviour.Properties.of().mapColor(MapColor.WOOD).forceSolidOn().randomTicks().instabreak().noCollission().strength(1.0F).sound(SoundType.BAMBOO_SAPLING).offsetType(BlockBehaviour.OffsetType.XZ).ignitedByLava().pushReaction(PushReaction.DESTROY)));
 
-    public static final RegistryObject<Block> BUDDING_PEONY_LEAVES = BLOCKS.register("budding_peony_leaves", () -> leaves(SoundType.GRASS));
-    public static final RegistryObject<Block> PEONY_LEAVES = BLOCKS.register("peony_leaves", () -> leaves(SoundType.GRASS));
-    public static final RegistryObject<Block> PEONY_BUSH = BLOCKS.register("peony_bush", () -> new GrowingBushBlock(new GrowingBushBlock.TreeGrower(MysticTreeFeatures.PEONY_BUSH), BlockBehaviour.Properties.copy(Blocks.AZALEA)));
+    public static final RegistryObject<Block> BUDDING_PEONY_LEAVES = BLOCKS.register("budding_peony_leaves", () -> new MysticLeavesBlock(SoundType.GRASS));
+    public static final RegistryObject<Block> PEONY_LEAVES = BLOCKS.register("peony_leaves", () -> new MysticLeavesBlock(SoundType.GRASS));
+    public static final RegistryObject<Block> PEONY_BUSH = BLOCKS.register("peony_bush", () -> new MysticBushBlock(new MysticBushBlock.TreeGrower(MysticTreeFeatures.PEONY_BUSH), BlockBehaviour.Properties.copy(Blocks.AZALEA)));
 
+    public static final RegistryObject<Block> POTTED_SPRING_BAMBOO = BLOCKS.register("potted_spring_bamboo", () -> potted(SPRING_BAMBOO.get()));
     public static final RegistryObject<Block> POTTED_PINK_CHERRY_BLOSSOM_SAPLING = BLOCKS.register("potted_pink_cherry_blossom_sapling", () -> potted(PINK_CHERRY_BLOSSOM_SAPLING.get()));
     public static final RegistryObject<Block> POTTED_WHITE_CHERRY_BLOSSOM_SAPLING = BLOCKS.register("potted_white_cherry_blossom_sapling", () -> potted(WHITE_CHERRY_BLOSSOM_SAPLING.get()));
     public static final RegistryObject<Block> POTTED_PEONY_BUSH = BLOCKS.register("potted_peony_bush", () -> potted(PEONY_BUSH.get()));
 
-    // lavender meadow
-    public static final RegistryObject<Block> JACARANDA_BLOSSOMS = BLOCKS.register("jacaranda_blossoms", () -> leaves("jacaranda", SoundType.AZALEA_LEAVES));
-    public static final RegistryObject<Block> JACARANDA_LEAVES = BLOCKS.register("jacaranda_leaves", () -> leaves(SoundType.AZALEA_LEAVES));
-    public static final RegistryObject<Block> JACARANDA_SAPLING = BLOCKS.register("jacaranda_sapling", () -> new GrowingSaplingBlock(new GrowingSaplingBlock.TreeGrower(MysticTreeFeatures.JACARANDA_TREE), BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING)));
+    // lush oasis
+    public static final RegistryObject<Block> LUSH_SAND = BLOCKS.register("lush_sand", () -> new SandBlock(14406560, BlockBehaviour.Properties.of().mapColor(MapColor.SAND).instrument(NoteBlockInstrument.SNARE).strength(0.5F).sound(SoundType.SAND)));
+    public static final RegistryObject<Block> LUSH_SANDSTONE = BLOCKS.register("lush_sandstone", () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.SAND).instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().strength(0.8F)));
+    public static final RegistryObject<Block> LUSH_SANDSTONE_STAIRS = BLOCKS.register("lush_sandstone_stairs", () -> new StairBlock(() -> LUSH_SANDSTONE.get().defaultBlockState(), BlockBehaviour.Properties.copy(LUSH_SANDSTONE.get())));
+    public static final RegistryObject<Block> LUSH_SANDSTONE_SLAB = BLOCKS.register("lush_sandstone_slab", () -> new SlabBlock(BlockBehaviour.Properties.of().mapColor(MapColor.SAND).instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().strength(2.0F, 6.0F)));
+    public static final RegistryObject<Block> LUSH_SANDSTONE_WALL = BLOCKS.register("lush_sandstone_wall", () -> new WallBlock(BlockBehaviour.Properties.copy(LUSH_SANDSTONE.get()).forceSolidOn()));
+    public static final RegistryObject<Block> CHISELED_LUSH_SANDSTONE = BLOCKS.register("chiseled_lush_sandstone", () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.SAND).instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().strength(0.8F)));
+    public static final RegistryObject<Block> CUT_LUSH_SANDSTONE = BLOCKS.register("cut_lush_sandstone", () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.SAND).instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().strength(0.8F)));
+    public static final RegistryObject<Block> CUT_LUSH_SANDSTONE_SLAB = BLOCKS.register("cut_lush_sandstone_slab", () -> new SlabBlock(BlockBehaviour.Properties.of().mapColor(MapColor.SAND).instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().strength(2.0F, 6.0F)));
+    public static final RegistryObject<Block> SMOOTH_LUSH_SANDSTONE = BLOCKS.register("smooth_lush_sandstone", () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.SAND).instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().strength(2.0F, 6.0F)));
+    public static final RegistryObject<Block> SMOOTH_LUSH_SANDSTONE_STAIRS = BLOCKS.register("smooth_lush_sandstone_stairs", () -> new StairBlock(() -> SMOOTH_LUSH_SANDSTONE.get().defaultBlockState(), BlockBehaviour.Properties.copy(SMOOTH_LUSH_SANDSTONE.get())));
+    public static final RegistryObject<Block> SMOOTH_LUSH_SANDSTONE_SLAB = BLOCKS.register("smooth_lush_sandstone_slab", () -> new SlabBlock(BlockBehaviour.Properties.copy(SMOOTH_LUSH_SANDSTONE.get())));
 
-    public static final RegistryObject<Block> STRIPPED_JACARANDA_LOG = BLOCKS.register("stripped_jacaranda_log", () -> strippedLog(MapColor.COLOR_PURPLE));
-    public static final RegistryObject<Block> JACARANDA_LOG = BLOCKS.register("jacaranda_log", () -> log(STRIPPED_JACARANDA_LOG.get(), MapColor.TERRACOTTA_PURPLE, MapColor.COLOR_PURPLE));
-    public static final RegistryObject<Block> STRIPPED_JACARANDA_WOOD = BLOCKS.register("stripped_jacaranda_wood", () -> strippedLog(MapColor.COLOR_PURPLE));
-    public static final RegistryObject<Block> JACARANDA_WOOD = BLOCKS.register("jacaranda_wood", () -> log(STRIPPED_JACARANDA_WOOD.get(), MapColor.TERRACOTTA_PURPLE, MapColor.TERRACOTTA_PURPLE));
+    public static final RegistryObject<Block> PINK_LUSH_SAND = BLOCKS.register("pink_lush_sand", () -> new SandBlock(14406560, BlockBehaviour.Properties.of().mapColor(MapColor.SAND).instrument(NoteBlockInstrument.SNARE).strength(0.5F).sound(SoundType.SAND)));
+    public static final RegistryObject<Block> PINK_LUSH_SANDSTONE = BLOCKS.register("pink_lush_sandstone", () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.SAND).instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().strength(0.8F)));
+    public static final RegistryObject<Block> PINK_LUSH_SANDSTONE_STAIRS = BLOCKS.register("pink_lush_sandstone_stairs", () -> new StairBlock(() -> PINK_LUSH_SANDSTONE.get().defaultBlockState(), BlockBehaviour.Properties.copy(PINK_LUSH_SANDSTONE.get())));
+    public static final RegistryObject<Block> PINK_LUSH_SANDSTONE_SLAB = BLOCKS.register("pink_lush_sandstone_slab", () -> new SlabBlock(BlockBehaviour.Properties.of().mapColor(MapColor.SAND).instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().strength(2.0F, 6.0F)));
+    public static final RegistryObject<Block> PINK_LUSH_SANDSTONE_WALL = BLOCKS.register("pink_lush_sandstone_wall", () -> new WallBlock(BlockBehaviour.Properties.copy(PINK_LUSH_SANDSTONE.get()).forceSolidOn()));
+    public static final RegistryObject<Block> CHISELED_PINK_LUSH_SANDSTONE = BLOCKS.register("chiseled_pink_lush_sandstone", () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.SAND).instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().strength(0.8F)));
+    public static final RegistryObject<Block> CUT_PINK_LUSH_SANDSTONE = BLOCKS.register("cut_pink_lush_sandstone", () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.SAND).instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().strength(0.8F)));
+    public static final RegistryObject<Block> CUT_PINK_LUSH_SANDSTONE_SLAB = BLOCKS.register("cut_pink_lush_sandstone_slab", () -> new SlabBlock(BlockBehaviour.Properties.of().mapColor(MapColor.SAND).instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().strength(2.0F, 6.0F)));
+    public static final RegistryObject<Block> SMOOTH_PINK_LUSH_SANDSTONE = BLOCKS.register("smooth_pink_lush_sandstone", () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.SAND).instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().strength(2.0F, 6.0F)));
+    public static final RegistryObject<Block> SMOOTH_PINK_LUSH_SANDSTONE_STAIRS = BLOCKS.register("smooth_pink_lush_sandstone_stairs", () -> new StairBlock(() -> SMOOTH_PINK_LUSH_SANDSTONE.get().defaultBlockState(), BlockBehaviour.Properties.copy(SMOOTH_PINK_LUSH_SANDSTONE.get())));
+    public static final RegistryObject<Block> SMOOTH_PINK_LUSH_SANDSTONE_SLAB = BLOCKS.register("smooth_pink_lush_sandstone_slab", () -> new SlabBlock(BlockBehaviour.Properties.copy(SMOOTH_PINK_LUSH_SANDSTONE.get())));
+
+    public static final RegistryObject<Block> STRIPPED_CITRUS_LOG = BLOCKS.register("stripped_citrus_log", () -> rotatedPillar(MapColor.COLOR_YELLOW));
+    public static final RegistryObject<Block> CITRUS_LOG = BLOCKS.register("citrus_log", () -> log(STRIPPED_CITRUS_LOG, MapColor.TERRACOTTA_BROWN, MapColor.COLOR_YELLOW));
+    public static final RegistryObject<Block> STRIPPED_CITRUS_WOOD = BLOCKS.register("stripped_citrus_wood", () -> rotatedPillar(MapColor.COLOR_YELLOW));
+    public static final RegistryObject<Block> CITRUS_WOOD = BLOCKS.register("citrus_wood", () -> log(STRIPPED_CITRUS_WOOD, MapColor.TERRACOTTA_BROWN, MapColor.TERRACOTTA_BROWN));
+    public static final RegistryObject<Block> CITRUS_PLANKS = BLOCKS.register("citrus_planks", () -> planks(MapColor.COLOR_YELLOW));
+    public static final RegistryObject<Block> CITRUS_STAIRS = BLOCKS.register("citrus_stairs", () -> stairs(CITRUS_PLANKS.get()));
+    public static final RegistryObject<Block> CITRUS_SLAB = BLOCKS.register("citrus_slab", () -> slab(CITRUS_PLANKS.get()));
+    public static final RegistryObject<Block> CITRUS_FENCE = BLOCKS.register("citrus_fence", () -> fence(CITRUS_PLANKS.get()));
+    public static final RegistryObject<Block> CITRUS_FENCE_GATE = BLOCKS.register("citrus_fence_gate", () -> fenceGate(CITRUS_PLANKS.get(), MysticWoodTypes.CITRUS));
+    public static final RegistryObject<Block> CITRUS_BUTTON = BLOCKS.register("citrus_button", () -> button(MysticBlockSetTypes.CITRUS));
+    public static final RegistryObject<Block> CITRUS_PRESSURE_PLATE = BLOCKS.register("citrus_pressure_plate", () -> pressurePlate(CITRUS_PLANKS.get(), MysticBlockSetTypes.CITRUS));
+    public static final RegistryObject<Block> CITRUS_TRAPDOOR = BLOCKS.register("citrus_trapdoor", () -> trapdoor(CITRUS_PLANKS.get(), MysticBlockSetTypes.CITRUS));
+    public static final RegistryObject<Block> CITRUS_DOOR = BLOCKS.register("citrus_door", () -> door(CITRUS_PLANKS.get(), MysticBlockSetTypes.CITRUS));
+    public static final RegistryObject<Block> CITRUS_SIGN = BLOCKS.register("citrus_sign", () -> sign(CITRUS_PLANKS.get(), MysticWoodTypes.CITRUS));
+    public static final RegistryObject<Block> CITRUS_WALL_SIGN = BLOCKS.register("citrus_wall_sign", () -> wallSign(CITRUS_SIGN.get(), MysticWoodTypes.CITRUS));
+    public static final RegistryObject<Block> CITRUS_HANGING_SIGN = BLOCKS.register("citrus_hanging_sign", () -> hangingSign(CITRUS_PLANKS.get(), MysticWoodTypes.CITRUS));
+    public static final RegistryObject<Block> CITRUS_WALL_HANGING_SIGN = BLOCKS.register("citrus_wall_hanging_sign", () -> wallHangingSign(CITRUS_HANGING_SIGN.get(), MysticWoodTypes.CITRUS));
+
+    public static final RegistryObject<Block> WILDFLOWER = BLOCKS.register("wildflower", () -> new WildflowerBlock(BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).offsetType(BlockBehaviour.OffsetType.XZ).noCollission().instabreak().sound(SoundType.GRASS)));
+    public static final RegistryObject<Block> POTTED_WILDFLOWER = BLOCKS.register("potted_wildflower", () -> potted(WILDFLOWER.get()));
+
+    // autumnal grove
+    public static final RegistryObject<Block> MAPLE_LEAVES = BLOCKS.register("maple_leaves", () -> new MapleLeavesBlock(MysticParticles.FALLING_MAPLE::get, SoundType.GRASS));
+    public static final RegistryObject<Block> MAPLE_LEAF_PILE = BLOCKS.register("maple_leaf_pile", () -> new MapleLeafPileBlock(MysticParticles.LEAF_PILE_MAPLE::get));
+    public static final RegistryObject<Block> MAPLE_SAPLING = BLOCKS.register("maple_sapling", () -> new MysticSaplingBlock(new MysticSaplingBlock.TreeGrower(MysticTreeFeatures.MAPLE_TREE), BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING)));
+    public static final RegistryObject<Block> ORANGE_MAPLE_LEAVES = BLOCKS.register("orange_maple_leaves", () -> new MapleLeavesBlock(MysticParticles.FALLING_ORANGE_MAPLE::get, SoundType.GRASS));
+    public static final RegistryObject<Block> ORANGE_MAPLE_LEAF_PILE = BLOCKS.register("orange_maple_leaf_pile", () -> new MapleLeafPileBlock(MysticParticles.LEAF_PILE_ORANGE_MAPLE::get));
+    public static final RegistryObject<Block> ORANGE_MAPLE_SAPLING = BLOCKS.register("orange_maple_sapling", () -> new MysticSaplingBlock(new MysticSaplingBlock.TreeGrower(MysticTreeFeatures.ORANGE_MAPLE_TREE), BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING)));
+    public static final RegistryObject<Block> YELLOW_MAPLE_LEAVES = BLOCKS.register("yellow_maple_leaves", () -> new MapleLeavesBlock(MysticParticles.FALLING_YELLOW_MAPLE::get, SoundType.GRASS));
+    public static final RegistryObject<Block> YELLOW_MAPLE_LEAF_PILE = BLOCKS.register("yellow_maple_leaf_pile", () -> new MapleLeafPileBlock(MysticParticles.LEAF_PILE_YELLOW_MAPLE::get));
+    public static final RegistryObject<Block> YELLOW_MAPLE_SAPLING = BLOCKS.register("yellow_maple_sapling", () -> new MysticSaplingBlock(new MysticSaplingBlock.TreeGrower(MysticTreeFeatures.YELLOW_MAPLE_TREE), BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING)));
+
+    public static final RegistryObject<Block> STRIPPED_MAPLE_LOG = BLOCKS.register("stripped_maple_log", () -> rotatedPillar(MapColor.COLOR_ORANGE));
+    public static final RegistryObject<Block> MAPLE_LOG = BLOCKS.register("maple_log", () -> log(STRIPPED_MAPLE_LOG, MapColor.TERRACOTTA_BROWN, MapColor.COLOR_ORANGE));
+    public static final RegistryObject<Block> WHITE_MAPLE_LOG = BLOCKS.register("white_maple_log", () -> log(STRIPPED_MAPLE_LOG, MapColor.TERRACOTTA_WHITE, MapColor.COLOR_ORANGE));
+    public static final RegistryObject<Block> STRIPPED_MAPLE_WOOD = BLOCKS.register("stripped_maple_wood", () -> rotatedPillar(MapColor.COLOR_ORANGE));
+    public static final RegistryObject<Block> MAPLE_WOOD = BLOCKS.register("maple_wood", () -> log(STRIPPED_MAPLE_WOOD, MapColor.TERRACOTTA_BROWN, MapColor.TERRACOTTA_BROWN));
+    public static final RegistryObject<Block> WHITE_MAPLE_WOOD = BLOCKS.register("white_maple_wood", () -> log(STRIPPED_MAPLE_WOOD, MapColor.TERRACOTTA_WHITE, MapColor.TERRACOTTA_WHITE));
+    public static final RegistryObject<Block> MAPLE_PLANKS = BLOCKS.register("maple_planks", () -> planks(MapColor.COLOR_ORANGE));
+    public static final RegistryObject<Block> MAPLE_STAIRS = BLOCKS.register("maple_stairs", () -> stairs(MAPLE_PLANKS.get()));
+    public static final RegistryObject<Block> MAPLE_SLAB = BLOCKS.register("maple_slab", () -> slab(MAPLE_PLANKS.get()));
+    public static final RegistryObject<Block> MAPLE_FENCE = BLOCKS.register("maple_fence", () -> fence(MAPLE_PLANKS.get()));
+    public static final RegistryObject<Block> MAPLE_FENCE_GATE = BLOCKS.register("maple_fence_gate", () -> fenceGate(MAPLE_PLANKS.get(), MysticWoodTypes.MAPLE));
+    public static final RegistryObject<Block> MAPLE_BUTTON = BLOCKS.register("maple_button", () -> button(MysticBlockSetTypes.MAPLE));
+    public static final RegistryObject<Block> MAPLE_PRESSURE_PLATE = BLOCKS.register("maple_pressure_plate", () -> pressurePlate(MAPLE_PLANKS.get(), MysticBlockSetTypes.MAPLE));
+    public static final RegistryObject<Block> MAPLE_TRAPDOOR = BLOCKS.register("maple_trapdoor", () -> trapdoor(MAPLE_PLANKS.get(), MysticBlockSetTypes.MAPLE));
+    public static final RegistryObject<Block> MAPLE_DOOR = BLOCKS.register("maple_door", () -> door(MAPLE_PLANKS.get(), MysticBlockSetTypes.MAPLE));
+    public static final RegistryObject<Block> MAPLE_SIGN = BLOCKS.register("maple_sign", () -> sign(MAPLE_PLANKS.get(), MysticWoodTypes.MAPLE));
+    public static final RegistryObject<Block> MAPLE_WALL_SIGN = BLOCKS.register("maple_wall_sign", () -> wallSign(MAPLE_SIGN.get(), MysticWoodTypes.MAPLE));
+    public static final RegistryObject<Block> MAPLE_HANGING_SIGN = BLOCKS.register("maple_hanging_sign", () -> hangingSign(MAPLE_PLANKS.get(), MysticWoodTypes.MAPLE));
+    public static final RegistryObject<Block> MAPLE_WALL_HANGING_SIGN = BLOCKS.register("maple_wall_hanging_sign", () -> wallHangingSign(MAPLE_HANGING_SIGN.get(), MysticWoodTypes.MAPLE));
+
+    public static final RegistryObject<Block> POTTED_MAPLE_SAPLING = BLOCKS.register("potted_maple_sapling", () -> potted(MAPLE_SAPLING.get()));
+    public static final RegistryObject<Block> POTTED_ORANGE_MAPLE_SAPLING = BLOCKS.register("potted_orange_maple_sapling", () -> potted(ORANGE_MAPLE_SAPLING.get()));
+    public static final RegistryObject<Block> POTTED_YELLOW_MAPLE_SAPLING = BLOCKS.register("potted_yellow_maple_sapling", () -> potted(YELLOW_MAPLE_SAPLING.get()));
+
+    // lavender meadow
+    public static final RegistryObject<Block> JACARANDA_BLOSSOMS = BLOCKS.register("jacaranda_blossoms", () -> new JacarandaBlossomsBlock(SoundType.AZALEA_LEAVES));
+    public static final RegistryObject<Block> JACARANDA_LEAVES = BLOCKS.register("jacaranda_leaves", () -> new MysticLeavesBlock(SoundType.AZALEA_LEAVES));
+    public static final RegistryObject<Block> JACARANDA_SAPLING = BLOCKS.register("jacaranda_sapling", () -> new MysticSaplingBlock(new MysticSaplingBlock.TreeGrower(MysticTreeFeatures.JACARANDA_TREE), BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING)));
+
+    public static final RegistryObject<Block> STRIPPED_JACARANDA_LOG = BLOCKS.register("stripped_jacaranda_log", () -> rotatedPillar(MapColor.COLOR_PURPLE));
+    public static final RegistryObject<Block> JACARANDA_LOG = BLOCKS.register("jacaranda_log", () -> log(STRIPPED_JACARANDA_LOG, MapColor.TERRACOTTA_PURPLE, MapColor.COLOR_PURPLE));
+    public static final RegistryObject<Block> STRIPPED_JACARANDA_WOOD = BLOCKS.register("stripped_jacaranda_wood", () -> rotatedPillar(MapColor.COLOR_PURPLE));
+    public static final RegistryObject<Block> JACARANDA_WOOD = BLOCKS.register("jacaranda_wood", () -> log(STRIPPED_JACARANDA_WOOD, MapColor.TERRACOTTA_PURPLE, MapColor.TERRACOTTA_PURPLE));
     public static final RegistryObject<Block> JACARANDA_PLANKS = BLOCKS.register("jacaranda_planks", () -> planks(MapColor.COLOR_PURPLE));
     public static final RegistryObject<Block> JACARANDA_STAIRS = BLOCKS.register("jacaranda_stairs", () -> stairs(JACARANDA_PLANKS.get()));
     public static final RegistryObject<Block> JACARANDA_SLAB = BLOCKS.register("jacaranda_slab", () -> slab(JACARANDA_PLANKS.get()));
@@ -125,43 +211,7 @@ public class MysticBlocks {
     public static final RegistryObject<Block> POTTED_JACARANDA_SAPLING = BLOCKS.register("potted_jacaranda_sapling", () -> potted(JACARANDA_SAPLING.get()));
     public static final RegistryObject<Block> POTTED_LAVENDER = BLOCKS.register("potted_lavender", () -> potted(LAVENDER.get()));
 
-    // autumnal grove
-    public static final RegistryObject<Block> MAPLE_LEAVES = BLOCKS.register("maple_leaves", () -> leaves("normal", SoundType.GRASS));
-    public static final RegistryObject<Block> MAPLE_SAPLING = BLOCKS.register("maple_sapling", () -> new GrowingSaplingBlock(new GrowingSaplingBlock.TreeGrower(MysticTreeFeatures.MAPLE_TREE), BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING)));
-    public static final RegistryObject<Block> ORANGE_MAPLE_LEAVES = BLOCKS.register("orange_maple_leaves", () -> leaves("orange", SoundType.GRASS));
-    public static final RegistryObject<Block> ORANGE_MAPLE_SAPLING = BLOCKS.register("orange_maple_sapling", () -> new GrowingSaplingBlock(new GrowingSaplingBlock.TreeGrower(MysticTreeFeatures.ORANGE_MAPLE_TREE), BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING)));
-    public static final RegistryObject<Block> YELLOW_MAPLE_LEAVES = BLOCKS.register("yellow_maple_leaves", () -> leaves("yellow", SoundType.GRASS));
-    public static final RegistryObject<Block> YELLOW_MAPLE_SAPLING = BLOCKS.register("yellow_maple_sapling", () -> new GrowingSaplingBlock(new GrowingSaplingBlock.TreeGrower(MysticTreeFeatures.YELLOW_MAPLE_TREE), BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING)));
-
-    public static final RegistryObject<Block> STRIPPED_MAPLE_LOG = BLOCKS.register("stripped_maple_log", () -> strippedLog(MapColor.COLOR_ORANGE));
-    public static final RegistryObject<Block> MAPLE_LOG = BLOCKS.register("maple_log", () -> log(STRIPPED_MAPLE_LOG.get(), MapColor.TERRACOTTA_BROWN, MapColor.COLOR_ORANGE));
-    public static final RegistryObject<Block> WHITE_MAPLE_LOG = BLOCKS.register("white_maple_log", () -> log(STRIPPED_MAPLE_LOG.get(), MapColor.TERRACOTTA_WHITE, MapColor.COLOR_ORANGE));
-    public static final RegistryObject<Block> STRIPPED_MAPLE_WOOD = BLOCKS.register("stripped_maple_wood", () -> strippedLog(MapColor.COLOR_ORANGE));
-    public static final RegistryObject<Block> MAPLE_WOOD = BLOCKS.register("maple_wood", () -> log(STRIPPED_MAPLE_WOOD.get(), MapColor.TERRACOTTA_BROWN, MapColor.TERRACOTTA_BROWN));
-    public static final RegistryObject<Block> WHITE_MAPLE_WOOD = BLOCKS.register("white_maple_wood", () -> log(STRIPPED_MAPLE_WOOD.get(), MapColor.TERRACOTTA_WHITE, MapColor.TERRACOTTA_WHITE));
-    public static final RegistryObject<Block> MAPLE_PLANKS = BLOCKS.register("maple_planks", () -> planks(MapColor.COLOR_ORANGE));
-    public static final RegistryObject<Block> MAPLE_STAIRS = BLOCKS.register("maple_stairs", () -> stairs(MAPLE_PLANKS.get()));
-    public static final RegistryObject<Block> MAPLE_SLAB = BLOCKS.register("maple_slab", () -> slab(MAPLE_PLANKS.get()));
-    public static final RegistryObject<Block> MAPLE_FENCE = BLOCKS.register("maple_fence", () -> fence(MAPLE_PLANKS.get()));
-    public static final RegistryObject<Block> MAPLE_FENCE_GATE = BLOCKS.register("maple_fence_gate", () -> fenceGate(MAPLE_PLANKS.get(), MysticWoodTypes.MAPLE));
-    public static final RegistryObject<Block> MAPLE_BUTTON = BLOCKS.register("maple_button", () -> button(MysticBlockSetTypes.MAPLE));
-    public static final RegistryObject<Block> MAPLE_PRESSURE_PLATE = BLOCKS.register("maple_pressure_plate", () -> pressurePlate(MAPLE_PLANKS.get(), MysticBlockSetTypes.MAPLE));
-    public static final RegistryObject<Block> MAPLE_TRAPDOOR = BLOCKS.register("maple_trapdoor", () -> trapdoor(MAPLE_PLANKS.get(), MysticBlockSetTypes.MAPLE));
-    public static final RegistryObject<Block> MAPLE_DOOR = BLOCKS.register("maple_door", () -> door(MAPLE_PLANKS.get(), MysticBlockSetTypes.MAPLE));
-    public static final RegistryObject<Block> MAPLE_SIGN = BLOCKS.register("maple_sign", () -> sign(MAPLE_PLANKS.get(), MysticWoodTypes.MAPLE));
-    public static final RegistryObject<Block> MAPLE_WALL_SIGN = BLOCKS.register("maple_wall_sign", () -> wallSign(MAPLE_SIGN.get(), MysticWoodTypes.MAPLE));
-    public static final RegistryObject<Block> MAPLE_HANGING_SIGN = BLOCKS.register("maple_hanging_sign", () -> hangingSign(MAPLE_PLANKS.get(), MysticWoodTypes.MAPLE));
-    public static final RegistryObject<Block> MAPLE_WALL_HANGING_SIGN = BLOCKS.register("maple_wall_hanging_sign", () -> wallHangingSign(MAPLE_HANGING_SIGN.get(), MysticWoodTypes.MAPLE));
-
-    public static final RegistryObject<Block> MAPLE_LEAF_PILE = BLOCKS.register("maple_leaf_pile", () -> new LeafPileBlock("normal", BlockBehaviour.Properties.of().mapColor(MapColor.GRASS).noCollission().noOcclusion().replaceable().strength(0.1F).sound(SoundType.GRASS).pushReaction(PushReaction.DESTROY)));
-    public static final RegistryObject<Block> ORANGE_MAPLE_LEAF_PILE = BLOCKS.register("orange_maple_leaf_pile", () -> new LeafPileBlock("orange", BlockBehaviour.Properties.of().mapColor(MapColor.GRASS).noCollission().noOcclusion().replaceable().strength(0.1F).sound(SoundType.GRASS).pushReaction(PushReaction.DESTROY)));
-    public static final RegistryObject<Block> YELLOW_MAPLE_LEAF_PILE = BLOCKS.register("yellow_maple_leaf_pile", () -> new LeafPileBlock("yellow", BlockBehaviour.Properties.of().mapColor(MapColor.GRASS).noCollission().noOcclusion().replaceable().strength(0.1F).sound(SoundType.GRASS).pushReaction(PushReaction.DESTROY)));
-
-    public static final RegistryObject<Block> POTTED_MAPLE_SAPLING = BLOCKS.register("potted_maple_sapling", () -> potted(MAPLE_SAPLING.get()));
-    public static final RegistryObject<Block> POTTED_ORANGE_MAPLE_SAPLING = BLOCKS.register("potted_orange_maple_sapling", () -> potted(ORANGE_MAPLE_SAPLING.get()));
-    public static final RegistryObject<Block> POTTED_YELLOW_MAPLE_SAPLING = BLOCKS.register("potted_yellow_maple_sapling", () -> potted(YELLOW_MAPLE_SAPLING.get()));
-
-    // cakes
+    // rainbow cakes
     public static final RegistryObject<Block> PINK_FROSTED_CAKE = BLOCKS.register("pink_frosted_cake", () -> new MysticCakeBlock(BlockBehaviour.Properties.of().forceSolidOn().strength(0.5F).sound(SoundType.WOOL).pushReaction(PushReaction.DESTROY)));
     public static final RegistryObject<Block> PINK_FROSTED_CANDLE_CAKE = BLOCKS.register("pink_frosted_candle_cake", () ->  new MysticCandleCakeBlock(PINK_FROSTED_CAKE, Blocks.CANDLE));
     public static final RegistryObject<Block> PINK_FROSTED_CANDLE_CAKE_WHITE = BLOCKS.register("pink_frosted_candle_cake_white", () -> new MysticCandleCakeBlock(PINK_FROSTED_CAKE, Blocks.WHITE_CANDLE));

@@ -46,6 +46,11 @@ minecraft {
             property 'forge.enabledGameTestNamespaces', mod_id
         }
 
+        server {
+            property 'forge.enabledGameTestNamespaces', mod_id
+            args '--nogui'
+        }
+
         data {
             workingDirectory project.file('run-data')
             args '--mod', mod_id, '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
@@ -59,7 +64,6 @@ sourceSets.main.resources {
 
 dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
-
     implementation fg.deobf("com.github.glitchfiend:TerraBlender-forge:${terrablender_version}")
 }
 
@@ -90,6 +94,7 @@ tasks.named('jar', Jar).configure {
                 'Implementation-Timestamp': new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
         ])
     }
+    finalizedBy 'reobfJar'
 }
 
 publishing {

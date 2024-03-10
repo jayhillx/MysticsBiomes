@@ -54,6 +54,9 @@ public class MysticTab {
         output.accept(MysticItems.CHERRY_BOAT.get());
         output.accept(MysticItems.CHERRY_CHEST_BOAT.get());
 
+        output.accept(MysticItems.LUSH_SAND.get());
+        output.accept(MysticItems.PINK_LUSH_SAND.get());
+
         output.accept(MysticItems.MAPLE_LEAVES.get());
         output.accept(MysticItems.MAPLE_LEAF_PILE.get());
         output.accept(MysticItems.MAPLE_SAPLING.get());
@@ -104,17 +107,21 @@ public class MysticTab {
         output.accept(MysticItems.JACARANDA_BOAT.get());
         output.accept(MysticItems.JACARANDA_CHEST_BOAT.get());
 
-        output.accept(MysticItems.BUDDING_PEONY_LEAVES.get());
-        output.accept(MysticItems.PEONY_LEAVES.get());
-        output.accept(MysticItems.PEONY_BUSH.get());
-        output.accept(MysticItems.LAVENDER.get());
-
         output.accept(MysticItems.BUTTERFLY_NEST.get());
 
+        output.accept(MysticItems.SPRING_BAMBOO.get());
+        output.accept(MysticItems.BUDDING_PEONY_LEAVES.get());
+        output.accept(MysticItems.PEONY_LEAVES.get());
+        output.accept(MysticItems.LAVENDER.get());
+        output.accept(MysticItems.WILDFLOWER.get());
+
         output.accept(MysticItems.GLASS_JAR.get());
-        output.accept(MysticItems.ORANGE_BUTTERFLY_JAR.get());
-        output.accept(MysticItems.BLUE_BUTTERFLY_JAR.get());
-        output.accept(MysticItems.CYAN_BUTTERFLY_JAR.get());
+        output.accept(MysticItems.ORANGE_BUTTERFLY_IN_JAR.get());
+        output.accept(MysticItems.BLUE_BUTTERFLY_IN_JAR.get());
+        output.accept(MysticItems.CYAN_BUTTERFLY_IN_JAR.get());
+        output.accept(MysticItems.LILAC_BUTTERFLY_IN_JAR.get());
+        output.accept(MysticItems.PINK_BUTTERFLY_IN_JAR.get());
+        output.accept(MysticItems.PURPLE_BUTTERFLY_IN_JAR.get());
 
         output.accept(MysticItems.STRAWBERRY.get());
         output.accept(MysticItems.SWEET_STRAWBERRY.get());
@@ -129,7 +136,6 @@ public class MysticTab {
         output.accept(MysticItems.PUMPKIN_ICE_CREAM.get());
         output.accept(MysticItems.STRAWBERRY_ICE_CREAM.get());
         output.accept(MysticItems.STRAWBERRY_MILK_BUCKET.get());
-
         output.accept(MysticItems.PINK_EGG.get());
         output.accept(MysticItems.ORANGE_EGG.get());
         output.accept(MysticItems.YELLOW_EGG.get());

@@ -25,8 +25,8 @@ import java.util.List;
 public class GlassJarItem extends Item {
     private final Butterfly.Type type;
 
-    public GlassJarItem(Butterfly.Type type, Properties properties) {
-        super(properties);
+    public GlassJarItem(Butterfly.Type type) {
+        super(new Item.Properties().stacksTo(1));
         this.type = type;
     }
 
@@ -108,9 +108,12 @@ public class GlassJarItem extends Item {
     }
 
     public Item getItemByType(Butterfly.Type type) {
-        if (type == Butterfly.Type.APRICOT) return MysticItems.ORANGE_BUTTERFLY_JAR.get();
-        if (type == Butterfly.Type.JELLY) return MysticItems.BLUE_BUTTERFLY_JAR.get();
-        if (type == Butterfly.Type.JULY) return MysticItems.CYAN_BUTTERFLY_JAR.get();
+        if (type == Butterfly.Type.TANGERINE) return MysticItems.ORANGE_BUTTERFLY_IN_JAR.get();
+        if (type == Butterfly.Type.JELLY) return MysticItems.BLUE_BUTTERFLY_IN_JAR.get();
+        if (type == Butterfly.Type.JULY) return MysticItems.CYAN_BUTTERFLY_IN_JAR.get();
+        if (type == Butterfly.Type.CANDY) return MysticItems.LILAC_BUTTERFLY_IN_JAR.get();
+        if (type == Butterfly.Type.VALENTINE) return MysticItems.PINK_BUTTERFLY_IN_JAR.get();
+        if (type == Butterfly.Type.MYSTIC) return MysticItems.PURPLE_BUTTERFLY_IN_JAR.get();
         else return null;
     }
 

@@ -37,21 +37,7 @@ public class MysticBiomeBuilder {
     private final Climate.Parameter farInlandContinentalness = Climate.Parameter.span(0.3F, 1.0F);
     private final ResourceKey<Biome>[][] OCEANS = new ResourceKey[][]{{Biomes.DEEP_FROZEN_OCEAN, Biomes.DEEP_COLD_OCEAN, Biomes.DEEP_OCEAN, Biomes.DEEP_LUKEWARM_OCEAN, Biomes.WARM_OCEAN}, {Biomes.FROZEN_OCEAN, Biomes.COLD_OCEAN, Biomes.OCEAN, Biomes.LUKEWARM_OCEAN, Biomes.WARM_OCEAN}};
     private final ResourceKey<Biome>[][] MIDDLE_BIOMES = new ResourceKey[][]{{Biomes.SNOWY_PLAINS, Biomes.SNOWY_PLAINS, Biomes.SNOWY_PLAINS, Biomes.SNOWY_TAIGA, Biomes.TAIGA}, {Biomes.PLAINS, Biomes.PLAINS, Biomes.FOREST, Biomes.TAIGA, Biomes.OLD_GROWTH_SPRUCE_TAIGA}, {Biomes.FLOWER_FOREST, Biomes.PLAINS, Biomes.FOREST, Biomes.BIRCH_FOREST, Biomes.DARK_FOREST}, {Biomes.SAVANNA, Biomes.SAVANNA, Biomes.FOREST, Biomes.JUNGLE, Biomes.JUNGLE}, {Biomes.DESERT, Biomes.DESERT, Biomes.DESERT, Biomes.DESERT, Biomes.DESERT}};
-    private final ResourceKey<Biome>[][] MIDDLE_BIOMES_VARIANT = new ResourceKey[][]{{Biomes.ICE_SPIKES, null, Biomes.SNOWY_TAIGA, null, null}, {null, null, null, null, Biomes.OLD_GROWTH_PINE_TAIGA}, {null, null, Biomes.SUNFLOWER_PLAINS, Biomes.OLD_GROWTH_BIRCH_FOREST, null}, {null, null, Biomes.PLAINS, Biomes.SPARSE_JUNGLE, Biomes.BAMBOO_JUNGLE}, {null, null, null, null, null}};
-    private final ResourceKey<Biome>[][] MIDDLE_BIOMES_MYSTIC = new ResourceKey[][]{
-            {MysticBiomes.BAMBOO_BLOSSOM_FOREST, MysticBiomes.BAMBOO_BLOSSOM_FOREST, MysticBiomes.BAMBOO_BLOSSOM_FOREST, MysticBiomes.BAMBOO_BLOSSOM_FOREST, MysticBiomes.BAMBOO_BLOSSOM_FOREST},
-            {Biomes.PLAINS, Biomes.PLAINS, Biomes.FOREST, Biomes.TAIGA, Biomes.OLD_GROWTH_SPRUCE_TAIGA},
-            {MysticBiomes.STRAWBERRY_FIELDS, MysticBiomes.STRAWBERRY_FIELDS, MysticBiomes.STRAWBERRY_FIELDS, MysticBiomes.STRAWBERRY_FIELDS, MysticBiomes.STRAWBERRY_FIELDS},
-            {Biomes.FLOWER_FOREST, Biomes.PLAINS, Biomes.FOREST, Biomes.BIRCH_FOREST, Biomes.DARK_FOREST},
-            {Biomes.SAVANNA, Biomes.SAVANNA, Biomes.FOREST, Biomes.JUNGLE, Biomes.JUNGLE},
-            {Biomes.DESERT, Biomes.DESERT, Biomes.DESERT, Biomes.DESERT, Biomes.DESERT}};
-    private final ResourceKey<Biome>[][] MIDDLE_BIOMES_MYSTIC_VARIANT = new ResourceKey[][]{
-            {MysticBiomes.BAMBOO_BLOSSOM_FOREST, MysticBiomes.BAMBOO_BLOSSOM_FOREST, MysticBiomes.BAMBOO_BLOSSOM_FOREST, MysticBiomes.BAMBOO_BLOSSOM_FOREST, MysticBiomes.BAMBOO_BLOSSOM_FOREST},
-            {null, null, null, null, Biomes.OLD_GROWTH_PINE_TAIGA},
-            {null, null, null, null, null},
-            {null, null, Biomes.SUNFLOWER_PLAINS, Biomes.OLD_GROWTH_BIRCH_FOREST, null},
-            {null, null, Biomes.PLAINS, Biomes.SPARSE_JUNGLE, Biomes.BAMBOO_JUNGLE},
-            {null, null, null, null, null}};
+    private final ResourceKey<Biome>[][] MIDDLE_BIOMES_VARIANT = new ResourceKey[][]{{Biomes.ICE_SPIKES, null, Biomes.SNOWY_TAIGA, null, null}, {null, null, null, null, Biomes.OLD_GROWTH_PINE_TAIGA}, {Biomes.SUNFLOWER_PLAINS, null, null, Biomes.OLD_GROWTH_BIRCH_FOREST, null}, {null, null, Biomes.PLAINS, Biomes.SPARSE_JUNGLE, Biomes.BAMBOO_JUNGLE}, {null, null, null, null, null}};
     private final ResourceKey<Biome>[][] PLATEAU_BIOMES = new ResourceKey[][]{{Biomes.SNOWY_PLAINS, Biomes.SNOWY_PLAINS, Biomes.SNOWY_PLAINS, Biomes.SNOWY_TAIGA, Biomes.SNOWY_TAIGA}, {Biomes.MEADOW, Biomes.MEADOW, Biomes.FOREST, Biomes.TAIGA, Biomes.OLD_GROWTH_SPRUCE_TAIGA}, {Biomes.MEADOW, Biomes.MEADOW, Biomes.MEADOW, Biomes.MEADOW, Biomes.DARK_FOREST}, {Biomes.SAVANNA_PLATEAU, Biomes.SAVANNA_PLATEAU, Biomes.FOREST, Biomes.FOREST, Biomes.JUNGLE}, {Biomes.BADLANDS, Biomes.BADLANDS, Biomes.BADLANDS, Biomes.WOODED_BADLANDS, Biomes.WOODED_BADLANDS}};
     private final ResourceKey<Biome>[][] PLATEAU_BIOMES_VARIANT = new ResourceKey[][]{{Biomes.ICE_SPIKES, null, null, null, null}, {Biomes.CHERRY_GROVE, null, Biomes.MEADOW, Biomes.MEADOW, Biomes.OLD_GROWTH_PINE_TAIGA}, {Biomes.CHERRY_GROVE, Biomes.CHERRY_GROVE, Biomes.FOREST, Biomes.BIRCH_FOREST, null}, {null, null, null, null, null}, {Biomes.ERODED_BADLANDS, Biomes.ERODED_BADLANDS, null, null, null}};
     private final ResourceKey<Biome>[][] SHATTERED_BIOMES = new ResourceKey[][]{{Biomes.WINDSWEPT_GRAVELLY_HILLS, Biomes.WINDSWEPT_GRAVELLY_HILLS, Biomes.WINDSWEPT_HILLS, Biomes.WINDSWEPT_FOREST, Biomes.WINDSWEPT_FOREST}, {Biomes.WINDSWEPT_GRAVELLY_HILLS, Biomes.WINDSWEPT_GRAVELLY_HILLS, Biomes.WINDSWEPT_HILLS, Biomes.WINDSWEPT_FOREST, Biomes.WINDSWEPT_FOREST}, {Biomes.WINDSWEPT_HILLS, Biomes.WINDSWEPT_HILLS, Biomes.WINDSWEPT_HILLS, Biomes.WINDSWEPT_FOREST, Biomes.WINDSWEPT_FOREST}, {null, null, null, null, null}, {null, null, null, null, null}};
@@ -96,7 +82,6 @@ public class MysticBiomeBuilder {
 
         for (int i = 0; i < this.temperatures.length; ++i) {
             Climate.Parameter temperature = this.temperatures[i];
-
             this.addSurfaceBiome(consumer, temperature, this.FULL_RANGE, this.deepOceanContinentalness, this.FULL_RANGE, this.FULL_RANGE, 0.0F, this.OCEANS[0][i]);
             this.addSurfaceBiome(consumer, temperature, this.FULL_RANGE, this.oceanContinentalness, this.FULL_RANGE, this.FULL_RANGE, 0.0F, this.OCEANS[1][i]);
         }
@@ -121,10 +106,8 @@ public class MysticBiomeBuilder {
     private void addPeaks(Consumer<Pair<Climate.ParameterPoint, ResourceKey<Biome>>> consumer, Climate.Parameter parameter) {
         for (int i = 0; i < this.temperatures.length; ++i) {
             Climate.Parameter temperature = this.temperatures[i];
-
             for (int j = 0; j < this.humidities.length; ++j) {
                 Climate.Parameter humidity = this.humidities[j];
-
                 ResourceKey<Biome> key = this.pickMiddleBiome(i, j, parameter);
                 ResourceKey<Biome> key1 = this.pickMiddleBiomeOrBadlandsIfHot(i, j, parameter);
                 ResourceKey<Biome> key2 = this.pickMiddleBiomeOrBadlandsIfHotOrSlopeIfCold(i, j, parameter);
@@ -150,10 +133,8 @@ public class MysticBiomeBuilder {
     private void addHighSlice(Consumer<Pair<Climate.ParameterPoint, ResourceKey<Biome>>> consumer, Climate.Parameter parameter) {
         for (int i = 0; i < this.temperatures.length; ++i) {
             Climate.Parameter temperature = this.temperatures[i];
-
             for (int j = 0; j < this.humidities.length; ++j) {
                 Climate.Parameter humidity = this.humidities[j];
-
                 ResourceKey<Biome> key = this.pickMiddleBiome(i, j, parameter);
                 ResourceKey<Biome> key1 = this.pickMiddleBiomeOrBadlandsIfHot(i, j, parameter);
                 ResourceKey<Biome> key2 = this.pickMiddleBiomeOrBadlandsIfHotOrSlopeIfCold(i, j, parameter);
@@ -178,7 +159,7 @@ public class MysticBiomeBuilder {
             }
         }
     }
-    
+
     private void addMidSlice(Consumer<Pair<Climate.ParameterPoint, ResourceKey<Biome>>> consumer, Climate.Parameter parameter) {
         this.addSurfaceBiome(consumer, this.FULL_RANGE, this.FULL_RANGE, this.coastContinentalness, Climate.Parameter.span(this.erosions[0], this.erosions[2]), parameter, 0.0F, Biomes.STONY_SHORE);
         this.addSurfaceBiome(consumer, Climate.Parameter.span(this.temperatures[1], this.temperatures[2]), this.FULL_RANGE, Climate.Parameter.span(this.nearInlandContinentalness, this.farInlandContinentalness), this.erosions[6], parameter, 0.0F, Biomes.SWAMP);
@@ -188,10 +169,8 @@ public class MysticBiomeBuilder {
 
         for (int i = 0; i < this.temperatures.length; ++i) {
             Climate.Parameter temperature = this.temperatures[i];
-
             for (int j = 0; j < this.humidities.length; ++j) {
                 Climate.Parameter humidity = this.humidities[j];
-
                 ResourceKey<Biome> key = this.pickMiddleBiome(i, j, parameter);
                 //ResourceKey<Biome> keyMystic = this.pickMiddleBiomeMystic(i, j, parameter);
                 ResourceKey<Biome> key1 = this.pickMiddleBiomeOrBadlandsIfHot(i, j, parameter);
@@ -245,12 +224,10 @@ public class MysticBiomeBuilder {
 
         for (int i = 0; i < this.temperatures.length; ++i) {
             Climate.Parameter temperature = this.temperatures[i];
-
             for (int j = 0; j < this.humidities.length; ++j) {
                 Climate.Parameter humidity = this.humidities[j];
-
                 ResourceKey<Biome> key = this.pickMiddleBiome(i, j, parameter);
-                //ResourceKey<Biome> keyMystic = this.pickMiddleBiomeMystic(i, j, parameter);
+                ResourceKey<Biome> keyMystic = this.pickMiddleBiomeMB(i, j, parameter);
                 ResourceKey<Biome> key1 = this.pickMiddleBiomeOrBadlandsIfHot(i, j, parameter);
                 ResourceKey<Biome> key2 = this.pickMiddleBiomeOrBadlandsIfHotOrSlopeIfCold(i, j, parameter);
                 ResourceKey<Biome> key3 = this.pickBeachBiome(i);
@@ -292,7 +269,6 @@ public class MysticBiomeBuilder {
 
         for (int i = 0; i < this.temperatures.length; ++i) {
             Climate.Parameter temperature = this.temperatures[i];
-
             for (int j = 0; j < this.humidities.length; ++j) {
                 Climate.Parameter humidity = this.humidities[j];
                 ResourceKey<Biome> key = this.pickMiddleBiomeOrBadlandsIfHot(i, j, parameter);
@@ -316,12 +292,12 @@ public class MysticBiomeBuilder {
         }
     }
 
-    private ResourceKey<Biome> pickMiddleBiomeMystic(int temperature, int humidity, Climate.Parameter parameter) {
+    private ResourceKey<Biome> pickMiddleBiomeMB(int temperature, int humidity, Climate.Parameter parameter) {
         if (parameter.max() < 0L) {
-            return this.MIDDLE_BIOMES_MYSTIC[temperature][humidity];
+            return this.MIDDLE_BIOMES[temperature][humidity];
         } else {
-            ResourceKey<Biome> key = this.MIDDLE_BIOMES_MYSTIC_VARIANT[temperature][humidity];
-            return key == null ? this.MIDDLE_BIOMES_MYSTIC[temperature][humidity] : key;
+            ResourceKey<Biome> key = this.MIDDLE_BIOMES_VARIANT[temperature][humidity];
+            return key == null ? this.MIDDLE_BIOMES[temperature][humidity] : key;
         }
     }
 

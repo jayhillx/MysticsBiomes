@@ -1,11 +1,11 @@
 {
-  "feature": "mysticsbiomes:peony_bush",
+  "feature": "mysticsbiomes:bush_peony",
   "placement": [
     {
       "type": "minecraft:noise_based_count",
-      "noise_factor": 0.4,
+      "noise_factor": 0.2,
       "noise_offset": 1.0,
-      "noise_to_count_ratio": 9
+      "noise_to_count_ratio": 64
     },
     {
       "type": "minecraft:in_square"
@@ -26,10 +26,7 @@
       "predicate": {
         "type": "minecraft:would_survive",
         "state": {
-          "Name": "minecraft:oak_sapling",
-          "Properties": {
-            "stage": "0"
-          }
+          "Name": "mysticsbiomes:peony_bush"
         }
       }
     }

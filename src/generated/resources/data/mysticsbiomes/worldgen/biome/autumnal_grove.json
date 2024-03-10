@@ -73,10 +73,10 @@
     ],
     [
       "minecraft:glow_lichen",
-      "mysticsbiomes:tree_maple",
-      "mysticsbiomes:tree_orange_maple",
-      "mysticsbiomes:tree_yellow_maple",
-      "mysticsbiomes:patch_pumpkin",
+      "mysticsbiomes:tree_maple_checked",
+      "mysticsbiomes:tree_orange_maple_checked",
+      "mysticsbiomes:tree_yellow_maple_checked",
+      "mysticsbiomes:patch_pumpkins",
       "mysticsbiomes:patch_light_grass"
     ],
     [

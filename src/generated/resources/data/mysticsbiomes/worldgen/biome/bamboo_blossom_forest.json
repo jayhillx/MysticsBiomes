@@ -16,8 +16,8 @@
       "tick_delay": 6000
     },
     "sky_color": 8037887,
-    "water_color": 4159204,
-    "water_fog_color": 329011
+    "water_color": 2057338,
+    "water_fog_color": 15430
   },
   "features": [
     [],
@@ -71,12 +71,11 @@
     ],
     [
       "minecraft:glow_lichen",
+      "mysticsbiomes:patch_spring_bamboo",
+      "mysticsbiomes:trees_cherry",
       "mysticsbiomes:bush_peony",
-      "mysticsbiomes:tree_pink_cherry",
-      "mysticsbiomes:tree_white_cherry",
       "mysticsbiomes:flower_lilac",
-      "mysticsbiomes:patch_light_grass",
-      "minecraft:bamboo_light"
+      "mysticsbiomes:patch_light_grass"
     ],
     [
       "minecraft:freeze_top_layer"
@@ -97,9 +96,9 @@
     "creature": [
       {
         "type": "mysticsbiomes:red_panda",
-        "maxCount": 4,
-        "minCount": 2,
-        "weight": 8
+        "maxCount": 2,
+        "minCount": 1,
+        "weight": 12
       }
     ],
     "misc": [],
@@ -114,19 +113,19 @@
         "type": "minecraft:zombie",
         "maxCount": 4,
         "minCount": 4,
-        "weight": 95
+        "weight": 6
       },
       {
         "type": "minecraft:zombie_villager",
         "maxCount": 1,
         "minCount": 1,
-        "weight": 5
+        "weight": 2
       },
       {
         "type": "minecraft:skeleton",
         "maxCount": 4,
         "minCount": 4,
-        "weight": 100
+        "weight": 6
       },
       {
         "type": "minecraft:creeper",

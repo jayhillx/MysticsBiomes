@@ -22,7 +22,7 @@
         "Properties": {
           "distance": "16",
           "persistent": "false",
-          "waterlogged": "true"
+          "waterlogged": "false"
         }
       }
     },

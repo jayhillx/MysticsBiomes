@@ -1,7 +1,6 @@
 package com.mysticsbiomes.common.block;
 
-import com.mysticsbiomes.init.MysticBlocks;
-import com.mysticsbiomes.init.MysticParticles;
+import com.mysticsbiomes.common.block.BlockTemplate;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
@@ -14,6 +13,8 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -21,6 +22,8 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
+import net.minecraft.world.level.material.MapColor;
+import net.minecraft.world.level.material.PushReaction;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
@@ -30,69 +33,19 @@ public class MysticLeavesBlock extends Block {
     public static final IntegerProperty DISTANCE = IntegerProperty.create("distance", 1, 16);
     public static final BooleanProperty PERSISTENT = BlockStateProperties.PERSISTENT;
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
-    private String type;
 
-    public MysticLeavesBlock(Properties properties) {
-        super(properties);
-        this.registerDefaultState(this.stateDefinition.any().setValue(DISTANCE, 16).setValue(PERSISTENT, false));
-    }
-
-    public MysticLeavesBlock(String particleType, Properties properties) {
-        this(properties);
-        this.type = particleType;
+    public MysticLeavesBlock(SoundType soundType) {
+        super(BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).strength(0.2F).randomTicks().sound(soundType).noOcclusion().isSuffocating(BlockTemplate::never).isViewBlocking(BlockTemplate::never).ignitedByLava().pushReaction(PushReaction.DESTROY).isRedstoneConductor(BlockTemplate::never));
+        this.registerDefaultState(this.stateDefinition.any().setValue(DISTANCE, 16).setValue(PERSISTENT, false).setValue(WATERLOGGED, false));
     }
 
     @Override
     public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource random) {
-        if (level.isRainingAt(pos.above())) {
-            if (random.nextInt(15) == 1) {
-                BlockPos blockpos = pos.below();
-                BlockState blockstate = level.getBlockState(blockpos);
-                if (!blockstate.canOcclude() || !blockstate.isFaceSturdy(level, blockpos, Direction.UP)) {
-                    ParticleUtils.spawnParticleBelow(level, pos, random, ParticleTypes.DRIPPING_WATER);
-                }
-            }
-        }
-
-        if (this.type != null) {
-            if (random.nextInt(48) == 0) {
-                if (level.isEmptyBlock(pos.below())) {
-                    double d0 = random.nextGaussian() * 0.02D;
-                    double d1 = random.nextGaussian() * 0.02D;
-                    double d2 = random.nextGaussian() * 0.02D;
-
-                    double d3 = (float)pos.getX() + random.nextFloat();
-                    double d4 = (double)pos.getY() - 0.05D;
-                    double d6 = (float)pos.getZ() + random.nextFloat();
-
-                    switch (this.type) {
-                        case "cherry" -> level.addParticle(ParticleTypes.CHERRY_LEAVES, d3, d4, d6, d0, d1, d2);
-                        case "jacaranda" -> level.addParticle(MysticParticles.FALLING_JACARANDA.get(), d3, d4, d6, d0, d1, d2);
-                        case "normal" -> level.addParticle(MysticParticles.FALLING_MAPLE.get(), d3, d4, d6, d0, d1, d2);
-                        case "orange" -> level.addParticle(MysticParticles.FALLING_ORANGE_MAPLE.get(), d3, d4, d6, d0, d1, d2);
-                        case "yellow" -> level.addParticle(MysticParticles.FALLING_YELLOW_MAPLE.get(), d3, d4, d6, d0, d1, d2);
-                    }
-                }
-            }
-
-            if (random.nextInt(2000) == 0) {
-                Block block = switch (this.type) {
-                    case "normal" -> MysticBlocks.MAPLE_LEAF_PILE.get();
-                    case "orange" -> MysticBlocks.ORANGE_MAPLE_LEAF_PILE.get();
-                    case "yellow" -> MysticBlocks.YELLOW_MAPLE_LEAF_PILE.get();
-                    default -> null;
-                };
-
-                if (block != null) {
-                    for (int i = 0; i <= 7; ++i) {
-                        BlockPos belowPos = new BlockPos(pos.getX(), pos.getY() - i, pos.getZ());
-                        BlockState belowState = level.getBlockState(belowPos.below());
-
-                        if (level.getBlockState(belowPos).isAir() && !belowState.isAir() && !belowState.canBeReplaced() && !belowState.is(BlockTags.LEAVES) && belowState.canSurvive(level, belowPos)) {
-                            level.setBlockAndUpdate(belowPos, block.defaultBlockState());
-                        }
-                    }
-                }
+        if (level.isRainingAt(pos.above()) && random.nextInt(15) == 1) {
+            BlockPos belowPos = pos.below();
+            BlockState belowState = level.getBlockState(belowPos);
+            if (!belowState.canOcclude() || !belowState.isFaceSturdy(level, belowPos, Direction.UP)) {
+                ParticleUtils.spawnParticleBelow(level, pos, random, ParticleTypes.DRIPPING_WATER);
             }
         }
     }
@@ -123,7 +76,7 @@ public class MysticLeavesBlock extends Block {
 
     @Override
     public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
-        if (this.isRandomlyTicking(state)) {
+        if (!(Boolean)state.getValue(PERSISTENT) && state.getValue(DISTANCE) == 16) {
             dropResources(state, level, pos);
             level.removeBlock(pos, false);
         }
@@ -131,7 +84,7 @@ public class MysticLeavesBlock extends Block {
 
     @Override
     public boolean isRandomlyTicking(BlockState state) {
-        return state.getValue(DISTANCE) == 16 && !state.getValue(PERSISTENT);
+        return state.getValue(DISTANCE) == 16 && !(Boolean)state.getValue(PERSISTENT);
     }
 
     public VoxelShape getBlockSupportShape(BlockState state, BlockGetter getter, BlockPos pos) {

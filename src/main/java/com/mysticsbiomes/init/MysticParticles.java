@@ -3,8 +3,6 @@ package com.mysticsbiomes.init;
 import com.mysticsbiomes.MysticsBiomes;
 import com.mysticsbiomes.client.particle.FallingLeafParticle;
 import com.mysticsbiomes.client.particle.LeafPileParticle;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.particle.ParticleEngine;
 import net.minecraft.core.particles.ParticleType;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.core.registries.Registries;
@@ -29,15 +27,13 @@ public class MysticParticles {
 
     @SubscribeEvent
     public static void registerParticles(RegisterParticleProvidersEvent event) {
-        ParticleEngine engine = Minecraft.getInstance().particleEngine;
-
-        engine.register(FALLING_JACARANDA.get(), FallingLeafParticle.Provider::new);
-        engine.register(FALLING_MAPLE.get(), FallingLeafParticle.Provider::new);
-        engine.register(FALLING_ORANGE_MAPLE.get(), FallingLeafParticle.Provider::new);
-        engine.register(FALLING_YELLOW_MAPLE.get(), FallingLeafParticle.Provider::new);
-        engine.register(LEAF_PILE_MAPLE.get(), LeafPileParticle.Provider::new);
-        engine.register(LEAF_PILE_ORANGE_MAPLE.get(), LeafPileParticle.Provider::new);
-        engine.register(LEAF_PILE_YELLOW_MAPLE.get(), LeafPileParticle.Provider::new);
+        event.registerSpriteSet(FALLING_JACARANDA.get(), FallingLeafParticle.Provider::new);
+        event.registerSpriteSet(FALLING_MAPLE.get(), FallingLeafParticle.Provider::new);
+        event.registerSpriteSet(FALLING_ORANGE_MAPLE.get(), FallingLeafParticle.Provider::new);
+        event.registerSpriteSet(FALLING_YELLOW_MAPLE.get(), FallingLeafParticle.Provider::new);
+        event.registerSpriteSet(LEAF_PILE_MAPLE.get(), LeafPileParticle.Provider::new);
+        event.registerSpriteSet(LEAF_PILE_ORANGE_MAPLE.get(), LeafPileParticle.Provider::new);
+        event.registerSpriteSet(LEAF_PILE_YELLOW_MAPLE.get(), LeafPileParticle.Provider::new);
     }
 
 }

@@ -1,6 +1,5 @@
 package com.mysticsbiomes.common.block.entity;
 
-import com.google.common.collect.Lists;
 import com.mysticsbiomes.common.block.ButterflyNestBlock;
 import com.mysticsbiomes.common.entity.animal.Butterfly;
 import com.mysticsbiomes.init.MysticBlockEntities;
@@ -24,13 +23,14 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
 
 import javax.annotation.Nullable;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
 public class ButterflyNestBlockEntity extends BlockEntity {
     private static final List<String> IGNORED_TAGS = Arrays.asList("Air", "ArmorDropChances", "ArmorItems", "Brain", "CanPickUpLoot", "DeathTime", "FallDistance", "FallFlying", "Fire", "HandDropChances", "HandItems", "HurtByTimestamp", "HurtTime", "LeftHanded", "Motion", "NoGravity", "OnGround", "PortalCooldown", "Pos", "Rotation", "Passengers", "Leash");
-    private final List<ButterflyData> stored = Lists.newArrayList();
+    private final List<ButterflyData> stored = new ArrayList<>();
 
     public ButterflyNestBlockEntity(BlockPos pos, BlockState state) {
         super(MysticBlockEntities.BUTTERFLY_NEST.get(), pos, state);
@@ -137,7 +137,7 @@ public class ButterflyNestBlockEntity extends BlockEntity {
     }
 
     private List<Entity> releaseAllOccupants(BlockState state, ReleaseStatus status) {
-        List<Entity> list = Lists.newArrayList();
+        List<Entity> list = new ArrayList<>();
         if (this.level != null) {
             this.stored.removeIf((data) -> releaseOccupant(this.level, this.worldPosition, state, data, list, status));
         }

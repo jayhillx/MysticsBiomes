@@ -6,7 +6,7 @@
         "items": [
           {
             "items": [
-              "mysticsbiomes:cherry_planks"
+              "mysticsbiomes:jacaranda_planks"
             ]
           }
         ]
@@ -15,7 +15,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "mysticsbiomes:cherry_stairs"
+        "recipe": "mysticsbiomes:jacaranda_stairs"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -28,7 +28,7 @@
   ],
   "rewards": {
     "recipes": [
-      "mysticsbiomes:cherry_stairs"
+      "mysticsbiomes:jacaranda_stairs"
     ]
   },
   "sends_telemetry_event": false

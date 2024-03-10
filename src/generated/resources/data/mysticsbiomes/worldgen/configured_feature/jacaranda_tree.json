@@ -4,7 +4,7 @@
     "decorators": [
       {
         "type": "mysticsbiomes:butterfly_nest",
-        "probability": 0.5
+        "probability": 0.25
       }
     ],
     "dirt_provider": {
@@ -29,7 +29,7 @@
             "Properties": {
               "distance": "16",
               "persistent": "false",
-              "waterlogged": "true"
+              "waterlogged": "false"
             }
           },
           "weight": 3
@@ -40,7 +40,7 @@
             "Properties": {
               "distance": "16",
               "persistent": "false",
-              "waterlogged": "true"
+              "waterlogged": "false"
             }
           },
           "weight": 2

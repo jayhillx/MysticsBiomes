@@ -1,17 +1,21 @@
 package com.mysticsbiomes.init;
 
 import com.mysticsbiomes.MysticsBiomes;
-import com.mysticsbiomes.client.model.entity.ButterflyModel;
-import com.mysticsbiomes.client.model.entity.StrawberryCowModel;
-import com.mysticsbiomes.client.model.entity.layer.MysticModelLayers;
-import com.mysticsbiomes.client.renderer.entity.*;
+import com.mysticsbiomes.client.entity.model.ButterflyModel;
+import com.mysticsbiomes.client.entity.model.RedPandaModel;
+import com.mysticsbiomes.client.entity.model.layer.MysticModelLayers;
+import com.mysticsbiomes.client.entity.renderer.*;
 import com.mysticsbiomes.common.entity.MysticBoat;
 import com.mysticsbiomes.common.entity.MysticChestBoat;
-import com.mysticsbiomes.common.entity.animal.*;
 import com.mysticsbiomes.common.entity.MysticThrownEgg;
+import com.mysticsbiomes.common.entity.animal.Butterfly;
+import com.mysticsbiomes.common.entity.animal.RainbowChicken;
+import com.mysticsbiomes.common.entity.animal.RedPanda;
+import com.mysticsbiomes.common.entity.animal.StrawberryCow;
 import net.minecraft.client.model.BoatModel;
 import net.minecraft.client.model.ChestBoatModel;
 import net.minecraft.client.model.ChickenModel;
+import net.minecraft.client.model.CowModel;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraft.core.registries.Registries;
@@ -35,7 +39,7 @@ public class MysticEntities {
 
     public static final RegistryObject<EntityType<StrawberryCow>> STRAWBERRY_COW = ENTITIES.register("strawberry_cow", () -> EntityType.Builder.of(StrawberryCow::new, MobCategory.CREATURE).sized(0.9F, 1.4F).clientTrackingRange(10).build(MysticsBiomes.modId + ":strawberry_cow"));
     public static final RegistryObject<EntityType<RainbowChicken>> RAINBOW_CHICKEN = ENTITIES.register("rainbow_chicken", () -> EntityType.Builder.of(RainbowChicken::new, MobCategory.CREATURE).sized(0.4F, 0.7F).clientTrackingRange(10).build(MysticsBiomes.modId + ":rainbow_chicken"));
-    public static final RegistryObject<EntityType<RedPanda>> RED_PANDA = ENTITIES.register("red_panda", () -> EntityType.Builder.of(RedPanda::new, MobCategory.CREATURE).sized(0.9F, 1.4F).clientTrackingRange(10).build(MysticsBiomes.modId + ":red_panda"));
+    public static final RegistryObject<EntityType<RedPanda>> RED_PANDA = ENTITIES.register("red_panda", () -> EntityType.Builder.of(RedPanda::new, MobCategory.CREATURE).sized(0.5F, 0.6F).clientTrackingRange(10).build(MysticsBiomes.modId + ":red_panda"));
     public static final RegistryObject<EntityType<Butterfly>> BUTTERFLY = ENTITIES.register("butterfly", () -> EntityType.Builder.of(Butterfly::new, MobCategory.CREATURE).sized(0.5F, 0.3F).clientTrackingRange(10).build(MysticsBiomes.modId + ":butterfly"));
 
     public static final RegistryObject<EntityType<MysticThrownEgg>> RAINBOW_EGG = ENTITIES.register("rainbow_egg", () -> EntityType.Builder.<MysticThrownEgg>of(MysticThrownEgg::new, MobCategory.MISC).sized(0.25F, 0.25F).clientTrackingRange(4).updateInterval(10).build(MysticsBiomes.modId + ":rainbow_egg"));
@@ -52,10 +56,14 @@ public class MysticEntities {
 
     @SubscribeEvent
     public static void registerEntitySpawns(SpawnPlacementRegisterEvent event) {
-        event.register(STRAWBERRY_COW.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules, SpawnPlacementRegisterEvent.Operation.REPLACE);
-        event.register(RAINBOW_CHICKEN.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules, SpawnPlacementRegisterEvent.Operation.REPLACE);
-        event.register(RED_PANDA.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules, SpawnPlacementRegisterEvent.Operation.REPLACE);
-        event.register(BUTTERFLY.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules, SpawnPlacementRegisterEvent.Operation.REPLACE);
+        registerBasicSpawn(event, STRAWBERRY_COW.get());
+        registerBasicSpawn(event, RAINBOW_CHICKEN.get());
+        registerBasicSpawn(event, RED_PANDA.get());
+        registerBasicSpawn(event, BUTTERFLY.get());
+    }
+
+    private static <T extends Animal> void registerBasicSpawn(SpawnPlacementRegisterEvent event, EntityType<T> entityType) {
+        event.register(entityType, SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules, SpawnPlacementRegisterEvent.Operation.REPLACE);
     }
 
     @Mod.EventBusSubscriber(modid = MysticsBiomes.modId, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
@@ -63,8 +71,9 @@ public class MysticEntities {
 
         @SubscribeEvent
         public static void registerEntityLayers(EntityRenderersEvent.RegisterLayerDefinitions event) {
-            event.registerLayerDefinition(MysticModelLayers.STRAWBERRY_COW, StrawberryCowModel::createBodyLayer);
+            event.registerLayerDefinition(MysticModelLayers.STRAWBERRY_COW, CowModel::createBodyLayer);
             event.registerLayerDefinition(MysticModelLayers.RAINBOW_CHICKEN, ChickenModel::createBodyLayer);
+            event.registerLayerDefinition(MysticModelLayers.RED_PANDA, RedPandaModel::createBodyLayer);
             event.registerLayerDefinition(MysticModelLayers.BUTTERFLY, ButterflyModel::createBodyLayer);
 
             for (MysticBoat.Type type : MysticBoat.Type.values()) {
@@ -75,14 +84,13 @@ public class MysticEntities {
 
         @SubscribeEvent
         public static void registerEntityRenderers(EntityRenderersEvent.RegisterRenderers event) {
-            event.registerEntityRenderer(STRAWBERRY_COW.get(), StrawberryCowRenderer::new);
-            event.registerEntityRenderer(RAINBOW_CHICKEN.get(), RainbowChickenRenderer::new);
-            event.registerEntityRenderer(RED_PANDA.get(), RedPandaRenderer::new);
-            event.registerEntityRenderer(BUTTERFLY.get(), ButterflyRenderer::new);
-
-            event.registerEntityRenderer(RAINBOW_EGG.get(), ThrownItemRenderer::new);
-            EntityRenderers.register(BOAT.get(), context -> new MysticBoatRenderer(context, false));
-            EntityRenderers.register(CHEST_BOAT.get(), context -> new MysticBoatRenderer(context, true));
+            event.registerEntityRenderer(MysticEntities.STRAWBERRY_COW.get(), StrawberryCowRenderer::new);
+            event.registerEntityRenderer(MysticEntities.RAINBOW_CHICKEN.get(), RainbowChickenRenderer::new);
+            event.registerEntityRenderer(MysticEntities.RED_PANDA.get(), RedPandaRenderer::new);
+            event.registerEntityRenderer(MysticEntities.BUTTERFLY.get(), ButterflyRenderer::new);
+            event.registerEntityRenderer(MysticEntities.RAINBOW_EGG.get(), ThrownItemRenderer::new);
+            EntityRenderers.register(MysticEntities.BOAT.get(), context -> new MysticBoatRenderer(context, false));
+            EntityRenderers.register(MysticEntities.CHEST_BOAT.get(), context -> new MysticBoatRenderer(context, true));
         }
     }
 

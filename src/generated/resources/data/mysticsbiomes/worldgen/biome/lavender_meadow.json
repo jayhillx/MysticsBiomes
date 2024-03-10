@@ -71,7 +71,7 @@
     ],
     [
       "minecraft:glow_lichen",
-      "mysticsbiomes:tree_jacaranda",
+      "mysticsbiomes:tree_jacaranda_checked",
       "mysticsbiomes:flower_lavender",
       "mysticsbiomes:patch_light_grass"
     ],
@@ -92,12 +92,6 @@
     ],
     "axolotls": [],
     "creature": [
-      {
-        "type": "mysticsbiomes:butterfly",
-        "maxCount": 3,
-        "minCount": 1,
-        "weight": 3
-      },
       {
         "type": "minecraft:sheep",
         "maxCount": 4,

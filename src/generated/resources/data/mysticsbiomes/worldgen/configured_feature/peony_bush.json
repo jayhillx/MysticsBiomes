@@ -23,10 +23,10 @@
             "Properties": {
               "distance": "16",
               "persistent": "false",
-              "waterlogged": "true"
+              "waterlogged": "false"
             }
           },
-          "weight": 3
+          "weight": 4
         },
         {
           "data": {
@@ -34,10 +34,10 @@
             "Properties": {
               "distance": "16",
               "persistent": "false",
-              "waterlogged": "true"
+              "waterlogged": "false"
             }
           },
-          "weight": 3
+          "weight": 4
         }
       ]
     },
@@ -45,9 +45,9 @@
     "ignore_vines": false,
     "minimum_size": {
       "type": "minecraft:two_layers_feature_size",
-      "limit": 0,
+      "limit": 1,
       "lower_size": 0,
-      "upper_size": 0
+      "upper_size": 1
     },
     "trunk_placer": {
       "type": "minecraft:straight_trunk_placer",

@@ -78,14 +78,14 @@ public class Butterfly extends Animal implements FlyingAnimal {
     private BlockPos nestPos;
     @Nullable
     private Block givenFlower;
-    Butterfly.PollinateGoal pollinateGoal;
-    Butterfly.SpreadFlowersGoal spreadFlowersGoal;
+    PollinateGoal pollinateGoal;
+    SpreadFlowersGoal spreadFlowersGoal;
     public AnimationState flyingAnimationState = new AnimationState();
 
     public Butterfly(EntityType<? extends Butterfly> type, Level level) {
         super(type, level);
         this.moveControl = new FlyingMoveControl(this, 20, true);
-        this.lookControl = new Butterfly.ButterflyLookControl();
+        this.lookControl = new ButterflyLookControl();
     }
 
     protected void defineSynchedData() {
@@ -95,15 +95,15 @@ public class Butterfly extends Animal implements FlyingAnimal {
     }
 
     protected void registerGoals() {
-        this.spreadFlowersGoal = new Butterfly.SpreadFlowersGoal();
+        this.spreadFlowersGoal = new SpreadFlowersGoal();
         this.goalSelector.addGoal(0, this.spreadFlowersGoal);
         this.goalSelector.addGoal(1, new TemptGoal(this, 1.25D, Ingredient.of(ItemTags.FLOWERS), false));
-        this.pollinateGoal = new Butterfly.PollinateGoal();
+        this.pollinateGoal = new PollinateGoal();
         this.goalSelector.addGoal(2, this.pollinateGoal);
-        this.goalSelector.addGoal(3, new Butterfly.EnterNestGoal());
-        this.goalSelector.addGoal(4, new Butterfly.GoToNestGoal());
-        this.goalSelector.addGoal(5, new Butterfly.LocateNestGoal());
-        this.goalSelector.addGoal(6, new Butterfly.WanderGoal());
+        this.goalSelector.addGoal(3, new EnterNestGoal());
+        this.goalSelector.addGoal(4, new GoToNestGoal());
+        this.goalSelector.addGoal(5, new LocateNestGoal());
+        this.goalSelector.addGoal(6, new WanderGoal());
         this.goalSelector.addGoal(7, new FloatGoal(this));
     }
 
@@ -547,7 +547,7 @@ public class Butterfly extends Animal implements FlyingAnimal {
         private Path lastPath;
 
         GoToNestGoal() {
-            this.setFlags(EnumSet.of(Goal.Flag.MOVE));
+            this.setFlags(EnumSet.of(Flag.MOVE));
         }
 
         public boolean canUse() {
@@ -639,7 +639,7 @@ public class Butterfly extends Animal implements FlyingAnimal {
         };
 
         PollinateGoal() {
-            this.setFlags(EnumSet.of(Goal.Flag.MOVE));
+            this.setFlags(EnumSet.of(Flag.MOVE));
         }
 
         public boolean canUse() {
@@ -754,7 +754,7 @@ public class Butterfly extends Animal implements FlyingAnimal {
         private BlockPos emptyPos;
 
         SpreadFlowersGoal() {
-            this.setFlags(EnumSet.of(Goal.Flag.MOVE));
+            this.setFlags(EnumSet.of(Flag.MOVE));
         }
 
         public boolean canUse() {
@@ -873,11 +873,11 @@ public class Butterfly extends Animal implements FlyingAnimal {
     class WanderGoal extends Goal {
 
         WanderGoal() {
-            this.setFlags(EnumSet.of(Goal.Flag.MOVE));
+            this.setFlags(EnumSet.of(Flag.MOVE));
         }
 
         public boolean canUse() {
-            return Butterfly.this.navigation.isDone() && Butterfly.this.random.nextInt(10) == 0;
+            return Butterfly.this.navigation.isDone();
         }
 
         public boolean canContinueToUse() {
@@ -886,10 +886,24 @@ public class Butterfly extends Animal implements FlyingAnimal {
 
         public void start() {
             Vec3 vec3 = this.findPos();
-
             if (vec3 != null) {
+                vec3 = new Vec3(vec3.x, this.findFurthestBlockBelow(BlockPos.containing(vec3)) + 2, vec3.z);
+
                 Butterfly.this.navigation.moveTo(Butterfly.this.navigation.createPath(BlockPos.containing(vec3), 1), 1.0D);
             }
+        }
+
+        private int findFurthestBlockBelow(BlockPos pos) {
+            BlockPos.MutableBlockPos mutablePos = new BlockPos.MutableBlockPos(pos.getX(), pos.getY(), pos.getZ());
+
+            while (mutablePos.getY() > 0) {
+                mutablePos.move(0, -1, 0);
+
+                if (!Butterfly.this.level().isEmptyBlock(mutablePos) && (!Butterfly.this.level().getBlockState(mutablePos).isAir() || Butterfly.this.level().getBlockState(mutablePos).canBeReplaced())) {
+                    return mutablePos.getY();
+                }
+            }
+            return pos.getY();
         }
 
         @Nullable
@@ -919,13 +933,12 @@ public class Butterfly extends Animal implements FlyingAnimal {
     }
 
     public enum Type implements StringRepresentable {
-        APRICOT(0, "apricot"),
+        TANGERINE(0, "tangerine"),
         JELLY(1, "jelly"),
         JULY(2, "july"),
         CANDY(3, "candy"),
         VALENTINE(4, "valentine"),
-        MYSTIC(5, "mystic"),
-        MARSHMALLOW(6, "marshmallow");
+        MYSTIC(5, "mystic");
 
         private final int id;
         private final String name;
@@ -948,7 +961,7 @@ public class Butterfly extends Animal implements FlyingAnimal {
         }
 
         public static Type byName(String name) {
-            return StringRepresentable.fromEnum(Type::values).byName(name, APRICOT);
+            return StringRepresentable.fromEnum(Type::values).byName(name, TANGERINE);
         }
     }
 

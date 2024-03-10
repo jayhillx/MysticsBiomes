@@ -1,16 +1,36 @@
 {
   "parent": "mysticsbiomes:mysticsbiomes/root",
   "criteria": {
-    "get_cakes": {
+    "obtain_rainbow_cakes": {
       "conditions": {
         "items": [
           {
             "items": [
-              "mysticsbiomes:pink_frosted_cake",
-              "mysticsbiomes:orange_frosted_cake",
-              "mysticsbiomes:yellow_frosted_cake",
-              "mysticsbiomes:lime_frosted_cake",
-              "mysticsbiomes:cyan_frosted_cake",
+              "mysticsbiomes:pink_frosted_cake"
+            ]
+          },
+          {
+            "items": [
+              "mysticsbiomes:orange_frosted_cake"
+            ]
+          },
+          {
+            "items": [
+              "mysticsbiomes:yellow_frosted_cake"
+            ]
+          },
+          {
+            "items": [
+              "mysticsbiomes:lime_frosted_cake"
+            ]
+          },
+          {
+            "items": [
+              "mysticsbiomes:cyan_frosted_cake"
+            ]
+          },
+          {
+            "items": [
               "mysticsbiomes:purple_frosted_cake"
             ]
           }
@@ -35,7 +55,7 @@
   },
   "requirements": [
     [
-      "get_cakes"
+      "obtain_rainbow_cakes"
     ]
   ]
 }
