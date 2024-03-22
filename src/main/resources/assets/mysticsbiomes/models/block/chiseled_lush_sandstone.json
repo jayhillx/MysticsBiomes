@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "mysticsbiomes:block/lush_sandstone_top",
+    "side": "mysticsbiomes:block/chiseled_lush_sandstone"
+  }
+}

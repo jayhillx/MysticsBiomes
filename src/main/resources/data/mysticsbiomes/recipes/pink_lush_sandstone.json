@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "mysticsbiomes:pink_lush_sand"
+    }
+  },
+  "result": {
+    "item": "mysticsbiomes:pink_lush_sandstone"
+  },
+  "show_notification": true
+}

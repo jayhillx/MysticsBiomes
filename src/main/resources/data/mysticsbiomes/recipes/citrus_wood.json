@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "bark",
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "mysticsbiomes:citrus_log"
+    }
+  },
+  "result": {
+    "item": "mysticsbiomes:citrus_wood",
+    "count": 3
+  }
+}

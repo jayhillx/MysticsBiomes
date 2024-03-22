@@ -1,0 +1,67 @@
+{
+	"parent": "block/block",
+	"render_type": "minecraft:cutout",
+	"textures": {
+		"side": "mysticsbiomes:block/prickly_pear_branch_side",
+		"side2": "mysticsbiomes:block/prickly_pear_branch_side_connected",
+		"side3": "mysticsbiomes:block/prickly_pear_branch_inner_connected",
+		"top": "mysticsbiomes:block/prickly_pear_branch_top_variant",
+		"bottom": "mysticsbiomes:block/prickly_pear_branch_bottom",
+		"particle": "mysticsbiomes:block/prickly_pear_branch_side"
+	},
+	"elements": [
+		{
+			"from": [3, 1, -2],
+			"to": [13, 13, 3],
+			"faces": {
+				"east": {"uv": [14, 16, 2, 11], "rotation": 90, "texture": "#side"},
+				"west": {"uv": [2, 11, 14, 16], "rotation": 90, "texture": "#side"}
+			}
+		},
+		{
+			"from": [2, 2, -2],
+			"to": [14, 12, 3],
+			"faces": {
+				"up": {"uv": [2, 11, 14, 16], "rotation": 180, "texture": "#side"},
+				"down": {"uv": [14, 16, 2, 11], "rotation": 180, "texture": "#side"}
+			}
+		},
+		{
+			"from": [2, 1, -2],
+			"to": [14, 13, 3],
+			"faces": {
+				"north": {"uv": [2, 2, 14, 14], "texture": "#bottom"}
+			}
+		},
+		{
+			"from": [3, 1, 2],
+			"to": [13, 16, 14],
+			"faces": {
+				"east": {"uv": [14, 1, 2, 16], "texture": "#side2"},
+				"west": {"uv": [2, 1, 14, 16], "texture": "#side2"}
+			}
+		},
+		{
+			"from": [2, 1, 3],
+			"to": [14, 16, 13],
+			"faces": {
+				"south": {"uv": [2, 1, 14, 16], "texture": "#side3"}
+			}
+		},
+		{
+			"from": [2, 2, 2],
+			"to": [14, 16, 14],
+			"faces": {
+				"up": {"uv": [2, 2, 14, 14], "texture": "#top"},
+				"down": {"uv": [2, 2, 14, 14], "rotation": 180, "texture": "#top"}
+			}
+		},
+		{
+			"from": [2, 12, 3],
+			"to": [14, 16, 13],
+			"faces": {
+				"north": {"uv": [2, 1, 14, 5], "texture": "#side"}
+			}
+		}
+	]
+}

@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab_top",
+  "textures": {
+    "bottom": "mysticsbiomes:block/pink_lush_sandstone_bottom",
+    "top": "mysticsbiomes:block/pink_lush_sandstone_top",
+    "side": "mysticsbiomes:block/pink_lush_sandstone"
+  }
+}

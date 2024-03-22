@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "bottom": "mysticsbiomes:block/lush_sandstone_top",
+    "side": "mysticsbiomes:block/lush_sandstone_top",
+    "top": "mysticsbiomes:block/lush_sandstone_top"
+  }
+}

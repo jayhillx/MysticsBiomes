@@ -1,0 +1,45 @@
+{
+  "variants": {
+    "shape=base": {
+      "model": "mysticsbiomes:block/prickly_pear"
+    },
+    "shape=branch_base,facing=east": {
+      "model": "mysticsbiomes:block/prickly_pear_branch_bottom",
+      "y": 90
+    },
+    "shape=branch_base,facing=north": {
+      "model": "mysticsbiomes:block/prickly_pear_branch_bottom"
+    },
+    "shape=branch_base,facing=south": {
+      "model": "mysticsbiomes:block/prickly_pear_branch_bottom",
+      "y": 180
+    },
+    "shape=branch_base,facing=west": {
+      "model": "mysticsbiomes:block/prickly_pear_branch_bottom",
+      "y": 270
+    },
+    "shape=branch_base_upward,facing=east": {
+      "model": "mysticsbiomes:block/prickly_pear_branch_bottom_connected",
+      "y": 90
+    },
+    "shape=branch_base_upward,facing=north": {
+      "model": "mysticsbiomes:block/prickly_pear_branch_bottom_connected"
+    },
+    "shape=branch_base_upward,facing=south": {
+      "model": "mysticsbiomes:block/prickly_pear_branch_bottom_connected",
+      "y": 180
+    },
+    "shape=branch_base_upward,facing=west": {
+      "model": "mysticsbiomes:block/prickly_pear_branch_bottom_connected",
+      "y": 270
+    },
+    "shape=branch_arm": {
+      "model": "mysticsbiomes:block/prickly_pear_branch"
+    },
+    "shape=top_arm": [
+      { "model": "mysticsbiomes:block/prickly_pear_branch_top", "weight": 1 },
+      { "model": "mysticsbiomes:block/prickly_pear_branch_top_fruit", "weight": 1 },
+      { "model": "mysticsbiomes:block/prickly_pear_branch_top_fruit_variant", "weight": 1 }
+    ]
+  }
+}

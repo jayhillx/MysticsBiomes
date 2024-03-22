@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/outer_stairs",
+  "textures": {
+    "bottom": "mysticsbiomes:block/lush_sandstone_top",
+    "top": "mysticsbiomes:block/lush_sandstone_top",
+    "side": "mysticsbiomes:block/lush_sandstone_top"
+  }
+}

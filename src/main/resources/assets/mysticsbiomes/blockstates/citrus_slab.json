@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "mysticsbiomes:block/citrus_slab"
+    },
+    "type=double": {
+      "model": "mysticsbiomes:block/citrus_planks"
+    },
+    "type=top": {
+      "model": "mysticsbiomes:block/citrus_slab_top"
+    }
+  }
+}

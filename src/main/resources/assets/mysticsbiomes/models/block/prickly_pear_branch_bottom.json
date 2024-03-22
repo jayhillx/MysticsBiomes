@@ -1,0 +1,36 @@
+{
+	"parent": "block/block",
+	"render_type": "minecraft:cutout",
+	"textures": {
+		"side": "mysticsbiomes:block/prickly_pear_branch_side",
+		"top": "mysticsbiomes:block/prickly_pear_branch_top",
+		"bottom": "mysticsbiomes:block/prickly_pear_branch_bottom",
+		"particle": "mysticsbiomes:block/prickly_pear_branch_side"
+	},
+	"elements": [
+		{
+			"from": [3, 1, -2],
+			"to": [13, 13, 13],
+			"faces": {
+				"east": {"uv": [14, 16, 2, 1], "rotation": 90, "texture": "#side"},
+				"west": {"uv": [2, 1, 14, 16], "rotation": 90, "texture": "#side"}
+			}
+		},
+		{
+			"from": [2, 2, -2],
+			"to": [14, 12, 13],
+			"faces": {
+				"up": {"uv": [2, 1, 14, 16], "rotation": 180, "texture": "#side"},
+				"down": {"uv": [14, 16, 2, 1], "rotation": 180, "texture": "#side"}
+			}
+		},
+		{
+			"from": [2, 1, -2],
+			"to": [14, 13, 13],
+			"faces": {
+				"north": {"uv": [2, 2, 14, 14], "texture": "#bottom"},
+				"south": {"uv": [14, 2, 2, 14], "rotation": 180, "texture": "#top"}
+			}
+		}
+	]
+}

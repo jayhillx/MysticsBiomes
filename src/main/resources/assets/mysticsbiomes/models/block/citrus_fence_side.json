@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/fence_side",
+  "textures": {
+    "texture": "mysticsbiomes:block/citrus_planks"
+  }
+}
