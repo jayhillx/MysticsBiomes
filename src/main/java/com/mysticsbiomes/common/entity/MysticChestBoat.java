@@ -83,6 +83,7 @@ public class MysticChestBoat extends ChestBoat {
         return switch (MysticBoat.Type.byId(this.entityData.get(DATA_ID_TYPE))) {
             case STRAWBERRY -> MysticItems.STRAWBERRY_BOAT.get();
             case CHERRY -> MysticItems.CHERRY_BOAT.get();
+            case CITRUS -> MysticItems.CITRUS_BOAT.get();
             case JACARANDA -> MysticItems.JACARANDA_BOAT.get();
             case MAPLE -> MysticItems.MAPLE_BOAT.get();
         };

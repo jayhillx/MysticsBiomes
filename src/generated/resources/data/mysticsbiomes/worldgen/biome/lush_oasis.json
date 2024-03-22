@@ -71,7 +71,10 @@
     ],
     [
       "minecraft:glow_lichen",
-      "mysticsbiomes:flower_wildflower"
+      "mysticsbiomes:tree_citrus_checked",
+      "mysticsbiomes:flower_wildflower",
+      "mysticsbiomes:patch_desert_grass",
+      "mysticsbiomes:patch_prickly_pear"
     ],
     [
       "minecraft:freeze_top_layer"

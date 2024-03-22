@@ -4,6 +4,10 @@
     {
       "id": "mysticsbiomes:strawberry_fields",
       "required": false
+    },
+    {
+      "id": "mysticsbiomes:lush_oasis",
+      "required": false
     }
   ]
 }

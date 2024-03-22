@@ -28,7 +28,7 @@ public class OverworldBiomes {
         biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, MysticVegetationPlacements.PATCH_STRAWBERRY_BUSH);
         biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, MysticVegetationPlacements.FLOWER_PINK_TULIP);
         biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, MysticVegetationPlacements.FLOWER_WHITE_TULIP);
-        biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, MysticVegetationPlacements.PATCH_LIGHT_GRASS);
+        biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, MysticVegetationPlacements.PATCH_GRASS);
         return BiomeTemplate.biome(true, 0.95F, 0.5F, 4159204, 329011, 12638463, mobBuilder, biomeBuilder);
     }
 
@@ -42,7 +42,7 @@ public class OverworldBiomes {
         BiomeTemplate.defaultBiomeFeatures(biomeBuilder);
         biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, MysticTreePlacements.JACARANDA_TREE_CHECKED);
         biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, MysticVegetationPlacements.FLOWER_LAVENDER);
-        biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, MysticVegetationPlacements.PATCH_LIGHT_GRASS);
+        biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, MysticVegetationPlacements.PATCH_GRASS);
         return BiomeTemplate.biome(true, 0.5F, 0.8F, 4159204, 329011, 12638463, mobBuilder, biomeBuilder);
     }
 
@@ -59,7 +59,7 @@ public class OverworldBiomes {
         biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, MysticVegetationPlacements.TREES_CHERRY);
         biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, MysticVegetationPlacements.BUSH_PEONY);
         biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, MysticVegetationPlacements.FLOWER_LILAC);
-        biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, MysticVegetationPlacements.PATCH_LIGHT_GRASS);
+        biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, MysticVegetationPlacements.PATCH_GRASS);
         return BiomeTemplate.biome(true, 0.6F, 0.4F, 2057338, 15430, 12638463, mobBuilder, biomeBuilder);
     }
 
@@ -76,7 +76,7 @@ public class OverworldBiomes {
         biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, MysticTreePlacements.ORANGE_MAPLE_TREE_CHECKED);
         biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, MysticTreePlacements.YELLOW_MAPLE_TREE_CHECKED);
         biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, MysticVegetationPlacements.PATCH_PUMPKINS);
-        biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, MysticVegetationPlacements.PATCH_LIGHT_GRASS);
+        biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, MysticVegetationPlacements.PATCH_GRASS);
         return BiomeTemplate.biome(true, 0.65F, 0.5F, 2919324, 339251, 12638463, 13614928, 12556084, mobBuilder, biomeBuilder);
     }
 
@@ -88,7 +88,10 @@ public class OverworldBiomes {
         BiomeDefaultFeatures.commonSpawns(mobBuilder);
 
         BiomeTemplate.defaultBiomeFeatures(biomeBuilder);
+        biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, MysticTreePlacements.CITRUS_TREE_CHECKED);
         biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, MysticVegetationPlacements.FLOWER_WILDFLOWER);
+        biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, MysticVegetationPlacements.PATCH_DESERT_GRASS);
+        biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, MysticVegetationPlacements.PATCH_PRICKLY_PEAR);
         return BiomeTemplate.biome(false, 1.7F, 0.0F, 2919324, 339251, 12638463, mobBuilder, biomeBuilder);
     }
 

@@ -12,6 +12,30 @@ public class MysticTab {
     public static final DeferredRegister<CreativeModeTab> CREATIVE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MysticsBiomes.modId);
 
     public static final RegistryObject<CreativeModeTab> TAB = CREATIVE_TABS.register("tab", () -> CreativeModeTab.builder().title(Component.translatable("itemGroup.mysticsbiomes.tab")).icon(Items.LILAC::getDefaultInstance).displayItems((parameters, output) -> {
+        output.accept(MysticItems.LUSH_SAND.get());
+        output.accept(MysticItems.LUSH_SANDSTONE.get());
+        output.accept(MysticItems.LUSH_SANDSTONE_STAIRS.get());
+        output.accept(MysticItems.LUSH_SANDSTONE_SLAB.get());
+        output.accept(MysticItems.LUSH_SANDSTONE_WALL.get());
+        output.accept(MysticItems.CHISELED_LUSH_SANDSTONE.get());
+        output.accept(MysticItems.CUT_LUSH_SANDSTONE.get());
+        output.accept(MysticItems.CUT_LUSH_SANDSTONE_SLAB.get());
+        output.accept(MysticItems.SMOOTH_LUSH_SANDSTONE.get());
+        output.accept(MysticItems.SMOOTH_LUSH_SANDSTONE_STAIRS.get());
+        output.accept(MysticItems.SMOOTH_LUSH_SANDSTONE_SLAB.get());
+
+        output.accept(MysticItems.PINK_LUSH_SAND.get());
+        output.accept(MysticItems.PINK_LUSH_SANDSTONE.get());
+        output.accept(MysticItems.PINK_LUSH_SANDSTONE_STAIRS.get());
+        output.accept(MysticItems.PINK_LUSH_SANDSTONE_SLAB.get());
+        output.accept(MysticItems.PINK_LUSH_SANDSTONE_WALL.get());
+        output.accept(MysticItems.CHISELED_PINK_LUSH_SANDSTONE.get());
+        output.accept(MysticItems.CUT_PINK_LUSH_SANDSTONE.get());
+        output.accept(MysticItems.CUT_PINK_LUSH_SANDSTONE_SLAB.get());
+        output.accept(MysticItems.SMOOTH_PINK_LUSH_SANDSTONE.get());
+        output.accept(MysticItems.SMOOTH_PINK_LUSH_SANDSTONE_STAIRS.get());
+        output.accept(MysticItems.SMOOTH_PINK_LUSH_SANDSTONE_SLAB.get());
+
         output.accept(MysticItems.STRAWBERRY_BLOSSOMS.get());
         output.accept(MysticItems.STRAWBERRY_SAPLING.get());
         output.accept(MysticItems.STRAWBERRY_LOG.get());
@@ -54,9 +78,26 @@ public class MysticTab {
         output.accept(MysticItems.CHERRY_BOAT.get());
         output.accept(MysticItems.CHERRY_CHEST_BOAT.get());
 
-        output.accept(MysticItems.LUSH_SAND.get());
-        output.accept(MysticItems.PINK_LUSH_SAND.get());
-
+        output.accept(MysticItems.CITRUS_LEAVES.get());
+        output.accept(MysticItems.CITRUS_SAPLING.get());
+        output.accept(MysticItems.CITRUS_LOG.get());
+        output.accept(MysticItems.STRIPPED_CITRUS_LOG.get());
+        output.accept(MysticItems.CITRUS_WOOD.get());
+        output.accept(MysticItems.STRIPPED_CITRUS_WOOD.get());
+        output.accept(MysticItems.CITRUS_PLANKS.get());
+        output.accept(MysticItems.CITRUS_STAIRS.get());
+        output.accept(MysticItems.CITRUS_SLAB.get());
+        output.accept(MysticItems.CITRUS_FENCE.get());
+        output.accept(MysticItems.CITRUS_FENCE_GATE.get());
+        output.accept(MysticItems.CITRUS_BUTTON.get());
+        output.accept(MysticItems.CITRUS_PRESSURE_PLATE.get());
+        output.accept(MysticItems.CITRUS_TRAPDOOR.get());
+        output.accept(MysticItems.CITRUS_DOOR.get());
+        output.accept(MysticItems.CITRUS_SIGN.get());
+        output.accept(MysticItems.CITRUS_HANGING_SIGN.get());
+        output.accept(MysticItems.CITRUS_BOAT.get());
+        output.accept(MysticItems.CITRUS_CHEST_BOAT.get());
+        
         output.accept(MysticItems.MAPLE_LEAVES.get());
         output.accept(MysticItems.MAPLE_LEAF_PILE.get());
         output.accept(MysticItems.MAPLE_SAPLING.get());
@@ -107,13 +148,16 @@ public class MysticTab {
         output.accept(MysticItems.JACARANDA_BOAT.get());
         output.accept(MysticItems.JACARANDA_CHEST_BOAT.get());
 
-        output.accept(MysticItems.BUTTERFLY_NEST.get());
-
         output.accept(MysticItems.SPRING_BAMBOO.get());
         output.accept(MysticItems.BUDDING_PEONY_LEAVES.get());
         output.accept(MysticItems.PEONY_LEAVES.get());
+        output.accept(MysticItems.PEONY_BUSH.get());
         output.accept(MysticItems.LAVENDER.get());
         output.accept(MysticItems.WILDFLOWER.get());
+        output.accept(MysticItems.DESERT_GRASS.get());
+        output.accept(MysticItems.PRICKLY_PEAR.get());
+
+        output.accept(MysticItems.BUTTERFLY_NEST.get());
 
         output.accept(MysticItems.GLASS_JAR.get());
         output.accept(MysticItems.ORANGE_BUTTERFLY_IN_JAR.get());
@@ -132,9 +176,6 @@ public class MysticTab {
         output.accept(MysticItems.LIME_FROSTED_CAKE.get());
         output.accept(MysticItems.CYAN_FROSTED_CAKE.get());
         output.accept(MysticItems.PURPLE_FROSTED_CAKE.get());
-        output.accept(MysticItems.PUMPKIN_COOKIE.get());
-        output.accept(MysticItems.PUMPKIN_ICE_CREAM.get());
-        output.accept(MysticItems.STRAWBERRY_ICE_CREAM.get());
         output.accept(MysticItems.STRAWBERRY_MILK_BUCKET.get());
         output.accept(MysticItems.PINK_EGG.get());
         output.accept(MysticItems.ORANGE_EGG.get());

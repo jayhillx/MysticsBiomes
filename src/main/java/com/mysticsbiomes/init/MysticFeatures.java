@@ -4,6 +4,7 @@ import com.mysticsbiomes.MysticsBiomes;
 import com.mysticsbiomes.common.world.feature.MysticTreeFeatures;
 import com.mysticsbiomes.common.world.feature.MysticVegetationFeatures;
 import com.mysticsbiomes.common.world.feature.decorator.ButterflyNestDecorator;
+import com.mysticsbiomes.common.world.feature.misc.PricklyPearFeature;
 import com.mysticsbiomes.common.world.feature.misc.SpringBambooFeature;
 import com.mysticsbiomes.common.world.feature.trunk.CherryTrunkPlacer;
 import com.mysticsbiomes.common.world.placement.MysticTreePlacements;
@@ -13,6 +14,7 @@ import net.minecraft.data.worldgen.BootstapContext;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.levelgen.feature.configurations.BlockColumnConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.ProbabilityFeatureConfiguration;
 import net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecoratorType;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.TrunkPlacerType;
@@ -26,6 +28,7 @@ public class MysticFeatures {
     public static final DeferredRegister<TrunkPlacerType<?>> TRUNK_PLACERS = DeferredRegister.create(Registries.TRUNK_PLACER_TYPE, MysticsBiomes.modId);
 
     public static final RegistryObject<Feature<ProbabilityFeatureConfiguration>> SPRING_BAMBOO = FEATURES.register("spring_bamboo", () -> new SpringBambooFeature(ProbabilityFeatureConfiguration.CODEC));
+    public static final RegistryObject<Feature<BlockColumnConfiguration>> PRICKLY_PEAR = FEATURES.register("prickly_pear", PricklyPearFeature::new);
 
     public static final RegistryObject<TreeDecoratorType<ButterflyNestDecorator>> BUTTERFLY_NEST = TREE_DECORATORS.register("butterfly_nest", () -> new TreeDecoratorType<>(ButterflyNestDecorator.CODEC));
 

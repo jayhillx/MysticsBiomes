@@ -8,6 +8,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.food.FoodProperties;
+import net.minecraft.world.food.Foods;
 import net.minecraft.world.item.*;
 import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.registries.DeferredRegister;
@@ -102,6 +103,29 @@ public class MysticItems {
     public static final RegistryObject<Item> SMOOTH_PINK_LUSH_SANDSTONE_STAIRS = ITEMS.register("smooth_pink_lush_sandstone_stairs", () -> new MysticBlockItem(MysticBlocks.SMOOTH_PINK_LUSH_SANDSTONE_STAIRS));
     public static final RegistryObject<Item> SMOOTH_PINK_LUSH_SANDSTONE_SLAB = ITEMS.register("smooth_pink_lush_sandstone_slab", () -> new MysticBlockItem(MysticBlocks.SMOOTH_PINK_LUSH_SANDSTONE_SLAB));
 
+    public static final RegistryObject<Item> CITRUS_LEAVES = ITEMS.register("citrus_leaves", () -> new MysticBlockItem(MysticBlocks.CITRUS_LEAVES));
+    public static final RegistryObject<Item> CITRUS_SAPLING = ITEMS.register("citrus_sapling", () -> new MysticBlockItem(MysticBlocks.CITRUS_SAPLING));
+
+    public static final RegistryObject<Item> CITRUS_LOG = ITEMS.register("citrus_log", () -> new MysticBlockItem(MysticBlocks.CITRUS_LOG));
+    public static final RegistryObject<Item> STRIPPED_CITRUS_LOG = ITEMS.register("stripped_citrus_log", () -> new MysticBlockItem(MysticBlocks.STRIPPED_CITRUS_LOG));
+    public static final RegistryObject<Item> CITRUS_WOOD = ITEMS.register("citrus_wood", () -> new MysticBlockItem(MysticBlocks.CITRUS_WOOD));
+    public static final RegistryObject<Item> STRIPPED_CITRUS_WOOD = ITEMS.register("stripped_citrus_wood", () -> new MysticBlockItem(MysticBlocks.STRIPPED_CITRUS_WOOD));
+    public static final RegistryObject<Item> CITRUS_PLANKS = ITEMS.register("citrus_planks", () -> new MysticBlockItem(MysticBlocks.CITRUS_PLANKS));
+    public static final RegistryObject<Item> CITRUS_STAIRS = ITEMS.register("citrus_stairs", () -> new MysticBlockItem(MysticBlocks.CITRUS_STAIRS));
+    public static final RegistryObject<Item> CITRUS_SLAB = ITEMS.register("citrus_slab", () -> new MysticBlockItem(MysticBlocks.CITRUS_SLAB));
+    public static final RegistryObject<Item> CITRUS_FENCE = ITEMS.register("citrus_fence", () -> new MysticBlockItem(MysticBlocks.CITRUS_FENCE));
+    public static final RegistryObject<Item> CITRUS_FENCE_GATE = ITEMS.register("citrus_fence_gate", () -> new MysticBlockItem(MysticBlocks.CITRUS_FENCE_GATE));
+    public static final RegistryObject<Item> CITRUS_BUTTON = ITEMS.register("citrus_button", () -> new MysticBlockItem(MysticBlocks.CITRUS_BUTTON));
+    public static final RegistryObject<Item> CITRUS_PRESSURE_PLATE = ITEMS.register("citrus_pressure_plate", () -> new MysticBlockItem(MysticBlocks.CITRUS_PRESSURE_PLATE));
+    public static final RegistryObject<Item> CITRUS_TRAPDOOR = ITEMS.register("citrus_trapdoor", () -> new MysticBlockItem(MysticBlocks.CITRUS_TRAPDOOR));
+    public static final RegistryObject<Item> CITRUS_DOOR = ITEMS.register("citrus_door", () -> new MysticBlockItem(MysticBlocks.CITRUS_DOOR));
+    public static final RegistryObject<Item> CITRUS_SIGN = ITEMS.register("citrus_sign", () -> new SignItem((new Item.Properties()).stacksTo(16), MysticBlocks.CITRUS_SIGN.get(), MysticBlocks.CITRUS_WALL_SIGN.get()));
+    public static final RegistryObject<Item> CITRUS_HANGING_SIGN = ITEMS.register("citrus_hanging_sign", () -> new HangingSignItem(MysticBlocks.CITRUS_HANGING_SIGN.get(), MysticBlocks.CITRUS_WALL_HANGING_SIGN.get(), (new Item.Properties()).stacksTo(16)));
+    public static final RegistryObject<Item> CITRUS_BOAT = ITEMS.register("citrus_boat", () -> new MysticBoatItem(false, MysticBoat.Type.CITRUS, (new Item.Properties()).stacksTo(1)));
+    public static final RegistryObject<Item> CITRUS_CHEST_BOAT = ITEMS.register("citrus_chest_boat", () -> new MysticBoatItem(true, MysticBoat.Type.CITRUS, (new Item.Properties()).stacksTo(1)));
+
+    public static final RegistryObject<Item> DESERT_GRASS = ITEMS.register("desert_grass", () -> new MysticBlockItem(MysticBlocks.DESERT_GRASS));
+    public static final RegistryObject<Item> PRICKLY_PEAR = ITEMS.register("prickly_pear", () -> new MysticBlockItem(MysticBlocks.PRICKLY_PEAR));
     public static final RegistryObject<Item> WILDFLOWER = ITEMS.register("wildflower", () -> new MysticBlockItem(MysticBlocks.WILDFLOWER));
 
     // autumnal grove
@@ -134,9 +158,6 @@ public class MysticItems {
     public static final RegistryObject<Item> MAPLE_HANGING_SIGN = ITEMS.register("maple_hanging_sign", () -> new HangingSignItem(MysticBlocks.MAPLE_HANGING_SIGN.get(), MysticBlocks.MAPLE_WALL_HANGING_SIGN.get(), (new Item.Properties()).stacksTo(16)));
     public static final RegistryObject<Item> MAPLE_BOAT = ITEMS.register("maple_boat", () -> new MysticBoatItem(false, MysticBoat.Type.MAPLE, (new Item.Properties()).stacksTo(1)));
     public static final RegistryObject<Item> MAPLE_CHEST_BOAT = ITEMS.register("maple_chest_boat", () -> new MysticBoatItem(true, MysticBoat.Type.MAPLE, (new Item.Properties()).stacksTo(1)));
-
-    public static final RegistryObject<Item> PUMPKIN_ICE_CREAM = ITEMS.register("pumpkin_ice_cream", () -> new BowlFoodItem(new Item.Properties().craftRemainder(Items.BUCKET).food((new FoodProperties.Builder()).nutrition(7).saturationMod(0.1F).build())));
-    public static final RegistryObject<Item> PUMPKIN_COOKIE = ITEMS.register("pumpkin_cookie", () -> new Item(new Item.Properties().food((new FoodProperties.Builder()).nutrition(4).saturationMod(0.4F).build())));
 
     // lavender meadow
     public static final RegistryObject<Item> JACARANDA_BLOSSOMS = ITEMS.register("jacaranda_blossoms", () -> new MysticBlockItem(MysticBlocks.JACARANDA_BLOSSOMS));

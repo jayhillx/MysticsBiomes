@@ -95,6 +95,7 @@ public class MysticBoat extends Boat {
         return switch (MysticBoat.Type.byId(this.entityData.get(DATA_ID_TYPE))) {
             case STRAWBERRY -> MysticItems.STRAWBERRY_BOAT.get();
             case CHERRY -> MysticItems.CHERRY_BOAT.get();
+            case CITRUS -> MysticItems.CITRUS_BOAT.get();
             case JACARANDA -> MysticItems.JACARANDA_BOAT.get();
             case MAPLE -> MysticItems.MAPLE_BOAT.get();
         };
@@ -111,6 +112,7 @@ public class MysticBoat extends Boat {
     public enum Type {
         STRAWBERRY(MysticBlocks.STRAWBERRY_PLANKS.get(), "strawberry"),
         CHERRY(MysticBlocks.CHERRY_PLANKS.get(), "cherry"),
+        CITRUS(MysticBlocks.CITRUS_PLANKS.get(), "citrus"),
         JACARANDA(MysticBlocks.JACARANDA_PLANKS.get(), "jacaranda"),
         MAPLE(MysticBlocks.MAPLE_PLANKS.get(), "maple");
 

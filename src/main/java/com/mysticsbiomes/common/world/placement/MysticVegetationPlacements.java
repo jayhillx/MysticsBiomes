@@ -16,10 +16,12 @@ import static com.mysticsbiomes.init.MysticFeatures.Placed.createKey;
 
 public class MysticVegetationPlacements {
 
-    public static final ResourceKey<PlacedFeature> PATCH_LIGHT_GRASS = createKey("patch_light_grass");
+    public static final ResourceKey<PlacedFeature> PATCH_GRASS = createKey("patch_grass");
+    public static final ResourceKey<PlacedFeature> PATCH_DESERT_GRASS = createKey("patch_desert_grass");
     public static final ResourceKey<PlacedFeature> PATCH_STRAWBERRY_BUSH = createKey("patch_strawberry_bush");
     public static final ResourceKey<PlacedFeature> PATCH_SPRING_BAMBOO = createKey("patch_spring_bamboo");
     public static final ResourceKey<PlacedFeature> PATCH_PUMPKINS = createKey("patch_pumpkins");
+    public static final ResourceKey<PlacedFeature> PATCH_PRICKLY_PEAR = createKey("patch_prickly_pear");
 
     public static final ResourceKey<PlacedFeature> FLOWER_PINK_TULIP = createKey("flower_pink_tulip");
     public static final ResourceKey<PlacedFeature> FLOWER_WHITE_TULIP = createKey("flower_white_tulip");
@@ -33,10 +35,12 @@ public class MysticVegetationPlacements {
 
     public static void bootstrap(BootstapContext<PlacedFeature> context) {
         HolderGetter<ConfiguredFeature<?, ?>> getter = context.lookup(Registries.CONFIGURED_FEATURE);
-        Holder<ConfiguredFeature<?, ?>> PATCH_LIGHT_GRASS = getter.getOrThrow(MysticVegetationFeatures.PATCH_LIGHT_GRASS);
+        Holder<ConfiguredFeature<?, ?>> PATCH_GRASS = getter.getOrThrow(MysticVegetationFeatures.PATCH_GRASS);
+        Holder<ConfiguredFeature<?, ?>> PATCH_DESERT_GRASS = getter.getOrThrow(MysticVegetationFeatures.PATCH_DESERT_GRASS);
         Holder<ConfiguredFeature<?, ?>> PATCH_STRAWBERRY_BUSH = getter.getOrThrow(MysticVegetationFeatures.PATCH_STRAWBERRY_BUSH);
         Holder<ConfiguredFeature<?, ?>> PATCH_SPRING_BAMBOO = getter.getOrThrow(MysticVegetationFeatures.PATCH_SPRING_BAMBOO);
         Holder<ConfiguredFeature<?, ?>> PATCH_PUMPKINS = getter.getOrThrow(MysticVegetationFeatures.PATCH_PUMPKINS);
+        Holder<ConfiguredFeature<?, ?>> PATCH_PRICKLY_PEAR = getter.getOrThrow(MysticVegetationFeatures.PATCH_PRICKLY_PEAR);
         Holder<ConfiguredFeature<?, ?>> FLOWER_PINK_TULIP = getter.getOrThrow(MysticVegetationFeatures.FLOWER_PINK_TULIP);
         Holder<ConfiguredFeature<?, ?>> FLOWER_WHITE_TULIP = getter.getOrThrow(MysticVegetationFeatures.FLOWER_WHITE_TULIP);
         Holder<ConfiguredFeature<?, ?>> FLOWER_LILAC = getter.getOrThrow(MysticVegetationFeatures.FLOWER_LILAC);
@@ -45,10 +49,12 @@ public class MysticVegetationPlacements {
         Holder<ConfiguredFeature<?, ?>> TREES_CHERRY = getter.getOrThrow(MysticVegetationFeatures.TREES_CHERRY);
         Holder<ConfiguredFeature<?, ?>> BUSH_PEONY = getter.getOrThrow(MysticVegetationFeatures.BUSH_PEONY);
 
-        PlacementUtils.register(context, MysticVegetationPlacements.PATCH_LIGHT_GRASS, PATCH_LIGHT_GRASS, VegetationPlacements.worldSurfaceSquaredWithCount(8));
+        PlacementUtils.register(context, MysticVegetationPlacements.PATCH_GRASS, PATCH_GRASS, VegetationPlacements.worldSurfaceSquaredWithCount(8));
+        PlacementUtils.register(context, MysticVegetationPlacements.PATCH_DESERT_GRASS, PATCH_DESERT_GRASS, RarityFilter.onAverageOnceEvery(1), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
         PlacementUtils.register(context, MysticVegetationPlacements.PATCH_STRAWBERRY_BUSH, PATCH_STRAWBERRY_BUSH, RarityFilter.onAverageOnceEvery(1), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
         PlacementUtils.register(context, MysticVegetationPlacements.PATCH_SPRING_BAMBOO, PATCH_SPRING_BAMBOO, NoiseBasedCountPlacement.of(200, 120.0D, 0.4D), RarityFilter.onAverageOnceEvery(140), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
         PlacementUtils.register(context, MysticVegetationPlacements.PATCH_PUMPKINS, PATCH_PUMPKINS, RarityFilter.onAverageOnceEvery(6), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome());
+        PlacementUtils.register(context, MysticVegetationPlacements.PATCH_PRICKLY_PEAR, PATCH_PRICKLY_PEAR, RarityFilter.onAverageOnceEvery(1), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome());
 
         PlacementUtils.register(context, MysticVegetationPlacements.FLOWER_PINK_TULIP, FLOWER_PINK_TULIP, RarityFilter.onAverageOnceEvery(1), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
         PlacementUtils.register(context, MysticVegetationPlacements.FLOWER_WHITE_TULIP, FLOWER_WHITE_TULIP, RarityFilter.onAverageOnceEvery(1), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());

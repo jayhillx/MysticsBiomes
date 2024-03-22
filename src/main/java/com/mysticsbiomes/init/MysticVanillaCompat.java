@@ -46,6 +46,21 @@ public class MysticVanillaCompat {
         BlockDataUtils.flammable(MysticBlocks.PEONY_LEAVES.get(), 30, 60);
         BlockDataUtils.flammable(MysticBlocks.PEONY_BUSH.get(), 30, 60);
 
+        BlockDataUtils.flammable(MysticBlocks.CITRUS_LEAVES.get(), 30, 60);
+        BlockDataUtils.flammable(MysticBlocks.CITRUS_LOG.get(), 5, 5);
+        BlockDataUtils.flammable(MysticBlocks.STRIPPED_CITRUS_LOG.get(), 5, 5);
+        BlockDataUtils.flammable(MysticBlocks.CITRUS_WOOD.get(), 5, 5);
+        BlockDataUtils.flammable(MysticBlocks.STRIPPED_CITRUS_WOOD.get(), 5, 5);
+        BlockDataUtils.flammable(MysticBlocks.CITRUS_PLANKS.get(), 5, 20);
+        BlockDataUtils.flammable(MysticBlocks.CITRUS_STAIRS.get(), 5, 20);
+        BlockDataUtils.flammable(MysticBlocks.CITRUS_SLAB.get(), 5, 20);
+        BlockDataUtils.flammable(MysticBlocks.CITRUS_FENCE.get(), 5, 20);
+        BlockDataUtils.flammable(MysticBlocks.CITRUS_FENCE_GATE.get(), 5, 20);
+        BlockDataUtils.flammable(MysticBlocks.CITRUS_BUTTON.get(), 5, 20);
+        BlockDataUtils.flammable(MysticBlocks.CITRUS_PRESSURE_PLATE.get(), 5, 20);
+        BlockDataUtils.flammable(MysticBlocks.CITRUS_TRAPDOOR.get(), 5, 20);
+        BlockDataUtils.flammable(MysticBlocks.CITRUS_DOOR.get(), 5, 20);
+        BlockDataUtils.flammable(MysticBlocks.DESERT_GRASS.get(), 60, 100);
         BlockDataUtils.flammable(MysticBlocks.WILDFLOWER.get(), 60, 100);
 
         BlockDataUtils.flammable(MysticBlocks.MAPLE_LEAVES.get(), 30, 60);
@@ -104,6 +119,11 @@ public class MysticVanillaCompat {
         BlockDataUtils.compostable(MysticItems.PEONY_LEAVES.get(), 0.3F);
         BlockDataUtils.compostable(MysticItems.PEONY_BUSH.get(), 0.65F);
 
+        BlockDataUtils.compostable(MysticItems.CITRUS_LEAVES.get(), 0.6F);
+        BlockDataUtils.compostable(MysticItems.CITRUS_SAPLING.get(), 0.3F);
+        BlockDataUtils.compostable(MysticItems.DESERT_GRASS.get(), 0.3F);
+        BlockDataUtils.compostable(MysticItems.WILDFLOWER.get(), 0.65F);
+
         BlockDataUtils.compostable(MysticItems.MAPLE_LEAVES.get(), 0.6F);
         BlockDataUtils.compostable(MysticItems.MAPLE_LEAF_PILE.get(), 0.2F);
         BlockDataUtils.compostable(MysticItems.MAPLE_SAPLING.get(), 0.3F);
@@ -113,9 +133,9 @@ public class MysticVanillaCompat {
         BlockDataUtils.compostable(MysticItems.YELLOW_MAPLE_LEAVES.get(), 0.6F);
         BlockDataUtils.compostable(MysticItems.YELLOW_MAPLE_LEAF_PILE.get(), 0.2F);
         BlockDataUtils.compostable(MysticItems.YELLOW_MAPLE_SAPLING.get(), 0.3F);
-        BlockDataUtils.compostable(MysticItems.PUMPKIN_COOKIE.get(), 0.8F);
 
         BlockDataUtils.compostable(MysticItems.JACARANDA_BLOSSOMS.get(), 0.6F);
+        BlockDataUtils.compostable(MysticItems.JACARANDA_LEAVES.get(), 0.6F);
         BlockDataUtils.compostable(MysticItems.JACARANDA_SAPLING.get(), 0.3F);
         BlockDataUtils.compostable(MysticItems.LAVENDER.get(), 0.65F);
 
@@ -150,6 +170,9 @@ public class MysticVanillaCompat {
         //ItemBlockRenderTypes.setRenderLayer(MysticBlocks.CITRUS_LEAVES.get(), cutoutMipped);
         //ItemBlockRenderTypes.setRenderLayer(MysticBlocks.CITRUS_SAPLING.get(), cutout);
         //ItemBlockRenderTypes.setRenderLayer(MysticBlocks.POTTED_CITRUS_SAPLING.get(), cutout);
+        //ItemBlockRenderTypes.setRenderLayer(MysticBlocks.DESERT_GRASS.get(), cutout);
+        //ItemBlockRenderTypes.setRenderLayer(MysticBlocks.WILDFLOWER.get(), cutout);
+        //ItemBlockRenderTypes.setRenderLayer(MysticBlocks.POTTED_WILDFLOWER.get(), cutout);
 
         //ItemBlockRenderTypes.setRenderLayer(MysticBlocks.MAPLE_LEAVES.get(), cutoutMipped);
         //ItemBlockRenderTypes.setRenderLayer(MysticBlocks.MAPLE_LEAF_PILE.get(), cutoutMipped);

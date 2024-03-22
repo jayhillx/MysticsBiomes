@@ -125,11 +125,14 @@ public class MysticBlocks {
     public static final RegistryObject<Block> SMOOTH_PINK_LUSH_SANDSTONE_STAIRS = BLOCKS.register("smooth_pink_lush_sandstone_stairs", () -> new StairBlock(() -> SMOOTH_PINK_LUSH_SANDSTONE.get().defaultBlockState(), BlockBehaviour.Properties.copy(SMOOTH_PINK_LUSH_SANDSTONE.get())));
     public static final RegistryObject<Block> SMOOTH_PINK_LUSH_SANDSTONE_SLAB = BLOCKS.register("smooth_pink_lush_sandstone_slab", () -> new SlabBlock(BlockBehaviour.Properties.copy(SMOOTH_PINK_LUSH_SANDSTONE.get())));
 
-    public static final RegistryObject<Block> STRIPPED_CITRUS_LOG = BLOCKS.register("stripped_citrus_log", () -> rotatedPillar(MapColor.COLOR_YELLOW));
-    public static final RegistryObject<Block> CITRUS_LOG = BLOCKS.register("citrus_log", () -> log(STRIPPED_CITRUS_LOG, MapColor.TERRACOTTA_BROWN, MapColor.COLOR_YELLOW));
-    public static final RegistryObject<Block> STRIPPED_CITRUS_WOOD = BLOCKS.register("stripped_citrus_wood", () -> rotatedPillar(MapColor.COLOR_YELLOW));
+    public static final RegistryObject<Block> CITRUS_LEAVES = BLOCKS.register("citrus_leaves", () -> new MysticLeavesBlock(SoundType.GRASS));
+    public static final RegistryObject<Block> CITRUS_SAPLING = BLOCKS.register("citrus_sapling", () -> new CitrusSaplingBlock(new MysticSaplingBlock.TreeGrower(MysticTreeFeatures.CITRUS_TREE), BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING)));
+
+    public static final RegistryObject<Block> STRIPPED_CITRUS_LOG = BLOCKS.register("stripped_citrus_log", () -> rotatedPillar(MapColor.RAW_IRON));
+    public static final RegistryObject<Block> CITRUS_LOG = BLOCKS.register("citrus_log", () -> log(STRIPPED_CITRUS_LOG, MapColor.TERRACOTTA_BROWN, MapColor.RAW_IRON));
+    public static final RegistryObject<Block> STRIPPED_CITRUS_WOOD = BLOCKS.register("stripped_citrus_wood", () -> rotatedPillar(MapColor.RAW_IRON));
     public static final RegistryObject<Block> CITRUS_WOOD = BLOCKS.register("citrus_wood", () -> log(STRIPPED_CITRUS_WOOD, MapColor.TERRACOTTA_BROWN, MapColor.TERRACOTTA_BROWN));
-    public static final RegistryObject<Block> CITRUS_PLANKS = BLOCKS.register("citrus_planks", () -> planks(MapColor.COLOR_YELLOW));
+    public static final RegistryObject<Block> CITRUS_PLANKS = BLOCKS.register("citrus_planks", () -> planks(MapColor.RAW_IRON));
     public static final RegistryObject<Block> CITRUS_STAIRS = BLOCKS.register("citrus_stairs", () -> stairs(CITRUS_PLANKS.get()));
     public static final RegistryObject<Block> CITRUS_SLAB = BLOCKS.register("citrus_slab", () -> slab(CITRUS_PLANKS.get()));
     public static final RegistryObject<Block> CITRUS_FENCE = BLOCKS.register("citrus_fence", () -> fence(CITRUS_PLANKS.get()));
@@ -143,7 +146,11 @@ public class MysticBlocks {
     public static final RegistryObject<Block> CITRUS_HANGING_SIGN = BLOCKS.register("citrus_hanging_sign", () -> hangingSign(CITRUS_PLANKS.get(), MysticWoodTypes.CITRUS));
     public static final RegistryObject<Block> CITRUS_WALL_HANGING_SIGN = BLOCKS.register("citrus_wall_hanging_sign", () -> wallHangingSign(CITRUS_HANGING_SIGN.get(), MysticWoodTypes.CITRUS));
 
+    public static final RegistryObject<Block> DESERT_GRASS = BLOCKS.register("desert_grass", () -> new DesertGrassBlock(BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).replaceable().noCollission().instabreak().sound(SoundType.GRASS).offsetType(BlockBehaviour.OffsetType.XYZ).ignitedByLava().pushReaction(PushReaction.DESTROY)));
+    public static final RegistryObject<Block> PRICKLY_PEAR = BLOCKS.register("prickly_pear", () -> new PricklyPearBlock(BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).randomTicks().strength(0.4F).sound(SoundType.WOOL).pushReaction(PushReaction.DESTROY)));
     public static final RegistryObject<Block> WILDFLOWER = BLOCKS.register("wildflower", () -> new WildflowerBlock(BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).offsetType(BlockBehaviour.OffsetType.XZ).noCollission().instabreak().sound(SoundType.GRASS)));
+
+    public static final RegistryObject<Block> POTTED_CITRUS_SAPLING = BLOCKS.register("potted_citrus_sapling", () -> potted(CITRUS_SAPLING.get()));
     public static final RegistryObject<Block> POTTED_WILDFLOWER = BLOCKS.register("potted_wildflower", () -> potted(WILDFLOWER.get()));
 
     // autumnal grove

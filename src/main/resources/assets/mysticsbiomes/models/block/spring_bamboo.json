@@ -1,4 +1,5 @@
 {
+  "render_type": "minecraft:cutout",
   "textures": {
     "side": "mysticsbiomes:block/spring_bamboo_side",
     "top": "mysticsbiomes:block/spring_bamboo_top",

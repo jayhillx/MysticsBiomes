@@ -37,20 +37,22 @@ public class MysticTreeFeatures {
     public static final ResourceKey<ConfiguredFeature<?, ?>> PINK_CHERRY_TREE = createKey("pink_cherry_tree");
     public static final ResourceKey<ConfiguredFeature<?, ?>> WHITE_CHERRY_TREE = createKey("white_cherry_tree");
     public static final ResourceKey<ConfiguredFeature<?, ?>> PEONY_BUSH = createKey("peony_bush");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> JACARANDA_TREE = createKey("jacaranda_tree");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> CITRUS_TREE = createKey("citrus_tree");
     public static final ResourceKey<ConfiguredFeature<?, ?>> MAPLE_TREE = createKey("maple_tree");
     public static final ResourceKey<ConfiguredFeature<?, ?>> ORANGE_MAPLE_TREE = createKey("orange_maple_tree");
     public static final ResourceKey<ConfiguredFeature<?, ?>> YELLOW_MAPLE_TREE = createKey("yellow_maple_tree");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> JACARANDA_TREE = createKey("jacaranda_tree");
 
     public static void bootstrap(BootstapContext<ConfiguredFeature<?, ?>> context) {
         FeatureUtils.register(context, STRAWBERRY_TREE, Feature.TREE, bushyTree(MysticBlocks.STRAWBERRY_LOG.get(), MysticBlocks.STRAWBERRY_BLOSSOMS.get(), 8, 0, 82).build());
         FeatureUtils.register(context, PINK_CHERRY_TREE, Feature.TREE, cherryTree(MysticBlocks.PINK_CHERRY_BLOSSOMS.get()).build());
         FeatureUtils.register(context, WHITE_CHERRY_TREE, Feature.TREE, cherryTree(MysticBlocks.WHITE_CHERRY_BLOSSOMS.get()).build());
-        FeatureUtils.register(context, PEONY_BUSH, Feature.TREE, bush(randomFoliage(MysticBlocks.BUDDING_PEONY_LEAVES.get(), 4, MysticBlocks.PEONY_LEAVES.get(), 4)).build());
-        FeatureUtils.register(context, JACARANDA_TREE, Feature.TREE, base(BlockStateProvider.simple(MysticBlocks.JACARANDA_LOG.get()), new BendingTrunkPlacer(4, 2, 0, 2, UniformInt.of(1, 1)), randomFoliage(MysticBlocks.JACARANDA_BLOSSOMS.get(), 3, MysticBlocks.JACARANDA_LEAVES.get(), 2), new RandomSpreadFoliagePlacer(ConstantInt.of(3), ConstantInt.of(0), ConstantInt.of(3), 82)).decorators(List.of(new ButterflyNestDecorator(0.25F))).build());
+        FeatureUtils.register(context, PEONY_BUSH, Feature.TREE, bush(BlockStateProvider.simple(Blocks.OAK_LOG), randomFoliage(MysticBlocks.BUDDING_PEONY_LEAVES.get(), 4, MysticBlocks.PEONY_LEAVES.get(), 4)).build());
+        FeatureUtils.register(context, CITRUS_TREE, Feature.TREE, bushyTree(MysticBlocks.CITRUS_LOG.get(), MysticBlocks.CITRUS_LEAVES.get(), 7, 0, 68).build());
         FeatureUtils.register(context, MAPLE_TREE, Feature.TREE, bushyTree(MysticBlocks.MAPLE_LOG.get(), MysticBlocks.MAPLE_LEAVES.get(), 9, 3, 74).build());
         FeatureUtils.register(context, ORANGE_MAPLE_TREE, Feature.TREE, bushyTree(MysticBlocks.MAPLE_LOG.get(), MysticBlocks.ORANGE_MAPLE_LEAVES.get(), 9, 3, 74).build());
         FeatureUtils.register(context, YELLOW_MAPLE_TREE, Feature.TREE, bushyTree(MysticBlocks.WHITE_MAPLE_LOG.get(), MysticBlocks.YELLOW_MAPLE_LEAVES.get(), 9, 3, 74).build());
+        FeatureUtils.register(context, JACARANDA_TREE, Feature.TREE, base(BlockStateProvider.simple(MysticBlocks.JACARANDA_LOG.get()), new BendingTrunkPlacer(4, 2, 0, 2, UniformInt.of(1, 1)), randomFoliage(MysticBlocks.JACARANDA_BLOSSOMS.get(), 3, MysticBlocks.JACARANDA_LEAVES.get(), 2), new RandomSpreadFoliagePlacer(ConstantInt.of(3), ConstantInt.of(0), ConstantInt.of(3), 82)).decorators(List.of(new ButterflyNestDecorator(0.25F))).build());
     }
 
     private static TreeConfiguration.TreeConfigurationBuilder bushyTree(Block log, Block leaves, int baseHeight, int heightRandomA, int foliageAttempts) {
@@ -61,8 +63,8 @@ public class MysticTreeFeatures {
         return base(BlockStateProvider.simple(MysticBlocks.CHERRY_LOG.get()), new CherryTrunkPlacer(8, 1, 0, new WeightedListInt(SimpleWeightedRandomList.<IntProvider>builder().add(ConstantInt.of(2), 1).add(ConstantInt.of(2), 1).add(ConstantInt.of(3), 1).build()), UniformInt.of(2, 3), UniformInt.of(-4, -3), UniformInt.of(-1, 0)), BlockStateProvider.simple(leaves), new CherryFoliagePlacer(ConstantInt.of(4), ConstantInt.of(0), ConstantInt.of(6), 0.25F, 0.5F, 0.2F, 0.3F), new TwoLayersFeatureSize(1, 0, 2)).ignoreVines();
     }
 
-    private static TreeConfiguration.TreeConfigurationBuilder bush(BlockStateProvider leaves) {
-        return base(BlockStateProvider.simple(Blocks.OAK_LOG), new StraightTrunkPlacer(1, 0, 0), leaves, new BushFoliagePlacer(ConstantInt.of(2), ConstantInt.of(0), 2));
+    private static TreeConfiguration.TreeConfigurationBuilder bush(BlockStateProvider log, BlockStateProvider leaves) {
+        return base(log, new StraightTrunkPlacer(1, 0, 0), leaves, new BushFoliagePlacer(ConstantInt.of(2), ConstantInt.of(0), 2));
     }
 
     private static TreeConfiguration.TreeConfigurationBuilder base(BlockStateProvider log, TrunkPlacer trunkPlacer, BlockStateProvider leaves, FoliagePlacer foliagePlacer) {
