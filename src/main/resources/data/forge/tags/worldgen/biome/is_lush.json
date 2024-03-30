@@ -12,6 +12,10 @@
     {
       "id": "mysticsbiomes:autumnal_grove",
       "required": false
+    },
+    {
+      "id": "mysticsbiomes:lush_oasis",
+      "required": false
     }
   ]
 }

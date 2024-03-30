@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "wooden_slab",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "mysticsbiomes:smooth_lush_sandstone"
+    }
+  },
+  "result": {
+    "item": "mysticsbiomes:smooth_lush_sandstone_slab",
+    "count": 6
+  }
+}

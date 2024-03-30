@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "chest_boat",
+  "ingredients": [
+    {
+      "item": "minecraft:chest"
+    },
+    {
+      "item": "mysticsbiomes:cherry_boat"
+    }
+  ],
+  "result": {
+    "item": "mysticsbiomes:cherry_chest_boat"
+  }
+}

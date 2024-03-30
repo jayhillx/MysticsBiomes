@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "count": 2,
+  "ingredient": {
+    "item": "mysticsbiomes:smooth_lush_sandstone"
+  },
+  "result": "mysticsbiomes:smooth_lush_sandstone_slab"
+}

@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "mysticsbiomes:lavender"
+    "mysticsbiomes:lavender",
+    "mysticsbiomes:wildflower"
   ]
 }

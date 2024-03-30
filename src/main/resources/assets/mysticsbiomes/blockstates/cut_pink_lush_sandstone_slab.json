@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "mysticsbiomes:block/cut_pink_lush_sandstone_slab"
+    },
+    "type=double": {
+      "model": "mysticsbiomes:block/cut_pink_lush_sandstone"
+    },
+    "type=top": {
+      "model": "mysticsbiomes:block/cut_pink_lush_sandstone_slab_top"
+    }
+  }
+}

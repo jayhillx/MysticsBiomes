@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "count": 1,
+  "ingredient": {
+    "item": "mysticsbiomes:pink_lush_sandstone"
+  },
+  "result": "mysticsbiomes:cut_pink_lush_sandstone"
+}

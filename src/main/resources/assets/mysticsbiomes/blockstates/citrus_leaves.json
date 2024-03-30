@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "": [
+      { "model": "mysticsbiomes:block/citrus_leaves", "weight": 1 },
+      { "model": "mysticsbiomes:block/citrus_leaves_variant", "weight": 1 }
+    ]
+  }
+}

@@ -1,6 +1,13 @@
 {
+  "replace": false,
   "values": [
-    "mysticsbiomes:bamboo_blossom_forest",
-    "mysticsbiomes:autumnal_grove"
+    {
+      "id": "mysticsbiomes:bamboo_blossom_forest",
+      "required": false
+    },
+    {
+      "id": "mysticsbiomes:autumnal_grove",
+      "required": false
+    }
   ]
 }

@@ -1,5 +1,6 @@
 {
   "parent": "block/block",
+  "render_type": "minecraft:cutout",
   "textures": {
     "all": "mysticsbiomes:block/butterfly_nest",
     "layer": "mysticsbiomes:block/butterfly_nest_leaves",
