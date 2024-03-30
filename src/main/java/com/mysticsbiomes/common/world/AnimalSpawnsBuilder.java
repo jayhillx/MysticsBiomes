@@ -36,7 +36,7 @@ public class AnimalSpawnsBuilder implements BiomeModifier {
             ResourceLocation biomeLocation = ResourceLocation.tryParse(biomeIdentifier);
 
             if (biome.is(biomeLocation) || isBiomeTag(biomeLocation)) {
-                builder.getMobSpawnSettings().getSpawner(MobCategory.CREATURE).add(new MobSpawnSettings.SpawnerData(MysticEntities.RAINBOW_CHICKEN.get(), 6, 2, 3));
+                builder.getMobSpawnSettings().getSpawner(MobCategory.CREATURE).add(new MobSpawnSettings.SpawnerData(MysticEntities.RAINBOW_CHICKEN.get(), MysticConfig.COMMON.rainbowChickenSpawnChance.get(), 2, 3));
             }
         }
     }

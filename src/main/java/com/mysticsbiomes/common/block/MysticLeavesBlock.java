@@ -19,7 +19,9 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
-import net.minecraft.world.level.material.*;
+import net.minecraft.world.level.material.FluidState;
+import net.minecraft.world.level.material.Fluids;
+import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
@@ -31,7 +33,7 @@ public class MysticLeavesBlock extends Block {
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
     public MysticLeavesBlock(SoundType soundType) {
-        super(BlockBehaviour.Properties.of(Material.LEAVES, MaterialColor.PLANT).strength(0.2F).randomTicks().sound(soundType).noOcclusion().isSuffocating(BlockTemplate::never).isViewBlocking(BlockTemplate::never).isRedstoneConductor(BlockTemplate::never));
+        super(BlockBehaviour.Properties.of(Material.LEAVES).strength(0.2F).randomTicks().sound(soundType).noOcclusion().isSuffocating(BlockTemplate::never).isViewBlocking(BlockTemplate::never).isRedstoneConductor(BlockTemplate::never));
         this.registerDefaultState(this.stateDefinition.any().setValue(DISTANCE, 16).setValue(PERSISTENT, false).setValue(WATERLOGGED, false));
     }
 

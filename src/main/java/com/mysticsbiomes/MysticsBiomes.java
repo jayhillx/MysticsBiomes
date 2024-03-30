@@ -1,9 +1,11 @@
 package com.mysticsbiomes;
 
 import com.mojang.serialization.Codec;
-import com.mysticsbiomes.client.model.provider.MysticBlockStatesProvider;
 import com.mysticsbiomes.common.block.state.MysticWoodTypes;
+import com.mysticsbiomes.init.MysticConfig;
+import com.mysticsbiomes.data.provider.MysticBlockStatesProvider;
 import com.mysticsbiomes.common.world.AnimalSpawnsBuilder;
+import com.mysticsbiomes.data.provider.MysticLootTablesProvider;
 import com.mysticsbiomes.init.*;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
@@ -39,11 +41,9 @@ public class MysticsBiomes {
         MysticBlockEntities.BLOCK_ENTITIES.register(bus);
         MysticEntities.ENTITIES.register(bus);
         MysticFeatures.FEATURES.register(bus);
-        MysticFeatures.PLACED_FEATURES.register(bus);
         MysticFeatures.CONFIGURED_FEATURES.register(bus);
+        MysticFeatures.PLACED_FEATURES.register(bus);
         MysticFeatures.TREE_DECORATORS.register(bus);
-        MysticFeatures.TRUNK_PLACERS.register(bus);
-        MysticFeatures.FOLIAGE_PLACERS.register(bus);
         MysticItems.ITEMS.register(bus);
         MysticParticles.PARTICLES.register(bus);
         MysticPoiTypes.POI_TYPES.register(bus);
@@ -60,20 +60,22 @@ public class MysticsBiomes {
         DataGenerator generator = event.getGenerator();
         ExistingFileHelper helper = event.getExistingFileHelper();
 
+        generator.addProvider(event.includeServer(), new MysticLootTablesProvider(generator));
         generator.addProvider(event.includeClient(), new MysticBlockStatesProvider(generator, helper));
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
             MysticBiomes.registerRegionProvider();
-            MysticVanillaCompat.Common.registerFlammables();
-            MysticVanillaCompat.Common.registerCompostables();
+            MysticBiomes.registerSurfaceRules();
+            MysticVanillaCompat.registerFlammables();
+            MysticVanillaCompat.registerCompostables();
         });
     }
 
     private void clientSetup(final FMLClientSetupEvent event) {
         event.enqueueWork(() -> {
-            MysticVanillaCompat.Client.registerRenderLayers();
+            MysticVanillaCompat.registerRenderLayers();
             MysticWoodTypes.registerWoodTypes();
         });
     }

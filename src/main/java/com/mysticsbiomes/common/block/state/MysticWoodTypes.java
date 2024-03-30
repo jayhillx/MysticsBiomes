@@ -12,8 +12,9 @@ public class MysticWoodTypes {
 
     public static final WoodType STRAWBERRY = register(WoodType.create(MysticsBiomes.modId + ":strawberry"));
     public static final WoodType CHERRY = register(WoodType.create(MysticsBiomes.modId + ":cherry"));
-    public static final WoodType JACARANDA = register(WoodType.create(MysticsBiomes.modId + ":jacaranda"));
+    public static final WoodType CITRUS = register(WoodType.create(MysticsBiomes.modId + ":citrus"));
     public static final WoodType MAPLE = register(WoodType.create(MysticsBiomes.modId + ":maple"));
+    public static final WoodType JACARANDA = register(WoodType.create(MysticsBiomes.modId + ":jacaranda"));
 
     /**
      * Register new wood types. (Enqueued in {@link MysticsBiomes::clientSetup})
@@ -22,8 +23,9 @@ public class MysticWoodTypes {
     public static void registerWoodTypes() {
         Sheets.addWoodType(STRAWBERRY);
         Sheets.addWoodType(CHERRY);
-        Sheets.addWoodType(JACARANDA);
+        Sheets.addWoodType(CITRUS);
         Sheets.addWoodType(MAPLE);
+        Sheets.addWoodType(JACARANDA);
     }
 
 }

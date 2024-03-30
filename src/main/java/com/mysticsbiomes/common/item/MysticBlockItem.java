@@ -23,6 +23,30 @@ public class MysticBlockItem extends BlockItem {
 
         @Override
         public void fillItemList(@Nonnull NonNullList<ItemStack> stacks) {
+            stacks.add(itemStack(MysticItems.LUSH_SAND));
+            stacks.add(itemStack(MysticItems.LUSH_SANDSTONE));
+            stacks.add(itemStack(MysticItems.LUSH_SANDSTONE_STAIRS));
+            stacks.add(itemStack(MysticItems.LUSH_SANDSTONE_SLAB));
+            stacks.add(itemStack(MysticItems.LUSH_SANDSTONE_WALL));
+            stacks.add(itemStack(MysticItems.CHISELED_LUSH_SANDSTONE));
+            stacks.add(itemStack(MysticItems.CUT_LUSH_SANDSTONE));
+            stacks.add(itemStack(MysticItems.CUT_LUSH_SANDSTONE_SLAB));
+            stacks.add(itemStack(MysticItems.SMOOTH_LUSH_SANDSTONE));
+            stacks.add(itemStack(MysticItems.SMOOTH_LUSH_SANDSTONE_STAIRS));
+            stacks.add(itemStack(MysticItems.SMOOTH_LUSH_SANDSTONE_SLAB));
+
+            stacks.add(itemStack(MysticItems.PINK_LUSH_SAND));
+            stacks.add(itemStack(MysticItems.PINK_LUSH_SANDSTONE));
+            stacks.add(itemStack(MysticItems.PINK_LUSH_SANDSTONE_STAIRS));
+            stacks.add(itemStack(MysticItems.PINK_LUSH_SANDSTONE_SLAB));
+            stacks.add(itemStack(MysticItems.PINK_LUSH_SANDSTONE_WALL));
+            stacks.add(itemStack(MysticItems.CHISELED_PINK_LUSH_SANDSTONE));
+            stacks.add(itemStack(MysticItems.CUT_PINK_LUSH_SANDSTONE));
+            stacks.add(itemStack(MysticItems.CUT_PINK_LUSH_SANDSTONE_SLAB));
+            stacks.add(itemStack(MysticItems.SMOOTH_PINK_LUSH_SANDSTONE));
+            stacks.add(itemStack(MysticItems.SMOOTH_PINK_LUSH_SANDSTONE_STAIRS));
+            stacks.add(itemStack(MysticItems.SMOOTH_PINK_LUSH_SANDSTONE_SLAB));
+
             stacks.add(itemStack(MysticItems.STRAWBERRY_BLOSSOMS));
             stacks.add(itemStack(MysticItems.STRAWBERRY_SAPLING));
             stacks.add(itemStack(MysticItems.STRAWBERRY_LOG));
@@ -40,6 +64,7 @@ public class MysticBlockItem extends BlockItem {
             stacks.add(itemStack(MysticItems.STRAWBERRY_DOOR));
             stacks.add(itemStack(MysticItems.STRAWBERRY_SIGN));
             stacks.add(itemStack(MysticItems.STRAWBERRY_BOAT));
+            stacks.add(itemStack(MysticItems.STRAWBERRY_CHEST_BOAT));
 
             stacks.add(itemStack(MysticItems.PINK_CHERRY_BLOSSOMS));
             stacks.add(itemStack(MysticItems.PINK_CHERRY_BLOSSOM_SAPLING));
@@ -60,6 +85,26 @@ public class MysticBlockItem extends BlockItem {
             stacks.add(itemStack(MysticItems.CHERRY_DOOR));
             stacks.add(itemStack(MysticItems.CHERRY_SIGN));
             stacks.add(itemStack(MysticItems.CHERRY_BOAT));
+            stacks.add(itemStack(MysticItems.CHERRY_CHEST_BOAT));
+
+            stacks.add(itemStack(MysticItems.CITRUS_LEAVES));
+            stacks.add(itemStack(MysticItems.CITRUS_SAPLING));
+            stacks.add(itemStack(MysticItems.CITRUS_LOG));
+            stacks.add(itemStack(MysticItems.STRIPPED_CITRUS_LOG));
+            stacks.add(itemStack(MysticItems.CITRUS_WOOD));
+            stacks.add(itemStack(MysticItems.STRIPPED_CITRUS_WOOD));
+            stacks.add(itemStack(MysticItems.CITRUS_PLANKS));
+            stacks.add(itemStack(MysticItems.CITRUS_STAIRS));
+            stacks.add(itemStack(MysticItems.CITRUS_SLAB));
+            stacks.add(itemStack(MysticItems.CITRUS_FENCE));
+            stacks.add(itemStack(MysticItems.CITRUS_FENCE_GATE));
+            stacks.add(itemStack(MysticItems.CITRUS_BUTTON));
+            stacks.add(itemStack(MysticItems.CITRUS_PRESSURE_PLATE));
+            stacks.add(itemStack(MysticItems.CITRUS_TRAPDOOR));
+            stacks.add(itemStack(MysticItems.CITRUS_DOOR));
+            stacks.add(itemStack(MysticItems.CITRUS_SIGN));
+            stacks.add(itemStack(MysticItems.CITRUS_BOAT));
+            stacks.add(itemStack(MysticItems.CITRUS_CHEST_BOAT));
 
             stacks.add(itemStack(MysticItems.MAPLE_LEAVES));
             stacks.add(itemStack(MysticItems.MAPLE_LEAF_PILE));
@@ -87,6 +132,7 @@ public class MysticBlockItem extends BlockItem {
             stacks.add(itemStack(MysticItems.MAPLE_DOOR));
             stacks.add(itemStack(MysticItems.MAPLE_SIGN));
             stacks.add(itemStack(MysticItems.MAPLE_BOAT));
+            stacks.add(itemStack(MysticItems.MAPLE_CHEST_BOAT));
 
             stacks.add(itemStack(MysticItems.JACARANDA_BLOSSOMS));
             stacks.add(itemStack(MysticItems.JACARANDA_LEAVES));
@@ -106,25 +152,27 @@ public class MysticBlockItem extends BlockItem {
             stacks.add(itemStack(MysticItems.JACARANDA_DOOR));
             stacks.add(itemStack(MysticItems.JACARANDA_SIGN));
             stacks.add(itemStack(MysticItems.JACARANDA_BOAT));
+            stacks.add(itemStack(MysticItems.JACARANDA_CHEST_BOAT));
 
             stacks.add(itemStack(MysticItems.SPRING_BAMBOO));
-
             stacks.add(itemStack(MysticItems.BUDDING_PEONY_LEAVES));
             stacks.add(itemStack(MysticItems.PEONY_LEAVES));
             stacks.add(itemStack(MysticItems.PEONY_BUSH));
+            stacks.add(itemStack(MysticItems.PRICKLY_PEAR));
             stacks.add(itemStack(MysticItems.LAVENDER));
+            stacks.add(itemStack(MysticItems.WILDFLOWER));
+            stacks.add(itemStack(MysticItems.DESERT_GRASS));
 
             stacks.add(itemStack(MysticItems.BUTTERFLY_NEST));
-
             stacks.add(itemStack(MysticItems.GLASS_JAR));
-            stacks.add(itemStack(MysticItems.ORANGE_BUTTERFLY_JAR));
-            stacks.add(itemStack(MysticItems.BLUE_BUTTERFLY_JAR));
-            stacks.add(itemStack(MysticItems.CYAN_BUTTERFLY_JAR));
-            stacks.add(itemStack(MysticItems.LILAC_BUTTERFLY_JAR));
-            stacks.add(itemStack(MysticItems.PINK_BUTTERFLY_JAR));
-            stacks.add(itemStack(MysticItems.PURPLE_BUTTERFLY_JAR));
-            stacks.add(itemStack(MysticItems.WHITE_BUTTERFLY_JAR));
+            stacks.add(itemStack(MysticItems.ORANGE_BUTTERFLY_IN_JAR));
+            stacks.add(itemStack(MysticItems.BLUE_BUTTERFLY_IN_JAR));
+            stacks.add(itemStack(MysticItems.CYAN_BUTTERFLY_IN_JAR));
+            stacks.add(itemStack(MysticItems.LILAC_BUTTERFLY_IN_JAR));
+            stacks.add(itemStack(MysticItems.PINK_BUTTERFLY_IN_JAR));
+            stacks.add(itemStack(MysticItems.PURPLE_BUTTERFLY_IN_JAR));
 
+            stacks.add(itemStack(MysticItems.STRAWBERRY_MILK_BUCKET));
             stacks.add(itemStack(MysticItems.STRAWBERRY));
             stacks.add(itemStack(MysticItems.SWEET_STRAWBERRY));
             stacks.add(itemStack(MysticItems.STRAWBERRY_CAKE));
@@ -134,11 +182,6 @@ public class MysticBlockItem extends BlockItem {
             stacks.add(itemStack(MysticItems.LIME_FROSTED_CAKE));
             stacks.add(itemStack(MysticItems.CYAN_FROSTED_CAKE));
             stacks.add(itemStack(MysticItems.PURPLE_FROSTED_CAKE));
-            stacks.add(itemStack(MysticItems.PUMPKIN_COOKIE));
-            stacks.add(itemStack(MysticItems.PUMPKIN_ICE_CREAM));
-            stacks.add(itemStack(MysticItems.STRAWBERRY_ICE_CREAM));
-            stacks.add(itemStack(MysticItems.STRAWBERRY_MILK_BUCKET));
-
             stacks.add(itemStack(MysticItems.PINK_EGG));
             stacks.add(itemStack(MysticItems.ORANGE_EGG));
             stacks.add(itemStack(MysticItems.YELLOW_EGG));
@@ -156,5 +199,5 @@ public class MysticBlockItem extends BlockItem {
     private static ItemStack itemStack(Supplier<Item> supplier) {
         return supplier.get().getDefaultInstance();
     }
-    
+
 }

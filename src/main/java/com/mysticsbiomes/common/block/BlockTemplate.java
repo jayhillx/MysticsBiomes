@@ -11,13 +11,15 @@ import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.MaterialColor;
 
+import java.util.function.Supplier;
+
 public interface BlockTemplate {
 
-    static MysticLogBlock log(Block block, MaterialColor yColor, MaterialColor xzColor) {
-        return new MysticLogBlock(block, BlockBehaviour.Properties.of(Material.WOOD, (state) -> state.getValue(RotatedPillarBlock.AXIS) == Direction.Axis.Y ? yColor : xzColor).strength(2.0F).sound(SoundType.WOOD));
+    static MysticLogBlock log(Supplier<Block> block, MaterialColor yColor, MaterialColor xzColor) {
+        return new MysticLogBlock(block.get(), BlockBehaviour.Properties.of(Material.WOOD, (state) -> state.getValue(RotatedPillarBlock.AXIS) == Direction.Axis.Y ? yColor : xzColor).strength(2.0F).sound(SoundType.WOOD));
     }
 
-    static RotatedPillarBlock strippedLog(MaterialColor color) {
+    static RotatedPillarBlock rotatedPillar(MaterialColor color) {
         return new RotatedPillarBlock(BlockBehaviour.Properties.of(Material.WOOD).color(color).strength(2.0F).sound(SoundType.WOOD));
     }
 

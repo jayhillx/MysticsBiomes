@@ -10,6 +10,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.biome.Climate;
+import terrablender.api.ParameterUtils;
 import terrablender.api.Region;
 import terrablender.api.RegionType;
 
@@ -28,14 +29,17 @@ public class MysticBiomeProvider extends Region {
             if (MysticConfig.COMMON.enableStrawberryFields.get()) {
                 builder.replaceBiome(Biomes.SUNFLOWER_PLAINS, MysticBiomes.STRAWBERRY_FIELDS.getKey());
             }
-            if (MysticConfig.COMMON.enableBambooBlossomForest.get()) {
-                builder.replaceBiome(Biomes.SNOWY_PLAINS, MysticBiomes.BAMBOO_BLOSSOM_FOREST.getKey());
-            }
             if (MysticConfig.COMMON.enableLavenderMeadow.get()) {
                 builder.replaceBiome(Biomes.MEADOW, MysticBiomes.LAVENDER_MEADOW.getKey());
             }
+            if (MysticConfig.COMMON.enableBambooBlossomForest.get()) {
+                builder.replaceBiome(Biomes.SNOWY_PLAINS, MysticBiomes.BAMBOO_BLOSSOM_FOREST.getKey());
+            }
             if (MysticConfig.COMMON.enableAutumnalGrove.get()) {
                 builder.replaceBiome(Biomes.TAIGA, MysticBiomes.AUTUMNAL_GROVE.getKey());
+            }
+            if (MysticConfig.COMMON.enableLushOasis.get()) {
+                builder.replaceBiome(Biomes.DESERT, MysticBiomes.LUSH_OASIS.getKey());
             }
         });
     }

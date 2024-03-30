@@ -1,12 +1,11 @@
 package com.mysticsbiomes.init;
 
 import com.mysticsbiomes.MysticsBiomes;
-import com.mysticsbiomes.client.model.entity.ButterflyModel;
-import com.mysticsbiomes.client.model.entity.RedPandaModel;
-import com.mysticsbiomes.client.model.entity.layer.MysticModelLayers;
-import com.mysticsbiomes.client.renderer.entity.*;
-import com.mysticsbiomes.common.animal.*;
+import com.mysticsbiomes.client.entity.model.*;
+import com.mysticsbiomes.client.entity.model.layer.MysticModelLayers;
+import com.mysticsbiomes.client.entity.renderer.*;
 import com.mysticsbiomes.common.entity.*;
+import com.mysticsbiomes.common.entity.animal.*;
 import net.minecraft.client.model.BoatModel;
 import net.minecraft.client.model.ChickenModel;
 import net.minecraft.client.model.CowModel;

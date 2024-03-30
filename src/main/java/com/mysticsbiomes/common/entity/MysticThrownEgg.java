@@ -1,6 +1,6 @@
 package com.mysticsbiomes.common.entity;
 
-import com.mysticsbiomes.common.animal.RainbowChicken;
+import com.mysticsbiomes.common.entity.animal.RainbowChicken;
 import com.mysticsbiomes.init.MysticEntities;
 import com.mysticsbiomes.init.MysticItems;
 import net.minecraft.core.particles.ItemParticleOption;
