@@ -1,0 +1,2 @@
+# Mystic's Biomes
+[Mystic's Biomes](https://www.curseforge.com/minecraft/mc-mods/mystics-biomes) aims to add more color to the minecraft world. It's features try to aim at all kinds of play styles to give everyone a new reason to explore and traverse their surroundings.
