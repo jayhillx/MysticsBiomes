@@ -4,6 +4,7 @@ import com.google.common.collect.ImmutableMap;
 import com.mysticsbiomes.MysticsBiomes;
 import com.mysticsbiomes.common.entity.MysticBoat;
 import com.mojang.datafixers.util.Pair;
+import com.mysticsbiomes.common.entity.MysticChestBoat;
 import net.minecraft.client.model.BoatModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
@@ -25,7 +26,11 @@ public class MysticBoatRenderer extends BoatRenderer {
 
     @Override
     public Pair<ResourceLocation, BoatModel> getModelWithLocation(Boat boat) {
-        return this.boatResources.get(boat.getBoatType());
+        if (boat instanceof MysticChestBoat) {
+            return this.boatResources.get(((MysticChestBoat) boat).getModel());
+        } else {
+            return this.boatResources.get(((MysticBoat) boat).getModel());
+        }
     }
 
     private static String getTextureLocation(MysticBoat.Type type, boolean hasChest) {
