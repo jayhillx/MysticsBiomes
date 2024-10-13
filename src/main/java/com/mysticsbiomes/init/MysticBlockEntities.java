@@ -2,23 +2,25 @@ package com.mysticsbiomes.init;
 
 import com.mysticsbiomes.MysticsBiomes;
 import com.mysticsbiomes.common.block.entity.ButterflyNestBlockEntity;
-import net.minecraft.Util;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.util.datafix.fixes.References;
-import net.minecraft.world.level.block.entity.BlockEntityType;
-import net.minecraft.world.level.block.entity.HangingSignBlockEntity;
-import net.minecraft.world.level.block.entity.SignBlockEntity;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.RegistryObject;
+import net.minecraft.block.entity.BlockEntityType;
+import net.minecraft.block.entity.HangingSignBlockEntity;
+import net.minecraft.block.entity.SignBlockEntity;
+import net.minecraft.datafixer.TypeReferences;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
+import net.minecraft.util.Util;
 
 import java.util.Objects;
 
 public class MysticBlockEntities {
-    public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES = DeferredRegister.create(Registries.BLOCK_ENTITY_TYPE, MysticsBiomes.modId);
 
-    public static final RegistryObject<BlockEntityType<ButterflyNestBlockEntity>> BUTTERFLY_NEST = BLOCK_ENTITIES.register("butterfly_nest", () -> BlockEntityType.Builder.of(ButterflyNestBlockEntity::new, MysticBlocks.BUTTERFLY_NEST.get()).build(Util.fetchChoiceType(References.BLOCK_ENTITY, "butterfly_nest")));
+    public static final BlockEntityType<ButterflyNestBlockEntity> BUTTERFLY_NEST = Registry.register(Registries.BLOCK_ENTITY_TYPE, MysticsBiomes.modLoc("butterfly_nest"), BlockEntityType.Builder.create(ButterflyNestBlockEntity::new, MysticBlocks.BUTTERFLY_NEST).build(Util.getChoiceType(TypeReferences.BLOCK_ENTITY, "butterfly_nest")));
 
-    public static final RegistryObject<BlockEntityType<SignBlockEntity>> SIGN = BLOCK_ENTITIES.register("sign", () -> BlockEntityType.Builder.of(SignBlockEntity::new, MysticBlocks.STRAWBERRY_SIGN.get(), MysticBlocks.STRAWBERRY_WALL_SIGN.get(), MysticBlocks.CHERRY_SIGN.get(), MysticBlocks.CHERRY_WALL_SIGN.get(), MysticBlocks.CITRUS_SIGN.get(), MysticBlocks.CITRUS_WALL_SIGN.get(), MysticBlocks.MAPLE_SIGN.get(), MysticBlocks.MAPLE_WALL_SIGN.get(), MysticBlocks.JACARANDA_SIGN.get(), MysticBlocks.JACARANDA_WALL_SIGN.get()).build(Objects.requireNonNull(Util.fetchChoiceType(References.BLOCK_ENTITY, "sign"))));
-    public static final RegistryObject<BlockEntityType<HangingSignBlockEntity>> HANGING_SIGN = BLOCK_ENTITIES.register("hanging_sign", () -> BlockEntityType.Builder.of(HangingSignBlockEntity::new, MysticBlocks.STRAWBERRY_HANGING_SIGN.get(), MysticBlocks.STRAWBERRY_WALL_HANGING_SIGN.get(), MysticBlocks.CHERRY_HANGING_SIGN.get(), MysticBlocks.CHERRY_WALL_HANGING_SIGN.get(), MysticBlocks.CITRUS_HANGING_SIGN.get(), MysticBlocks.CITRUS_WALL_HANGING_SIGN.get(), MysticBlocks.MAPLE_HANGING_SIGN.get(), MysticBlocks.MAPLE_WALL_HANGING_SIGN.get(), MysticBlocks.JACARANDA_HANGING_SIGN.get(), MysticBlocks.JACARANDA_WALL_HANGING_SIGN.get()).build(Objects.requireNonNull(Util.fetchChoiceType(References.BLOCK_ENTITY, "hanging_sign"))));
+    public static final BlockEntityType<SignBlockEntity> SIGN = Registry.register(Registries.BLOCK_ENTITY_TYPE, MysticsBiomes.modLoc("sign"), BlockEntityType.Builder.create(SignBlockEntity::new, MysticBlocks.STRAWBERRY_SIGN, MysticBlocks.STRAWBERRY_WALL_SIGN, MysticBlocks.CHERRY_SIGN, MysticBlocks.CHERRY_WALL_SIGN, MysticBlocks.PEACH_SIGN, MysticBlocks.PEACH_WALL_SIGN, MysticBlocks.MAPLE_SIGN, MysticBlocks.MAPLE_WALL_SIGN, MysticBlocks.SEA_FOAM_SIGN, MysticBlocks.SEA_FOAM_WALL_SIGN, MysticBlocks.TROPICAL_SIGN, MysticBlocks.TROPICAL_WALL_SIGN, MysticBlocks.JACARANDA_SIGN, MysticBlocks.JACARANDA_WALL_SIGN).build(Objects.requireNonNull(Util.getChoiceType(TypeReferences.BLOCK_ENTITY, "sign"))));
+    public static final BlockEntityType<HangingSignBlockEntity> HANGING_SIGN = Registry.register(Registries.BLOCK_ENTITY_TYPE, MysticsBiomes.modLoc("hanging_sign"), BlockEntityType.Builder.create(HangingSignBlockEntity::new, MysticBlocks.STRAWBERRY_HANGING_SIGN, MysticBlocks.STRAWBERRY_WALL_HANGING_SIGN, MysticBlocks.CHERRY_HANGING_SIGN, MysticBlocks.CHERRY_WALL_HANGING_SIGN, MysticBlocks.PEACH_HANGING_SIGN, MysticBlocks.PEACH_WALL_HANGING_SIGN, MysticBlocks.MAPLE_HANGING_SIGN, MysticBlocks.MAPLE_WALL_HANGING_SIGN, MysticBlocks.SEA_FOAM_HANGING_SIGN, MysticBlocks.SEA_FOAM_WALL_HANGING_SIGN, MysticBlocks.TROPICAL_HANGING_SIGN, MysticBlocks.TROPICAL_WALL_HANGING_SIGN, MysticBlocks.JACARANDA_HANGING_SIGN, MysticBlocks.JACARANDA_WALL_HANGING_SIGN).build(Objects.requireNonNull(Util.getChoiceType(TypeReferences.BLOCK_ENTITY, "hanging_sign"))));
+
+    public static void registerBlockEntities() {
+        MysticsBiomes.LOGGER.info("mystic's biomes ~ registering block entities");
+    }
 
 }

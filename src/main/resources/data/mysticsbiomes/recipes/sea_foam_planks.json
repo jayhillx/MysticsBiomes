@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "planks",
+  "ingredients": [
+    {
+      "tag": "mysticsbiomes:sea_foam_logs"
+    }
+  ],
+  "result": {
+    "item": "mysticsbiomes:sea_foam_planks",
+    "count": 4
+  }
+}

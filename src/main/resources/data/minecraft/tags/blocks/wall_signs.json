@@ -3,8 +3,10 @@
   "values": [
     "mysticsbiomes:strawberry_wall_sign",
     "mysticsbiomes:cherry_wall_sign",
-    "mysticsbiomes:jacaranda_wall_sign",
+    "mysticsbiomes:peach_wall_sign",
     "mysticsbiomes:maple_wall_sign",
-    "mysticsbiomes:citrus_wall_sign"
+    "mysticsbiomes:sea_foam_wall_sign",
+    "mysticsbiomes:tropical_wall_sign",
+    "mysticsbiomes:jacaranda_wall_sign"
   ]
 }

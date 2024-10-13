@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:sugar"
+    },
+    {
+      "item": "mysticsbiomes:strawberry"
+    },
+    {
+      "item": "mysticsbiomes:glass_jar"
+    }
+  ],
+  "result": {
+    "item": "mysticsbiomes:strawberry_jam"
+  }
+}

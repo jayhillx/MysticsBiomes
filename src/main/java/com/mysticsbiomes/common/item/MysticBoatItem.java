@@ -2,85 +2,85 @@ package com.mysticsbiomes.common.item;
 
 import com.mysticsbiomes.common.entity.MysticBoat;
 import com.mysticsbiomes.common.entity.MysticChestBoat;
-import net.minecraft.stats.Stats;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResultHolder;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntitySelector;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.vehicle.Boat;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.ClipContext;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.gameevent.GameEvent;
-import net.minecraft.world.phys.AABB;
-import net.minecraft.world.phys.HitResult;
-import net.minecraft.world.phys.Vec3;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.vehicle.BoatEntity;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.predicate.entity.EntityPredicates;
+import net.minecraft.stat.Stats;
+import net.minecraft.util.Hand;
+import net.minecraft.util.TypedActionResult;
+import net.minecraft.util.hit.HitResult;
+import net.minecraft.util.math.Box;
+import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.RaycastContext;
+import net.minecraft.world.World;
+import net.minecraft.world.event.GameEvent;
 
 import java.util.List;
 import java.util.function.Predicate;
 
 public class MysticBoatItem extends Item {
-    private static final Predicate<Entity> ENTITY_PREDICATE = EntitySelector.NO_SPECTATORS.and(Entity::isPickable);
+    private static final Predicate<Entity> RIDERS = EntityPredicates.EXCEPT_SPECTATOR.and(Entity::canHit);
     private final MysticBoat.Type type;
     private final boolean hasChest;
 
-    public MysticBoatItem(boolean hasChest, MysticBoat.Type type, Properties properties) {
+    public MysticBoatItem(boolean hasChest, MysticBoat.Type type, Item.Settings properties) {
         super(properties);
         this.type = type;
         this.hasChest = hasChest;
     }
 
     @Override
-    public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
-        ItemStack stack = player.getItemInHand(hand);
-        HitResult result = getPlayerPOVHitResult(level, player, ClipContext.Fluid.ANY);
+    public TypedActionResult<ItemStack> use(World level, PlayerEntity player, Hand hand) {
+        ItemStack stack = player.getStackInHand(hand);
+        HitResult result = raycast(level, player, RaycastContext.FluidHandling.ANY);
 
         if (result.getType() == HitResult.Type.MISS) {
-            return InteractionResultHolder.pass(stack);
+            return TypedActionResult.pass(stack);
         } else {
-            Vec3 vec3 = player.getViewVector(1.0F);
-            List<Entity> list = level.getEntities(player, player.getBoundingBox().expandTowards(vec3.scale(5.0D)).inflate(1.0D), ENTITY_PREDICATE);
+            Vec3d rotation = player.getRotationVec(1.0F);
+            List<Entity> list = level.getOtherEntities(player, player.getBoundingBox().stretch(rotation.multiply(5.0D)).expand(1.0D), RIDERS);
 
             if (!list.isEmpty()) {
-                Vec3 vec31 = player.getEyePosition();
+                Vec3d eyePos = player.getEyePos();
 
                 for (Entity entity : list) {
-                    AABB aabb = entity.getBoundingBox().inflate(entity.getPickRadius());
-                    if (aabb.contains(vec31)) {
-                        return InteractionResultHolder.pass(stack);
+                    Box box = entity.getBoundingBox().expand(entity.getTargetingMargin());
+                    if (box.contains(eyePos)) {
+                        return TypedActionResult.pass(stack);
                     }
                 }
             }
 
             if (result.getType() == HitResult.Type.BLOCK) {
-                Boat boat;
+                BoatEntity boat;
                 if (this.hasChest) {
-                    boat = new MysticChestBoat(level, result.getLocation().x, result.getLocation().y, result.getLocation().z);
+                    boat = new MysticChestBoat(level, result.getPos().x, result.getPos().y, result.getPos().z);
                     ((MysticChestBoat)boat).setModel(this.type);
                 } else {
-                    boat = new MysticBoat(level, result.getLocation().x, result.getLocation().y, result.getLocation().z);
+                    boat = new MysticBoat(level, result.getPos().x, result.getPos().y, result.getPos().z);
                     ((MysticBoat)boat).setModel(this.type);
                 }
-                boat.setYRot(player.getYRot());
+                boat.setYaw(player.getYaw());
 
-                if (!level.noCollision(boat, boat.getBoundingBox())) {
-                    return InteractionResultHolder.fail(stack);
+                if (!level.canCollide(boat, boat.getBoundingBox())) {
+                    return TypedActionResult.fail(stack);
                 } else {
-                    if (!level.isClientSide) {
-                        level.addFreshEntity(boat);
-                        level.gameEvent(player, GameEvent.ENTITY_PLACE, result.getLocation());
-                        if (!player.getAbilities().instabuild) {
-                            stack.shrink(1);
+                    if (!level.isClient) {
+                        level.spawnEntity(boat);
+                        level.emitGameEvent(player, GameEvent.ENTITY_PLACE, result.getPos());
+                        if (!player.getAbilities().creativeMode) {
+                            stack.decrement(1);
                         }
                     }
 
-                    player.awardStat(Stats.ITEM_USED.get(this));
-                    return InteractionResultHolder.sidedSuccess(stack, level.isClientSide());
+                    player.incrementStat(Stats.USED.getOrCreateStat(this));
+                    return TypedActionResult.success(stack, level.isClient());
                 }
             } else {
-                return InteractionResultHolder.pass(stack);
+                return TypedActionResult.pass(stack);
             }
         }
     }

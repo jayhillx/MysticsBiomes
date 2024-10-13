@@ -2,14 +2,12 @@ package com.mysticsbiomes.init;
 
 import com.google.common.collect.ImmutableSet;
 import com.mysticsbiomes.MysticsBiomes;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.world.entity.ai.village.poi.PoiType;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.RegistryObject;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
+import net.minecraft.world.poi.PointOfInterestType;
 
 public class MysticPoiTypes {
-    public static final DeferredRegister<PoiType> POI_TYPES = DeferredRegister.create(Registries.POINT_OF_INTEREST_TYPE, MysticsBiomes.modId);
 
-    public static final RegistryObject<PoiType> BUTTERFLY_NEST = POI_TYPES.register("butterfly_nest", () -> new PoiType(ImmutableSet.copyOf(MysticBlocks.BUTTERFLY_NEST.get().getStateDefinition().getPossibleStates()), 0, 1));
+    public static final PointOfInterestType BUTTERFLY_NEST = Registry.register(Registries.POINT_OF_INTEREST_TYPE, MysticsBiomes.modLoc("butterfly_nest"), new PointOfInterestType(ImmutableSet.copyOf(MysticBlocks.BUTTERFLY_NEST.getStateManager().getStates()), 0, 1));
 
 }

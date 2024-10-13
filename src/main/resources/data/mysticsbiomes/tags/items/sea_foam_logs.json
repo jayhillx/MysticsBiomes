@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "mysticsbiomes:sea_foam_log",
+    "mysticsbiomes:sea_foam_wood",
+    "mysticsbiomes:stripped_sea_foam_log",
+    "mysticsbiomes:stripped_sea_foam_wood"
+  ]
+}

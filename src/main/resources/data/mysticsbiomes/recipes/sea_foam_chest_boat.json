@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "chest_boat",
+  "ingredients": [
+    {
+      "item": "minecraft:chest"
+    },
+    {
+      "item": "mysticsbiomes:sea_foam_boat"
+    }
+  ],
+  "result": {
+    "item": "mysticsbiomes:sea_foam_chest_boat"
+  }
+}

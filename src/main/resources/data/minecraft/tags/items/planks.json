@@ -3,8 +3,10 @@
   "values": [
     "mysticsbiomes:strawberry_planks",
     "mysticsbiomes:cherry_planks",
-    "mysticsbiomes:jacaranda_planks",
+    "mysticsbiomes:peach_planks",
     "mysticsbiomes:maple_planks",
-    "mysticsbiomes:citrus_planks"
+    "mysticsbiomes:sea_foam_planks",
+    "mysticsbiomes:tropical_planks",
+    "mysticsbiomes:jacaranda_planks"
   ]
 }

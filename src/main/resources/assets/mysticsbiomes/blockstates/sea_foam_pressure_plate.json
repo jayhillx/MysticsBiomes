@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "powered=false": {
+      "model": "mysticsbiomes:block/sea_foam_pressure_plate"
+    },
+    "powered=true": {
+      "model": "mysticsbiomes:block/sea_foam_pressure_plate_down"
+    }
+  }
+}

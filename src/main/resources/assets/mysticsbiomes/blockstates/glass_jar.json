@@ -1,0 +1,52 @@
+{
+  "variants": {
+    "rotation=0": {
+      "model": "mysticsbiomes:block/glass_jar"
+    },
+    "rotation=1": {
+      "model": "mysticsbiomes:block/glass_jar_rotation1"
+    },
+    "rotation=2": {
+      "model": "mysticsbiomes:block/glass_jar_rotation2"
+    },
+    "rotation=3": {
+      "model": "mysticsbiomes:block/glass_jar_rotation3"
+    },
+    "rotation=4": {
+      "model": "mysticsbiomes:block/glass_jar"
+    },
+    "rotation=5": {
+      "model": "mysticsbiomes:block/glass_jar_rotation1"
+    },
+    "rotation=6": {
+      "model": "mysticsbiomes:block/glass_jar_rotation2"
+    },
+    "rotation=7": {
+      "model": "mysticsbiomes:block/glass_jar_rotation3"
+    },
+    "rotation=8": {
+      "model": "mysticsbiomes:block/glass_jar"
+    },
+    "rotation=9": {
+      "model": "mysticsbiomes:block/glass_jar_rotation1"
+    },
+    "rotation=10": {
+      "model": "mysticsbiomes:block/glass_jar_rotation2"
+    },
+    "rotation=11": {
+      "model": "mysticsbiomes:block/glass_jar_rotation3"
+    },
+    "rotation=12": {
+      "model": "mysticsbiomes:block/glass_jar"
+    },
+    "rotation=13": {
+      "model": "mysticsbiomes:block/glass_jar_rotation1"
+    },
+    "rotation=14": {
+      "model": "mysticsbiomes:block/glass_jar_rotation2"
+    },
+    "rotation=15": {
+      "model": "mysticsbiomes:block/glass_jar_rotation3"
+    }
+  }
+}

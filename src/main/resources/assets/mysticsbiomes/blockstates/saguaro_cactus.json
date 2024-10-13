@@ -1,0 +1,61 @@
+{
+  "variants": {
+    "shape=base,top=false": {
+      "model": "mysticsbiomes:block/saguaro_cactus"
+    },
+    "shape=base,top=true": {
+      "model": "mysticsbiomes:block/saguaro_cactus_top"
+    },
+    "shape=base_branch,facing=east": {
+      "model": "mysticsbiomes:block/saguaro_cactus_base_branch",
+      "y": 90
+    },
+    "shape=base_branch,facing=north": {
+      "model": "mysticsbiomes:block/saguaro_cactus_base_branch"
+    },
+    "shape=base_branch,facing=south": {
+      "model": "mysticsbiomes:block/saguaro_cactus_base_branch",
+      "y": 180
+    },
+    "shape=base_branch,facing=west": {
+      "model": "mysticsbiomes:block/saguaro_cactus_base_branch",
+      "y": 270
+    },
+    "shape=base_branch_upward,facing=east,top=false": {
+      "model": "mysticsbiomes:block/saguaro_cactus_base_branch_upward",
+      "y": 90
+    },
+    "shape=base_branch_upward,facing=north,top=false": {
+      "model": "mysticsbiomes:block/saguaro_cactus_base_branch_upward"
+    },
+    "shape=base_branch_upward,facing=south,top=false": {
+      "model": "mysticsbiomes:block/saguaro_cactus_base_branch_upward",
+      "y": 180
+    },
+    "shape=base_branch_upward,facing=west,top=false": {
+      "model": "mysticsbiomes:block/saguaro_cactus_base_branch_upward",
+      "y": 270
+    },
+    "shape=base_branch_upward,facing=east,top=true": {
+      "model": "mysticsbiomes:block/saguaro_cactus_base_branch_upward_top",
+      "y": 90
+    },
+    "shape=base_branch_upward,facing=north,top=true": {
+      "model": "mysticsbiomes:block/saguaro_cactus_base_branch_upward_top"
+    },
+    "shape=base_branch_upward,facing=south,top=true": {
+      "model": "mysticsbiomes:block/saguaro_cactus_base_branch_upward_top",
+      "y": 180
+    },
+    "shape=base_branch_upward,facing=west,top=true": {
+      "model": "mysticsbiomes:block/saguaro_cactus_base_branch_upward_top",
+      "y": 270
+    },
+    "shape=branch,top=false": {
+      "model": "mysticsbiomes:block/saguaro_cactus_branch"
+    },
+    "shape=branch,top=true": {
+      "model": "mysticsbiomes:block/saguaro_cactus_branch_top"
+    }
+  }
+}

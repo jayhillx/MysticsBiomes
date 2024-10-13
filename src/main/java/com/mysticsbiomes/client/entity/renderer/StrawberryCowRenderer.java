@@ -3,23 +3,32 @@ package com.mysticsbiomes.client.entity.renderer;
 import com.mysticsbiomes.MysticsBiomes;
 import com.mysticsbiomes.client.entity.model.layer.MysticModelLayers;
 import com.mysticsbiomes.common.entity.animal.StrawberryCow;
-import net.minecraft.client.model.CowModel;
-import net.minecraft.client.renderer.entity.EntityRendererProvider;
-import net.minecraft.client.renderer.entity.MobRenderer;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
+import net.minecraft.client.render.entity.EntityRendererFactory;
+import net.minecraft.client.render.entity.MobEntityRenderer;
+import net.minecraft.client.render.entity.model.CowEntityModel;
+import net.minecraft.entity.passive.CowEntity;
+import net.minecraft.util.Identifier;
+import net.minecraft.util.Util;
 
-@OnlyIn(Dist.CLIENT)
-public class StrawberryCowRenderer extends MobRenderer<StrawberryCow, CowModel<StrawberryCow>> {
-    private static final ResourceLocation TEXTURE = MysticsBiomes.modLoc("textures/entity/cows/strawberry_cow.png");
+import java.util.HashMap;
+import java.util.Map;
 
-    public StrawberryCowRenderer(EntityRendererProvider.Context context) {
-        super(context, new CowModel<>(context.bakeLayer(MysticModelLayers.STRAWBERRY_COW)), 0.7F);
+@Environment(EnvType.CLIENT)
+public class StrawberryCowRenderer extends MobEntityRenderer<StrawberryCow, CowEntityModel<StrawberryCow>> {
+    private static final Map<StrawberryCow.Type, Identifier> TEXTURES = Util.make(new HashMap<>(), (map) -> {
+        map.put(StrawberryCow.Type.PINK, MysticsBiomes.modLoc("textures/entity/cows/strawberry_cow.png"));
+        map.put(StrawberryCow.Type.WHITE, MysticsBiomes.modLoc("textures/entity/cows/strawberry_cow_variant.png"));
+    });
+
+    public StrawberryCowRenderer(EntityRendererFactory.Context context) {
+        super(context, new CowEntityModel<>(context.getPart(MysticModelLayers.STRAWBERRY_COW)), 0.7F);
     }
 
-    public ResourceLocation getTextureLocation(StrawberryCow cow) {
-        return TEXTURE;
+    @Override
+    public Identifier getTexture(StrawberryCow strawberryCow) {
+        return TEXTURES.get(strawberryCow.getVariant());
     }
 
 }

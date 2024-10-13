@@ -1,0 +1,43 @@
+{
+	"schemaVersion": 1,
+	"id": "mysticsbiomes",
+	"version": "${version}",
+	"name": "Mystic's Biomes",
+	"description": "Explore a world full of color.",
+	"authors": [
+		"jay"
+	],
+	"contact": {
+		"homepage": "https://www.curseforge.com/minecraft/mc-mods/mystics-biomes",
+		"sources": "https://github.com/jayhillx/MysticsBiomes"
+	},
+	"license": "All Rights Reserved",
+	"icon": "assets/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"com.mysticsbiomes.MysticsBiomes"
+		],
+		"client": [
+			"com.mysticsbiomes.MysticsBiomesClient"
+		],
+		"fabric-datagen": [
+			"com.mysticsbiomes.data.MysticDataGenerator"
+		],
+		"terrablender": [
+			"com.mysticsbiomes.common.biome.MysticApiProvider"
+		]
+	},
+	"mixins": [
+		"mysticsbiomes.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.16.7",
+		"minecraft": "~1.20.1",
+		"java": ">=17",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}

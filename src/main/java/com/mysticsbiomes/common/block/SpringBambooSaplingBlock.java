@@ -2,85 +2,88 @@ package com.mysticsbiomes.common.block;
 
 import com.mysticsbiomes.init.MysticBlocks;
 import com.mysticsbiomes.init.MysticItems;
-import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
-import net.minecraft.server.level.ServerLevel;
-import net.minecraft.tags.BlockTags;
-import net.minecraft.util.RandomSource;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.level.LevelReader;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.BonemealableBlock;
-import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.properties.BambooLeaves;
-import net.minecraft.world.phys.Vec3;
-import net.minecraft.world.phys.shapes.CollisionContext;
-import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.common.ToolActions;
+import net.minecraft.block.*;
+import net.minecraft.block.enums.BambooLeaves;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.SwordItem;
+import net.minecraft.registry.tag.BlockTags;
+import net.minecraft.server.world.ServerWorld;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.random.Random;
+import net.minecraft.util.shape.VoxelShape;
+import net.minecraft.world.BlockView;
+import net.minecraft.world.World;
+import net.minecraft.world.WorldAccess;
+import net.minecraft.world.WorldView;
 
-@SuppressWarnings("deprecation")
-public class SpringBambooSaplingBlock extends Block implements BonemealableBlock {
-    protected static final VoxelShape SAPLING_SHAPE = Block.box(4.0, 0.0, 4.0, 12.0, 12.0, 12.0);
+public class SpringBambooSaplingBlock extends Block implements Fertilizable {
+    protected static final VoxelShape SAPLING_SHAPE = Block.createCuboidShape(4.0, 0.0, 4.0, 12.0, 12.0, 12.0);
 
-    public SpringBambooSaplingBlock(BlockBehaviour.Properties properties) {
+    public SpringBambooSaplingBlock(AbstractBlock.Settings properties) {
         super(properties);
     }
 
-    public VoxelShape getShape(BlockState state, BlockGetter getter, BlockPos pos, CollisionContext context) {
-        Vec3 vec3 = state.getOffset(getter, pos);
-        return SAPLING_SHAPE.move(vec3.x, vec3.y, vec3.z);
+    @Override
+    public VoxelShape getOutlineShape(BlockState state, BlockView getter, BlockPos pos, ShapeContext context) {
+        Vec3d vec3 = state.getModelOffset(getter, pos);
+        return SAPLING_SHAPE.offset(vec3.x, vec3.y, vec3.z);
     }
 
-    public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource source) {
-        if (source.nextInt(3) == 0 && level.isEmptyBlock(pos.above()) && level.getRawBrightness(pos.above(), 0) >= 9) {
+    @Override
+    public void randomTick(BlockState state, ServerWorld level, BlockPos pos, Random random) {
+        if (random.nextInt(3) == 0 && level.isAir(pos.up()) && level.getLightLevel(pos.up(), 0) >= 9) {
             this.growBamboo(level, pos);
         }
     }
 
-    public boolean canSurvive(BlockState state, LevelReader reader, BlockPos pos) {
-        BlockState belowState = reader.getBlockState(pos.below());
-        return belowState.is(BlockTags.DIRT) || belowState.is(BlockTags.SAND) || belowState.is(MysticBlocks.SPRING_BAMBOO.get()) || belowState.is(MysticBlocks.SPRING_BAMBOO_SAPLING.get());
+    @Override
+    public boolean canPlaceAt(BlockState state, WorldView reader, BlockPos pos) {
+        BlockState belowState = reader.getBlockState(pos.down());
+        return belowState.isIn(BlockTags.DIRT) || belowState.isIn(BlockTags.SAND) || belowState.isOf(MysticBlocks.SPRING_BAMBOO) || belowState.isOf(MysticBlocks.SPRING_BAMBOO_SAPLING);
     }
 
-    public BlockState updateShape(BlockState state, Direction direction, BlockState state2, LevelAccessor accessor, BlockPos pos, BlockPos pos2) {
-        if (!state.canSurvive(accessor, pos)) {
-            return Blocks.AIR.defaultBlockState();
+    @Override
+    public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState state2, WorldAccess accessor, BlockPos pos, BlockPos pos2) {
+        if (!state.canPlaceAt(accessor, pos)) {
+            return Blocks.AIR.getDefaultState();
         } else {
-            if (direction == Direction.UP && state2.is(MysticBlocks.SPRING_BAMBOO.get())) {
-                accessor.setBlock(pos, MysticBlocks.SPRING_BAMBOO.get().defaultBlockState(), 2);
+            if (direction == Direction.UP && state2.isOf(MysticBlocks.SPRING_BAMBOO)) {
+                accessor.setBlockState(pos, MysticBlocks.SPRING_BAMBOO.getDefaultState(), 2);
             }
-            return super.updateShape(state, direction, state2, accessor, pos, pos2);
+            return super.getStateForNeighborUpdate(state, direction, state2, accessor, pos, pos2);
         }
     }
 
-    public ItemStack getCloneItemStack(BlockGetter getter, BlockPos pos, BlockState state) {
-        return new ItemStack(MysticItems.SPRING_BAMBOO.get());
+    @Override
+    public ItemStack getPickStack(BlockView getter, BlockPos pos, BlockState state) {
+        return new ItemStack(MysticItems.SPRING_BAMBOO);
     }
 
-    public boolean isValidBonemealTarget(LevelReader reader, BlockPos pos, BlockState state, boolean p_256316_) {
-        return reader.getBlockState(pos.above()).isAir();
+    @Override
+    public boolean isFertilizable(WorldView reader, BlockPos pos, BlockState state, boolean value) {
+        return reader.getBlockState(pos.up()).isAir();
     }
 
-    public boolean isBonemealSuccess(Level level, RandomSource source, BlockPos pos, BlockState state) {
+    @Override
+    public boolean canGrow(World level, Random source, BlockPos pos, BlockState state) {
         return true;
     }
 
-    public void performBonemeal(ServerLevel level, RandomSource source, BlockPos pos, BlockState state) {
+    @Override
+    public void grow(ServerWorld level, Random source, BlockPos pos, BlockState state) {
         this.growBamboo(level, pos);
     }
 
-    public float getDestroyProgress(BlockState state, Player player, BlockGetter getter, BlockPos pos) {
-        return player.getMainHandItem().canPerformAction(ToolActions.SWORD_DIG) ? 1.0F : super.getDestroyProgress(state, player, getter, pos);
+    @Override
+    public float calcBlockBreakingDelta(BlockState state, PlayerEntity player, BlockView getter, BlockPos pos) {
+        return player.getMainHandStack().getItem() instanceof SwordItem ? 1.0F : super.calcBlockBreakingDelta(state, player, getter, pos);
     }
 
-    protected void growBamboo(Level level, BlockPos pos) {
-        level.setBlock(pos.above(), MysticBlocks.SPRING_BAMBOO.get().defaultBlockState().setValue(SpringBambooStalkBlock.LEAVES, BambooLeaves.SMALL), 3);
+    protected void growBamboo(World level, BlockPos pos) {
+        level.setBlockState(pos.up(), MysticBlocks.SPRING_BAMBOO.getDefaultState().with(SpringBambooStalkBlock.LEAVES, BambooLeaves.SMALL), 3);
     }
 
 }

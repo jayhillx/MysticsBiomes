@@ -3,218 +3,207 @@ package com.mysticsbiomes.common.entity.animal;
 import com.mysticsbiomes.init.MysticBlocks;
 import com.mysticsbiomes.init.MysticEntities;
 import com.mysticsbiomes.init.MysticItems;
-import net.minecraft.advancements.CriteriaTriggers;
-import net.minecraft.core.BlockPos;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.NbtUtils;
-import net.minecraft.network.syncher.EntityDataAccessor;
-import net.minecraft.network.syncher.EntityDataSerializers;
-import net.minecraft.network.syncher.SynchedEntityData;
-import net.minecraft.server.level.ServerLevel;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.stats.Stats;
-import net.minecraft.util.ByIdMap;
-import net.minecraft.util.RandomSource;
-import net.minecraft.util.StringRepresentable;
-import net.minecraft.world.DifficultyInstance;
-import net.minecraft.world.SimpleContainer;
-import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.entity.*;
-import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
-import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.ai.control.LookControl;
-import net.minecraft.world.entity.ai.control.MoveControl;
-import net.minecraft.world.entity.ai.goal.*;
-import net.minecraft.world.entity.animal.*;
-import net.minecraft.world.entity.item.ItemEntity;
-import net.minecraft.world.entity.npc.InventoryCarrier;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.level.GameRules;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.ServerLevelAccessor;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.entity.living.BabyEntitySpawnEvent;
+import net.minecraft.advancement.criterion.Criteria;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
+import net.minecraft.entity.*;
+import net.minecraft.entity.ai.control.LookControl;
+import net.minecraft.entity.ai.control.MoveControl;
+import net.minecraft.entity.ai.goal.*;
+import net.minecraft.entity.attribute.DefaultAttributeContainer;
+import net.minecraft.entity.attribute.EntityAttributes;
+import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.data.DataTracker;
+import net.minecraft.entity.data.TrackedData;
+import net.minecraft.entity.data.TrackedDataHandlerRegistry;
+import net.minecraft.entity.mob.MobEntity;
+import net.minecraft.entity.mob.PathAwareEntity;
+import net.minecraft.entity.passive.AnimalEntity;
+import net.minecraft.entity.passive.PassiveEntity;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
+import net.minecraft.nbt.NbtCompound;
+import net.minecraft.nbt.NbtHelper;
+import net.minecraft.particle.ItemStackParticleEffect;
+import net.minecraft.particle.ParticleTypes;
+import net.minecraft.predicate.entity.EntityPredicates;
+import net.minecraft.recipe.Ingredient;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundEvents;
+import net.minecraft.stat.Stats;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.Hand;
+import net.minecraft.util.StringIdentifiable;
+import net.minecraft.util.function.ValueLists;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.random.Random;
+import net.minecraft.world.GameRules;
+import net.minecraft.world.LocalDifficulty;
+import net.minecraft.world.ServerWorldAccess;
+import net.minecraft.world.World;
 
-import javax.annotation.Nullable;
-import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.function.Predicate;
 
-public class RedPanda extends Animal implements InventoryCarrier {
-    private static final EntityDataAccessor<Byte> DATA_TRAIT_ID = SynchedEntityData.defineId(RedPanda.class, EntityDataSerializers.BYTE);
-    private static final EntityDataAccessor<Byte> DATA_HIDDEN_TRAIT_ID = SynchedEntityData.defineId(RedPanda.class, EntityDataSerializers.BYTE);
-    private static final EntityDataAccessor<Byte> DATA_QUIRK_ID = SynchedEntityData.defineId(RedPanda.class, EntityDataSerializers.BYTE);
-    private static final EntityDataAccessor<Byte> DATA_FLAGS_ID = SynchedEntityData.defineId(RedPanda.class, EntityDataSerializers.BYTE);
-    private static final EntityDataAccessor<Optional<UUID>> DATA_TRUSTED_ID = SynchedEntityData.defineId(RedPanda.class, EntityDataSerializers.OPTIONAL_UUID);
-    private final SimpleContainer inventory = new SimpleContainer(1);
-
+public class RedPanda extends AnimalEntity {
+    private static final TrackedData<Byte> DATA_TRAIT_ID = DataTracker.registerData(RedPanda.class, TrackedDataHandlerRegistry.BYTE);
+    private static final TrackedData<Byte> DATA_HIDDEN_TRAIT_ID = DataTracker.registerData(RedPanda.class, TrackedDataHandlerRegistry.BYTE);
+    private static final TrackedData<Byte> DATA_FLAGS_ID = DataTracker.registerData(RedPanda.class, TrackedDataHandlerRegistry.BYTE);
+    private static final TrackedData<Optional<UUID>> DATA_TRUSTED_ID = DataTracker.registerData(RedPanda.class, TrackedDataHandlerRegistry.OPTIONAL_UUID);
+    private static final Predicate<ItemEntity> ALLOWED_ITEMS = (item) -> {
+        ItemStack stack = item.getStack();
+        return (stack.isOf(Items.BAMBOO) || stack.isOf(MysticItems.SPRING_BAMBOO) || stack.isOf(MysticItems.CHERRIES)) && !item.cannotPickup() && item.isAlive();
+    };
     public final AnimationState idleAnimationState = new AnimationState();
     public final AnimationState sleepingAnimationState = new AnimationState();
+    public final AnimationState eatAnimationState = new AnimationState();
 
-    public RedPanda(EntityType<? extends RedPanda> type, Level level) {
+    public RedPanda(EntityType<? extends RedPanda> type, World level) {
         super(type, level);
-        this.moveControl = new RedPandaMoveControl();
-        this.lookControl = new RedPandaLookControl();
+        this.moveControl = new RedPanda.RedPandaMoveControl(this);
+        this.lookControl = new RedPanda.RedPandaLookControl(this);
+        if (!this.isBaby()) {
+            this.setCanPickUpLoot(true);
+        }
+    }
+    
+    @Override
+    protected void initDataTracker() {
+        super.initDataTracker();
+        this.dataTracker.startTracking(DATA_TRAIT_ID, (byte)0);
+        this.dataTracker.startTracking(DATA_HIDDEN_TRAIT_ID, (byte)0);
+        this.dataTracker.startTracking(DATA_FLAGS_ID, (byte)0);
+        this.dataTracker.startTracking(DATA_TRUSTED_ID, Optional.empty());
     }
 
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(DATA_TRAIT_ID, (byte)0);
-        this.entityData.define(DATA_HIDDEN_TRAIT_ID, (byte)0);
-        this.entityData.define(DATA_QUIRK_ID, (byte)0);
-        this.entityData.define(DATA_FLAGS_ID, (byte)0);
-        this.entityData.define(DATA_TRUSTED_ID, Optional.empty());
-    }
-
-    protected void registerGoals() {
-        this.goalSelector.addGoal(0, new PanicGoal(this, 2.0));
-        this.goalSelector.addGoal(1, new RedPandaBreedGoal(1.0));
-        this.goalSelector.addGoal(1, new RedPanda.ReturnItemGoal());
-        this.goalSelector.addGoal(2, new RedPandaBreedGoal(1.0));
-        this.goalSelector.addGoal(3, new TemptGoal(this, 1.0, Ingredient.of(Blocks.BAMBOO.asItem()), false));
-        this.goalSelector.addGoal(4, new AvoidEntityGoal<>(this, Player.class, 6.0F, 1.6, 2.5, (entity) -> {
-            boolean flag = EntitySelector.NO_CREATIVE_OR_SPECTATOR.test(entity) && !this.trusts(entity.getUUID()) && entity.isSprinting();
+    @Override
+    protected void initGoals() {
+        this.goalSelector.add(0, new RedPanda.RedPandaEscapeDangerGoal(this, 2.0D));
+        this.goalSelector.add(1, new RedPanda.SleepGoal());
+        this.goalSelector.add(1, new RedPanda.EatBambooGoal());
+        this.goalSelector.add(2, new RedPanda.RedPandaAnimalMateGoal(1.0D));
+        this.goalSelector.add(3, new TemptGoal(this, 1.0D, Ingredient.ofItems(Blocks.BAMBOO.asItem(), MysticBlocks.SPRING_BAMBOO.asItem()), false));
+        this.goalSelector.add(4, new FleeEntityGoal<>(this, PlayerEntity.class, 6.0F, 1.6, 2.5, (entity) -> {
+            boolean flag = EntityPredicates.EXCEPT_CREATIVE_OR_SPECTATOR.test(entity) && !this.trusts(entity.getUuid()) && entity.isSprinting();
             this.setSprinting(flag);
             return flag;
         }));
-        this.goalSelector.addGoal(5, new SleepGoal());
-        this.goalSelector.addGoal(6, new LookAtPlayerGoal(this, Player.class, 6.0F));
-        this.goalSelector.addGoal(7, new RandomLookAroundGoal(this));
-        this.goalSelector.addGoal(8, new FollowParentGoal(this, 1.25));
-        this.goalSelector.addGoal(9, new WaterAvoidingRandomStrollGoal(this, 1.0));
+        this.goalSelector.add(5, new LookAtEntityGoal(this, PlayerEntity.class, 6.0F));
+        this.goalSelector.add(6, new LookAroundGoal(this));
+        this.goalSelector.add(7, new FollowParentGoal(this, 1.25D));
+        this.goalSelector.add(8, new WanderAroundFarGoal(this, 1.0D));
     }
 
-    public static AttributeSupplier.Builder createAttributes() {
-        return Mob.createMobAttributes().add(Attributes.MOVEMENT_SPEED, 0.125F).add(Attributes.MAX_HEALTH, 10.0D).add(Attributes.FOLLOW_RANGE, 32.0D).add(Attributes.ATTACK_DAMAGE, 8.0D);
+    public static DefaultAttributeContainer.Builder createAttributes() {
+        return DefaultAttributeContainer.builder().add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.125F).add(EntityAttributes.GENERIC_MAX_HEALTH, 10.0D).add(EntityAttributes.GENERIC_FOLLOW_RANGE, 32.0D).add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 8.0D);
     }
 
-    public SpawnGroupData finalizeSpawn(ServerLevelAccessor accessor, DifficultyInstance instance, MobSpawnType type, @Nullable SpawnGroupData data, @Nullable CompoundTag tag) {
-        return super.finalizeSpawn(accessor, instance, type, data, tag);
-    }
-
-    @Nullable
-    public RedPanda getBreedOffspring(ServerLevel level, AgeableMob mob) {
-        RedPanda redPanda = MysticEntities.RED_PANDA.get().create(level);
+    @Override
+    public RedPanda createChild(ServerWorld level, PassiveEntity mob) {
+        RedPanda redPanda = MysticEntities.RED_PANDA.create(level);
         if (redPanda != null) {
-            redPanda.setTrait(this.random.nextBoolean() ? this.getVariant() : ((RedPanda)mob).getVariant());
+            if (mob instanceof RedPanda parent) {
+                redPanda.setTraitFromParents(this, parent);
+            }
         }
         return redPanda;
     }
 
-    protected void onOffspringSpawnedFromEgg(Player player, Mob mob) {
-        ((RedPanda)mob).addTrustedPlayer(player.getUUID());
+    @Override
+    public EntityData initialize(ServerWorldAccess accessor, LocalDifficulty instance, SpawnReason type, EntityData data, NbtCompound tag) {
+        Random random = accessor.getRandom();
+        this.setMainTrait(Trait.getRandom(random));
+        this.setHiddenTrait(Trait.getRandom(random));
+        if (random.nextInt(6) == 0) {
+            this.setStackInHand(Hand.MAIN_HAND, new ItemStack(MysticItems.CHERRIES));
+        }
+        return super.initialize(accessor, instance, type, data, tag);
     }
 
-    protected float getStandingEyeHeight(Pose pose, EntityDimensions dimensions) {
+    @Override
+    protected float getActiveEyeHeight(EntityPose pose, EntityDimensions dimensions) {
         return this.isBaby() ? dimensions.height * 0.85F : 0.4F;
     }
 
     @Override
-    public void addAdditionalSaveData(CompoundTag tag) {
-        super.addAdditionalSaveData(tag);
-        tag.putString("Trait", this.getTrait().getSerializedName());
-        tag.putString("HiddenTrait", this.getHiddenTrait().getSerializedName());
-        tag.putString("Quirk", this.getQuirk().getSerializedName());
+    public void writeCustomDataToNbt(NbtCompound tag) {
+        super.writeCustomDataToNbt(tag);
+        tag.putString("MainTrait", this.getMainTrait().asString());
+        tag.putString("HiddenTrait", this.getHiddenTrait().asString());
         tag.putBoolean("Sleeping", this.isSleeping());
 
         if (this.getTrustedPlayer() != null) {
-            tag.put("Trusted", NbtUtils.createUUID(this.getTrustedPlayer()));
+            tag.put("Trusted", NbtHelper.fromUuid(this.getTrustedPlayer()));
         }
     }
 
     @Override
-    public void readAdditionalSaveData(CompoundTag tag) {
-        super.readAdditionalSaveData(tag);
-        this.setTrait(Trait.byName(tag.getString("Trait")));
+    public void readCustomDataFromNbt(NbtCompound tag) {
+        super.readCustomDataFromNbt(tag);
+        this.setMainTrait(Trait.byName(tag.getString("MainTrait")));
         this.setHiddenTrait(Trait.byName(tag.getString("HiddenTrait")));
-        this.setQuirk(Quirk.byName(tag.getString("Quirk")));
         this.setSleeping(tag.getBoolean("Sleeping"));
 
         if (tag.contains("Trusted")) {
-            this.addTrustedPlayer(NbtUtils.loadUUID(tag.get("Trusted")));
+            this.addTrustedPlayer(NbtHelper.toUuid(tag.get("Trusted")));
         }
     }
 
-    @Override
-    public SimpleContainer getInventory() {
-        return this.inventory;
+    public Trait getMainTrait() {
+        return Trait.byId(this.dataTracker.get(DATA_TRAIT_ID));
     }
 
-    public Trait getTrait() {
-        return Trait.byId(this.entityData.get(DATA_TRAIT_ID));
-    }
-
-    public void setTrait(Trait trait) {
-        this.entityData.set(DATA_TRAIT_ID, (byte)trait.getId());
+    public void setMainTrait(Trait trait) {
+        this.dataTracker.set(DATA_TRAIT_ID, (byte)trait.getId());
     }
 
     public Trait getHiddenTrait() {
-        return Trait.byId(this.entityData.get(DATA_HIDDEN_TRAIT_ID));
+        return Trait.byId(this.dataTracker.get(DATA_HIDDEN_TRAIT_ID));
     }
 
     public void setHiddenTrait(Trait trait) {
-        this.entityData.set(DATA_HIDDEN_TRAIT_ID, (byte)trait.getId());
+        this.dataTracker.set(DATA_HIDDEN_TRAIT_ID, (byte)trait.getId());
+    }
+
+    public void setTraitFromParents(RedPanda parent, RedPanda parent2) {
+        if (parent2 == null) {
+            if (this.random.nextBoolean()) {
+                this.setMainTrait(parent.getOneOfTraitsRandomly());
+                this.setHiddenTrait(Trait.getRandom(this.random));
+            } else {
+                this.setMainTrait(Trait.getRandom(this.random));
+                this.setHiddenTrait(parent.getOneOfTraitsRandomly());
+            }
+        } else if (this.random.nextBoolean()) {
+            this.setMainTrait(parent.getOneOfTraitsRandomly());
+            this.setHiddenTrait(parent2.getOneOfTraitsRandomly());
+        } else {
+            this.setMainTrait(parent2.getOneOfTraitsRandomly());
+            this.setHiddenTrait(parent.getOneOfTraitsRandomly());
+        }
+
+        if (this.random.nextInt(16) == 0) {
+            this.setHiddenTrait(Trait.getRandom(this.random));
+        }
+
+        if (this.random.nextInt(16) == 0) {
+            this.setHiddenTrait(Trait.getRandom(this.random));
+        }
+    }
+
+    private Trait getOneOfTraitsRandomly() {
+        return this.random.nextBoolean() ? this.getMainTrait() : this.getHiddenTrait();
     }
 
     public Trait getVariant() {
-        return Trait.getTraitFromGenes(this.getTrait(), this.getHiddenTrait());
+        return Trait.getMainTraitFromGenes(this.getMainTrait(), this.getHiddenTrait());
     }
 
-    public boolean isClumsy() {
-        return this.getTrait() == Trait.CLUMSY;
-    }
-
-    public boolean isGloomy() {
-        return this.getTrait() == Trait.GLOOMY;
-    }
-
-    public boolean isWeak() {
-        return this.getTrait() == Trait.WEAK;
-    }
-
-    public boolean isPlayful() {
-        return this.getTrait() == Trait.PLAYFUL;
-    }
-
-    public boolean isCherry() {
-        return this.getTrait() == Trait.CHERRY;
-    }
-
-    public Quirk getQuirk() {
-        return Quirk.byId(this.entityData.get(DATA_QUIRK_ID));
-    }
-
-    public void setQuirk(Quirk trait) {
-        this.entityData.set(DATA_QUIRK_ID, (byte)trait.getId());
-    }
-
-    public boolean lovesSnow() {
-        return this.getQuirk() == Quirk.LOVES_SNOW;
-    }
-
-    public boolean isLoyal() {
-        return this.getQuirk() == Quirk.LOYAL;
-    }
-
-    public boolean isMischievous() {
-        return this.getQuirk() == Quirk.MISCHIEVOUS;
-    }
-
-    public boolean isCurious() {
-        return this.getQuirk() == Quirk.CURIOUS;
-    }
-
-    public boolean isClingy() {
-        return this.getQuirk() == Quirk.CLINGY;
-    }
-
-    ///////////////////////////////////////////////////////////////
-
+    @Override
     public boolean isSleeping() {
         return this.getFlag(2);
     }
@@ -227,91 +216,160 @@ public class RedPanda extends Animal implements InventoryCarrier {
         this.setSleeping(false);
     }
 
-    private boolean getFlag(int value) {
-        return (this.entityData.get(DATA_FLAGS_ID) & value) != 0;
+    public boolean isEating() {
+        return this.getFlag(8);
     }
 
-    private void setFlag(int value, boolean b) {
+    public void setEating(boolean eating) {
+        this.setFlag(8, eating);
+    }
+
+    public boolean getFlag(int value) {
+        return (this.dataTracker.get(DATA_FLAGS_ID) & value) != 0;
+    }
+
+    public void setFlag(int value, boolean b) {
         if (b) {
-            this.entityData.set(DATA_FLAGS_ID, (byte)(this.entityData.get(DATA_FLAGS_ID) | value));
+            this.dataTracker.set(DATA_FLAGS_ID, (byte)(this.dataTracker.get(DATA_FLAGS_ID) | value));
         } else {
-            this.entityData.set(DATA_FLAGS_ID, (byte)(this.entityData.get(DATA_FLAGS_ID) & ~value));
+            this.dataTracker.set(DATA_FLAGS_ID, (byte)(this.dataTracker.get(DATA_FLAGS_ID) & ~value));
         }
     }
 
-    ///////////////////////////////////////////////////////////////
-
     private UUID getTrustedPlayer() {
-        return this.entityData.get(DATA_TRUSTED_ID).orElse(null);
+        return this.dataTracker.get(DATA_TRUSTED_ID).orElse(null);
     }
 
     private void addTrustedPlayer(UUID uuid) {
-        this.entityData.set(DATA_TRUSTED_ID, Optional.ofNullable(uuid));
+        this.dataTracker.set(DATA_TRUSTED_ID, Optional.ofNullable(uuid));
     }
 
     private boolean trusts(UUID uuid) {
         return this.getTrustedPlayer() == uuid;
     }
 
-    ///////////////////////////////////////////////////////////////
-
     @Override
     public void tick() {
         super.tick();
-        if (this.isEffectiveAi()) {
-            if (this.isInWater() && this.isSleeping()) {
+        if (this.canMoveVoluntarily()) {
+            if (this.isSubmergedInWater() && this.isSleeping()) {
                 this.setSleeping(false);
             }
         }
 
-        if (this.level().isClientSide()) {
-            if (this.isSleeping()) {
-                this.sleepingAnimationState.start(this.tickCount);
-            } else {
-                this.idleAnimationState.animateWhen(!this.walkAnimation.isMoving(), this.tickCount);
+        if (this.getWorld().isClient()) {
+            this.idleAnimationState.setRunning(!this.limbAnimator.isLimbMoving() && !this.isSleeping(), this.age);
+            this.sleepingAnimationState.setRunning(!this.limbAnimator.isLimbMoving() && this.isSleeping(), this.age);
+            this.eatAnimationState.setRunning(this.isEating(), this.age);
+
+            if (this.isEating()) {
+                if (this.age % 20 == 0) {
+                    for (int i = 0; i < 3; ++i) {
+                        Vec3d vec3 = new Vec3d(((double)RedPanda.this.random.nextFloat() - 0.5D) * 0.1D, Math.random() * 0.1D + 0.1D, ((double)RedPanda.this.random.nextFloat() - 0.5D) * 0.1D);
+                        RedPanda.this.getWorld().addParticle(new ItemStackParticleEffect(ParticleTypes.ITEM, RedPanda.this.getMainHandStack()), RedPanda.this.getX(), RedPanda.this.getEyeY() + 0.25F, RedPanda.this.getZ(), vec3.x, vec3.y + 0.05D, vec3.z);
+                    }
+                }
             }
         }
     }
 
     @Override
-    public void aiStep() {
+    public void tickMovement() {
         if (this.isSleeping() || this.isImmobile()) {
             this.jumping = false;
-            this.xxa = 0.0F;
-            this.zza = 0.0F;
         }
 
-        super.aiStep();
+        super.tickMovement();
     }
 
-    ///////////////////////////////////////////////////////////////
-
-    public boolean isFood(ItemStack stack) {
-        return stack.is(Items.BAMBOO) || stack.is(MysticItems.SPRING_BAMBOO.get());
-    }
-
-    public boolean hurt(DamageSource source, float amount) {
+    @Override
+    public boolean damage(DamageSource source, float amount) {
         if (this.isInvulnerableTo(source)) {
             return false;
         } else {
-            if (!this.level().isClientSide) {
+            if (!this.getWorld().isClient) {
                 this.wakeUp();
+                this.setEating(false);
             }
 
-            return super.hurt(source, amount);
+            return super.damage(source, amount);
         }
     }
 
-    ///////////////////////////////////////////////////////////////
+    public boolean isFood(ItemStack stack) {
+        return stack.isOf(Items.BAMBOO) || stack.isOf(MysticItems.SPRING_BAMBOO);
+    }
+
+    @Override
+    public boolean canEquip(ItemStack stack) {
+        EquipmentSlot equipmentSlot = MobEntity.getPreferredEquipmentSlot(stack);
+        return this.getEquippedStack(equipmentSlot).isEmpty() && equipmentSlot == EquipmentSlot.MAINHAND && super.canEquip(stack);
+    }
+
+    @Override
+    protected void loot(ItemEntity entity) {
+        ItemStack stack = entity.getStack();
+        if ((this.getMainHandStack().isEmpty() || !this.getMainHandStack().isOf(MysticItems.SPRING_BAMBOO)) && ALLOWED_ITEMS.test(entity)) {
+            this.triggerItemPickedUpByEntityCriteria(entity);
+
+            this.spitOutItem(this.getEquippedStack(EquipmentSlot.MAINHAND));
+            this.equipStack(EquipmentSlot.MAINHAND, stack.split(1));
+            this.updateDropChances(EquipmentSlot.MAINHAND);
+            this.sendPickup(entity, 1);
+            entity.discard();
+        }
+    }
+
+    private void spitOutItem(ItemStack stack) {
+        if (!stack.isEmpty() && !this.getWorld().isClient) {
+            ItemEntity entity = new ItemEntity(this.getWorld(), this.getX() + this.getRotationVector().x, this.getY() + 1.0D, this.getZ() + this.getRotationVector().z, stack);
+            entity.setPickupDelay(40);
+            entity.setThrower(this.getUuid());
+            this.playSound(SoundEvents.ENTITY_FOX_SPIT, 1.0F, 1.0F);
+            this.getWorld().spawnEntity(entity);
+        }
+    }
+
+    @Override
+    public ActionResult interactMob(PlayerEntity player, Hand hand) {
+        ItemStack stack = player.getStackInHand(hand);
+        if (this.isFood(stack)) {
+            if (this.isBaby()) {
+                this.eat(player, hand, stack);
+                this.growUp((int)((float)(-this.getBreedingAge() / 20) * 0.1F), true);
+            } else if (!this.getWorld().isClient && this.getBreedingAge() == 0 && this.canEat()) {
+                this.eat(player, hand, stack);
+                this.lovePlayer(player);
+            } else {
+                if (this.getWorld().isClient || this.isTouchingWater()) {
+                    return ActionResult.PASS;
+                }
+
+                this.setForwardSpeed(0.0F);
+                this.getNavigation().stop();
+                this.setEating(true);
+                ItemStack mainHandStack = this.getMainHandStack();
+                if (!mainHandStack.isEmpty() && !player.getAbilities().creativeMode) {
+                    this.dropStack(mainHandStack);
+                }
+
+                this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(stack.getItem(), 1));
+                this.eat(player, hand, stack);
+            }
+            return ActionResult.SUCCESS;
+        } else {
+            return ActionResult.PASS;
+        }
+    }
 
     class SleepGoal extends Goal {
 
-        public boolean canUse() {
-            return RedPanda.this.level().isNight();
+        public boolean canStart() {
+            return RedPanda.this.getWorld().isNight() && !RedPanda.this.isSubmergedInWater();
         }
 
-        public boolean canContinueToUse() {
-            return !RedPanda.this.isInWater();
+        public boolean shouldContinue() {
+            return this.canStart();
         }
 
         public void start() {
@@ -323,124 +381,109 @@ public class RedPanda extends Animal implements InventoryCarrier {
         }
     }
 
-    class ReturnItemGoal extends Goal {
+    class EatBambooGoal extends Goal {
+        private int ticksEating;
 
-        public boolean canUse() {
-            if (RedPanda.this.isLoyal() && RedPanda.this.getTrustedPlayer() != null) {
-                return this.canPickUpNearbyItem();
-            } else {
-                return false;
-            }
+        public boolean canStart() {
+            return RedPanda.this.isFood(RedPanda.this.getMainHandStack()) && !RedPanda.this.isSleeping() && !RedPanda.this.isSubmergedInWater() && RedPanda.this.random.nextInt(80) == 0;
         }
 
-        public boolean canContinueToUse() {
-            return RedPanda.this.hasItemInSlot(EquipmentSlot.MAINHAND) && RedPanda.this.navigation.getPath() != null && !RedPanda.this.navigation.getPath().isDone();
+        public boolean shouldContinue() {
+            return this.ticksEating < 100;
         }
 
         public void start() {
-            Player trustedPlayer = RedPanda.this.level().getPlayerByUUID(RedPanda.this.getTrustedPlayer());
-            if (!RedPanda.this.inventory.isEmpty() && trustedPlayer != null) {
-                RedPanda.this.navigation.moveTo(RedPanda.this.navigation.createPath(BlockPos.containing(trustedPlayer.position()), 1), 1.0D);
-            }
+            this.ticksEating = 0;
+            RedPanda.this.setEating(true);
+            RedPanda.this.navigation.stop();
         }
 
         public void stop() {
-            RedPanda.this.dropEquipment();
+            RedPanda.this.setEating(false);
+            RedPanda.this.getMainHandStack().decrement(1);
         }
 
         public void tick() {
-            Player trustedPlayer = RedPanda.this.level().getPlayerByUUID(RedPanda.this.getTrustedPlayer());
+            ++this.ticksEating;
+        }
+    }
 
-            if (this.canPickUpNearbyItem()) {
-                RedPanda.this.navigation.moveTo(RedPanda.this.navigation.createPath(BlockPos.containing(trustedPlayer.position()), 1), 1.0D);
-            }
+    class RedPandaEscapeDangerGoal extends EscapeDangerGoal {
+
+        public RedPandaEscapeDangerGoal(PathAwareEntity mob, double speed) {
+            super(mob, speed);
         }
 
-        @Nullable
-        private ItemEntity getNearbyItem() {
-            List<ItemEntity> nearbyItems = RedPanda.this.level().getEntitiesOfClass(ItemEntity.class, RedPanda.this.getBoundingBox().inflate(8.0D, 4.0D, 8.0D));
-            return !nearbyItems.isEmpty() ? nearbyItems.stream().findFirst().get() : null;
-        }
+        @Override
+        public void stop() {
+            super.stop();
 
-        private boolean canPickUpNearbyItem() {
-            if (this.getNearbyItem() != null) {
-                return this.getNearbyItem().isAlive() && this.getNearbyItem().getOwner() != null && this.getNearbyItem().getOwner().getUUID() == RedPanda.this.getTrustedPlayer();
-            } else {
-                return false;
+            if (RedPanda.this.getWorld().isNight() && !RedPanda.this.isSubmergedInWater()) {
+                RedPanda.this.setSleeping(true);
             }
         }
     }
 
-    ///////////////////////////////////////////////////////////////
+    class RedPandaAnimalMateGoal extends AnimalMateGoal {
 
-    class RedPandaBreedGoal extends BreedGoal {
-
-        public RedPandaBreedGoal(double speed) {
+        public RedPandaAnimalMateGoal(double speed) {
             super(RedPanda.this, speed);
         }
 
-        public boolean canUse() {
-            return super.canUse() && this.canFindBamboo();
+        public boolean canStart() {
+            return super.canStart() && this.canFindBamboo();
         }
 
         @Override
         protected void breed() {
-            ServerLevel level = (ServerLevel)this.level;
-            RedPanda redPanda = (RedPanda)this.animal.getBreedOffspring(level, this.partner);
-            BabyEntitySpawnEvent event = new BabyEntitySpawnEvent(this.animal, this.partner, redPanda);
-            redPanda = (RedPanda)event.getChild();
-            boolean cancelled = MinecraftForge.EVENT_BUS.post(event);
-            if (cancelled) {
-                this.animal.setAge(6000);
-                this.partner.setAge(6000);
-                this.animal.resetLove();
-                this.partner.resetLove();
-            } else {
+            ServerWorld level = (ServerWorld)this.world;
+            RedPanda redPanda = (RedPanda)this.animal.createChild(level, this.mate);
+            if (this.mate != null) {
                 if (redPanda != null) {
-                    ServerPlayer causePlayer = this.animal.getLoveCause();
-                    ServerPlayer causePlayer2 = this.partner.getLoveCause();
-                    ServerPlayer player = causePlayer;
+                    ServerPlayerEntity causePlayer = this.animal.getLovingPlayer();
+                    ServerPlayerEntity causePlayer2 = this.mate.getLovingPlayer();
+                    ServerPlayerEntity player = causePlayer;
                     if (causePlayer != null) {
-                        redPanda.addTrustedPlayer(causePlayer.getUUID());
+                        redPanda.addTrustedPlayer(causePlayer.getUuid());
                     } else {
                         player = causePlayer2;
                     }
 
                     if (causePlayer2 != null && causePlayer != causePlayer2) {
-                        redPanda.addTrustedPlayer(causePlayer2.getUUID());
+                        redPanda.addTrustedPlayer(causePlayer2.getUuid());
                     }
 
                     if (player != null) {
-                        player.awardStat(Stats.ANIMALS_BRED);
-                        CriteriaTriggers.BRED_ANIMALS.trigger(player, this.animal, this.partner, redPanda);
+                        player.incrementStat(Stats.ANIMALS_BRED);
+                        Criteria.BRED_ANIMALS.trigger(player, this.animal, this.mate, redPanda);
                     }
 
-                    this.animal.setAge(6000);
-                    this.partner.setAge(6000);
-                    this.animal.resetLove();
-                    this.partner.resetLove();
-                    redPanda.setAge(-24000);
-                    redPanda.moveTo(this.animal.getX(), this.animal.getY(), this.animal.getZ(), 0.0F, 0.0F);
-                    level.addFreshEntityWithPassengers(redPanda);
-                    this.level.broadcastEntityEvent(this.animal, (byte)18);
-                    if (this.level.getGameRules().getBoolean(GameRules.RULE_DOMOBLOOT)) {
-                        this.level.addFreshEntity(new ExperienceOrb(this.level, this.animal.getX(), this.animal.getY(), this.animal.getZ(), this.animal.getRandom().nextInt(7) + 1));
+                    this.animal.setBreedingAge(6000);
+                    this.mate.setBreedingAge(6000);
+                    this.animal.resetLoveTicks();
+                    this.mate.resetLoveTicks();
+                    redPanda.setBreedingAge(-24000);
+                    redPanda.refreshPositionAndAngles(this.animal.getX(), this.animal.getY(), this.animal.getZ(), 0.0F, 0.0F);
+                    level.spawnEntityAndPassengers(redPanda);
+                    this.world.sendEntityStatus(this.animal, EntityStatuses.ADD_BREEDING_PARTICLES);
+                    if (this.world.getGameRules().getBoolean(GameRules.DO_MOB_LOOT)) {
+                        this.world.spawnEntity(new ExperienceOrbEntity(this.world, this.animal.getX(), this.animal.getY(), this.animal.getZ(), this.animal.getRandom().nextInt(7) + 1));
                     }
                 }
             }
         }
 
         private boolean canFindBamboo() {
-            BlockPos pos = RedPanda.this.blockPosition();
-            BlockPos.MutableBlockPos mutablePos = new BlockPos.MutableBlockPos();
+            BlockPos pos = RedPanda.this.getBlockPos();
+            BlockPos.Mutable mutablePos = new BlockPos.Mutable();
 
             for (int i = 0; i < 3; ++i) {
                 for (int j = 0; j < 8; ++j) {
                     for (int k = 0; k <= j; k = k > 0 ? -k : 1 - k) {
                         for (int l = k < j && k > -j ? j : 0; l <= j; l = l > 0 ? -l : 1 - l) {
-                            mutablePos.setWithOffset(pos, k, i, l);
-                            BlockState mutableState = this.level.getBlockState(mutablePos);
-                            if (mutableState.is(Blocks.BAMBOO) || mutableState.is(MysticBlocks.SPRING_BAMBOO.get())) {
+                            mutablePos.set(pos, k, i, l);
+                            BlockState mutableState = this.world.getBlockState(mutablePos);
+                            if (mutableState.isOf(Blocks.BAMBOO) || mutableState.isOf(MysticBlocks.SPRING_BAMBOO)) {
                                 return true;
                             }
                         }
@@ -453,12 +496,13 @@ public class RedPanda extends Animal implements InventoryCarrier {
 
     class RedPandaMoveControl extends MoveControl {
 
-        public RedPandaMoveControl() {
-            super(RedPanda.this);
+        public RedPandaMoveControl(MobEntity mob) {
+            super(mob);
         }
 
+        @Override
         public void tick() {
-            if (!RedPanda.this.isSleeping()) {
+            if (!RedPanda.this.isSleeping() && !RedPanda.this.isEating()) {
                 super.tick();
             }
         }
@@ -466,29 +510,25 @@ public class RedPanda extends Animal implements InventoryCarrier {
 
     class RedPandaLookControl extends LookControl {
 
-        public RedPandaLookControl() {
-            super(RedPanda.this);
+        public RedPandaLookControl(MobEntity mob) {
+            super(mob);
         }
 
+        @Override
         public void tick() {
-            if (!RedPanda.this.isSleeping()) {
+            if (!RedPanda.this.isSleeping() && !RedPanda.this.isEating()) {
                 super.tick();
             }
         }
     }
 
-    ///////////////////////////////////////////////////////////////////////////
-
-    /**
-     * Main personality trait that defines most of a red pandas actions & behaviors.
-     */
-    public enum Trait implements StringRepresentable {
+    public enum Trait implements StringIdentifiable {
         NORMAL(0, "normal", false),
         CLUMSY(1, "clumsy", false),
-        GLOOMY(2, "gloomy", false),
-        WEAK(3, "weak", true),
-        LAZY(4, "lazy", false),
-        PLAYFUL(5, "playful", false),
+        WEAK(2, "weak", true),
+        LAZY(3, "lazy", false),
+        PLAYFUL(4, "playful", false),
+        MISCHIEVOUS(5, "mischievous", false),
         CHERRY(6, "cherry", true);
 
         private final int id;
@@ -501,7 +541,7 @@ public class RedPanda extends Animal implements InventoryCarrier {
             this.recessive = recessive;
         }
 
-        public String getSerializedName() {
+        public String asString() {
             return this.name;
         }
 
@@ -514,14 +554,14 @@ public class RedPanda extends Animal implements InventoryCarrier {
         }
 
         public static Trait byName(String name) {
-            return StringRepresentable.fromEnum(Trait::values).byName(name, NORMAL);
+            return StringIdentifiable.createCodec(Trait::values).byId(name, NORMAL);
         }
 
         public static Trait byId(int id) {
-            return ByIdMap.continuous(Trait::getId, values(), ByIdMap.OutOfBoundsStrategy.ZERO).apply(id);
+            return ValueLists.createIdToValueFunction(Trait::getId, values(), ValueLists.OutOfBoundsHandling.ZERO).apply(id);
         }
 
-        public static Trait getTraitFromGenes(Trait trait1, Trait trait2) {
+        public static Trait getMainTraitFromGenes(Trait trait1, Trait trait2) {
             if (trait1.isRecessive()) {
                 return trait1 == trait2 ? trait1 : NORMAL;
             } else {
@@ -529,73 +569,20 @@ public class RedPanda extends Animal implements InventoryCarrier {
             }
         }
 
-        public static Trait getRandom(RandomSource source) {
-            int i = source.nextInt(16);
+        public static Trait getRandom(Random source) {
+            int i = source.nextInt(8);
             if (i == 0) {
                 return CLUMSY;
             } else if (i == 1) {
-                return GLOOMY;
-            } else if (i == 2) {
                 return WEAK;
-            } else if (i == 4) {
-                return LAZY;
-            } else if (i < 9) {
-                return PLAYFUL;
-            } else {
-                return i < 11 ? CHERRY : NORMAL;
-            }
-        }
-    }
-
-    /**
-     * Little additions to go with traits; making each red panda more distinct and unique.
-     */
-    public enum Quirk implements StringRepresentable {
-        NONE(0, "none"),
-        LOVES_SNOW(1, "loves_snow"),
-        LOYAL(2, "loyal"),
-        MISCHIEVOUS(3, "mischievous"),
-        CURIOUS(4, "curious"),
-        CLINGY(5, "clingy");
-
-        private final int id;
-        private final String name;
-
-        Quirk(int id, String name) {
-            this.id = id;
-            this.name = name;
-        }
-
-        public String getSerializedName() {
-            return this.name;
-        }
-
-        public int getId() {
-            return this.id;
-        }
-
-        public static Quirk byName(String name) {
-            return StringRepresentable.fromEnum(Quirk::values).byName(name, NONE);
-        }
-
-        public static Quirk byId(int id) {
-            return ByIdMap.continuous(Quirk::getId, values(), ByIdMap.OutOfBoundsStrategy.ZERO).apply(id);
-        }
-
-        public static Quirk getRandom(RandomSource source) {
-            int i = source.nextInt(16);
-            if (i == 0) {
-                return LOVES_SNOW;
-            } else if (i == 1) {
-                return LOYAL;
             } else if (i == 2) {
-                return MISCHIEVOUS;
+                return LAZY;
             } else if (i == 4) {
-                return CURIOUS;
+                return PLAYFUL;
             } else if (i == 5) {
-                return CLINGY;
+                return MISCHIEVOUS;
             } else {
-                return NONE;
+                return i == 6 ? CHERRY : NORMAL;
             }
         }
     }

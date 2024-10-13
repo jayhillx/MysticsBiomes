@@ -3,8 +3,10 @@
   "values": [
     "mysticsbiomes:strawberry_pressure_plate",
     "mysticsbiomes:cherry_pressure_plate",
-    "mysticsbiomes:jacaranda_pressure_plate",
+    "mysticsbiomes:peach_pressure_plate",
     "mysticsbiomes:maple_pressure_plate",
-    "mysticsbiomes:citrus_pressure_plate"
+    "mysticsbiomes:sea_foam_pressure_plate",
+    "mysticsbiomes:tropical_pressure_plate",
+    "mysticsbiomes:jacaranda_pressure_plate"
   ]
 }

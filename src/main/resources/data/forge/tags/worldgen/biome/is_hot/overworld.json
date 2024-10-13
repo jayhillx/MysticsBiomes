@@ -8,6 +8,10 @@
     {
       "id": "mysticsbiomes:lush_oasis",
       "required": false
+    },
+    {
+      "id": "mysticsbiomes:tropics",
+      "required": false
     }
   ]
 }

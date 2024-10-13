@@ -1,0 +1,36 @@
+{
+  "parent": "mysticsbiomes:mysticsbiomes/root",
+  "criteria": {
+    "obtain_peach": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mysticsbiomes:peach"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "icon": {
+      "item": "mysticsbiomes:peach"
+    },
+    "title": {
+      "translate": "advancements.mysticsbiomes.obtain_peach.title"
+    },
+    "description": {
+      "translate": "advancements.mysticsbiomes.obtain_peach.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true
+  },
+  "requirements": [
+    [
+      "obtain_peach"
+    ]
+  ]
+}

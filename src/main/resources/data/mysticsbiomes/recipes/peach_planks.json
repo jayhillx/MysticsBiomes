@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "planks",
+  "ingredients": [
+    {
+      "tag": "mysticsbiomes:peach_logs"
+    }
+  ],
+  "result": {
+    "item": "mysticsbiomes:peach_planks",
+    "count": 4
+  }
+}

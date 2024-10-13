@@ -3,8 +3,10 @@
   "values": [
     "#mysticsbiomes:strawberry_logs",
     "#mysticsbiomes:cherry_logs",
-    "#mysticsbiomes:jacaranda_logs",
+    "#mysticsbiomes:peach_logs",
     "#mysticsbiomes:maple_logs",
-    "#mysticsbiomes:citrus_logs"
+    "#mysticsbiomes:sea_foam_logs",
+    "#mysticsbiomes:tropical_logs",
+    "#mysticsbiomes:jacaranda_logs"
   ]
 }

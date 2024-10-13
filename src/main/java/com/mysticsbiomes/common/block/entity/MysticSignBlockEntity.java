@@ -1,10 +1,10 @@
 package com.mysticsbiomes.common.block.entity;
 
 import com.mysticsbiomes.init.MysticBlockEntities;
-import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.block.entity.BlockEntityType;
-import net.minecraft.world.level.block.entity.SignBlockEntity;
-import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.entity.BlockEntityType;
+import net.minecraft.block.entity.SignBlockEntity;
+import net.minecraft.util.math.BlockPos;
 
 public class MysticSignBlockEntity extends SignBlockEntity {
 
@@ -14,7 +14,7 @@ public class MysticSignBlockEntity extends SignBlockEntity {
 
     @Override
     public BlockEntityType<?> getType() {
-        return MysticBlockEntities.SIGN.get();
+        return MysticBlockEntities.SIGN;
     }
 
 }

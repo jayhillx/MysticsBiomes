@@ -1,0 +1,94 @@
+{
+  "variants": {
+    "shape=top,facing=north,vanilla=false": {
+      "model": "mysticsbiomes:block/vanilla_orchid_top"
+    },
+    "shape=top,facing=east,vanilla=false": {
+      "model": "mysticsbiomes:block/vanilla_orchid_top",
+      "y": 90
+    },
+    "shape=top,facing=south,vanilla=false": {
+      "model": "mysticsbiomes:block/vanilla_orchid_top",
+      "y": 180
+    },
+    "shape=top,facing=west,vanilla=false": {
+      "model": "mysticsbiomes:block/vanilla_orchid_top",
+      "y": 270
+    },
+    "shape=top,facing=north,vanilla=true": {
+      "model": "mysticsbiomes:block/vanilla_orchid_top"
+    },
+    "shape=top,facing=east,vanilla=true": {
+      "model": "mysticsbiomes:block/vanilla_orchid_top",
+      "y": 90
+    },
+    "shape=top,facing=south,vanilla=true": {
+      "model": "mysticsbiomes:block/vanilla_orchid_top",
+      "y": 180
+    },
+    "shape=top,facing=west,vanilla=true": {
+      "model": "mysticsbiomes:block/vanilla_orchid_top",
+      "y": 270
+    },
+    "shape=middle,facing=north,vanilla=false": {
+      "model": "mysticsbiomes:block/vanilla_orchid"
+    },
+    "shape=middle,facing=east,vanilla=false": {
+      "model": "mysticsbiomes:block/vanilla_orchid",
+      "y": 90
+    },
+    "shape=middle,facing=south,vanilla=false": {
+      "model": "mysticsbiomes:block/vanilla_orchid",
+      "y": 180
+    },
+    "shape=middle,facing=west,vanilla=false": {
+      "model": "mysticsbiomes:block/vanilla_orchid",
+      "y": 270
+    },
+    "shape=middle,facing=north,vanilla=true": {
+      "model": "mysticsbiomes:block/vanilla_orchid_flowering"
+    },
+    "shape=middle,facing=east,vanilla=true": {
+      "model": "mysticsbiomes:block/vanilla_orchid_flowering",
+      "y": 90
+    },
+    "shape=middle,facing=south,vanilla=true": {
+      "model": "mysticsbiomes:block/vanilla_orchid_flowering",
+      "y": 180
+    },
+    "shape=middle,facing=west,vanilla=true": {
+      "model": "mysticsbiomes:block/vanilla_orchid_flowering",
+      "y": 270
+    },
+    "shape=bottom,facing=north,vanilla=false": {
+      "model": "mysticsbiomes:block/vanilla_orchid_bottom"
+    },
+    "shape=bottom,facing=east,vanilla=false": {
+      "model": "mysticsbiomes:block/vanilla_orchid_bottom",
+      "y": 90
+    },
+    "shape=bottom,facing=south,vanilla=false": {
+      "model": "mysticsbiomes:block/vanilla_orchid_bottom",
+      "y": 180
+    },
+    "shape=bottom,facing=west,vanilla=false": {
+      "model": "mysticsbiomes:block/vanilla_orchid_bottom",
+      "y": 270
+    },
+    "shape=bottom,facing=north,vanilla=true": {
+      "model": "mysticsbiomes:block/vanilla_orchid_bottom_flowering"
+    },
+    "shape=bottom,facing=east,vanilla=true": {
+      "model": "mysticsbiomes:block/vanilla_orchid_bottom_flowering",
+      "y": 90
+    },
+    "shape=bottom,facing=south,vanilla=true": {
+      "model": "mysticsbiomes:block/vanilla_orchid_bottom_flowering",
+      "y": 180
+    },
+    "shape=bottom,facing=west,vanilla=true": {
+      "model": "mysticsbiomes:block/vanilla_orchid_bottom_flowering",
+      "y": 270
+    }
+  }
+}

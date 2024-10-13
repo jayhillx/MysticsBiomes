@@ -1,56 +1,64 @@
 package com.mysticsbiomes.client.particle;
 
-import net.minecraft.client.multiplayer.ClientLevel;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.particle.*;
-import net.minecraft.core.particles.SimpleParticleType;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraft.client.world.ClientWorld;
+import net.minecraft.particle.DefaultParticleType;
 
-@OnlyIn(Dist.CLIENT)
-public class FallingLeafParticle extends TextureSheetParticle {
+@Environment(EnvType.CLIENT)
+public class FallingLeafParticle extends SpriteBillboardParticle {
     private final float rotSpeed;
 
-    protected FallingLeafParticle(ClientLevel level, double x, double y, double z) {
+    protected FallingLeafParticle(ClientWorld level, double x, double y, double z) {
         super(level, x, y, z);
-        this.quadSize *= 1.0F;
-        this.lifetime = 80;
-        this.rotSpeed = ((float) Math.random() - 0.2F) * 0.1F;
-        this.roll = (float) Math.random() * ((float) Math.PI * 2F);
+        this.scale *= 1.25F;
+        this.maxAge = 170;
+        this.rotSpeed = (float) (Math.random() - 0.2) * 0.1F;
+        this.angle = (float) (Math.random() * (Math.PI * 2));
     }
 
-    public ParticleRenderType getRenderType() {
-        return ParticleRenderType.PARTICLE_SHEET_OPAQUE;
+    @Override
+    public ParticleTextureSheet getType() {
+        return ParticleTextureSheet.PARTICLE_SHEET_TRANSLUCENT;
     }
 
+    @Override
     public void tick() {
-        this.xo = this.x;
-        this.yo = this.y;
-        this.zo = this.z;
-        if (this.age++ >= this.lifetime) {
-            this.remove();
-        } else {
-            this.oRoll = this.roll;
-            this.roll += (float)Math.PI * this.rotSpeed * 2.0F;
-            if (this.onGround) {
-                this.oRoll = this.roll = 0.0F;
+        this.prevPosX = this.x;
+        this.prevPosY = this.y;
+        this.prevPosZ = this.z;
+        if (this.age++ < this.maxAge && !(this.alpha <= 0.0F)) {
+            if (this.age >= this.maxAge - 20 && this.alpha > 0.01F) {
+                this.alpha -= 0.2F;
             }
-            this.move(this.xd, this.yd, this.zd);
-            this.yd -= 0.001F;
-            this.yd = Math.max(this.yd, -0.14F);
+
+            this.prevAngle = this.angle;
+            this.angle += (float) Math.PI * this.rotSpeed * 0.5F;
+            if (this.onGround) {
+                this.prevAngle = this.angle = 0.0F;
+            }
+
+            this.move(this.velocityX, this.velocityY * 0.8, this.velocityZ);
+            this.velocityY -= 0.0008F;
+            this.velocityY = Math.max(this.velocityY, -0.06F);
+        } else {
+            this.markDead();
         }
     }
 
-    @OnlyIn(Dist.CLIENT)
-    public static class Provider implements ParticleProvider<SimpleParticleType> {
-        private final SpriteSet sprite;
+    @Environment(EnvType.CLIENT)
+    public static class Provider implements ParticleFactory<DefaultParticleType> {
+        private final SpriteProvider sprite;
 
-        public Provider(SpriteSet set) {
-            this.sprite = set;
+        public Provider(SpriteProvider spriteProvider) {
+            this.sprite = spriteProvider;
         }
 
-        public Particle createParticle(SimpleParticleType option, ClientLevel level, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
-            FallingLeafParticle particle = new FallingLeafParticle(level, x, y, z);
-            particle.pickSprite(this.sprite);
+        @Override
+        public Particle createParticle(DefaultParticleType type, ClientWorld world, double x, double y, double z, double velocityX, double velocityY, double velocityZ) {
+            FallingLeafParticle particle = new FallingLeafParticle(world, x, y, z);
+            particle.setSprite(this.sprite);
             return particle;
         }
     }

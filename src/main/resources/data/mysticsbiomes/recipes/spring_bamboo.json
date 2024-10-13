@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "mysticsbiomes:bundled_spring_bamboo"
+    }
+  ],
+  "result": {
+    "item": "mysticsbiomes:spring_bamboo",
+    "count": 9
+  }
+}

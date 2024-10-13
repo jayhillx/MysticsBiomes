@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/template_azalea",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "top": "mysticsbiomes:block/sea_shrub_top",
+    "side": "mysticsbiomes:block/sea_shrub_side"
+  }
+}

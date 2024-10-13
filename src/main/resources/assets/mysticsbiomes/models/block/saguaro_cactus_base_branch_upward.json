@@ -1,0 +1,72 @@
+{
+	"parent": "block/block",
+	"render_type": "minecraft:cutout",
+	"textures": {
+		"side": "mysticsbiomes:block/saguaro_cactus_branch_side",
+		"side2": "mysticsbiomes:block/saguaro_cactus_upward_branch",
+		"side3": "mysticsbiomes:block/saguaro_cactus_upward_branch_side",
+		"bottom": "mysticsbiomes:block/saguaro_cactus_branch_bottom",
+		"particle": "mysticsbiomes:block/saguaro_cactus_branch_side"
+	},
+	"elements": [
+		{
+			"from": [3, 1, -2],
+			"to": [13, 13, 2],
+			"faces": {
+				"east": {"uv": [0, 16, 4, 4], "rotation": 180, "texture": "#side2"},
+				"west": {"uv": [4, 16, 0, 4], "rotation": 180, "texture": "#side2"}
+			}
+		},
+		{
+			"from": [2, 12, -2],
+			"to": [14, 12, 3],
+			"faces": {
+				"up": {"uv": [14, 16, 2, 11], "texture": "#side"}
+			}
+		},
+		{
+			"from": [2, 2, -2],
+			"to": [14, 2, 2],
+			"faces": {
+				"down": {"uv": [2, 12, 14, 16], "texture": "#side"}
+			}
+		},
+		{
+			"from": [2, 1, -2],
+			"to": [14, 13, 3],
+			"faces": {
+				"north": {"uv": [2, 2, 14, 14], "texture": "#bottom"}
+			}
+		},
+		{
+			"from": [3, 1, 2],
+			"to": [13, 16, 14],
+			"faces": {
+				"east": {"uv": [16, 1, 4, 16], "texture": "#side2"},
+				"west": {"uv": [4, 1, 16, 16], "texture": "#side2"}
+			}
+		},
+		{
+			"from": [2, 1, 3],
+			"to": [14, 16, 13],
+			"faces": {
+				"south": {"uv": [2, 1, 14, 16], "texture": "#side3"}
+			}
+		},
+		{
+			"from": [2, 2, 2],
+			"to": [14, 16, 14],
+			"faces": {
+				"up": {"uv": [2, 2, 14, 14], "texture": "#bottom"},
+				"down": {"uv": [2, 4, 14, 16], "rotation": 180, "texture": "#side3"}
+			}
+		},
+		{
+			"from": [2, 12, 3],
+			"to": [14, 16, 13],
+			"faces": {
+				"north": {"uv": [2, 1, 14, 5], "texture": "#side3"}
+			}
+		}
+	]
+}

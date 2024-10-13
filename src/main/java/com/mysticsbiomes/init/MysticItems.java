@@ -1,213 +1,189 @@
 package com.mysticsbiomes.init;
 
 import com.mysticsbiomes.MysticsBiomes;
-import com.mysticsbiomes.common.entity.animal.Butterfly;
 import com.mysticsbiomes.common.entity.MysticBoat;
-import com.mysticsbiomes.common.item.*;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.food.FoodProperties;
-import net.minecraft.world.food.Foods;
-import net.minecraft.world.item.*;
-import net.minecraftforge.common.ForgeSpawnEggItem;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.RegistryObject;
+import com.mysticsbiomes.common.entity.animal.Butterfly;
+import com.mysticsbiomes.common.item.ButterflyJarItem;
+import com.mysticsbiomes.common.item.JamItem;
+import com.mysticsbiomes.common.item.MysticBoatItem;
+import com.mysticsbiomes.common.item.MysticEggItem;
+import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroupEntries;
+import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
+import net.minecraft.item.*;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
 
 public class MysticItems {
-    public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(Registries.ITEM, MysticsBiomes.modId);
 
-    // strawberry fields
-    public static final RegistryObject<Item> STRAWBERRY_BLOSSOMS = ITEMS.register("strawberry_blossoms", () -> new MysticBlockItem(MysticBlocks.STRAWBERRY_BLOSSOMS));
-    public static final RegistryObject<Item> STRAWBERRY_SAPLING = ITEMS.register("strawberry_sapling", () -> new MysticBlockItem(MysticBlocks.STRAWBERRY_SAPLING));
+    public static final Item STRAWBERRY_SIGN = registerItem("strawberry_sign", new SignItem((new Item.Settings()).maxCount(16), MysticBlocks.STRAWBERRY_SIGN, MysticBlocks.STRAWBERRY_WALL_SIGN));
+    public static final Item STRAWBERRY_HANGING_SIGN = registerItem("strawberry_hanging_sign", new HangingSignItem(MysticBlocks.STRAWBERRY_HANGING_SIGN, MysticBlocks.STRAWBERRY_WALL_HANGING_SIGN, (new Item.Settings()).maxCount(16)));
+    public static final Item STRAWBERRY_BOAT = registerItem("strawberry_boat", new MysticBoatItem(false, MysticBoat.Type.STRAWBERRY, (new Item.Settings()).maxCount(1)));
+    public static final Item STRAWBERRY_CHEST_BOAT = registerItem("strawberry_chest_boat", new MysticBoatItem(true, MysticBoat.Type.STRAWBERRY, (new Item.Settings()).maxCount(1)));
 
-    public static final RegistryObject<Item> STRAWBERRY_LOG = ITEMS.register("strawberry_log", () -> new MysticBlockItem(MysticBlocks.STRAWBERRY_LOG));
-    public static final RegistryObject<Item> STRIPPED_STRAWBERRY_LOG = ITEMS.register("stripped_strawberry_log", () -> new MysticBlockItem(MysticBlocks.STRIPPED_STRAWBERRY_LOG));
-    public static final RegistryObject<Item> STRAWBERRY_WOOD = ITEMS.register("strawberry_wood", () -> new MysticBlockItem(MysticBlocks.STRAWBERRY_WOOD));
-    public static final RegistryObject<Item> STRIPPED_STRAWBERRY_WOOD = ITEMS.register("stripped_strawberry_wood", () -> new MysticBlockItem(MysticBlocks.STRIPPED_STRAWBERRY_WOOD));
-    public static final RegistryObject<Item> STRAWBERRY_PLANKS = ITEMS.register("strawberry_planks", () -> new MysticBlockItem(MysticBlocks.STRAWBERRY_PLANKS));
-    public static final RegistryObject<Item> STRAWBERRY_STAIRS = ITEMS.register("strawberry_stairs", () -> new MysticBlockItem(MysticBlocks.STRAWBERRY_STAIRS));
-    public static final RegistryObject<Item> STRAWBERRY_SLAB = ITEMS.register("strawberry_slab", () -> new MysticBlockItem(MysticBlocks.STRAWBERRY_SLAB));
-    public static final RegistryObject<Item> STRAWBERRY_FENCE = ITEMS.register("strawberry_fence", () -> new MysticBlockItem(MysticBlocks.STRAWBERRY_FENCE));
-    public static final RegistryObject<Item> STRAWBERRY_FENCE_GATE = ITEMS.register("strawberry_fence_gate", () -> new MysticBlockItem(MysticBlocks.STRAWBERRY_FENCE_GATE));
-    public static final RegistryObject<Item> STRAWBERRY_BUTTON = ITEMS.register("strawberry_button", () -> new MysticBlockItem(MysticBlocks.STRAWBERRY_BUTTON));
-    public static final RegistryObject<Item> STRAWBERRY_PRESSURE_PLATE = ITEMS.register("strawberry_pressure_plate", () -> new MysticBlockItem(MysticBlocks.STRAWBERRY_PRESSURE_PLATE));
-    public static final RegistryObject<Item> STRAWBERRY_TRAPDOOR = ITEMS.register("strawberry_trapdoor", () -> new MysticBlockItem(MysticBlocks.STRAWBERRY_TRAPDOOR));
-    public static final RegistryObject<Item> STRAWBERRY_DOOR = ITEMS.register("strawberry_door", () -> new MysticBlockItem(MysticBlocks.STRAWBERRY_DOOR));
-    public static final RegistryObject<Item> STRAWBERRY_SIGN = ITEMS.register("strawberry_sign", () -> new SignItem((new Item.Properties()).stacksTo(16), MysticBlocks.STRAWBERRY_SIGN.get(), MysticBlocks.STRAWBERRY_WALL_SIGN.get()));
-    public static final RegistryObject<Item> STRAWBERRY_HANGING_SIGN = ITEMS.register("strawberry_hanging_sign", () -> new HangingSignItem(MysticBlocks.STRAWBERRY_HANGING_SIGN.get(), MysticBlocks.STRAWBERRY_WALL_HANGING_SIGN.get(), (new Item.Properties()).stacksTo(16)));
-    public static final RegistryObject<Item> STRAWBERRY_BOAT = ITEMS.register("strawberry_boat", () -> new MysticBoatItem(false, MysticBoat.Type.STRAWBERRY, (new Item.Properties()).stacksTo(1)));
-    public static final RegistryObject<Item> STRAWBERRY_CHEST_BOAT = ITEMS.register("strawberry_chest_boat", () -> new MysticBoatItem(true, MysticBoat.Type.STRAWBERRY, (new Item.Properties()).stacksTo(1)));
+    public static final Item CHERRY_SIGN = registerItem("cherry_sign", new SignItem((new Item.Settings()).maxCount(16), MysticBlocks.CHERRY_SIGN, MysticBlocks.CHERRY_WALL_SIGN));
+    public static final Item CHERRY_HANGING_SIGN = registerItem("cherry_hanging_sign", new HangingSignItem(MysticBlocks.CHERRY_HANGING_SIGN, MysticBlocks.CHERRY_WALL_HANGING_SIGN, (new Item.Settings()).maxCount(16)));
+    public static final Item CHERRY_BOAT = registerItem("cherry_boat", new MysticBoatItem(false, MysticBoat.Type.CHERRY, (new Item.Settings()).maxCount(1)));
+    public static final Item CHERRY_CHEST_BOAT = registerItem("cherry_chest_boat", new MysticBoatItem(true, MysticBoat.Type.CHERRY, (new Item.Settings()).maxCount(1)));
 
-    public static final RegistryObject<Item> STRAWBERRY = ITEMS.register("strawberry", () -> new ItemNameBlockItem(MysticBlocks.STRAWBERRY_BUSH.get(), (new Item.Properties().food(new FoodProperties.Builder().nutrition(2).fast().build()))));
-    public static final RegistryObject<Item> SWEET_STRAWBERRY = ITEMS.register("sweet_strawberry", () -> new ItemNameBlockItem(MysticBlocks.STRAWBERRY_BUSH.get(), (new Item.Properties().food((new FoodProperties.Builder()).nutrition(4).saturationMod(1.2F).effect(() -> new MobEffectInstance(MobEffects.REGENERATION, 100, 1), 1.0F).build()))));
-    public static final RegistryObject<Item> STRAWBERRY_CAKE = ITEMS.register("strawberry_cake", () -> new BlockItem(MysticBlocks.STRAWBERRY_CAKE.get(), (new Item.Properties()).stacksTo(1)));
-    public static final RegistryObject<Item> STRAWBERRY_MILK_BUCKET = ITEMS.register("strawberry_milk_bucket", () -> new MilkBucketItem((new Item.Properties()).craftRemainder(Items.BUCKET).stacksTo(1)));
-    public static final RegistryObject<Item> STRAWBERRY_ICE_CREAM = ITEMS.register("strawberry_ice_cream", () -> new BowlFoodItem(new Item.Properties().craftRemainder(Items.BUCKET).food((new FoodProperties.Builder()).nutrition(7).saturationMod(0.1F).build())));
-    public static final RegistryObject<Item> STRAWBERRY_COW_SPAWN_EGG = ITEMS.register("strawberry_cow_spawn_egg", () -> new ForgeSpawnEggItem(MysticEntities.STRAWBERRY_COW, 16642812, 16756181, new Item.Properties()));
+    public static final Item PEACH_SIGN = registerItem("peach_sign", new SignItem((new Item.Settings()).maxCount(16), MysticBlocks.PEACH_SIGN, MysticBlocks.PEACH_WALL_SIGN));
+    public static final Item PEACH_HANGING_SIGN = registerItem("peach_hanging_sign", new HangingSignItem(MysticBlocks.PEACH_HANGING_SIGN, MysticBlocks.PEACH_WALL_HANGING_SIGN, (new Item.Settings()).maxCount(16)));
+    public static final Item PEACH_BOAT = registerItem("peach_boat", new MysticBoatItem(false, MysticBoat.Type.PEACH, (new Item.Settings()).maxCount(1)));
+    public static final Item PEACH_CHEST_BOAT = registerItem("peach_chest_boat", new MysticBoatItem(true, MysticBoat.Type.PEACH, (new Item.Settings()).maxCount(1)));
 
-    // bamboo blossom forest
-    public static final RegistryObject<Item> PINK_CHERRY_BLOSSOMS = ITEMS.register("pink_cherry_blossoms", () -> new MysticBlockItem(MysticBlocks.PINK_CHERRY_BLOSSOMS));
-    public static final RegistryObject<Item> PINK_CHERRY_BLOSSOM_SAPLING = ITEMS.register("pink_cherry_blossom_sapling", () -> new MysticBlockItem(MysticBlocks.PINK_CHERRY_BLOSSOM_SAPLING));
-    public static final RegistryObject<Item> WHITE_CHERRY_BLOSSOMS = ITEMS.register("white_cherry_blossoms", () -> new MysticBlockItem(MysticBlocks.WHITE_CHERRY_BLOSSOMS));
-    public static final RegistryObject<Item> WHITE_CHERRY_BLOSSOM_SAPLING = ITEMS.register("white_cherry_blossom_sapling", () -> new MysticBlockItem(MysticBlocks.WHITE_CHERRY_BLOSSOM_SAPLING));
+    public static final Item MAPLE_SIGN = registerItem("maple_sign", new SignItem((new Item.Settings()).maxCount(16), MysticBlocks.MAPLE_SIGN, MysticBlocks.MAPLE_WALL_SIGN));
+    public static final Item MAPLE_HANGING_SIGN = registerItem("maple_hanging_sign", new HangingSignItem(MysticBlocks.MAPLE_HANGING_SIGN, MysticBlocks.MAPLE_WALL_HANGING_SIGN, (new Item.Settings()).maxCount(16)));
+    public static final Item MAPLE_BOAT = registerItem("maple_boat", new MysticBoatItem(false, MysticBoat.Type.MAPLE, (new Item.Settings()).maxCount(1)));
+    public static final Item MAPLE_CHEST_BOAT = registerItem("maple_chest_boat", new MysticBoatItem(true, MysticBoat.Type.MAPLE, (new Item.Settings()).maxCount(1)));
 
-    public static final RegistryObject<Item> CHERRY_LOG = ITEMS.register("cherry_log", () -> new MysticBlockItem(MysticBlocks.CHERRY_LOG));
-    public static final RegistryObject<Item> STRIPPED_CHERRY_LOG = ITEMS.register("stripped_cherry_log", () -> new MysticBlockItem(MysticBlocks.STRIPPED_CHERRY_LOG));
-    public static final RegistryObject<Item> CHERRY_WOOD = ITEMS.register("cherry_wood", () -> new MysticBlockItem(MysticBlocks.CHERRY_WOOD));
-    public static final RegistryObject<Item> STRIPPED_CHERRY_WOOD = ITEMS.register("stripped_cherry_wood", () -> new MysticBlockItem(MysticBlocks.STRIPPED_CHERRY_WOOD));
-    public static final RegistryObject<Item> CHERRY_PLANKS = ITEMS.register("cherry_planks", () -> new MysticBlockItem(MysticBlocks.CHERRY_PLANKS));
-    public static final RegistryObject<Item> CHERRY_STAIRS = ITEMS.register("cherry_stairs", () -> new MysticBlockItem(MysticBlocks.CHERRY_STAIRS));
-    public static final RegistryObject<Item> CHERRY_SLAB = ITEMS.register("cherry_slab", () -> new MysticBlockItem(MysticBlocks.CHERRY_SLAB));
-    public static final RegistryObject<Item> CHERRY_FENCE = ITEMS.register("cherry_fence", () -> new MysticBlockItem(MysticBlocks.CHERRY_FENCE));
-    public static final RegistryObject<Item> CHERRY_FENCE_GATE = ITEMS.register("cherry_fence_gate", () -> new MysticBlockItem(MysticBlocks.CHERRY_FENCE_GATE));
-    public static final RegistryObject<Item> CHERRY_BUTTON = ITEMS.register("cherry_button", () -> new MysticBlockItem(MysticBlocks.CHERRY_BUTTON));
-    public static final RegistryObject<Item> CHERRY_PRESSURE_PLATE = ITEMS.register("cherry_pressure_plate", () -> new MysticBlockItem(MysticBlocks.CHERRY_PRESSURE_PLATE));
-    public static final RegistryObject<Item> CHERRY_TRAPDOOR = ITEMS.register("cherry_trapdoor", () -> new MysticBlockItem(MysticBlocks.CHERRY_TRAPDOOR));
-    public static final RegistryObject<Item> CHERRY_DOOR = ITEMS.register("cherry_door", () -> new MysticBlockItem(MysticBlocks.CHERRY_DOOR));
-    public static final RegistryObject<Item> CHERRY_SIGN = ITEMS.register("cherry_sign", () -> new SignItem((new Item.Properties()).stacksTo(16), MysticBlocks.CHERRY_SIGN.get(), MysticBlocks.CHERRY_WALL_SIGN.get()));
-    public static final RegistryObject<Item> CHERRY_HANGING_SIGN = ITEMS.register("cherry_hanging_sign", () -> new HangingSignItem(MysticBlocks.CHERRY_HANGING_SIGN.get(), MysticBlocks.CHERRY_WALL_HANGING_SIGN.get(), (new Item.Properties()).stacksTo(16)));
-    public static final RegistryObject<Item> CHERRY_BOAT = ITEMS.register("cherry_boat", () -> new MysticBoatItem(false, MysticBoat.Type.CHERRY, (new Item.Properties()).stacksTo(1)));
-    public static final RegistryObject<Item> CHERRY_CHEST_BOAT = ITEMS.register("cherry_chest_boat", () -> new MysticBoatItem(true, MysticBoat.Type.CHERRY, (new Item.Properties()).stacksTo(1)));
+    public static final Item SEA_FOAM_SIGN = registerItem("sea_foam_sign", new SignItem((new Item.Settings()).maxCount(16), MysticBlocks.SEA_FOAM_SIGN, MysticBlocks.SEA_FOAM_WALL_SIGN));
+    public static final Item SEA_FOAM_HANGING_SIGN = registerItem("sea_foam_hanging_sign", new HangingSignItem(MysticBlocks.SEA_FOAM_HANGING_SIGN, MysticBlocks.SEA_FOAM_WALL_HANGING_SIGN, (new Item.Settings()).maxCount(16)));
+    public static final Item SEA_FOAM_BOAT = registerItem("sea_foam_boat", new MysticBoatItem(false, MysticBoat.Type.SEA_FOAM, (new Item.Settings()).maxCount(1)));
+    public static final Item SEA_FOAM_CHEST_BOAT = registerItem("sea_foam_chest_boat", new MysticBoatItem(true, MysticBoat.Type.SEA_FOAM, (new Item.Settings()).maxCount(1)));
 
-    public static final RegistryObject<Item> BUDDING_PEONY_LEAVES = ITEMS.register("budding_peony_leaves", () -> new MysticBlockItem(MysticBlocks.BUDDING_PEONY_LEAVES));
-    public static final RegistryObject<Item> PEONY_LEAVES = ITEMS.register("peony_leaves", () -> new MysticBlockItem(MysticBlocks.PEONY_LEAVES));
-    public static final RegistryObject<Item> PEONY_BUSH = ITEMS.register("peony_bush", () -> new MysticBlockItem(MysticBlocks.PEONY_BUSH));
+    public static final Item TROPICAL_SIGN = registerItem("tropical_sign", new SignItem((new Item.Settings()).maxCount(16), MysticBlocks.TROPICAL_SIGN, MysticBlocks.TROPICAL_WALL_SIGN));
+    public static final Item TROPICAL_HANGING_SIGN = registerItem("tropical_hanging_sign", new HangingSignItem(MysticBlocks.TROPICAL_HANGING_SIGN, MysticBlocks.TROPICAL_WALL_HANGING_SIGN, (new Item.Settings()).maxCount(16)));
+    public static final Item TROPICAL_BOAT = registerItem("tropical_boat", new MysticBoatItem(false, MysticBoat.Type.TROPICAL, (new Item.Settings()).maxCount(1)));
+    public static final Item TROPICAL_CHEST_BOAT = registerItem("tropical_chest_boat", new MysticBoatItem(true, MysticBoat.Type.TROPICAL, (new Item.Settings()).maxCount(1)));
 
-    public static final RegistryObject<Item> SPRING_BAMBOO = ITEMS.register("spring_bamboo", () -> new MysticBlockItem(MysticBlocks.SPRING_BAMBOO));
+    public static final Item JACARANDA_SIGN = registerItem("jacaranda_sign", new SignItem((new Item.Settings()).maxCount(16), MysticBlocks.JACARANDA_SIGN, MysticBlocks.JACARANDA_WALL_SIGN));
+    public static final Item JACARANDA_HANGING_SIGN = registerItem("jacaranda_hanging_sign", new HangingSignItem(MysticBlocks.JACARANDA_HANGING_SIGN, MysticBlocks.JACARANDA_WALL_HANGING_SIGN, (new Item.Settings()).maxCount(16)));
+    public static final Item JACARANDA_BOAT = registerItem("jacaranda_boat", new MysticBoatItem(false, MysticBoat.Type.JACARANDA, (new Item.Settings()).maxCount(1)));
+    public static final Item JACARANDA_CHEST_BOAT = registerItem("jacaranda_chest_boat", new MysticBoatItem(true, MysticBoat.Type.JACARANDA, (new Item.Settings()).maxCount(1)));
 
-    public static final RegistryObject<Item> RED_PANDA_SPAWN_EGG = ITEMS.register("red_panda_spawn_egg", () -> new ForgeSpawnEggItem(MysticEntities.RED_PANDA, 16752225, 12933923, new Item.Properties()));
+    public static final Item SPRING_BAMBOO = registerItem("spring_bamboo", new AliasedBlockItem(MysticBlocks.SPRING_BAMBOO, new Item.Settings()));
 
-    // lush oasis
-    public static final RegistryObject<Item> LUSH_SAND = ITEMS.register("lush_sand", () -> new MysticBlockItem(MysticBlocks.LUSH_SAND));
-    public static final RegistryObject<Item> LUSH_SANDSTONE = ITEMS.register("lush_sandstone", () -> new MysticBlockItem(MysticBlocks.LUSH_SANDSTONE));
-    public static final RegistryObject<Item> LUSH_SANDSTONE_STAIRS = ITEMS.register("lush_sandstone_stairs", () -> new MysticBlockItem(MysticBlocks.LUSH_SANDSTONE_STAIRS));
-    public static final RegistryObject<Item> LUSH_SANDSTONE_SLAB = ITEMS.register("lush_sandstone_slab", () -> new MysticBlockItem(MysticBlocks.LUSH_SANDSTONE_SLAB));
-    public static final RegistryObject<Item> LUSH_SANDSTONE_WALL = ITEMS.register("lush_sandstone_wall", () -> new MysticBlockItem(MysticBlocks.LUSH_SANDSTONE_WALL));
-    public static final RegistryObject<Item> CHISELED_LUSH_SANDSTONE = ITEMS.register("chiseled_lush_sandstone", () -> new MysticBlockItem(MysticBlocks.CHISELED_LUSH_SANDSTONE));
-    public static final RegistryObject<Item> CUT_LUSH_SANDSTONE = ITEMS.register("cut_lush_sandstone", () -> new MysticBlockItem(MysticBlocks.CUT_LUSH_SANDSTONE));
-    public static final RegistryObject<Item> CUT_LUSH_SANDSTONE_SLAB = ITEMS.register("cut_lush_sandstone_slab", () -> new MysticBlockItem(MysticBlocks.CUT_LUSH_SANDSTONE_SLAB));
-    public static final RegistryObject<Item> SMOOTH_LUSH_SANDSTONE = ITEMS.register("smooth_lush_sandstone", () -> new MysticBlockItem(MysticBlocks.SMOOTH_LUSH_SANDSTONE));
-    public static final RegistryObject<Item> SMOOTH_LUSH_SANDSTONE_STAIRS = ITEMS.register("smooth_lush_sandstone_stairs", () -> new MysticBlockItem(MysticBlocks.SMOOTH_LUSH_SANDSTONE_STAIRS));
-    public static final RegistryObject<Item> SMOOTH_LUSH_SANDSTONE_SLAB = ITEMS.register("smooth_lush_sandstone_slab", () -> new MysticBlockItem(MysticBlocks.SMOOTH_LUSH_SANDSTONE_SLAB));
+    public static final Item GLASS_JAR = registerItem("glass_jar", new AliasedBlockItem(MysticBlocks.GLASS_JAR, new Item.Settings().maxCount(16)));
+    public static final Item ORANGE_BUTTERFLY_IN_JAR = registerItem("orange_butterfly_in_jar", new ButterflyJarItem(Butterfly.Type.TANGERINE));
+    public static final Item BLUE_BUTTERFLY_IN_JAR = registerItem("blue_butterfly_in_jar", new ButterflyJarItem(Butterfly.Type.JELLY));
+    public static final Item CYAN_BUTTERFLY_IN_JAR = registerItem("cyan_butterfly_in_jar", new ButterflyJarItem(Butterfly.Type.JULY));
+    public static final Item LILAC_BUTTERFLY_IN_JAR = registerItem("lilac_butterfly_in_jar", new ButterflyJarItem(Butterfly.Type.CANDY));
+    public static final Item PINK_BUTTERFLY_IN_JAR = registerItem("pink_butterfly_in_jar", new ButterflyJarItem(Butterfly.Type.VALENTINE));
+    public static final Item PURPLE_BUTTERFLY_IN_JAR = registerItem("purple_butterfly_in_jar", new ButterflyJarItem(Butterfly.Type.MYSTIC));
 
-    public static final RegistryObject<Item> PINK_LUSH_SAND = ITEMS.register("pink_lush_sand", () -> new MysticBlockItem(MysticBlocks.PINK_LUSH_SAND));
-    public static final RegistryObject<Item> PINK_LUSH_SANDSTONE = ITEMS.register("pink_lush_sandstone", () -> new MysticBlockItem(MysticBlocks.PINK_LUSH_SANDSTONE));
-    public static final RegistryObject<Item> PINK_LUSH_SANDSTONE_STAIRS = ITEMS.register("pink_lush_sandstone_stairs", () -> new MysticBlockItem(MysticBlocks.PINK_LUSH_SANDSTONE_STAIRS));
-    public static final RegistryObject<Item> PINK_LUSH_SANDSTONE_SLAB = ITEMS.register("pink_lush_sandstone_slab", () -> new MysticBlockItem(MysticBlocks.PINK_LUSH_SANDSTONE_SLAB));
-    public static final RegistryObject<Item> PINK_LUSH_SANDSTONE_WALL = ITEMS.register("pink_lush_sandstone_wall", () -> new MysticBlockItem(MysticBlocks.PINK_LUSH_SANDSTONE_WALL));
-    public static final RegistryObject<Item> CHISELED_PINK_LUSH_SANDSTONE = ITEMS.register("chiseled_pink_lush_sandstone", () -> new MysticBlockItem(MysticBlocks.CHISELED_PINK_LUSH_SANDSTONE));
-    public static final RegistryObject<Item> CUT_PINK_LUSH_SANDSTONE = ITEMS.register("cut_pink_lush_sandstone", () -> new MysticBlockItem(MysticBlocks.CUT_PINK_LUSH_SANDSTONE));
-    public static final RegistryObject<Item> CUT_PINK_LUSH_SANDSTONE_SLAB = ITEMS.register("cut_pink_lush_sandstone_slab", () -> new MysticBlockItem(MysticBlocks.CUT_PINK_LUSH_SANDSTONE_SLAB));
-    public static final RegistryObject<Item> SMOOTH_PINK_LUSH_SANDSTONE = ITEMS.register("smooth_pink_lush_sandstone", () -> new MysticBlockItem(MysticBlocks.SMOOTH_PINK_LUSH_SANDSTONE));
-    public static final RegistryObject<Item> SMOOTH_PINK_LUSH_SANDSTONE_STAIRS = ITEMS.register("smooth_pink_lush_sandstone_stairs", () -> new MysticBlockItem(MysticBlocks.SMOOTH_PINK_LUSH_SANDSTONE_STAIRS));
-    public static final RegistryObject<Item> SMOOTH_PINK_LUSH_SANDSTONE_SLAB = ITEMS.register("smooth_pink_lush_sandstone_slab", () -> new MysticBlockItem(MysticBlocks.SMOOTH_PINK_LUSH_SANDSTONE_SLAB));
+    public static final Item STRAWBERRY = registerItem("strawberry", new AliasedBlockItem(MysticBlocks.STRAWBERRY_BUSH, new Item.Settings().food(new FoodComponent.Builder().hunger(2).snack().build())));
+    public static final Item SWEET_STRAWBERRY = registerItem("sweet_strawberry", new AliasedBlockItem(MysticBlocks.STRAWBERRY_BUSH, new Item.Settings().food((new FoodComponent.Builder()).hunger(4).saturationModifier(1.2F).statusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 200, 1), 1.0F).build())));
+    public static final Item CHERRIES = registerItem("cherries", new AliasedBlockItem(MysticBlocks.CHERRY_PLANT, new Item.Settings().food(new FoodComponent.Builder().hunger(4).snack().build())));
+    public static final Item PEACH = registerItem("peach", new AliasedBlockItem(MysticBlocks.PEACH_PLANT, new Item.Settings().food(new FoodComponent.Builder().hunger(4).snack().build())));
+    public static final Item VANILLA_BEANS = registerItem("vanilla_beans", new AliasedBlockItem(MysticBlocks.VANILLA_ORCHID, new Item.Settings()));
 
-    public static final RegistryObject<Item> CITRUS_LEAVES = ITEMS.register("citrus_leaves", () -> new MysticBlockItem(MysticBlocks.CITRUS_LEAVES));
-    public static final RegistryObject<Item> CITRUS_SAPLING = ITEMS.register("citrus_sapling", () -> new MysticBlockItem(MysticBlocks.CITRUS_SAPLING));
+    public static final Item STRAWBERRY_JAM = registerItem("strawberry_jam", new JamItem());
+    public static final Item CHERRY_JAM = registerItem("cherry_jam", new JamItem());
+    public static final Item PEACH_JAM = registerItem("peach_jam", new JamItem());
 
-    public static final RegistryObject<Item> CITRUS_LOG = ITEMS.register("citrus_log", () -> new MysticBlockItem(MysticBlocks.CITRUS_LOG));
-    public static final RegistryObject<Item> STRIPPED_CITRUS_LOG = ITEMS.register("stripped_citrus_log", () -> new MysticBlockItem(MysticBlocks.STRIPPED_CITRUS_LOG));
-    public static final RegistryObject<Item> CITRUS_WOOD = ITEMS.register("citrus_wood", () -> new MysticBlockItem(MysticBlocks.CITRUS_WOOD));
-    public static final RegistryObject<Item> STRIPPED_CITRUS_WOOD = ITEMS.register("stripped_citrus_wood", () -> new MysticBlockItem(MysticBlocks.STRIPPED_CITRUS_WOOD));
-    public static final RegistryObject<Item> CITRUS_PLANKS = ITEMS.register("citrus_planks", () -> new MysticBlockItem(MysticBlocks.CITRUS_PLANKS));
-    public static final RegistryObject<Item> CITRUS_STAIRS = ITEMS.register("citrus_stairs", () -> new MysticBlockItem(MysticBlocks.CITRUS_STAIRS));
-    public static final RegistryObject<Item> CITRUS_SLAB = ITEMS.register("citrus_slab", () -> new MysticBlockItem(MysticBlocks.CITRUS_SLAB));
-    public static final RegistryObject<Item> CITRUS_FENCE = ITEMS.register("citrus_fence", () -> new MysticBlockItem(MysticBlocks.CITRUS_FENCE));
-    public static final RegistryObject<Item> CITRUS_FENCE_GATE = ITEMS.register("citrus_fence_gate", () -> new MysticBlockItem(MysticBlocks.CITRUS_FENCE_GATE));
-    public static final RegistryObject<Item> CITRUS_BUTTON = ITEMS.register("citrus_button", () -> new MysticBlockItem(MysticBlocks.CITRUS_BUTTON));
-    public static final RegistryObject<Item> CITRUS_PRESSURE_PLATE = ITEMS.register("citrus_pressure_plate", () -> new MysticBlockItem(MysticBlocks.CITRUS_PRESSURE_PLATE));
-    public static final RegistryObject<Item> CITRUS_TRAPDOOR = ITEMS.register("citrus_trapdoor", () -> new MysticBlockItem(MysticBlocks.CITRUS_TRAPDOOR));
-    public static final RegistryObject<Item> CITRUS_DOOR = ITEMS.register("citrus_door", () -> new MysticBlockItem(MysticBlocks.CITRUS_DOOR));
-    public static final RegistryObject<Item> CITRUS_SIGN = ITEMS.register("citrus_sign", () -> new SignItem((new Item.Properties()).stacksTo(16), MysticBlocks.CITRUS_SIGN.get(), MysticBlocks.CITRUS_WALL_SIGN.get()));
-    public static final RegistryObject<Item> CITRUS_HANGING_SIGN = ITEMS.register("citrus_hanging_sign", () -> new HangingSignItem(MysticBlocks.CITRUS_HANGING_SIGN.get(), MysticBlocks.CITRUS_WALL_HANGING_SIGN.get(), (new Item.Properties()).stacksTo(16)));
-    public static final RegistryObject<Item> CITRUS_BOAT = ITEMS.register("citrus_boat", () -> new MysticBoatItem(false, MysticBoat.Type.CITRUS, (new Item.Properties()).stacksTo(1)));
-    public static final RegistryObject<Item> CITRUS_CHEST_BOAT = ITEMS.register("citrus_chest_boat", () -> new MysticBoatItem(true, MysticBoat.Type.CITRUS, (new Item.Properties()).stacksTo(1)));
+    public static final Item STRAWBERRY_MILK_BUCKET = registerItem("strawberry_milk_bucket", new MilkBucketItem((new Item.Settings()).recipeRemainder(Items.BUCKET).maxCount(1)));
+    public static final Item VANILLA_MILK_BUCKET = registerItem("vanilla_milk_bucket", new MilkBucketItem((new Item.Settings()).recipeRemainder(Items.BUCKET).maxCount(1)));
+    public static final Item CHOCOLATE_MILK_BUCKET = registerItem("chocolate_milk_bucket", new MilkBucketItem((new Item.Settings()).recipeRemainder(Items.BUCKET).maxCount(1)));
 
-    public static final RegistryObject<Item> DESERT_GRASS = ITEMS.register("desert_grass", () -> new MysticBlockItem(MysticBlocks.DESERT_GRASS));
-    public static final RegistryObject<Item> PRICKLY_PEAR = ITEMS.register("prickly_pear", () -> new MysticBlockItem(MysticBlocks.PRICKLY_PEAR));
-    public static final RegistryObject<Item> WILDFLOWER = ITEMS.register("wildflower", () -> new MysticBlockItem(MysticBlocks.WILDFLOWER));
+    public static final Item STRAWBERRY_CAKE = registerItem("strawberry_cake", new BlockItem(MysticBlocks.STRAWBERRY_CAKE, (new Item.Settings()).maxCount(1)));
+    public static final Item VANILLA_CAKE = registerItem("vanilla_cake", new BlockItem(MysticBlocks.VANILLA_CAKE, (new Item.Settings()).maxCount(1)));
+    public static final Item CHOCOLATE_CAKE = registerItem("chocolate_cake", new BlockItem(MysticBlocks.CHOCOLATE_CAKE, (new Item.Settings()).maxCount(1)));
+    public static final Item PINK_FROSTED_CAKE = registerItem("pink_frosted_cake", new BlockItem(MysticBlocks.PINK_FROSTED_CAKE, (new Item.Settings()).maxCount(1)));
+    public static final Item ORANGE_FROSTED_CAKE = registerItem("orange_frosted_cake", new BlockItem(MysticBlocks.ORANGE_FROSTED_CAKE, (new Item.Settings()).maxCount(1)));
+    public static final Item YELLOW_FROSTED_CAKE = registerItem("yellow_frosted_cake", new BlockItem(MysticBlocks.YELLOW_FROSTED_CAKE, (new Item.Settings()).maxCount(1)));
+    public static final Item LIME_FROSTED_CAKE = registerItem("lime_frosted_cake", new BlockItem(MysticBlocks.LIME_FROSTED_CAKE, (new Item.Settings()).maxCount(1)));
+    public static final Item CYAN_FROSTED_CAKE = registerItem("cyan_frosted_cake", new BlockItem(MysticBlocks.CYAN_FROSTED_CAKE, (new Item.Settings()).maxCount(1)));
+    public static final Item PURPLE_FROSTED_CAKE = registerItem("purple_frosted_cake", new BlockItem(MysticBlocks.PURPLE_FROSTED_CAKE, (new Item.Settings()).maxCount(1)));
+    public static final Item CHERRY_PIE = registerItem("cherry_pie", new BlockItem(MysticBlocks.CHERRY_PIE, (new Item.Settings()).maxCount(1)));
+    public static final Item PEACH_PIE = registerItem("peach_pie", new BlockItem(MysticBlocks.PEACH_PIE, (new Item.Settings()).maxCount(1)));
 
-    // autumnal grove
-    public static final RegistryObject<Item> MAPLE_LEAVES = ITEMS.register("maple_leaves", () -> new MysticBlockItem(MysticBlocks.MAPLE_LEAVES));
-    public static final RegistryObject<Item> MAPLE_LEAF_PILE = ITEMS.register("maple_leaf_pile", () -> new MysticBlockItem(MysticBlocks.MAPLE_LEAF_PILE));
-    public static final RegistryObject<Item> MAPLE_SAPLING = ITEMS.register("maple_sapling", () -> new MysticBlockItem(MysticBlocks.MAPLE_SAPLING));
-    public static final RegistryObject<Item> ORANGE_MAPLE_LEAVES = ITEMS.register("orange_maple_leaves", () -> new MysticBlockItem(MysticBlocks.ORANGE_MAPLE_LEAVES));
-    public static final RegistryObject<Item> ORANGE_MAPLE_LEAF_PILE = ITEMS.register("orange_maple_leaf_pile", () -> new MysticBlockItem(MysticBlocks.ORANGE_MAPLE_LEAF_PILE));
-    public static final RegistryObject<Item> ORANGE_MAPLE_SAPLING = ITEMS.register("orange_maple_sapling", () -> new MysticBlockItem(MysticBlocks.ORANGE_MAPLE_SAPLING));
-    public static final RegistryObject<Item> YELLOW_MAPLE_LEAVES = ITEMS.register("yellow_maple_leaves", () -> new MysticBlockItem(MysticBlocks.YELLOW_MAPLE_LEAVES));
-    public static final RegistryObject<Item> YELLOW_MAPLE_LEAF_PILE = ITEMS.register("yellow_maple_leaf_pile", () -> new MysticBlockItem(MysticBlocks.YELLOW_MAPLE_LEAF_PILE));
-    public static final RegistryObject<Item> YELLOW_MAPLE_SAPLING = ITEMS.register("yellow_maple_sapling", () -> new MysticBlockItem(MysticBlocks.YELLOW_MAPLE_SAPLING));
+    public static final Item PINK_EGG = registerItem("pink_egg", new MysticEggItem(new Item.Settings().maxCount(16)));
+    public static final Item ORANGE_EGG = registerItem("orange_egg", new MysticEggItem(new Item.Settings().maxCount(16)));
+    public static final Item YELLOW_EGG = registerItem("yellow_egg", new MysticEggItem(new Item.Settings().maxCount(16)));
+    public static final Item LIME_EGG = registerItem("lime_egg", new MysticEggItem(new Item.Settings().maxCount(16)));
+    public static final Item CYAN_EGG = registerItem("cyan_egg", new MysticEggItem(new Item.Settings().maxCount(16)));
+    public static final Item PURPLE_EGG = registerItem("purple_egg", new MysticEggItem(new Item.Settings().maxCount(16)));
 
-    public static final RegistryObject<Item> MAPLE_LOG = ITEMS.register("maple_log", () -> new MysticBlockItem(MysticBlocks.MAPLE_LOG));
-    public static final RegistryObject<Item> WHITE_MAPLE_LOG = ITEMS.register("white_maple_log", () -> new MysticBlockItem(MysticBlocks.WHITE_MAPLE_LOG));
-    public static final RegistryObject<Item> STRIPPED_MAPLE_LOG = ITEMS.register("stripped_maple_log", () -> new MysticBlockItem(MysticBlocks.STRIPPED_MAPLE_LOG));
-    public static final RegistryObject<Item> MAPLE_WOOD = ITEMS.register("maple_wood", () -> new MysticBlockItem(MysticBlocks.MAPLE_WOOD));
-    public static final RegistryObject<Item> WHITE_MAPLE_WOOD = ITEMS.register("white_maple_wood", () -> new MysticBlockItem(MysticBlocks.WHITE_MAPLE_WOOD));
-    public static final RegistryObject<Item> STRIPPED_MAPLE_WOOD = ITEMS.register("stripped_maple_wood", () -> new MysticBlockItem(MysticBlocks.STRIPPED_MAPLE_WOOD));
-    public static final RegistryObject<Item> MAPLE_PLANKS = ITEMS.register("maple_planks", () -> new MysticBlockItem(MysticBlocks.MAPLE_PLANKS));
-    public static final RegistryObject<Item> MAPLE_STAIRS = ITEMS.register("maple_stairs", () -> new MysticBlockItem(MysticBlocks.MAPLE_STAIRS));
-    public static final RegistryObject<Item> MAPLE_SLAB = ITEMS.register("maple_slab", () -> new MysticBlockItem(MysticBlocks.MAPLE_SLAB));
-    public static final RegistryObject<Item> MAPLE_FENCE = ITEMS.register("maple_fence", () -> new MysticBlockItem(MysticBlocks.MAPLE_FENCE));
-    public static final RegistryObject<Item> MAPLE_FENCE_GATE = ITEMS.register("maple_fence_gate", () -> new MysticBlockItem(MysticBlocks.MAPLE_FENCE_GATE));
-    public static final RegistryObject<Item> MAPLE_BUTTON = ITEMS.register("maple_button", () -> new MysticBlockItem(MysticBlocks.MAPLE_BUTTON));
-    public static final RegistryObject<Item> MAPLE_PRESSURE_PLATE = ITEMS.register("maple_pressure_plate", () -> new MysticBlockItem(MysticBlocks.MAPLE_PRESSURE_PLATE));
-    public static final RegistryObject<Item> MAPLE_TRAPDOOR = ITEMS.register("maple_trapdoor", () -> new MysticBlockItem(MysticBlocks.MAPLE_TRAPDOOR));
-    public static final RegistryObject<Item> MAPLE_DOOR = ITEMS.register("maple_door", () -> new MysticBlockItem(MysticBlocks.MAPLE_DOOR));
-    public static final RegistryObject<Item> MAPLE_SIGN = ITEMS.register("maple_sign", () -> new SignItem((new Item.Properties()).stacksTo(16), MysticBlocks.MAPLE_SIGN.get(), MysticBlocks.MAPLE_WALL_SIGN.get()));
-    public static final RegistryObject<Item> MAPLE_HANGING_SIGN = ITEMS.register("maple_hanging_sign", () -> new HangingSignItem(MysticBlocks.MAPLE_HANGING_SIGN.get(), MysticBlocks.MAPLE_WALL_HANGING_SIGN.get(), (new Item.Properties()).stacksTo(16)));
-    public static final RegistryObject<Item> MAPLE_BOAT = ITEMS.register("maple_boat", () -> new MysticBoatItem(false, MysticBoat.Type.MAPLE, (new Item.Properties()).stacksTo(1)));
-    public static final RegistryObject<Item> MAPLE_CHEST_BOAT = ITEMS.register("maple_chest_boat", () -> new MysticBoatItem(true, MysticBoat.Type.MAPLE, (new Item.Properties()).stacksTo(1)));
+    public static final Item STRAWBERRY_COW_SPAWN_EGG = registerItem("strawberry_cow_spawn_egg", new SpawnEggItem(MysticEntities.STRAWBERRY_COW, 16642812, 16756181, new Item.Settings()));
+    public static final Item VANILLA_COW_SPAWN_EGG = registerItem("vanilla_cow_spawn_egg", new SpawnEggItem(MysticEntities.VANILLA_COW, 16775929, 15781816, new Item.Settings()));
+    public static final Item CHOCOLATE_COW_SPAWN_EGG = registerItem("chocolate_cow_spawn_egg", new SpawnEggItem(MysticEntities.CHOCOLATE_COW, 11697754, 7950915, new Item.Settings()));
+    public static final Item RAINBOW_CHICKEN_SPAWN_EGG = registerItem("rainbow_chicken_spawn_egg", new SpawnEggItem(MysticEntities.RAINBOW_CHICKEN, 7666652, 16577636, new Item.Settings()));
+    public static final Item RED_PANDA_SPAWN_EGG = registerItem("red_panda_spawn_egg", new SpawnEggItem(MysticEntities.RED_PANDA, 16760947, 13795386, new Item.Settings()));
+    public static final Item SEA_OTTER_SPAWN_EGG = registerItem("sea_otter_spawn_egg", new SpawnEggItem(MysticEntities.SEA_OTTER, 5191718, 10980193, new Item.Settings()));
+    public static final Item BUTTERFLY_SPAWN_EGG = registerItem("butterfly_spawn_egg", new SpawnEggItem(MysticEntities.BUTTERFLY, 2710099, 3857605, new Item.Settings()));
 
-    // lavender meadow
-    public static final RegistryObject<Item> JACARANDA_BLOSSOMS = ITEMS.register("jacaranda_blossoms", () -> new MysticBlockItem(MysticBlocks.JACARANDA_BLOSSOMS));
-    public static final RegistryObject<Item> JACARANDA_LEAVES = ITEMS.register("jacaranda_leaves", () -> new MysticBlockItem(MysticBlocks.JACARANDA_LEAVES));
-    public static final RegistryObject<Item> JACARANDA_SAPLING = ITEMS.register("jacaranda_sapling", () -> new MysticBlockItem(MysticBlocks.JACARANDA_SAPLING));
+    private static Item registerItem(String name, Item item) {
+        return Registry.register(Registries.ITEM, MysticsBiomes.modLoc(name), item);
+    }
 
-    public static final RegistryObject<Item> JACARANDA_LOG = ITEMS.register("jacaranda_log", () -> new MysticBlockItem(MysticBlocks.JACARANDA_LOG));
-    public static final RegistryObject<Item> STRIPPED_JACARANDA_LOG = ITEMS.register("stripped_jacaranda_log", () -> new MysticBlockItem(MysticBlocks.STRIPPED_JACARANDA_LOG));
-    public static final RegistryObject<Item> JACARANDA_WOOD = ITEMS.register("jacaranda_wood", () -> new MysticBlockItem(MysticBlocks.JACARANDA_WOOD));
-    public static final RegistryObject<Item> STRIPPED_JACARANDA_WOOD = ITEMS.register("stripped_jacaranda_wood", () -> new MysticBlockItem(MysticBlocks.STRIPPED_JACARANDA_WOOD));
-    public static final RegistryObject<Item> JACARANDA_PLANKS = ITEMS.register("jacaranda_planks", () -> new MysticBlockItem(MysticBlocks.JACARANDA_PLANKS));
-    public static final RegistryObject<Item> JACARANDA_STAIRS = ITEMS.register("jacaranda_stairs", () -> new MysticBlockItem(MysticBlocks.JACARANDA_STAIRS));
-    public static final RegistryObject<Item> JACARANDA_SLAB = ITEMS.register("jacaranda_slab", () -> new MysticBlockItem(MysticBlocks.JACARANDA_SLAB));
-    public static final RegistryObject<Item> JACARANDA_FENCE = ITEMS.register("jacaranda_fence", () -> new MysticBlockItem(MysticBlocks.JACARANDA_FENCE));
-    public static final RegistryObject<Item> JACARANDA_FENCE_GATE = ITEMS.register("jacaranda_fence_gate", () -> new MysticBlockItem(MysticBlocks.JACARANDA_FENCE_GATE));
-    public static final RegistryObject<Item> JACARANDA_BUTTON = ITEMS.register("jacaranda_button", () -> new MysticBlockItem(MysticBlocks.JACARANDA_BUTTON));
-    public static final RegistryObject<Item> JACARANDA_PRESSURE_PLATE = ITEMS.register("jacaranda_pressure_plate", () -> new MysticBlockItem(MysticBlocks.JACARANDA_PRESSURE_PLATE));
-    public static final RegistryObject<Item> JACARANDA_TRAPDOOR = ITEMS.register("jacaranda_trapdoor", () -> new MysticBlockItem(MysticBlocks.JACARANDA_TRAPDOOR));
-    public static final RegistryObject<Item> JACARANDA_DOOR = ITEMS.register("jacaranda_door", () -> new MysticBlockItem(MysticBlocks.JACARANDA_DOOR));
-    public static final RegistryObject<Item> JACARANDA_SIGN = ITEMS.register("jacaranda_sign", () -> new SignItem((new Item.Properties()).stacksTo(16), MysticBlocks.JACARANDA_SIGN.get(), MysticBlocks.JACARANDA_WALL_SIGN.get()));
-    public static final RegistryObject<Item> JACARANDA_HANGING_SIGN = ITEMS.register("jacaranda_hanging_sign", () -> new HangingSignItem(MysticBlocks.JACARANDA_HANGING_SIGN.get(), MysticBlocks.JACARANDA_WALL_HANGING_SIGN.get(), (new Item.Properties()).stacksTo(16)));
-    public static final RegistryObject<Item> JACARANDA_BOAT = ITEMS.register("jacaranda_boat", () -> new MysticBoatItem(false, MysticBoat.Type.JACARANDA, (new Item.Properties()).stacksTo(1)));
-    public static final RegistryObject<Item> JACARANDA_CHEST_BOAT = ITEMS.register("jacaranda_chest_boat", () -> new MysticBoatItem(true, MysticBoat.Type.JACARANDA, (new Item.Properties()).stacksTo(1)));
+    private static void addItems(FabricItemGroupEntries entries) {
+        entries.add(STRAWBERRY_SIGN);
+        entries.add(STRAWBERRY_HANGING_SIGN);
+        entries.add(STRAWBERRY_BOAT);
+        entries.add(STRAWBERRY_CHEST_BOAT);
+        entries.add(CHERRY_SIGN);
+        entries.add(CHERRY_HANGING_SIGN);
+        entries.add(CHERRY_BOAT);
+        entries.add(CHERRY_CHEST_BOAT);
+        entries.add(PEACH_SIGN);
+        entries.add(PEACH_HANGING_SIGN);
+        entries.add(PEACH_BOAT);
+        entries.add(PEACH_CHEST_BOAT);
+        entries.add(MAPLE_SIGN);
+        entries.add(MAPLE_HANGING_SIGN);
+        entries.add(MAPLE_BOAT);
+        entries.add(MAPLE_CHEST_BOAT);
+        entries.add(SEA_FOAM_SIGN);
+        entries.add(SEA_FOAM_HANGING_SIGN);
+        entries.add(SEA_FOAM_BOAT);
+        entries.add(SEA_FOAM_CHEST_BOAT);
+        entries.add(TROPICAL_SIGN);
+        entries.add(TROPICAL_HANGING_SIGN);
+        entries.add(TROPICAL_BOAT);
+        entries.add(TROPICAL_CHEST_BOAT);
+        entries.add(JACARANDA_SIGN);
+        entries.add(JACARANDA_HANGING_SIGN);
+        entries.add(JACARANDA_BOAT);
+        entries.add(JACARANDA_CHEST_BOAT);
+        entries.add(SPRING_BAMBOO);
+        entries.add(GLASS_JAR);
+        entries.add(ORANGE_BUTTERFLY_IN_JAR);
+        entries.add(BLUE_BUTTERFLY_IN_JAR);
+        entries.add(CYAN_BUTTERFLY_IN_JAR);
+        entries.add(LILAC_BUTTERFLY_IN_JAR);
+        entries.add(PINK_BUTTERFLY_IN_JAR);
+        entries.add(PURPLE_BUTTERFLY_IN_JAR);
+        entries.add(STRAWBERRY);
+        entries.add(SWEET_STRAWBERRY);
+        entries.add(CHERRIES);
+        entries.add(PEACH);
+        entries.add(VANILLA_BEANS);
+        entries.add(STRAWBERRY_JAM);
+        entries.add(CHERRY_JAM);
+        entries.add(PEACH_JAM);
+        entries.add(STRAWBERRY_MILK_BUCKET);
+        entries.add(VANILLA_MILK_BUCKET);
+        entries.add(CHOCOLATE_MILK_BUCKET);
+        entries.add(STRAWBERRY_CAKE);
+        entries.add(VANILLA_CAKE);
+        entries.add(CHOCOLATE_CAKE);
+        entries.add(PINK_FROSTED_CAKE);
+        entries.add(ORANGE_FROSTED_CAKE);
+        entries.add(YELLOW_FROSTED_CAKE);
+        entries.add(LIME_FROSTED_CAKE);
+        entries.add(CYAN_FROSTED_CAKE);
+        entries.add(PURPLE_FROSTED_CAKE);
+        entries.add(CHERRY_PIE);
+        entries.add(PEACH_PIE);
+        entries.add(PINK_EGG);
+        entries.add(ORANGE_EGG);
+        entries.add(YELLOW_EGG);
+        entries.add(LIME_EGG);
+        entries.add(CYAN_EGG);
+        entries.add(PURPLE_EGG);
+        entries.add(STRAWBERRY_COW_SPAWN_EGG);
+        entries.add(VANILLA_COW_SPAWN_EGG);
+        entries.add(CHOCOLATE_COW_SPAWN_EGG);
+        entries.add(RAINBOW_CHICKEN_SPAWN_EGG);
+        entries.add(RED_PANDA_SPAWN_EGG);
+        entries.add(SEA_OTTER_SPAWN_EGG);
+        entries.add(BUTTERFLY_SPAWN_EGG);
+    }
 
-    public static final RegistryObject<Item> LAVENDER = ITEMS.register("lavender", () -> new MysticBlockItem(MysticBlocks.LAVENDER));
-
-    public static final RegistryObject<Item> BUTTERFLY_NEST = ITEMS.register("butterfly_nest", () -> new MysticBlockItem(MysticBlocks.BUTTERFLY_NEST));
-    public static final RegistryObject<Item> GLASS_JAR = ITEMS.register("glass_jar", () -> new GlassJarItem(null));
-    public static final RegistryObject<Item> ORANGE_BUTTERFLY_IN_JAR = ITEMS.register("orange_butterfly_in_jar", () -> new GlassJarItem(Butterfly.Type.TANGERINE));
-    public static final RegistryObject<Item> BLUE_BUTTERFLY_IN_JAR = ITEMS.register("blue_butterfly_in_jar", () -> new GlassJarItem(Butterfly.Type.JELLY));
-    public static final RegistryObject<Item> CYAN_BUTTERFLY_IN_JAR = ITEMS.register("cyan_butterfly_in_jar", () -> new GlassJarItem(Butterfly.Type.JULY));
-    public static final RegistryObject<Item> LILAC_BUTTERFLY_IN_JAR = ITEMS.register("lilac_butterfly_in_jar", () -> new GlassJarItem(Butterfly.Type.CANDY));
-    public static final RegistryObject<Item> PINK_BUTTERFLY_IN_JAR = ITEMS.register("pink_butterfly_in_jar", () -> new GlassJarItem(Butterfly.Type.VALENTINE));
-    public static final RegistryObject<Item> PURPLE_BUTTERFLY_IN_JAR = ITEMS.register("purple_butterfly_in_jar", () -> new GlassJarItem(Butterfly.Type.MYSTIC));
-    public static final RegistryObject<Item> BUTTERFLY_SPAWN_EGG = ITEMS.register("butterfly_spawn_egg", () -> new ForgeSpawnEggItem(MysticEntities.BUTTERFLY, 1656127, 3857605, new Item.Properties()));
-
-    // chickens
-    public static final RegistryObject<Item> PINK_FROSTED_CAKE = ITEMS.register("pink_frosted_cake", () -> new BlockItem(MysticBlocks.PINK_FROSTED_CAKE.get(), (new Item.Properties()).stacksTo(1)));
-    public static final RegistryObject<Item> ORANGE_FROSTED_CAKE = ITEMS.register("orange_frosted_cake", () -> new BlockItem(MysticBlocks.ORANGE_FROSTED_CAKE.get(), (new Item.Properties()).stacksTo(1)));
-    public static final RegistryObject<Item> YELLOW_FROSTED_CAKE = ITEMS.register("yellow_frosted_cake", () -> new BlockItem(MysticBlocks.YELLOW_FROSTED_CAKE.get(), (new Item.Properties()).stacksTo(1)));
-    public static final RegistryObject<Item> LIME_FROSTED_CAKE = ITEMS.register("lime_frosted_cake", () -> new BlockItem(MysticBlocks.LIME_FROSTED_CAKE.get(), (new Item.Properties()).stacksTo(1)));
-    public static final RegistryObject<Item> CYAN_FROSTED_CAKE = ITEMS.register("cyan_frosted_cake", () -> new BlockItem(MysticBlocks.CYAN_FROSTED_CAKE.get(), (new Item.Properties()).stacksTo(1)));
-    public static final RegistryObject<Item> PURPLE_FROSTED_CAKE = ITEMS.register("purple_frosted_cake", () -> new BlockItem(MysticBlocks.PURPLE_FROSTED_CAKE.get(), (new Item.Properties()).stacksTo(1)));
-
-    public static final RegistryObject<Item> PINK_EGG = ITEMS.register("pink_egg", () -> new MysticEggItem(new Item.Properties().stacksTo(16)));
-    public static final RegistryObject<Item> ORANGE_EGG = ITEMS.register("orange_egg", () -> new MysticEggItem(new Item.Properties().stacksTo(16)));
-    public static final RegistryObject<Item> YELLOW_EGG = ITEMS.register("yellow_egg", () -> new MysticEggItem(new Item.Properties().stacksTo(16)));
-    public static final RegistryObject<Item> LIME_EGG = ITEMS.register("lime_egg", () -> new MysticEggItem(new Item.Properties().stacksTo(16)));
-    public static final RegistryObject<Item> CYAN_EGG = ITEMS.register("cyan_egg", () -> new MysticEggItem(new Item.Properties().stacksTo(16)));
-    public static final RegistryObject<Item> PURPLE_EGG = ITEMS.register("purple_egg", () -> new MysticEggItem(new Item.Properties().stacksTo(16)));
-    public static final RegistryObject<Item> RAINBOW_CHICKEN_SPAWN_EGG = ITEMS.register("rainbow_chicken_spawn_egg", () -> new ForgeSpawnEggItem(MysticEntities.RAINBOW_CHICKEN, 9891273, 15386466, new Item.Properties()));
+    public static void registerItems() {
+        MysticsBiomes.LOGGER.info("mystic's biomes ~ registering items");
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register(MysticItems::addItems);
+    }
 
 }

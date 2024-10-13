@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "bark",
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "mysticsbiomes:tropical_log"
+    }
+  },
+  "result": {
+    "item": "mysticsbiomes:tropical_wood",
+    "count": 3
+  }
+}

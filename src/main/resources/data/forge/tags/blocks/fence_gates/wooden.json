@@ -3,8 +3,10 @@
   "values": [
     "mysticsbiomes:strawberry_fence",
     "mysticsbiomes:cherry_fence",
-    "mysticsbiomes:jacaranda_fence",
+    "mysticsbiomes:peach_fence",
     "mysticsbiomes:maple_fence",
-    "mysticsbiomes:citrus_fence"
+    "mysticsbiomes:sea_foam_fence",
+    "mysticsbiomes:tropical_fence",
+    "mysticsbiomes:jacaranda_fence"
   ]
 }

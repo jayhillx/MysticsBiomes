@@ -1,38 +1,39 @@
 package com.mysticsbiomes.client.entity.renderer;
 
-import com.google.common.collect.Maps;
 import com.mysticsbiomes.MysticsBiomes;
 import com.mysticsbiomes.client.entity.model.ButterflyModel;
 import com.mysticsbiomes.client.entity.model.layer.MysticModelLayers;
 import com.mysticsbiomes.common.entity.animal.Butterfly;
-import net.minecraft.Util;
-import net.minecraft.client.renderer.entity.EntityRendererProvider;
-import net.minecraft.client.renderer.entity.MobRenderer;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
+import net.minecraft.client.render.entity.EntityRendererFactory;
+import net.minecraft.client.render.entity.MobEntityRenderer;
+import net.minecraft.util.Identifier;
+import net.minecraft.util.Util;
 
+import java.util.HashMap;
 import java.util.Map;
 
-@OnlyIn(Dist.CLIENT)
-public class ButterflyRenderer extends MobRenderer<Butterfly, ButterflyModel<Butterfly>> {
-    private static final Map<Integer, Map<Integer, ResourceLocation>> TEXTURES = Util.make(Maps.newHashMap(), (map) -> {
+@Environment(EnvType.CLIENT)
+public class ButterflyRenderer extends MobEntityRenderer<Butterfly, ButterflyModel<Butterfly>> {
+    private static final Map<Integer, Map<Integer, Identifier>> TEXTURES = Util.make(new HashMap<>(), (map) -> {
         for (Butterfly.Type type : Butterfly.Type.values()) {
-            map.put(type.getId(), variant(type.getSerializedName()));
+            map.put(type.getId(), variant(type.asString()));
         }
     });
 
-    public ButterflyRenderer(EntityRendererProvider.Context context) {
-        super(context, new ButterflyModel<>(context.bakeLayer(MysticModelLayers.BUTTERFLY)), 0.4F);
+    public ButterflyRenderer(EntityRendererFactory.Context context) {
+        super(context, new ButterflyModel<>(context.getPart(MysticModelLayers.BUTTERFLY)), 0.4F);
     }
 
-    public ResourceLocation getTextureLocation(Butterfly butterfly) {
-        Map<Integer, ResourceLocation> texture = TEXTURES.get(butterfly.getVariant().getId());
+    @Override
+    public Identifier getTexture(Butterfly butterfly) {
+        Map<Integer, Identifier> texture = TEXTURES.get(butterfly.getVariant().getId());
         return butterfly.hasVisibleNectar() ? texture.get(2) : texture.get(1);
     }
 
-    public static Map<Integer, ResourceLocation> variant(String type) {
-        Map<Integer, ResourceLocation> map = Maps.newHashMap();
+    public static Map<Integer, Identifier> variant(String type) {
+        Map<Integer, Identifier> map = new HashMap<>();
         map.put(1, MysticsBiomes.modLoc("textures/entity/butterfly/" + type + ".png"));
         map.put(2, MysticsBiomes.modLoc("textures/entity/butterfly/" + type + "_nectar.png"));
         return map;

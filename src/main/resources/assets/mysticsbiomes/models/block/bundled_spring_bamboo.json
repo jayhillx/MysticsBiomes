@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "mysticsbiomes:block/bundled_spring_bamboo_top",
+    "side": "mysticsbiomes:block/bundled_spring_bamboo_side"
+  }
+}

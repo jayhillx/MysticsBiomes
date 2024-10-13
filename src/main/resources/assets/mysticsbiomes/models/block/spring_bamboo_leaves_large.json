@@ -1,0 +1,46 @@
+{
+	"ambientocclusion": false,
+	"render_type": "minecraft:cutout",
+	"textures": {
+		"texture": "mysticsbiomes:block/spring_bamboo_leaves",
+		"particle": "mysticsbiomes:block/spring_bamboo_leaves"
+	},
+	"elements": [
+		{
+			"from": [ 8, 0, -2.5 ],
+			"to": [ 8, 16, 6.5 ],
+			"shade": false,
+			"faces": {
+				"east": { "uv": [ 9, 0, 0, 16 ], "texture": "#texture", "tintindex": 0 },
+				"west": { "uv": [ 0, 0, 9, 16 ], "texture": "#texture", "tintindex": 0 }
+			}
+		},
+		{
+			"from": [ 8, 0, 9.5 ],
+			"to": [ 8, 16, 18.5 ],
+			"shade": false,
+			"faces": {
+				"east": { "uv": [ 16, 0, 7, 16 ], "texture": "#texture", "tintindex": 0 },
+				"west": { "uv": [ 7, 0, 16, 16 ], "texture": "#texture", "tintindex": 0 }
+			}
+		},
+		{
+			"from": [ 9.5, 0, 8 ],
+			"to": [ 18.5, 16, 8 ],
+			"shade": false,
+			"faces": {
+				"north": { "uv": [ 0, 0, 9, 16 ], "texture": "#texture", "tintindex": 0 },
+				"south": { "uv": [ 9, 0, 0, 16 ], "texture": "#texture", "tintindex": 0 }
+			}
+		},
+		{
+			"from": [ -2.5, 0, 8 ],
+			"to": [ 6.5, 16, 8 ],
+			"shade": false,
+			"faces": {
+				"north": { "uv": [ 7, 0, 16, 16 ], "texture": "#texture", "tintindex": 0 },
+				"south": { "uv": [ 16, 0, 7, 16 ], "texture": "#texture", "tintindex": 0 }
+			}
+		}
+	]
+}

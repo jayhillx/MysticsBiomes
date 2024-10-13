@@ -1,0 +1,8 @@
+accessWidener v1 named
+
+extendable method net/minecraft/world/gen/feature/TreeFeature generate (Lnet/minecraft/world/gen/feature/util/FeatureContext;)Z
+
+# Boats
+accessible field net/minecraft/entity/vehicle/BoatEntity BOAT_TYPE Lnet/minecraft/entity/data/TrackedData;
+accessible field net/minecraft/entity/vehicle/BoatEntity fallVelocity D
+accessible field net/minecraft/entity/vehicle/BoatEntity location Lnet/minecraft/entity/vehicle/BoatEntity$Location;

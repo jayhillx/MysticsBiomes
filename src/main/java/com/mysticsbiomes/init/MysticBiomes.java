@@ -4,45 +4,50 @@ import com.mysticsbiomes.MysticsBiomes;
 import com.mysticsbiomes.common.biome.MysticBiomeProvider;
 import com.mysticsbiomes.common.biome.OverworldBiomes;
 import com.mysticsbiomes.common.world.MysticSurfaceRules;
-import net.minecraft.core.HolderGetter;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.data.worldgen.BootstapContext;
-import net.minecraft.resources.ResourceKey;
-import net.minecraft.world.level.biome.Biome;
-import net.minecraft.world.level.levelgen.carver.ConfiguredWorldCarver;
-import net.minecraft.world.level.levelgen.placement.PlacedFeature;
+import net.minecraft.registry.*;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.gen.carver.ConfiguredCarver;
+import net.minecraft.world.gen.feature.PlacedFeature;
 import terrablender.api.Regions;
 import terrablender.api.SurfaceRuleManager;
 
 public class MysticBiomes {
 
-    public static final ResourceKey<Biome> STRAWBERRY_FIELDS = createKey("strawberry_fields");
-    public static final ResourceKey<Biome> LAVENDER_MEADOW = createKey("lavender_meadow");
-    public static final ResourceKey<Biome> BAMBOO_BLOSSOM_FOREST = createKey("bamboo_blossom_forest");
-    public static final ResourceKey<Biome> AUTUMNAL_GROVE = createKey("autumnal_grove");
-    public static final ResourceKey<Biome> LUSH_OASIS = createKey("lush_oasis");
+    public static final RegistryKey<Biome> STRAWBERRY_FIELDS = registerBiome("strawberry_fields");
+    public static final RegistryKey<Biome> LAVENDER_MEADOW = registerBiome("lavender_meadow");
+    public static final RegistryKey<Biome> BAMBOO_BLOSSOM_FOREST = registerBiome("bamboo_blossom_forest");
+    public static final RegistryKey<Biome> AUTUMNAL_GROVE = registerBiome("autumnal_grove");
+    public static final RegistryKey<Biome> LUSH_OASIS = registerBiome("lush_oasis");
+    public static final RegistryKey<Biome> LAGOON = registerBiome("lagoon");
+    public static final RegistryKey<Biome> TROPICS = registerBiome("tropics");
+
+    private static RegistryKey<Biome> registerBiome(String name) {
+        return RegistryKey.of(RegistryKeys.BIOME, MysticsBiomes.modLoc(name));
+    }
 
     public static void registerRegionProvider() {
-        Regions.register(new MysticBiomeProvider(MysticConfig.COMMON.biomeRegionWeight.get()));
+        Regions.register(new MysticBiomeProvider(6));
     }
 
     public static void registerSurfaceRules() {
         SurfaceRuleManager.addSurfaceRules(SurfaceRuleManager.RuleCategory.OVERWORLD, MysticsBiomes.modId, MysticSurfaceRules.overworld());
     }
 
-    public static void bootstrap(BootstapContext<Biome> context) {
-        HolderGetter<ConfiguredWorldCarver<?>> carver = context.lookup(Registries.CONFIGURED_CARVER);
-        HolderGetter<PlacedFeature> placedFeature = context.lookup(Registries.PLACED_FEATURE);
+    public static void registerBiomes() {
 
-        context.register(STRAWBERRY_FIELDS, OverworldBiomes.strawberryFields(placedFeature, carver));
-        context.register(LAVENDER_MEADOW, OverworldBiomes.lavenderMeadow(placedFeature, carver));
-        context.register(BAMBOO_BLOSSOM_FOREST, OverworldBiomes.bambooBlossomForest(placedFeature, carver));
-        context.register(AUTUMNAL_GROVE, OverworldBiomes.autumnalGrove(placedFeature, carver));
-        context.register(LUSH_OASIS, OverworldBiomes.lushOasis(placedFeature, carver));
     }
 
-    private static ResourceKey<Biome> createKey(String name) {
-        return ResourceKey.create(Registries.BIOME, MysticsBiomes.modLoc(name));
+    public static void bootstrap(Registerable<Biome> context) {
+        RegistryEntryLookup<ConfiguredCarver<?>> carver = context.getRegistryLookup(RegistryKeys.CONFIGURED_CARVER);
+        RegistryEntryLookup<PlacedFeature> placed = context.getRegistryLookup(RegistryKeys.PLACED_FEATURE);
+
+        context.register(STRAWBERRY_FIELDS, OverworldBiomes.strawberryFields(placed, carver));
+        context.register(LAVENDER_MEADOW, OverworldBiomes.lavenderMeadow(placed, carver));
+        context.register(BAMBOO_BLOSSOM_FOREST, OverworldBiomes.bambooBlossomForest(placed, carver));
+        context.register(AUTUMNAL_GROVE, OverworldBiomes.autumnalGrove(placed, carver));
+        context.register(LUSH_OASIS, OverworldBiomes.lushOasis(placed, carver));
+        context.register(LAGOON, OverworldBiomes.lagoon(placed, carver));
+        context.register(TROPICS, OverworldBiomes.tropics(placed, carver));
     }
 
 }

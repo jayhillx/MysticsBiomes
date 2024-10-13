@@ -1,0 +1,36 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "mysticsbiomes:block/grassy_lush_sand", "weight": 1
+      },
+      {
+        "model": "mysticsbiomes:block/grassy_lush_sand_variant", "weight": 1
+      },
+      {
+        "model": "mysticsbiomes:block/grassy_lush_sand", "weight": 1,
+        "y": 90
+      },
+      {
+        "model": "mysticsbiomes:block/grassy_lush_sand_variant", "weight": 1,
+        "y": 90
+      },
+      {
+        "model": "mysticsbiomes:block/grassy_lush_sand", "weight": 1,
+        "y": 180
+      },
+      {
+        "model": "mysticsbiomes:block/grassy_lush_sand_variant", "weight": 1,
+        "y": 180
+      },
+      {
+        "model": "mysticsbiomes:block/grassy_lush_sand", "weight": 1,
+        "y": 270
+      },
+      {
+        "model": "mysticsbiomes:block/grassy_lush_sand_variant", "weight": 1,
+        "y": 270
+      }
+    ]
+  }
+}

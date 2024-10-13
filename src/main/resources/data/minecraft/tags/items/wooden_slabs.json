@@ -3,8 +3,10 @@
   "values": [
     "mysticsbiomes:strawberry_slab",
     "mysticsbiomes:cherry_slab",
-    "mysticsbiomes:jacaranda_slab",
+    "mysticsbiomes:peach_slab",
     "mysticsbiomes:maple_slab",
-    "mysticsbiomes:citrus_slab"
+    "mysticsbiomes:sea_foam_slab",
+    "mysticsbiomes:tropical_slab",
+    "mysticsbiomes:jacaranda_slab"
   ]
 }

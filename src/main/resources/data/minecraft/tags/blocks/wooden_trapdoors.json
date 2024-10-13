@@ -3,8 +3,10 @@
   "values": [
     "mysticsbiomes:strawberry_trapdoor",
     "mysticsbiomes:cherry_trapdoor",
-    "mysticsbiomes:jacaranda_trapdoor",
+    "mysticsbiomes:peach_trapdoor",
     "mysticsbiomes:maple_trapdoor",
-    "mysticsbiomes:citrus_trapdoor"
+    "mysticsbiomes:sea_foam_trapdoor",
+    "mysticsbiomes:tropical_trapdoor",
+    "mysticsbiomes:jacaranda_trapdoor"
   ]
 }

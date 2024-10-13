@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "mysticsbiomes:block/bundled_spring_bamboo_x"
+    },
+    "axis=y": {
+      "model": "mysticsbiomes:block/bundled_spring_bamboo_y"
+    },
+    "axis=z": {
+      "model": "mysticsbiomes:block/bundled_spring_bamboo_z"
+    }
+  }
+}

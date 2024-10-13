@@ -1,6 +1,8 @@
 {
   "replace": false,
   "values": [
-    "mysticsbiomes:strawberry"
+    "mysticsbiomes:strawberry",
+    "mysticsbiomes:peach",
+    "mysticsbiomes:vanilla_beans"
   ]
 }

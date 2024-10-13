@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "mysticsbiomes:spring_bamboo"
+    }
+  },
+  "result": {
+    "item": "mysticsbiomes:bundled_spring_bamboo"
+  }
+}

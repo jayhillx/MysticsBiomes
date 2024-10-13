@@ -1,0 +1,19 @@
+{
+	"parent": "block/block",
+	"render_type": "minecraft:cutout",
+	"textures": {
+		"front": "mysticsbiomes:block/vanilla_orchid_bottom_flowering",
+		"back": "mysticsbiomes:block/vanilla_orchid_bottom",
+		"particle": "mysticsbiomes:block/vanilla_orchid_bottom_flowering"
+	},
+	"elements": [
+		{
+			"from": [0, 0, 1],
+			"to": [16, 16, 1],
+			"faces": {
+				"north": {"uv": [16, 0, 0, 16], "texture": "#back"},
+				"south": {"uv": [0, 0, 16, 16], "texture": "#front"}
+			}
+		}
+	]
+}

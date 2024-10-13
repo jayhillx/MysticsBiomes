@@ -1,14 +1,20 @@
 package com.mysticsbiomes.common.block.state;
 
 import com.mysticsbiomes.MysticsBiomes;
-import net.minecraft.world.level.block.state.properties.BlockSetType;
+import net.minecraft.block.BlockSetType;
 
 public class MysticBlockSetTypes {
 
-    public static final BlockSetType STRAWBERRY = BlockSetType.register(new BlockSetType(MysticsBiomes.modId + ":strawberry"));
-    public static final BlockSetType CHERRY = BlockSetType.register(new BlockSetType(MysticsBiomes.modId + ":cherry"));
-    public static final BlockSetType CITRUS = BlockSetType.register(new BlockSetType(MysticsBiomes.modId + ":citrus"));
-    public static final BlockSetType MAPLE = BlockSetType.register(new BlockSetType(MysticsBiomes.modId + ":maple"));
-    public static final BlockSetType JACARANDA = BlockSetType.register(new BlockSetType(MysticsBiomes.modId + ":jacaranda"));
+    public static final BlockSetType STRAWBERRY = register("strawberry");
+    public static final BlockSetType CHERRY = register("cherry");
+    public static final BlockSetType PEACH = register("peach");
+    public static final BlockSetType MAPLE = register("maple");
+    public static final BlockSetType SEA_FOAM = register("sea_foam");
+    public static final BlockSetType TROPICAL = register("tropical");
+    public static final BlockSetType JACARANDA = register("jacaranda");
+
+    private static BlockSetType register(String name) {
+        return new BlockSetType(MysticsBiomes.modId + ":" + name);
+    }
 
 }

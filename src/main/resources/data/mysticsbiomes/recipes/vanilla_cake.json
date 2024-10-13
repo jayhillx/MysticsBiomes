@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "MMM",
+    "SEV",
+    "WWW"
+  ],
+  "key": {
+    "M": {
+      "item": "mysticsbiomes:vanilla_milk_bucket"
+    },
+    "S": {
+      "item": "minecraft:sugar"
+    },
+    "W": {
+      "item": "minecraft:wheat"
+    },
+    "E": {
+      "item": "minecraft:egg"
+    },
+    "V": {
+      "item": "mysticsbiomes:vanilla_beans"
+    }
+  },
+  "result": {
+    "item": "mysticsbiomes:vanilla_cake"
+  }
+}

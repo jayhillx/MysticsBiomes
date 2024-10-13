@@ -1,39 +1,50 @@
 package com.mysticsbiomes.init;
 
 import com.mysticsbiomes.MysticsBiomes;
+import com.mysticsbiomes.client.particle.AcornParticle;
 import com.mysticsbiomes.client.particle.FallingLeafParticle;
 import com.mysticsbiomes.client.particle.LeafPileParticle;
-import net.minecraft.core.particles.ParticleType;
-import net.minecraft.core.particles.SimpleParticleType;
-import net.minecraft.core.registries.Registries;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.event.RegisterParticleProvidersEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.RegistryObject;
+import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
+import net.minecraft.particle.DefaultParticleType;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
 
-@Mod.EventBusSubscriber(modid = MysticsBiomes.modId, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class MysticParticles {
-    public static final DeferredRegister<ParticleType<?>> PARTICLES = DeferredRegister.create(Registries.PARTICLE_TYPE, MysticsBiomes.modId);
 
-    public static final RegistryObject<SimpleParticleType> FALLING_JACARANDA = PARTICLES.register("falling_jacaranda", () -> new SimpleParticleType(false));
-    public static final RegistryObject<SimpleParticleType> FALLING_MAPLE = PARTICLES.register("maple_leaf", () -> new SimpleParticleType(false));
-    public static final RegistryObject<SimpleParticleType> FALLING_ORANGE_MAPLE = PARTICLES.register("orange_maple_leaf", () -> new SimpleParticleType(false));
-    public static final RegistryObject<SimpleParticleType> FALLING_YELLOW_MAPLE = PARTICLES.register("yellow_maple_leaf", () -> new SimpleParticleType(false));
-    public static final RegistryObject<SimpleParticleType> LEAF_PILE_MAPLE = PARTICLES.register("maple_leaf_pile", () -> new SimpleParticleType(false));
-    public static final RegistryObject<SimpleParticleType> LEAF_PILE_ORANGE_MAPLE = PARTICLES.register("orange_maple_leaf_pile", () -> new SimpleParticleType(false));
-    public static final RegistryObject<SimpleParticleType> LEAF_PILE_YELLOW_MAPLE = PARTICLES.register("yellow_maple_leaf_pile", () -> new SimpleParticleType(false));
+    public static final DefaultParticleType JACARANDA_BLOSSOM = registerParticle("jacaranda_blossom");
+    public static final DefaultParticleType PINK_CHERRY_BLOSSOM = registerParticle("pink_cherry_blossom");
+    public static final DefaultParticleType WHITE_CHERRY_BLOSSOM = registerParticle("white_cherry_blossom");
+    public static final DefaultParticleType MAPLE_LEAF = registerParticle("maple_leaf");
+    public static final DefaultParticleType MAPLE_LEAF_PILE = registerParticle("maple_leaf_pile");
+    public static final DefaultParticleType ORANGE_MAPLE_LEAF = registerParticle("orange_maple_leaf");
+    public static final DefaultParticleType ORANGE_MAPLE_LEAF_PILE = registerParticle("orange_maple_leaf_pile");
+    public static final DefaultParticleType YELLOW_MAPLE_LEAF = registerParticle("yellow_maple_leaf");
+    public static final DefaultParticleType YELLOW_MAPLE_LEAF_PILE = registerParticle("yellow_maple_leaf_pile");
+    public static final DefaultParticleType ACORN = registerParticle("acorn");
 
-    @SubscribeEvent
-    public static void registerParticles(RegisterParticleProvidersEvent event) {
-        event.registerSpriteSet(FALLING_JACARANDA.get(), FallingLeafParticle.Provider::new);
-        event.registerSpriteSet(FALLING_MAPLE.get(), FallingLeafParticle.Provider::new);
-        event.registerSpriteSet(FALLING_ORANGE_MAPLE.get(), FallingLeafParticle.Provider::new);
-        event.registerSpriteSet(FALLING_YELLOW_MAPLE.get(), FallingLeafParticle.Provider::new);
-        event.registerSpriteSet(LEAF_PILE_MAPLE.get(), LeafPileParticle.Provider::new);
-        event.registerSpriteSet(LEAF_PILE_ORANGE_MAPLE.get(), LeafPileParticle.Provider::new);
-        event.registerSpriteSet(LEAF_PILE_YELLOW_MAPLE.get(), LeafPileParticle.Provider::new);
+    private static DefaultParticleType registerParticle(String name) {
+        return Registry.register(Registries.PARTICLE_TYPE, name, new Default(false));
+    }
+    
+    public static void registerParticles() {
+        ParticleFactoryRegistry.getInstance().register(JACARANDA_BLOSSOM, FallingLeafParticle.Provider::new);
+        ParticleFactoryRegistry.getInstance().register(PINK_CHERRY_BLOSSOM, FallingLeafParticle.Provider::new);
+        ParticleFactoryRegistry.getInstance().register(WHITE_CHERRY_BLOSSOM, FallingLeafParticle.Provider::new);
+        ParticleFactoryRegistry.getInstance().register(MAPLE_LEAF, FallingLeafParticle.Provider::new);
+        ParticleFactoryRegistry.getInstance().register(MAPLE_LEAF_PILE, LeafPileParticle.Provider::new);
+        ParticleFactoryRegistry.getInstance().register(ORANGE_MAPLE_LEAF, FallingLeafParticle.Provider::new);
+        ParticleFactoryRegistry.getInstance().register(ORANGE_MAPLE_LEAF_PILE, LeafPileParticle.Provider::new);
+        ParticleFactoryRegistry.getInstance().register(YELLOW_MAPLE_LEAF, FallingLeafParticle.Provider::new);
+        ParticleFactoryRegistry.getInstance().register(YELLOW_MAPLE_LEAF_PILE, LeafPileParticle.Provider::new);
+        ParticleFactoryRegistry.getInstance().register(ACORN, AcornParticle.Provider::new);
+        MysticsBiomes.LOGGER.info("mystic's biomes ~ registering particles");
+    }
+
+    public static class Default extends DefaultParticleType {
+
+        public Default(boolean alwaysShow) {
+            super(alwaysShow);
+        }
     }
 
 }

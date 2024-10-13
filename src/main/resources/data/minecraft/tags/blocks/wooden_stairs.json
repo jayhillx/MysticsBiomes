@@ -3,8 +3,10 @@
   "values": [
     "mysticsbiomes:strawberry_stairs",
     "mysticsbiomes:cherry_stairs",
-    "mysticsbiomes:jacaranda_stairs",
+    "mysticsbiomes:peach_stairs",
     "mysticsbiomes:maple_stairs",
-    "mysticsbiomes:citrus_stairs"
+    "mysticsbiomes:sea_foam_stairs",
+    "mysticsbiomes:tropical_stairs",
+    "mysticsbiomes:jacaranda_stairs"
   ]
 }

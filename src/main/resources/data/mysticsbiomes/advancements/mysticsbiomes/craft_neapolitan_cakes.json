@@ -1,0 +1,46 @@
+{
+  "parent": "mysticsbiomes:mysticsbiomes/craft_rainbow_cakes",
+  "criteria": {
+    "obtain_neapolitan_cakes": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mysticsbiomes:strawberry_cake"
+            ]
+          },
+          {
+            "items": [
+              "mysticsbiomes:vanilla_cake"
+            ]
+          },
+          {
+            "items": [
+              "mysticsbiomes:chocolate_cake"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "icon": {
+      "item": "mysticsbiomes:vanilla_cake"
+    },
+    "title": {
+      "translate": "advancements.mysticsbiomes.craft_neapolitan_cakes.title"
+    },
+    "description": {
+      "translate": "advancements.mysticsbiomes.craft_neapolitan_cakes.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true
+  },
+  "requirements": [
+    [
+      "obtain_neapolitan_cakes"
+    ]
+  ]
+}

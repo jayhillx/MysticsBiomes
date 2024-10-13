@@ -1,52 +1,57 @@
 package com.mysticsbiomes.client.particle;
 
-import net.minecraft.client.multiplayer.ClientLevel;
-import net.minecraft.client.particle.*;
-import net.minecraft.core.particles.SimpleParticleType;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
+import net.minecraft.client.particle.Particle;
+import net.minecraft.client.particle.ParticleFactory;
+import net.minecraft.client.particle.RainSplashParticle;
+import net.minecraft.client.particle.SpriteProvider;
+import net.minecraft.client.world.ClientWorld;
+import net.minecraft.particle.DefaultParticleType;
 
-@OnlyIn(Dist.CLIENT)
-public class LeafPileParticle extends WaterDropParticle {
+@Environment(EnvType.CLIENT)
+public class LeafPileParticle extends RainSplashParticle {
     private final float rotSpeed;
 
-    LeafPileParticle(ClientLevel level, double x, double y, double z, double xd, double yd, double zd) {
+    LeafPileParticle(ClientWorld level, double x, double y, double z, double xd, double yd, double zd) {
         super(level, x, y, z);
-        this.setSize(0.7F, 0.7F);
-        this.gravity = 0.025F;
-        this.lifetime = 90;
+        this.setBoundingBoxSpacing(0.7F, 0.7F);
+        this.gravityStrength = 0.025F;
+        this.maxAge = 90;
         this.rotSpeed = ((float) Math.random() - 0.5F) * 0.1F;
         if (yd == 0.0D && (xd != 0.0D || zd != 0.0D)) {
-            this.xd = xd;
-            this.yd = 0.1D;
-            this.zd = zd;
+            this.velocityX = xd;
+            this.velocityY = 0.1D;
+            this.velocityZ = zd;
         }
     }
 
+    @Override
     public void tick() {
         super.tick();
-        if (this.age++ >= this.lifetime) {
-            this.remove();
+        if (this.age++ >= this.maxAge) {
+            this.markDead();
         } else {
-            this.oRoll = this.roll;
-            this.roll += (float)Math.PI * this.rotSpeed * 2.0F;
+            this.prevAngle = this.angle;
+            this.angle += (float)Math.PI * this.rotSpeed * 2.0F;
             if (this.onGround) {
-                this.oRoll = this.roll = 0.0F;
+                this.prevAngle = this.angle = 0.0F;
             }
         }
     }
 
-    @OnlyIn(Dist.CLIENT)
-    public static class Provider implements ParticleProvider<SimpleParticleType> {
-        private final SpriteSet sprite;
+    @Environment(EnvType.CLIENT)
+    public static class Provider implements ParticleFactory<DefaultParticleType> {
+        private final SpriteProvider sprite;
 
-        public Provider(SpriteSet set) {
-            this.sprite = set;
+        public Provider(SpriteProvider spriteProvider) {
+            this.sprite = spriteProvider;
         }
 
-        public Particle createParticle(SimpleParticleType type, ClientLevel level, double x, double y, double z, double xd, double yd, double zd) {
-            LeafPileParticle particle = new LeafPileParticle(level, x, y, z, xd, yd, zd);
-            particle.pickSprite(this.sprite);
+        @Override
+        public Particle createParticle(DefaultParticleType type, ClientWorld world, double x, double y, double z, double velocityX, double velocityY, double velocityZ) {
+            LeafPileParticle particle = new LeafPileParticle(world, x, y, z, velocityX, velocityY, velocityZ);
+            particle.setSprite(this.sprite);
             return particle;
         }
     }

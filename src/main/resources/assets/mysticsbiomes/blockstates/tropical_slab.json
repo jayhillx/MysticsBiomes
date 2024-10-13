@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "mysticsbiomes:block/tropical_slab"
+    },
+    "type=double": {
+      "model": "mysticsbiomes:block/tropical_planks"
+    },
+    "type=top": {
+      "model": "mysticsbiomes:block/tropical_slab_top"
+    }
+  }
+}

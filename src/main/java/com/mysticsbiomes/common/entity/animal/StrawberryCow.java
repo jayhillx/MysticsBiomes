@@ -2,93 +2,165 @@ package com.mysticsbiomes.common.entity.animal;
 
 import com.mysticsbiomes.init.MysticEntities;
 import com.mysticsbiomes.init.MysticItems;
-import net.minecraft.core.BlockPos;
-import net.minecraft.server.level.ServerLevel;
-import net.minecraft.sounds.SoundEvent;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.entity.*;
-import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
-import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.ai.goal.*;
-import net.minecraft.world.entity.animal.Animal;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.ItemUtils;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.block.BlockState;
+import net.minecraft.entity.*;
+import net.minecraft.entity.ai.goal.*;
+import net.minecraft.entity.attribute.DefaultAttributeContainer;
+import net.minecraft.entity.attribute.EntityAttributes;
+import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.data.DataTracker;
+import net.minecraft.entity.data.TrackedData;
+import net.minecraft.entity.data.TrackedDataHandlerRegistry;
+import net.minecraft.entity.passive.AnimalEntity;
+import net.minecraft.entity.passive.PassiveEntity;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemUsage;
+import net.minecraft.item.Items;
+import net.minecraft.nbt.NbtCompound;
+import net.minecraft.recipe.Ingredient;
+import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundEvent;
+import net.minecraft.sound.SoundEvents;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.Hand;
+import net.minecraft.util.StringIdentifiable;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.LocalDifficulty;
+import net.minecraft.world.ServerWorldAccess;
+import net.minecraft.world.World;
 
-public class StrawberryCow extends Animal {
-
-    public StrawberryCow(EntityType<? extends StrawberryCow> entity, Level level) {
+public class StrawberryCow extends AnimalEntity {
+    private static final TrackedData<String> DATA_TYPE_ID = DataTracker.registerData(StrawberryCow.class, TrackedDataHandlerRegistry.STRING);
+    
+    public StrawberryCow(EntityType<? extends StrawberryCow> entity, World level) {
         super(entity, level);
     }
 
-    protected void registerGoals() {
-        this.goalSelector.addGoal(0, new FloatGoal(this));
-        this.goalSelector.addGoal(1, new PanicGoal(this, 2.0D));
-        this.goalSelector.addGoal(2, new BreedGoal(this, 1.0D));
-        this.goalSelector.addGoal(3, new TemptGoal(this, 1.25D, Ingredient.of(Items.WHEAT, MysticItems.STRAWBERRY.get(), MysticItems.SWEET_STRAWBERRY.get()), false));
-        this.goalSelector.addGoal(4, new FollowParentGoal(this, 1.25D));
-        this.goalSelector.addGoal(5, new WaterAvoidingRandomStrollGoal(this, 1.0D));
-        this.goalSelector.addGoal(6, new LookAtPlayerGoal(this, Player.class, 6.0F));
-        this.goalSelector.addGoal(7, new RandomLookAroundGoal(this));
-    }
-
-    public static AttributeSupplier.Builder createAttributes() {
-        return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 10.0D).add(Attributes.MOVEMENT_SPEED, 0.2F);
+    @Override
+    protected void initDataTracker() {
+        super.initDataTracker();
+        this.dataTracker.startTracking(DATA_TYPE_ID, Type.PINK.type);
     }
 
     @Override
-    public StrawberryCow getBreedOffspring(ServerLevel level, AgeableMob mob) {
-        return MysticEntities.STRAWBERRY_COW.get().create(level);
+    protected void initGoals() {
+        this.goalSelector.add(0, new SwimGoal(this));
+        this.goalSelector.add(1, new EscapeDangerGoal(this, 2.0D));
+        this.goalSelector.add(2, new AnimalMateGoal(this, 1.0D));
+        this.goalSelector.add(3, new TemptGoal(this, 1.25D, Ingredient.ofItems(Items.WHEAT, MysticItems.STRAWBERRY, MysticItems.SWEET_STRAWBERRY), false));
+        this.goalSelector.add(4, new FollowParentGoal(this, 1.25D));
+        this.goalSelector.add(5, new WanderAroundFarGoal(this, 1.0D));
+        this.goalSelector.add(6, new LookAtEntityGoal(this, PlayerEntity.class, 6.0F));
+        this.goalSelector.add(7, new LookAroundGoal(this));
     }
 
+    public static DefaultAttributeContainer.Builder createAttributes() {
+        return DefaultAttributeContainer.builder().add(EntityAttributes.GENERIC_MAX_HEALTH, 10.0D).add(EntityAttributes.GENERIC_MAX_HEALTH, 0.2F);
+    }
+
+    @Override
+    public void writeCustomDataToNbt(NbtCompound tag) {
+        super.writeCustomDataToNbt(tag);
+        tag.putString("Type", this.getVariant().asString());
+    }
+
+    @Override
+    public void readCustomDataFromNbt(NbtCompound tag) {
+        super.readCustomDataFromNbt(tag);
+        this.setVariant(Type.byType(tag.getString("Type")));
+    }
+
+    @Override
+    public EntityData initialize(ServerWorldAccess accessor, LocalDifficulty instance, SpawnReason type, EntityData data, NbtCompound tag) {
+        if (this.random.nextInt(3) == 0) {
+            this.setVariant(Type.WHITE);
+        } else {
+            this.setVariant(Type.PINK);
+        }
+        return super.initialize(accessor, instance, type, data, tag);
+    }
+
+    @Override
+    public StrawberryCow createChild(ServerWorld level, PassiveEntity mob) {
+        StrawberryCow strawberryCow = MysticEntities.STRAWBERRY_COW.create(level);
+        if (strawberryCow != null) {
+            strawberryCow.setVariant(this.random.nextBoolean() ? this.getVariant() : ((StrawberryCow)mob).getVariant());
+        }
+        return strawberryCow;
+    }
+
+    public Type getVariant() {
+        return Type.byType(this.dataTracker.get(DATA_TYPE_ID));
+    }
+    
+    public void setVariant(Type type) {
+        this.dataTracker.set(DATA_TYPE_ID, type.type);
+    }
+
+    @Override
     protected SoundEvent getAmbientSound() {
-        return SoundEvents.COW_AMBIENT;
+        return SoundEvents.ENTITY_COW_AMBIENT;
     }
 
+    @Override
     protected SoundEvent getHurtSound(DamageSource source) {
-        return SoundEvents.COW_HURT;
+        return SoundEvents.ENTITY_COW_HURT;
     }
 
+    @Override
     protected SoundEvent getDeathSound() {
-        return SoundEvents.COW_DEATH;
+        return SoundEvents.ENTITY_COW_DEATH;
     }
 
+    @Override
     protected void playStepSound(BlockPos pos, BlockState state) {
-        this.playSound(SoundEvents.COW_STEP, 0.15F, 1.0F);
+        this.playSound(SoundEvents.ENTITY_COW_STEP, 0.15F, 1.0F);
     }
 
+    @Override
     protected float getSoundVolume() {
         return 0.4F;
     }
 
-    protected float getStandingEyeHeight(Pose pose, EntityDimensions dimensions) {
+    @Override
+    protected float getActiveEyeHeight(EntityPose pose, EntityDimensions dimensions) {
         return this.isBaby() ? dimensions.height * 0.95F : 1.3F;
     }
 
     @Override
-    public InteractionResult mobInteract(Player player, InteractionHand hand) {
-        ItemStack stack = player.getItemInHand(hand);
+    public ActionResult interactMob(PlayerEntity player, Hand hand) {
+        ItemStack stack = player.getStackInHand(hand);
 
-        if (stack.is(Items.BUCKET) && !this.isBaby()) {
-            player.playSound(SoundEvents.COW_MILK, 1.0F, 1.0F);
+        if (stack.isOf(Items.BUCKET) && !this.isBaby()) {
+            player.playSound(SoundEvents.ENTITY_COW_MILK, 1.0F, 1.0F);
 
-            ItemStack stack1 = ItemUtils.createFilledResult(stack, player, MysticItems.STRAWBERRY_MILK_BUCKET.get().getDefaultInstance());
-            player.setItemInHand(hand, stack1);
-            return InteractionResult.sidedSuccess(this.level().isClientSide);
+            ItemStack stack1 = ItemUsage.exchangeStack(stack, player, MysticItems.STRAWBERRY_MILK_BUCKET.getDefaultStack());
+            player.setStackInHand(hand, stack1);
+            return ActionResult.success(this.getWorld().isClient);
         } else {
-            return super.mobInteract(player, hand);
+            return super.interactMob(player, hand);
         }
     }
+    
+    public enum Type implements StringIdentifiable {
+        PINK("pink"),
+        WHITE("white");
 
-    public boolean isFood(ItemStack stack) {
-        return stack.is(Items.WHEAT) || stack.is(MysticItems.STRAWBERRY.get()) || stack.is(MysticItems.SWEET_STRAWBERRY.get());
+        public static final StringIdentifiable.Codec<Type> CODEC = StringIdentifiable.createCodec(Type::values);
+        final String type;
+
+        Type(String type) {
+            this.type = type;
+        }
+
+        public String asString() {
+            return this.type;
+        }
+
+        static Type byType(String type) {
+            return CODEC.byId(type, PINK);
+        }
     }
     
 }

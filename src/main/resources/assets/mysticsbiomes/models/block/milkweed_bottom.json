@@ -1,0 +1,59 @@
+{
+	"ambientocclusion": false,
+	"render_type": "minecraft:cutout",
+	"textures": {
+		"side": "mysticsbiomes:block/milkweed_side",
+		"cross": "mysticsbiomes:block/milkweed_bottom",
+		"particle": "mysticsbiomes:block/milkweed_bottom"
+	},
+	"elements": [
+		{
+			"from": [-1, 0, 8],
+			"to": [17, 18, 8],
+			"rotation": {"angle": -45, "axis": "y", "origin": [8, 1, 8]},
+			"faces": {
+				"north": {"uv": [0, 0, 16, 16], "texture": "#cross"},
+				"east": {"uv": [0, 0, 16, 16], "texture": "#cross"},
+				"south": {"uv": [0, 0, 16, 16], "texture": "#cross"},
+				"west": {"uv": [0, 0, 16, 16], "texture": "#cross"}
+			}
+		},
+		{
+			"from": [8, 0, -1],
+			"to": [8, 18, 17],
+			"rotation": {"angle": -45, "axis": "y", "origin": [8, 1, 8]},
+			"faces": {
+				"north": {"uv": [0, 0, 16, 16], "texture": "#cross"},
+				"east": {"uv": [0, 0, 16, 16], "texture": "#cross"},
+				"south": {"uv": [0, 0, 16, 16], "texture": "#cross"},
+				"west": {"uv": [0, 0, 16, 16], "texture": "#cross"}
+			}
+		},
+		{
+			"from": [4, 15, 5],
+			"to": [12, 18, 11],
+			"rotation": {"angle": 0, "axis": "y", "origin": [0, 16, 0]},
+			"faces": {
+				"north": {"uv": [4, 9, 12, 12], "texture": "#side"},
+				"south": {"uv": [4, 9, 12, 12], "texture": "#side"}
+			}
+		},
+		{
+			"from": [5, 15, 4],
+			"to": [11, 18, 12],
+			"rotation": {"angle": 0, "axis": "y", "origin": [0, 16, 0]},
+			"faces": {
+				"east": {"uv": [4, 9, 12, 12], "texture": "#side"},
+				"west": {"uv": [4, 9, 12, 12], "texture": "#side"}
+			}
+		},
+		{
+			"from": [4, 16, 4],
+			"to": [12, 18, 12],
+			"rotation": {"angle": 0, "axis": "y", "origin": [0, 16, 0]},
+			"faces": {
+				"down": {"uv": [5, 5, 11, 11], "texture": "#side"}
+			}
+		}
+	]
+}

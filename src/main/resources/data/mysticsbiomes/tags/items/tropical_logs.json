@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "mysticsbiomes:tropical_log",
+    "mysticsbiomes:tropical_wood",
+    "mysticsbiomes:stripped_tropical_log",
+    "mysticsbiomes:stripped_tropical_wood"
+  ]
+}

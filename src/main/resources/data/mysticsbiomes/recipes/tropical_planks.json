@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "planks",
+  "ingredients": [
+    {
+      "tag": "mysticsbiomes:tropical_logs"
+    }
+  ],
+  "result": {
+    "item": "mysticsbiomes:tropical_planks",
+    "count": 4
+  }
+}

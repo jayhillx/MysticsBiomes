@@ -1,33 +1,36 @@
 package com.mysticsbiomes.common.block;
 
-import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
-import net.minecraft.core.particles.ParticleOptions;
-import net.minecraft.util.ParticleUtils;
-import net.minecraft.util.RandomSource;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.SoundType;
-import net.minecraft.world.level.block.state.BlockState;
-
-import java.util.function.Supplier;
+import com.mysticsbiomes.init.MysticParticles;
+import net.minecraft.block.BlockState;
+import net.minecraft.client.util.ParticleUtil;
+import net.minecraft.particle.ParticleEffect;
+import net.minecraft.sound.BlockSoundGroup;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.random.Random;
+import net.minecraft.world.World;
 
 public class MapleLeavesBlock extends MysticLeavesBlock {
-    private final Supplier<ParticleOptions> particle;
+    private final ParticleEffect particle;
 
-    public MapleLeavesBlock(Supplier<ParticleOptions> particleType, SoundType soundType) {
+    public MapleLeavesBlock(ParticleEffect particle, BlockSoundGroup soundType) {
         super(soundType);
-        this.particle = particleType;
+        this.particle = particle;
     }
 
     @Override
-    public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource random) {
-        super.animateTick(state, level, pos, random);
-        BlockPos belowPos = pos.below();
+    public void randomDisplayTick(BlockState state, World level, BlockPos pos, Random random) {
+        super.randomDisplayTick(state, level, pos, random);
+        BlockPos belowPos = pos.down();
         BlockState belowState = level.getBlockState(belowPos);
 
-        if (random.nextInt(48) == 0) {
-            if (!isFaceFull(belowState.getCollisionShape(level, belowPos), Direction.UP)) {
-                ParticleUtils.spawnParticleBelow(level, pos, random, this.particle.get());
+        if (!isFaceFullSquare(belowState.getCollisionShape(level, belowPos), Direction.UP)) {
+            if (random.nextInt(82) == 0) {
+                ParticleUtil.spawnParticle(level, pos, random, this.particle);
+            }
+
+            if (random.nextInt(3000) == 0) {
+                ParticleUtil.spawnParticle(level, pos, random, MysticParticles.ACORN);
             }
         }
     }

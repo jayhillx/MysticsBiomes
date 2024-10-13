@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "bark",
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "mysticsbiomes:peach_log"
+    }
+  },
+  "result": {
+    "item": "mysticsbiomes:peach_wood",
+    "count": 3
+  }
+}

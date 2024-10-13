@@ -3,8 +3,10 @@
   "values": [
     "mysticsbiomes:strawberry_chest_boat",
     "mysticsbiomes:cherry_chest_boat",
-    "mysticsbiomes:jacaranda_chest_boat",
+    "mysticsbiomes:peach_chest_boat",
     "mysticsbiomes:maple_chest_boat",
-    "mysticsbiomes:citrus_chest_boat"
+    "mysticsbiomes:sea_foam_chest_boat",
+    "mysticsbiomes:tropical_chest_boat",
+    "mysticsbiomes:jacaranda_chest_boat"
   ]
 }

@@ -2,32 +2,30 @@ package com.mysticsbiomes.common.block;
 
 import com.mysticsbiomes.common.block.entity.MysticHangingSignBlockEntity;
 import com.mysticsbiomes.init.MysticBlockEntities;
-import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.CeilingHangingSignBlock;
-import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.block.entity.BlockEntityTicker;
-import net.minecraft.world.level.block.entity.BlockEntityType;
-import net.minecraft.world.level.block.entity.SignBlockEntity;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.properties.WoodType;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.HangingSignBlock;
+import net.minecraft.block.WoodType;
+import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.entity.BlockEntityTicker;
+import net.minecraft.block.entity.BlockEntityType;
+import net.minecraft.block.entity.SignBlockEntity;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 
-import javax.annotation.Nonnull;
+public class MysticCeilingHangingSignBlock extends HangingSignBlock {
 
-public class MysticCeilingHangingSignBlock extends CeilingHangingSignBlock {
-
-    public MysticCeilingHangingSignBlock(Properties properties, WoodType woodType) {
+    public MysticCeilingHangingSignBlock(Settings properties, WoodType woodType) {
         super(properties, woodType);
     }
 
     @Override
-    public BlockEntity newBlockEntity(@Nonnull BlockPos pos, @Nonnull BlockState state) {
+    public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
         return new MysticHangingSignBlockEntity(pos, state);
     }
 
     @Override
-    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(@Nonnull Level level, @Nonnull BlockState state, @Nonnull BlockEntityType<T> type) {
-        return createTickerHelper(type, MysticBlockEntities.HANGING_SIGN.get(), SignBlockEntity::tick);
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World level, BlockState state, BlockEntityType<T> type) {
+        return checkType(type, MysticBlockEntities.HANGING_SIGN, SignBlockEntity::tick);
     }
 
 }

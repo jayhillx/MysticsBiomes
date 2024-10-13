@@ -3,7 +3,7 @@
     {
       "apply": [
         {
-          "model": "mysticsbiomes:block/spring_bamboo"
+          "model": "mysticsbiomes:block/spring_bamboo_age0"
         }
       ],
       "when": {
@@ -13,7 +13,10 @@
     {
       "apply": [
         {
-          "model": "mysticsbiomes:block/spring_bamboo"
+          "model": "mysticsbiomes:block/spring_bamboo_age1"
+        },
+        {
+          "model": "mysticsbiomes:block/spring_bamboo_age1_variant"
         }
       ],
       "when": {
@@ -22,7 +25,7 @@
     },
     {
       "apply": {
-        "model": "mysticsbiomes:block/spring_bamboo_small_leaves"
+        "model": "mysticsbiomes:block/spring_bamboo_leaves_small"
       },
       "when": {
         "leaves": "small"
@@ -30,7 +33,7 @@
     },
     {
       "apply": {
-        "model": "mysticsbiomes:block/spring_bamboo_large_leaves"
+        "model": "mysticsbiomes:block/spring_bamboo_leaves_large"
       },
       "when": {
         "leaves": "large"

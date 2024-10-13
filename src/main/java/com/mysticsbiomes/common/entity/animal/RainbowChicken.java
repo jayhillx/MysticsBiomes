@@ -2,47 +2,48 @@ package com.mysticsbiomes.common.entity.animal;
 
 import com.mysticsbiomes.init.MysticEntities;
 import com.mysticsbiomes.init.MysticItems;
-import net.minecraft.Util;
-import net.minecraft.core.BlockPos;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.syncher.EntityDataAccessor;
-import net.minecraft.network.syncher.EntityDataSerializers;
-import net.minecraft.network.syncher.SynchedEntityData;
-import net.minecraft.server.level.ServerLevel;
-import net.minecraft.sounds.SoundEvent;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.util.ByIdMap;
-import net.minecraft.util.Mth;
-import net.minecraft.util.RandomSource;
-import net.minecraft.util.StringRepresentable;
-import net.minecraft.world.DifficultyInstance;
-import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.entity.*;
-import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
-import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.ai.goal.*;
-import net.minecraft.world.entity.animal.Animal;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.ServerLevelAccessor;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.gameevent.GameEvent;
-import net.minecraft.world.level.pathfinder.BlockPathTypes;
-import net.minecraft.world.phys.Vec3;
+import net.minecraft.block.BlockState;
+import net.minecraft.entity.*;
+import net.minecraft.entity.ai.goal.*;
+import net.minecraft.entity.ai.pathing.PathNodeType;
+import net.minecraft.entity.attribute.DefaultAttributeContainer;
+import net.minecraft.entity.attribute.EntityAttributes;
+import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.data.DataTracker;
+import net.minecraft.entity.data.TrackedData;
+import net.minecraft.entity.data.TrackedDataHandlerRegistry;
+import net.minecraft.entity.mob.MobEntity;
+import net.minecraft.entity.passive.AnimalEntity;
+import net.minecraft.entity.passive.PassiveEntity;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
+import net.minecraft.nbt.NbtCompound;
+import net.minecraft.recipe.Ingredient;
+import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundEvent;
+import net.minecraft.sound.SoundEvents;
+import net.minecraft.text.Text;
+import net.minecraft.util.StringIdentifiable;
+import net.minecraft.util.Util;
+import net.minecraft.util.function.ValueLists;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.random.Random;
+import net.minecraft.world.LocalDifficulty;
+import net.minecraft.world.ServerWorldAccess;
+import net.minecraft.world.World;
+import net.minecraft.world.event.GameEvent;
 
-import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class RainbowChicken extends Animal {
-    private static final EntityDataAccessor<Integer> DATA_TYPE_ID = SynchedEntityData.defineId(RainbowChicken.class, EntityDataSerializers.INT);
-    private static final Ingredient FOOD_ITEMS = Ingredient.of(Items.WHEAT_SEEDS, Items.MELON_SEEDS, Items.PUMPKIN_SEEDS, Items.BEETROOT_SEEDS, Items.TORCHFLOWER_SEEDS, Items.PITCHER_POD);
+public class RainbowChicken extends AnimalEntity {
+    private static final TrackedData<Integer> DATA_TYPE_ID = DataTracker.registerData(RainbowChicken.class, TrackedDataHandlerRegistry.INTEGER);
+    private static final Ingredient FOOD_ITEMS = Ingredient.ofItems(Items.WHEAT_SEEDS, Items.MELON_SEEDS, Items.PUMPKIN_SEEDS, Items.BEETROOT_SEEDS, Items.TORCHFLOWER_SEEDS, Items.PITCHER_POD);
     public float flap;
     public float flapSpeed;
     public float oFlapSpeed;
@@ -51,42 +52,46 @@ public class RainbowChicken extends Animal {
     private float nextFlap = 1.0F;
     public int eggTime;
 
-    public RainbowChicken(EntityType<? extends RainbowChicken> type, Level level) {
+    public RainbowChicken(EntityType<? extends RainbowChicken> type, World level) {
         super(type, level);
         this.eggTime = this.random.nextInt(6000) + 6000;
-        this.setPathfindingMalus(BlockPathTypes.WATER, 0.0F);
+        this.setPathfindingPenalty(PathNodeType.WATER, 0.0F);
     }
 
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(DATA_TYPE_ID, 0);
+    @Override
+    protected void initDataTracker() {
+        super.initDataTracker();
+        this.dataTracker.startTracking(DATA_TYPE_ID, 0);
     }
 
-    protected void registerGoals() {
-        this.goalSelector.addGoal(0, new FloatGoal(this));
-        this.goalSelector.addGoal(1, new PanicGoal(this, 1.4));
-        this.goalSelector.addGoal(2, new BreedGoal(this, 1.0));
-        this.goalSelector.addGoal(3, new TemptGoal(this, 1.0, FOOD_ITEMS, false));
-        this.goalSelector.addGoal(4, new FollowParentGoal(this, 1.1));
-        this.goalSelector.addGoal(5, new WaterAvoidingRandomStrollGoal(this, 1.0));
-        this.goalSelector.addGoal(6, new LookAtPlayerGoal(this, Player.class, 6.0F));
-        this.goalSelector.addGoal(7, new RandomLookAroundGoal(this));
+    @Override
+    protected void initGoals() {
+        this.goalSelector.add(0, new SwimGoal(this));
+        this.goalSelector.add(1, new EscapeDangerGoal(this, 1.4));
+        this.goalSelector.add(2, new AnimalMateGoal(this, 1.0));
+        this.goalSelector.add(3, new TemptGoal(this, 1.0, FOOD_ITEMS, false));
+        this.goalSelector.add(4, new FollowParentGoal(this, 1.1));
+        this.goalSelector.add(5, new WanderAroundFarGoal(this, 1.0));
+        this.goalSelector.add(6, new LookAtEntityGoal(this, PlayerEntity.class, 6.0F));
+        this.goalSelector.add(7, new LookAroundGoal(this));
     }
 
-    public static AttributeSupplier.Builder createAttributes() {
-        return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 4.0).add(Attributes.MOVEMENT_SPEED, 0.25);
+    public static DefaultAttributeContainer.Builder createAttributes() {
+        return MobEntity.createMobAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 4.0).add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.25);
     }
 
-    public void addAdditionalSaveData(CompoundTag tag) {
-        super.addAdditionalSaveData(tag);
-        tag.putString("Type", this.getVariant().getSerializedName());
+    @Override
+    public void writeCustomDataToNbt(NbtCompound tag) {
+        super.writeCustomDataToNbt(tag);
+        tag.putString("Type", this.getVariant().asString());
         tag.putInt("TypeId", this.getVariant().getId());
 
         tag.putInt("EggLayTime", this.eggTime);
     }
 
-    public void readAdditionalSaveData(CompoundTag tag) {
-        super.readAdditionalSaveData(tag);
+    @Override
+    public void readCustomDataFromNbt(NbtCompound tag) {
+        super.readCustomDataFromNbt(tag);
         this.setVariant(Type.byType(tag.getString("Type")));
         this.setVariant(Type.byId(tag.getInt("TypeId")));
 
@@ -96,30 +101,32 @@ public class RainbowChicken extends Animal {
     }
 
     public Type getVariant() {
-        return Type.byId(this.entityData.get(DATA_TYPE_ID));
+        return Type.byId(this.dataTracker.get(DATA_TYPE_ID));
     }
 
     public void setVariant(Type type) {
-        this.entityData.set(DATA_TYPE_ID, type.getId());
+        this.dataTracker.set(DATA_TYPE_ID, type.getId());
     }
 
     @Override
-    public RainbowChicken getBreedOffspring(ServerLevel level, AgeableMob partner) {
-        RainbowChicken baby = MysticEntities.RAINBOW_CHICKEN.get().create(level);
-        baby.setVariant(this.getOffspringVariant(this, (Animal)partner));
+    public RainbowChicken createChild(ServerWorld level, PassiveEntity partner) {
+        RainbowChicken baby = MysticEntities.RAINBOW_CHICKEN.create(level);
+        if (baby != null) {
+            baby.setVariant(this.getOffspringVariant(this, (RainbowChicken)partner));
+        }
         return baby;
     }
 
     /**
      * @return what the offsprings color will be, either one of the parents or a combination of both; secondary colors.
      */
-    private Type getOffspringVariant(Animal parent1, Animal parent2) {
+    private Type getOffspringVariant(AnimalEntity parent1, AnimalEntity parent2) {
         final List<Type> colorTypes = new ArrayList<>(); // list of the two colors of breeding chickens.
         colorTypes.add(((RainbowChicken)parent1).getVariant());
         colorTypes.add(((RainbowChicken)parent2).getVariant());
 
-        Type type = this.level().random.nextBoolean() ? colorTypes.get(0) : colorTypes.get(1);
-        if (this.level().random.nextInt(6) == 0) {
+        Type type = this.getWorld().random.nextBoolean() ? colorTypes.get(0) : colorTypes.get(1);
+        if (this.getWorld().random.nextInt(6) == 0) {
             if (colorTypes.contains(Type.PINK) && colorTypes.contains(Type.YELLOW)) {
                 type = Type.ORANGE;
             } else if (colorTypes.contains(Type.YELLOW) && colorTypes.contains(Type.CYAN)) {
@@ -132,38 +139,38 @@ public class RainbowChicken extends Animal {
     }
 
     @Override
-    public SpawnGroupData finalizeSpawn(ServerLevelAccessor accessor, DifficultyInstance instance, MobSpawnType type, SpawnGroupData data, CompoundTag tag) {
+    public EntityData initialize(ServerWorldAccess accessor, LocalDifficulty instance, SpawnReason type, EntityData data, NbtCompound tag) {
         this.setVariant(Type.getRandomVariant(accessor.getRandom()));
-        return super.finalizeSpawn(accessor, instance, type, data, tag);
+        return super.initialize(accessor, instance, type, data, tag);
     }
 
     @Override
-    public Component getName() {
-        return Component.translatable("entity.mysticsbiomes.rainbow_chicken." + this.getVariant().type);
+    public Text getName() {
+        return Text.translatable("entity.mysticsbiomes.rainbow_chicken." + this.getVariant().type);
     }
 
     @Override
-    public void aiStep() {
-        super.aiStep();
+    public void tickMovement() {
+        super.tickMovement();
         this.oFlap = this.flap;
         this.oFlapSpeed = this.flapSpeed;
-        this.flapSpeed += (this.onGround() ? -1.0F : 4.0F) * 0.3F;
-        this.flapSpeed = Mth.clamp(this.flapSpeed, 0.0F, 1.0F);
-        if (!this.onGround() && this.flapping < 1.0F) {
+        this.flapSpeed += (this.isOnGround() ? -1.0F : 4.0F) * 0.3F;
+        this.flapSpeed = MathHelper.clamp(this.flapSpeed, 0.0F, 1.0F);
+        if (!this.isOnGround() && this.flapping < 1.0F) {
             this.flapping = 1.0F;
         }
 
         this.flapping *= 0.9F;
-        Vec3 vec3 = this.getDeltaMovement();
-        if (!this.onGround() && vec3.y < 0.0) {
-            this.setDeltaMovement(vec3.multiply(1.0, 0.6, 1.0));
+        Vec3d vec3 = this.getVelocity();
+        if (!this.isOnGround() && vec3.y < 0.0) {
+            this.setVelocity(vec3.multiply(1.0, 0.6, 1.0));
         }
 
         this.flap += this.flapping * 2.0F;
-        if (!this.level().isClientSide && this.isAlive() && !this.isBaby() && --this.eggTime <= 0) {
-            this.playSound(SoundEvents.CHICKEN_EGG, 1.0F, (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
-            this.spawnAtLocation(this.getEggColorByVariant());
-            this.gameEvent(GameEvent.ENTITY_PLACE);
+        if (!this.getWorld().isClient && this.isAlive() && !this.isBaby() && --this.eggTime <= 0) {
+            this.playSound(SoundEvents.ENTITY_CHICKEN_EGG, 1.0F, (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
+            this.dropItem(this.getEggColorByVariant());
+            this.emitGameEvent(GameEvent.ENTITY_PLACE);
             this.eggTime = this.random.nextInt(6000) + 6000;
         }
     }
@@ -172,13 +179,13 @@ public class RainbowChicken extends Animal {
      * @return egg item based on the chickens' color.
      */
     private Item getEggColorByVariant() {
-        return switch (Type.byId(this.entityData.get(DATA_TYPE_ID))) {
-            case PINK -> MysticItems.PINK_EGG.get();
-            case ORANGE -> MysticItems.ORANGE_EGG.get();
-            case YELLOW -> MysticItems.YELLOW_EGG.get();
-            case LIME -> MysticItems.LIME_EGG.get();
-            case CYAN -> MysticItems.CYAN_EGG.get();
-            case PURPLE -> MysticItems.PURPLE_EGG.get();
+        return switch (Type.byId(this.dataTracker.get(DATA_TYPE_ID))) {
+            case PINK -> MysticItems.PINK_EGG;
+            case ORANGE -> MysticItems.ORANGE_EGG;
+            case YELLOW -> MysticItems.YELLOW_EGG;
+            case LIME -> MysticItems.LIME_EGG;
+            case CYAN -> MysticItems.CYAN_EGG;
+            case PURPLE -> MysticItems.PURPLE_EGG;
         };
     }
 
@@ -186,48 +193,46 @@ public class RainbowChicken extends Animal {
      * Used to determine the color of the chicken hatched from each colored egg.
      */
     public Type getVariantByEggColor(ItemStack stack) {
-        if (stack.getItem() == MysticItems.PINK_EGG.get()) return Type.PINK;
-        if (stack.getItem() == MysticItems.ORANGE_EGG.get()) return Type.ORANGE;
-        if (stack.getItem() == MysticItems.YELLOW_EGG.get()) return Type.YELLOW;
-        if (stack.getItem() == MysticItems.LIME_EGG.get()) return Type.LIME;
-        if (stack.getItem() == MysticItems.CYAN_EGG.get()) return Type.CYAN;
-        if (stack.getItem() == MysticItems.PURPLE_EGG.get()) return Type.PURPLE;
+        if (stack.getItem() == MysticItems.PINK_EGG) return Type.PINK;
+        if (stack.getItem() == MysticItems.ORANGE_EGG) return Type.ORANGE;
+        if (stack.getItem() == MysticItems.YELLOW_EGG) return Type.YELLOW;
+        if (stack.getItem() == MysticItems.LIME_EGG) return Type.LIME;
+        if (stack.getItem() == MysticItems.CYAN_EGG) return Type.CYAN;
+        if (stack.getItem() == MysticItems.PURPLE_EGG) return Type.PURPLE;
         else return null;
     }
 
-    public boolean isFood(ItemStack stack) {
-        return FOOD_ITEMS.test(stack);
+    @Override
+    protected boolean isFlappingWings() {
+        return this.speed > this.nextFlap;
     }
 
-    protected boolean isFlapping() {
-        return this.flyDist > this.nextFlap;
+    @Override
+    protected void addFlapEffects() {
+        this.nextFlap = this.speed + this.flapSpeed / 2.0F;
     }
 
-    protected void onFlap() {
-        this.nextFlap = this.flyDist + this.flapSpeed / 2.0F;
-    }
-
-    protected float getStandingEyeHeight(Pose pose, EntityDimensions dimensions) {
+    protected float getActiveEyeHeight(EntityPose pose, EntityDimensions dimensions) {
         return this.isBaby() ? dimensions.height * 0.85F : dimensions.height * 0.92F;
     }
 
     protected SoundEvent getAmbientSound() {
-        return SoundEvents.CHICKEN_AMBIENT;
+        return SoundEvents.ENTITY_CHICKEN_AMBIENT;
     }
 
     protected SoundEvent getHurtSound(DamageSource source) {
-        return SoundEvents.CHICKEN_HURT;
+        return SoundEvents.ENTITY_CHICKEN_HURT;
     }
 
     protected SoundEvent getDeathSound() {
-        return SoundEvents.CHICKEN_DEATH;
+        return SoundEvents.ENTITY_CHICKEN_DEATH;
     }
 
     protected void playStepSound(BlockPos pos, BlockState state) {
-        this.playSound(SoundEvents.CHICKEN_STEP, 0.15F, 1.0F);
+        this.playSound(SoundEvents.ENTITY_CHICKEN_STEP, 0.15F, 1.0F);
     }
 
-    public enum Type implements StringRepresentable {
+    public enum Type implements StringIdentifiable {
         PINK(0, "pink"),
         ORANGE(1, "orange"),
         YELLOW(2, "yellow"),
@@ -247,20 +252,19 @@ public class RainbowChicken extends Animal {
             return this.id;
         }
 
-        @Nonnull
-        public String getSerializedName() {
+        public String asString() {
             return this.type;
         }
 
         public static Type byId(int id) {
-            return ByIdMap.continuous(Type::getId, values(), ByIdMap.OutOfBoundsStrategy.ZERO).apply(id);
+            return ValueLists.createIdToValueFunction(Type::getId, values(), ValueLists.OutOfBoundsHandling.ZERO).apply(id);
         }
 
         public static Type byType(String type) {
-            return StringRepresentable.fromEnum(Type::values).byName(type, PINK);
+            return StringIdentifiable.createCodec(Type::values).byId(type, PINK);
         }
 
-        private static Type getRandomVariant(RandomSource random) {
+        private static Type getRandomVariant(Random random) {
             Type[] types = Arrays.stream(values()).toArray(Type[]::new);
             return Util.getRandom(types, random);
         }

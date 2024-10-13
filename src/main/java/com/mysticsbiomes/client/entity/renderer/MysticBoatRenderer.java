@@ -1,37 +1,34 @@
 package com.mysticsbiomes.client.entity.renderer;
 
 import com.google.common.collect.ImmutableMap;
+import com.mojang.datafixers.util.Pair;
 import com.mysticsbiomes.MysticsBiomes;
 import com.mysticsbiomes.common.entity.MysticBoat;
 import com.mysticsbiomes.common.entity.MysticChestBoat;
-import com.mojang.datafixers.util.Pair;
-import net.minecraft.client.model.BoatModel;
-import net.minecraft.client.model.ChestBoatModel;
-import net.minecraft.client.model.ListModel;
-import net.minecraft.client.model.geom.ModelLayerLocation;
-import net.minecraft.client.model.geom.ModelPart;
-import net.minecraft.client.renderer.entity.BoatRenderer;
-import net.minecraft.client.renderer.entity.EntityRendererProvider;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.vehicle.Boat;
+import net.minecraft.client.model.ModelPart;
+import net.minecraft.client.render.entity.BoatEntityRenderer;
+import net.minecraft.client.render.entity.EntityRendererFactory;
+import net.minecraft.client.render.entity.model.*;
+import net.minecraft.entity.vehicle.BoatEntity;
+import net.minecraft.util.Identifier;
 
 import java.util.Map;
 import java.util.stream.Stream;
 
-public class MysticBoatRenderer extends BoatRenderer {
-    private final Map<MysticBoat.Type, Pair<ResourceLocation, ListModel<Boat>>> boatResources;
+public class MysticBoatRenderer extends BoatEntityRenderer {
+    private final Map<MysticBoat.Type, Pair<Identifier, CompositeEntityModel<BoatEntity>>> boatResources;
 
-    public MysticBoatRenderer(EntityRendererProvider.Context context, boolean hasChest) {
+    public MysticBoatRenderer(EntityRendererFactory.Context context, boolean hasChest) {
         super(context, false);
-        this.boatResources = Stream.of(MysticBoat.Type.values()).collect(ImmutableMap.toImmutableMap((key) -> key, (model) -> Pair.of(MysticsBiomes.modLoc(getTextureLocation(model, hasChest)), createBoatModel(context, model, hasChest))));
+        this.boatResources = Stream.of(MysticBoat.Type.values()).collect(ImmutableMap.toImmutableMap((key) -> key, (model) -> Pair.of(MysticsBiomes.modLoc(getTextureLocation(model, hasChest)), this.createBoatModel(context, model, hasChest))));
     }
 
     @Override
-    public Pair<ResourceLocation, ListModel<Boat>> getModelWithLocation(Boat boat) {
-        if (boat instanceof MysticChestBoat) {
-            return this.boatResources.get(((MysticChestBoat)boat).getModel());
+    public Identifier getTexture(BoatEntity boat) {
+        if (boat instanceof MysticChestBoat chestBoat) {
+            return this.boatResources.get((chestBoat).getModel()).getFirst();
         } else {
-            return this.boatResources.get(((MysticBoat)boat).getModel());
+            return this.boatResources.get(((MysticBoat)boat).getModel()).getFirst();
         }
     }
 
@@ -39,22 +36,22 @@ public class MysticBoatRenderer extends BoatRenderer {
         return hasChest ? "textures/entity/boats/chest/" + type.getName() + ".png" : "textures/entity/boats/" + type.getName() + ".png";
     }
 
-    private static ModelLayerLocation createLocation(String name) {
-        return new ModelLayerLocation(MysticsBiomes.modLoc(name), "main");
+    private static EntityModelLayer createLocation(String name) {
+        return new EntityModelLayer(MysticsBiomes.modLoc(name), "main");
     }
 
-    public static ModelLayerLocation createBoatModelName(MysticBoat.Type type) {
+    public static EntityModelLayer createBoatModelName(MysticBoat.Type type) {
         return createLocation("boats/" + type.getName());
     }
 
-    public static ModelLayerLocation createChestBoatModelName(MysticBoat.Type type) {
+    public static EntityModelLayer createChestBoatModelName(MysticBoat.Type type) {
         return createLocation("boats/chest/" + type.getName());
     }
 
-    private BoatModel createBoatModel(EntityRendererProvider.Context context, MysticBoat.Type type, boolean hasChest) {
-        ModelLayerLocation location = hasChest ? createChestBoatModelName(type) : createBoatModelName(type);
-        ModelPart baked = context.bakeLayer(location);
-        return hasChest ? new ChestBoatModel(baked) : new BoatModel(baked);
+    private BoatEntityModel createBoatModel(EntityRendererFactory.Context context, MysticBoat.Type type, boolean hasChest) {
+        EntityModelLayer location = hasChest ? createChestBoatModelName(type) : createBoatModelName(type);
+        ModelPart baked = context.getPart(location);
+        return hasChest ? new ChestBoatEntityModel(baked) : new BoatEntityModel(baked);
     }
 
 }
