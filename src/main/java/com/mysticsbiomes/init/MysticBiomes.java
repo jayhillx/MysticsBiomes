@@ -34,7 +34,7 @@ public class MysticBiomes {
     }
 
     public static void registerBiomes() {
-
+        MysticsBiomes.LOGGER.info("mystic's biomes ~ registering biomes");
     }
 
     public static void bootstrap(Registerable<Biome> context) {

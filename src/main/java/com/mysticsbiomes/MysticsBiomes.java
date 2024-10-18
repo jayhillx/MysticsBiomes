@@ -1,12 +1,14 @@
 package com.mysticsbiomes;
 
+import com.mysticsbiomes.common.world.AnimalSpawnsBuilder;
 import com.mysticsbiomes.init.*;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.util.Identifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import terrablender.api.TerraBlenderApi;
 
-public class MysticsBiomes implements ModInitializer {
+public class MysticsBiomes implements ModInitializer, TerraBlenderApi {
 	public static final String modId = "mysticsbiomes";
 	public static final Logger LOGGER = LoggerFactory.getLogger(modId);
 
@@ -16,14 +18,29 @@ public class MysticsBiomes implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
-		MysticTab.registerItemGroup();
+		MysticBiomes.registerBiomes();
 		MysticBlocks.registerBlocks();
+		MysticItems.registerItems();
 		MysticBlockEntities.registerBlockEntities();
 		MysticEntities.registerEntities();
-		MysticItems.registerItems();
 		MysticFeatures.registerFeatures();
+		MysticFeatures.Configured.registerConfiguredFeatures();
+		MysticFeatures.Placed.registerPlacedFeatures();
+		MysticParticles.registerParticles();
+		MysticPoiTypes.registerPoiTypes();
+		MysticSounds.registerSounds();
+		MysticTab.registerItemGroup();
 
-		MysticBiomes.registerBiomes();
+		AnimalSpawnsBuilder.addBiomeSpawns();
+		MysticEntities.registerEntitySpawns();
+
+		MysticConfig.load();
+	}
+
+	@Override
+	public void onTerraBlenderInitialized() {
+		MysticBiomes.registerRegionProvider();
+		MysticBiomes.registerSurfaceRules();
 	}
 
 }

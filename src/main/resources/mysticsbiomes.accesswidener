@@ -2,6 +2,8 @@ accessWidener v1 named
 
 extendable method net/minecraft/world/gen/feature/TreeFeature generate (Lnet/minecraft/world/gen/feature/util/FeatureContext;)Z
 
+accessible method net/minecraft/entity/Entity getSavedEntityId ()Ljava/lang/String;
+
 # Boats
 accessible field net/minecraft/entity/vehicle/BoatEntity BOAT_TYPE Lnet/minecraft/entity/data/TrackedData;
 accessible field net/minecraft/entity/vehicle/BoatEntity fallVelocity D

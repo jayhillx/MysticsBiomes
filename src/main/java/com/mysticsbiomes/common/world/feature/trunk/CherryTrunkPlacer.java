@@ -87,7 +87,7 @@ public class CherryTrunkPlacer extends TrunkPlacer {
         list.add(generateBranch(reader, consumer, random, height, pos, config, logRotation, direction, i, i < m - 1, mutablePos));
         if (flag1) {
             list.add(generateBranch(reader, consumer, random, height, pos, config, logRotation, direction.getOpposite(), j, j < m - 1, mutablePos));
-            list.add(generateBranch(reader, consumer, random, height, pos, config, logRotation, direction, k, k < m - 1, mutablePos));
+            list.add(generateBranch(reader, consumer, random, height, pos, config, logRotation, direction.rotateYClockwise(), k, k < m - 1, mutablePos));
         }
         return list;
     }

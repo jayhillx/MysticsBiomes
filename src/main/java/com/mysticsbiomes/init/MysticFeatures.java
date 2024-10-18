@@ -22,7 +22,7 @@ import net.minecraft.world.gen.trunk.TrunkPlacerType;
 public class MysticFeatures {
     
     public static final Feature<ProbabilityConfig> SPRING_BAMBOO = Registry.register(Registries.FEATURE, MysticsBiomes.modLoc("spring_bamboo"), new SpringBambooFeature(ProbabilityConfig.CODEC));
-    public static final Feature<BlockColumnFeatureConfig> SAGUARO_CACTUS = Registry.register(Registries.FEATURE, MysticsBiomes.modLoc("spring_bamboo"), new SaguaroCactusFeature());
+    public static final Feature<BlockColumnFeatureConfig> SAGUARO_CACTUS = Registry.register(Registries.FEATURE, MysticsBiomes.modLoc("saguaro_cactus"), new SaguaroCactusFeature());
     public static final Feature<TreeFeatureConfig> MAPLE_TREE = Registry.register(Registries.FEATURE, MysticsBiomes.modLoc("maple_tree"), new MapleTreeFeature(TreeFeatureConfig.CODEC));
 
     public static final TreeDecoratorType<ButterflyNestDecorator> BUTTERFLY_NEST = Registry.register(Registries.TREE_DECORATOR_TYPE, MysticsBiomes.modLoc("butterfly_nest"), new TreeDecoratorType<>(ButterflyNestDecorator.CODEC));
@@ -46,6 +46,10 @@ public class MysticFeatures {
             return RegistryKey.of(RegistryKeys.CONFIGURED_FEATURE, MysticsBiomes.modLoc(name));
         }
 
+        public static void registerConfiguredFeatures() {
+            MysticsBiomes.LOGGER.info("mystic's biomes ~ registering configured features");
+        }
+
         public static <FC extends FeatureConfig, F extends Feature<FC>> void register(Registerable<ConfiguredFeature<?, ?>> context, RegistryKey<ConfiguredFeature<?, ?>> key, F feature, FC configuration) {
             context.register(key, new ConfiguredFeature<>(feature, configuration));
         }
@@ -55,6 +59,10 @@ public class MysticFeatures {
         public static void bootstrap(Registerable<PlacedFeature> context) {
             MysticTreePlacements.bootstrap(context);
             MysticVegetationPlacements.bootstrap(context);
+        }
+
+        public static void registerPlacedFeatures() {
+            MysticsBiomes.LOGGER.info("mystic's biomes ~ registering placed features");
         }
 
         public static RegistryKey<PlacedFeature> createKey(String name) {

@@ -10,12 +10,13 @@ import net.minecraft.particle.DefaultParticleType;
 public class FallingLeafParticle extends SpriteBillboardParticle {
     private final float rotSpeed;
 
-    protected FallingLeafParticle(ClientWorld level, double x, double y, double z) {
+    public FallingLeafParticle(ClientWorld level, double x, double y, double z, SpriteProvider spriteProvider) {
         super(level, x, y, z);
         this.scale *= 1.25F;
         this.maxAge = 170;
         this.rotSpeed = (float) (Math.random() - 0.2) * 0.1F;
         this.angle = (float) (Math.random() * (Math.PI * 2));
+        this.setSpriteForAge(spriteProvider);
     }
 
     @Override
@@ -55,11 +56,8 @@ public class FallingLeafParticle extends SpriteBillboardParticle {
             this.sprite = spriteProvider;
         }
 
-        @Override
         public Particle createParticle(DefaultParticleType type, ClientWorld world, double x, double y, double z, double velocityX, double velocityY, double velocityZ) {
-            FallingLeafParticle particle = new FallingLeafParticle(world, x, y, z);
-            particle.setSprite(this.sprite);
-            return particle;
+            return new FallingLeafParticle(world, x, y, z, this.sprite);
         }
     }
 

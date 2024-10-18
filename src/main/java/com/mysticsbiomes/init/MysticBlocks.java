@@ -9,8 +9,6 @@ import com.mysticsbiomes.common.world.feature.MysticTreeFeatures;
 import net.minecraft.block.*;
 import net.minecraft.block.enums.Instrument;
 import net.minecraft.block.piston.PistonBehavior;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.sound.BlockSoundGroup;
@@ -43,12 +41,12 @@ public class MysticBlocks {
 
     public static final Block STRAWBERRY_BUSH = registerBlock("strawberry_bush", new StrawberryBushBlock(AbstractBlock.Settings.create().mapColor(MapColor.GREEN).ticksRandomly().noCollision().sounds(BlockSoundGroup.SWEET_BERRY_BUSH).pistonBehavior(PistonBehavior.DESTROY)));
 
-    public static final Block POTTED_STRAWBERRY_SAPLING = registerBlockWithoutItem("potted_strawberry_sapling", Blocks.createFlowerPotBlock(STRAWBERRY_SAPLING));
+    public static final Block POTTED_STRAWBERRY_SAPLING = registerBlock("potted_strawberry_sapling", Blocks.createFlowerPotBlock(STRAWBERRY_SAPLING));
 
     /** bamboo blossom forest */
-    public static final Block PINK_CHERRY_BLOSSOMS = registerBlock("pink_cherry_blossoms", new BlossomLeavesBlock(MysticParticles.PINK_CHERRY_BLOSSOM, BlockSoundGroup.CHERRY_LEAVES));
+    public static final Block PINK_CHERRY_BLOSSOMS = registerBlock("pink_cherry_blossoms", new BlossomLeavesBlock(() -> MysticParticles.PINK_CHERRY_BLOSSOM, BlockSoundGroup.CHERRY_LEAVES));
     public static final Block PINK_CHERRY_BLOSSOM_SAPLING = registerBlock("pink_cherry_blossom_sapling", new MysticSaplingBlock(new MysticTreeGrower(MysticTreeFeatures.PINK_CHERRY_TREE), AbstractBlock.Settings.copy(Blocks.CHERRY_SAPLING)));
-    public static final Block WHITE_CHERRY_BLOSSOMS = registerBlock("white_cherry_blossoms", new BlossomLeavesBlock(MysticParticles.WHITE_CHERRY_BLOSSOM, BlockSoundGroup.CHERRY_LEAVES));
+    public static final Block WHITE_CHERRY_BLOSSOMS = registerBlock("white_cherry_blossoms", new BlossomLeavesBlock(() -> MysticParticles.WHITE_CHERRY_BLOSSOM, BlockSoundGroup.CHERRY_LEAVES));
     public static final Block WHITE_CHERRY_BLOSSOM_SAPLING = registerBlock("white_cherry_blossom_sapling", new MysticSaplingBlock(new MysticTreeGrower(MysticTreeFeatures.WHITE_CHERRY_TREE), AbstractBlock.Settings.copy(Blocks.CHERRY_SAPLING)));
 
     public static final Block STRIPPED_CHERRY_LOG = registerBlock("stripped_cherry_log", rotatedPillar(MapColor.MAGENTA));
@@ -69,7 +67,7 @@ public class MysticBlocks {
     public static final Block CHERRY_HANGING_SIGN = registerBlock("cherry_hanging_sign", hangingSign(CHERRY_PLANKS, MysticWoodTypes.CHERRY));
     public static final Block CHERRY_WALL_HANGING_SIGN = registerBlock("cherry_wall_hanging_sign", wallHangingSign(CHERRY_HANGING_SIGN, MysticWoodTypes.CHERRY));
 
-    public static final Block CHERRY_PLANT = registerBlock("cherry_plant", new FruitPlantBlock(MysticItems.CHERRIES, AbstractBlock.Settings.create().mapColor(MapColor.GREEN).ticksRandomly().noCollision().sounds(BlockSoundGroup.SWEET_BERRY_BUSH).pistonBehavior(PistonBehavior.DESTROY)));
+    public static final Block CHERRY_PLANT = registerBlock("cherry_plant", new FruitPlantBlock(() -> MysticItems.CHERRIES, AbstractBlock.Settings.create().mapColor(MapColor.GREEN).ticksRandomly().noCollision().sounds(BlockSoundGroup.SWEET_BERRY_BUSH).pistonBehavior(PistonBehavior.DESTROY)));
     public static final Block CHERRY_PIE = registerBlock("cherry_pie", new PieBlock(AbstractBlock.Settings.create().solid().strength(0.5F).sounds(BlockSoundGroup.WOOL).pistonBehavior(PistonBehavior.DESTROY)));
 
     public static final Block BUDDING_PEONY_LEAVES = registerBlock("budding_peony_leaves", new MysticLeavesBlock(BlockSoundGroup.GRASS));
@@ -80,10 +78,10 @@ public class MysticBlocks {
     public static final Block SPRING_BAMBOO_SAPLING = registerBlock("spring_bamboo_sapling", new SpringBambooSaplingBlock(AbstractBlock.Settings.create().mapColor(MapColor.PALE_GREEN).solid().ticksRandomly().breakInstantly().noCollision().strength(1.0F).sounds(BlockSoundGroup.BAMBOO_SAPLING).offset(AbstractBlock.OffsetType.XZ).burnable().pistonBehavior(PistonBehavior.DESTROY)));
     public static final Block BUNDLED_SPRING_BAMBOO = registerBlock("bundled_spring_bamboo", new PillarBlock(AbstractBlock.Settings.copy(Blocks.BAMBOO_BLOCK)));
 
-    public static final Block POTTED_PINK_CHERRY_BLOSSOM_SAPLING = registerBlockWithoutItem("potted_pink_cherry_blossom_sapling", Blocks.createFlowerPotBlock(PINK_CHERRY_BLOSSOM_SAPLING));
-    public static final Block POTTED_WHITE_CHERRY_BLOSSOM_SAPLING = registerBlockWithoutItem("potted_white_cherry_blossom_sapling", Blocks.createFlowerPotBlock(WHITE_CHERRY_BLOSSOM_SAPLING));
-    public static final Block POTTED_PEONY_BUSH = registerBlockWithoutItem("potted_peony_bush", Blocks.createFlowerPotBlock(PEONY_BUSH));
-    public static final Block POTTED_SPRING_BAMBOO = registerBlockWithoutItem("potted_spring_bamboo", Blocks.createFlowerPotBlock(SPRING_BAMBOO));
+    public static final Block POTTED_PINK_CHERRY_BLOSSOM_SAPLING = registerBlock("potted_pink_cherry_blossom_sapling", Blocks.createFlowerPotBlock(PINK_CHERRY_BLOSSOM_SAPLING));
+    public static final Block POTTED_WHITE_CHERRY_BLOSSOM_SAPLING = registerBlock("potted_white_cherry_blossom_sapling", Blocks.createFlowerPotBlock(WHITE_CHERRY_BLOSSOM_SAPLING));
+    public static final Block POTTED_PEONY_BUSH = registerBlock("potted_peony_bush", Blocks.createFlowerPotBlock(PEONY_BUSH));
+    public static final Block POTTED_SPRING_BAMBOO = registerBlock("potted_spring_bamboo", Blocks.createFlowerPotBlock(SPRING_BAMBOO));
 
     /** lush oasis */
     public static final Block LUSH_SAND = registerBlock("lush_sand", new SandBlock(14729120, AbstractBlock.Settings.create().mapColor(MapColor.PALE_YELLOW).instrument(Instrument.SNARE).strength(0.5F).sounds(BlockSoundGroup.SAND)));
@@ -120,7 +118,7 @@ public class MysticBlocks {
     public static final Block PEACH_HANGING_SIGN = registerBlock("peach_hanging_sign", hangingSign(PEACH_PLANKS, MysticWoodTypes.PEACH));
     public static final Block PEACH_WALL_HANGING_SIGN = registerBlock("peach_wall_hanging_sign", wallHangingSign(PEACH_HANGING_SIGN, MysticWoodTypes.PEACH));
 
-    public static final Block PEACH_PLANT = registerBlock("peach_plant", new FruitPlantBlock(MysticItems.PEACH, AbstractBlock.Settings.create().mapColor(MapColor.GREEN).ticksRandomly().noCollision().sounds(BlockSoundGroup.SWEET_BERRY_BUSH).pistonBehavior(PistonBehavior.DESTROY)));
+    public static final Block PEACH_PLANT = registerBlock("peach_plant", new FruitPlantBlock(() -> MysticItems.PEACH, AbstractBlock.Settings.create().mapColor(MapColor.GREEN).ticksRandomly().noCollision().sounds(BlockSoundGroup.SWEET_BERRY_BUSH).pistonBehavior(PistonBehavior.DESTROY)));
     public static final Block PEACH_PIE = registerBlock("peach_pie", new PieBlock(AbstractBlock.Settings.create().solid().strength(0.5F).sounds(BlockSoundGroup.WOOL).pistonBehavior(PistonBehavior.DESTROY)));
 
     public static final Block SAGUARO_CACTUS = registerBlock("saguaro_cactus", new SaguaroCactusBlock(AbstractBlock.Settings.create().mapColor(MapColor.PALE_GREEN).ticksRandomly().strength(0.4F).sounds(BlockSoundGroup.WOOL).pistonBehavior(PistonBehavior.DESTROY)));
@@ -128,17 +126,17 @@ public class MysticBlocks {
     public static final Block DESERT_GRASS = registerBlock("desert_grass", new MysticGrassBlock(AbstractBlock.Settings.create().mapColor(MapColor.DIRT_BROWN).replaceable().noCollision().breakInstantly().sounds(BlockSoundGroup.GRASS).offset(AbstractBlock.OffsetType.XYZ).burnable().pistonBehavior(PistonBehavior.DESTROY)));
     public static final Block WILDFLOWER = registerBlock("wildflower", new WildflowerBlock(AbstractBlock.Settings.create().mapColor(MapColor.MAGENTA).offset(AbstractBlock.OffsetType.XZ).noCollision().breakInstantly().sounds(BlockSoundGroup.GRASS)));
 
-    public static final Block POTTED_PEACH_SAPLING = registerBlockWithoutItem("potted_peach_sapling", Blocks.createFlowerPotBlock(PEACH_SAPLING));
-    public static final Block POTTED_WILDFLOWER = registerBlockWithoutItem("potted_wildflower", Blocks.createFlowerPotBlock(WILDFLOWER));
+    public static final Block POTTED_PEACH_SAPLING = registerBlock("potted_peach_sapling", Blocks.createFlowerPotBlock(PEACH_SAPLING));
+    public static final Block POTTED_WILDFLOWER = registerBlock("potted_wildflower", Blocks.createFlowerPotBlock(WILDFLOWER));
 
     /** autumnal grove */
-    public static final Block MAPLE_LEAVES = registerBlock("maple_leaves", new MapleLeavesBlock(MysticParticles.MAPLE_LEAF, BlockSoundGroup.GRASS));
+    public static final Block MAPLE_LEAVES = registerBlock("maple_leaves", new MapleLeavesBlock(BlockSoundGroup.GRASS));
     public static final Block MAPLE_LEAF_PILE = registerBlock("maple_leaf_pile", new MapleLeafPileBlock(MysticParticles.MAPLE_LEAF_PILE, MapColor.GREEN));
     public static final Block MAPLE_SAPLING = registerBlock("maple_sapling", new MysticSaplingBlock(new MysticTreeGrower(MysticTreeFeatures.MAPLE_TREE), AbstractBlock.Settings.copy(Blocks.OAK_SAPLING)));
-    public static final Block ORANGE_MAPLE_LEAVES = registerBlock("orange_maple_leaves", new MapleLeavesBlock(MysticParticles.ORANGE_MAPLE_LEAF, BlockSoundGroup.GRASS));
+    public static final Block ORANGE_MAPLE_LEAVES = registerBlock("orange_maple_leaves", new MapleLeavesBlock(BlockSoundGroup.GRASS));
     public static final Block ORANGE_MAPLE_LEAF_PILE = registerBlock("orange_maple_leaf_pile", new MapleLeafPileBlock(MysticParticles.ORANGE_MAPLE_LEAF_PILE, MapColor.ORANGE));
     public static final Block ORANGE_MAPLE_SAPLING = registerBlock("orange_maple_sapling", new MysticSaplingBlock(new MysticTreeGrower(MysticTreeFeatures.ORANGE_MAPLE_TREE), AbstractBlock.Settings.copy(Blocks.OAK_SAPLING)));
-    public static final Block YELLOW_MAPLE_LEAVES = registerBlock("yellow_maple_leaves", new MapleLeavesBlock(MysticParticles.YELLOW_MAPLE_LEAF, BlockSoundGroup.GRASS));
+    public static final Block YELLOW_MAPLE_LEAVES = registerBlock("yellow_maple_leaves", new MapleLeavesBlock(BlockSoundGroup.GRASS));
     public static final Block YELLOW_MAPLE_LEAF_PILE = registerBlock("yellow_maple_leaf_pile", new MapleLeafPileBlock(MysticParticles.YELLOW_MAPLE_LEAF_PILE, MapColor.YELLOW));
     public static final Block YELLOW_MAPLE_SAPLING = registerBlock("yellow_maple_sapling", new MysticSaplingBlock(new MysticTreeGrower(MysticTreeFeatures.YELLOW_MAPLE_TREE), AbstractBlock.Settings.copy(Blocks.OAK_SAPLING)));
 
@@ -162,9 +160,9 @@ public class MysticBlocks {
     public static final Block MAPLE_HANGING_SIGN = registerBlock("maple_hanging_sign", hangingSign(MAPLE_PLANKS, MysticWoodTypes.MAPLE));
     public static final Block MAPLE_WALL_HANGING_SIGN = registerBlock("maple_wall_hanging_sign", wallHangingSign(MAPLE_HANGING_SIGN, MysticWoodTypes.MAPLE));
 
-    public static final Block POTTED_MAPLE_SAPLING = registerBlockWithoutItem("potted_maple_sapling", Blocks.createFlowerPotBlock(MAPLE_SAPLING));
-    public static final Block POTTED_ORANGE_MAPLE_SAPLING = registerBlockWithoutItem("potted_orange_maple_sapling", Blocks.createFlowerPotBlock(ORANGE_MAPLE_SAPLING));
-    public static final Block POTTED_YELLOW_MAPLE_SAPLING = registerBlockWithoutItem("potted_yellow_maple_sapling", Blocks.createFlowerPotBlock(YELLOW_MAPLE_SAPLING));
+    public static final Block POTTED_MAPLE_SAPLING = registerBlock("potted_maple_sapling", Blocks.createFlowerPotBlock(MAPLE_SAPLING));
+    public static final Block POTTED_ORANGE_MAPLE_SAPLING = registerBlock("potted_orange_maple_sapling", Blocks.createFlowerPotBlock(ORANGE_MAPLE_SAPLING));
+    public static final Block POTTED_YELLOW_MAPLE_SAPLING = registerBlock("potted_yellow_maple_sapling", Blocks.createFlowerPotBlock(YELLOW_MAPLE_SAPLING));
 
     /** lagoon */
     public static final Block SEA_SHRUB_LEAVES = registerBlock("sea_shrub_leaves", new MysticLeavesBlock(BlockSoundGroup.GRASS));
@@ -191,7 +189,7 @@ public class MysticBlocks {
     public static final Block SEA_OATS = registerBlock("sea_oats", new SeaOatsBlock(AbstractBlock.Settings.create().mapColor(MapColor.PALE_YELLOW).offset(AbstractBlock.OffsetType.XZ).noCollision().breakInstantly().sounds(BlockSoundGroup.GRASS)));
     public static final Block MILKWEED = registerBlock("milkweed", new MilkweedFlowerBlock(AbstractBlock.Settings.create().mapColor(MapColor.TERRACOTTA_PINK).offset(AbstractBlock.OffsetType.XZ).noCollision().breakInstantly().sounds(BlockSoundGroup.GRASS)));
 
-    public static final Block POTTED_SEA_SHRUB = registerBlockWithoutItem("potted_sea_shrub", Blocks.createFlowerPotBlock(SEA_SHRUB));
+    public static final Block POTTED_SEA_SHRUB = registerBlock("potted_sea_shrub", Blocks.createFlowerPotBlock(SEA_SHRUB));
 
     /** topics */
     public static final Block TROPICAL_LEAVES = registerBlock("tropical_leaves", new MysticLeavesBlock(BlockSoundGroup.GRASS));
@@ -220,11 +218,11 @@ public class MysticBlocks {
 
     public static final Block VANILLA_ORCHID = registerBlock("vanilla_orchid", new VanillaOrchidBlock(AbstractBlock.Settings.create().mapColor(MapColor.DARK_GREEN).ticksRandomly().noCollision().sounds(BlockSoundGroup.CAVE_VINES).pistonBehavior(PistonBehavior.DESTROY)));
 
-    public static final Block POTTED_TROPICAL_SAPLING = registerBlockWithoutItem("potted_tropical_sapling", Blocks.createFlowerPotBlock(TROPICAL_SAPLING));
-    public static final Block POTTED_HYDRANGEA_BUSH = registerBlockWithoutItem("potted_hydrangea_bush", Blocks.createFlowerPotBlock(HYDRANGEA_BUSH));
+    public static final Block POTTED_TROPICAL_SAPLING = registerBlock("potted_tropical_sapling", Blocks.createFlowerPotBlock(TROPICAL_SAPLING));
+    public static final Block POTTED_HYDRANGEA_BUSH = registerBlock("potted_hydrangea_bush", Blocks.createFlowerPotBlock(HYDRANGEA_BUSH));
 
     /** lavender meadow */
-    public static final Block JACARANDA_BLOSSOMS = registerBlock("jacaranda_blossoms", new BlossomLeavesBlock(MysticParticles.JACARANDA_BLOSSOM, BlockSoundGroup.AZALEA_LEAVES));
+    public static final Block JACARANDA_BLOSSOMS = registerBlock("jacaranda_blossoms", new BlossomLeavesBlock(() -> MysticParticles.JACARANDA_BLOSSOM, BlockSoundGroup.AZALEA_LEAVES));
     public static final Block JACARANDA_LEAVES = registerBlock("jacaranda_leaves", new MysticLeavesBlock(BlockSoundGroup.AZALEA_LEAVES));
     public static final Block JACARANDA_SAPLING = registerBlock("jacaranda_sapling", new MysticSaplingBlock(new MysticTreeGrower(MysticTreeFeatures.JACARANDA_TREE), AbstractBlock.Settings.copy(Blocks.OAK_SAPLING)));
 
@@ -251,188 +249,182 @@ public class MysticBlocks {
     public static final Block BUTTERFLY_NEST = registerBlock("butterfly_nest", new ButterflyNestBlock(AbstractBlock.Settings.create().mapColor(MapColor.PALE_GREEN).strength(0.5F).sounds(BlockSoundGroup.FLOWERING_AZALEA).nonOpaque().burnable()));
     public static final Block GLASS_JAR = registerBlock("glass_jar", new GlassJarBlock(AbstractBlock.Settings.copy(Blocks.GLASS)));
 
-    public static final Block POTTED_JACARANDA_SAPLING = registerBlockWithoutItem("potted_jacaranda_sapling", Blocks.createFlowerPotBlock(JACARANDA_SAPLING));
-    public static final Block POTTED_LAVENDER = registerBlockWithoutItem("potted_lavender", Blocks.createFlowerPotBlock(LAVENDER));
+    public static final Block POTTED_JACARANDA_SAPLING = registerBlock("potted_jacaranda_sapling", Blocks.createFlowerPotBlock(JACARANDA_SAPLING));
+    public static final Block POTTED_LAVENDER = registerBlock("potted_lavender", Blocks.createFlowerPotBlock(LAVENDER));
 
     /** shared features, cakes, & misc. */
     public static final Block STRAWBERRY_CAKE = registerBlock("strawberry_cake", new MysticCakeBlock(AbstractBlock.Settings.create().solid().strength(0.5F).sounds(BlockSoundGroup.WOOL).pistonBehavior(PistonBehavior.DESTROY)));
-    public static final Block STRAWBERRY_CANDLE_CAKE = registerBlockWithoutItem("strawberry_candle_cake",  new MysticCandleCakeBlock(STRAWBERRY_CAKE, Blocks.CANDLE));
-    public static final Block STRAWBERRY_CANDLE_CAKE_WHITE = registerBlockWithoutItem("strawberry_candle_cake_white", new MysticCandleCakeBlock(STRAWBERRY_CAKE, Blocks.WHITE_CANDLE));
-    public static final Block STRAWBERRY_CANDLE_CAKE_ORANGE = registerBlockWithoutItem("strawberry_candle_cake_orange", new MysticCandleCakeBlock(STRAWBERRY_CAKE, Blocks.ORANGE_CANDLE));
-    public static final Block STRAWBERRY_CANDLE_CAKE_MAGENTA = registerBlockWithoutItem("strawberry_candle_cake_magenta", new MysticCandleCakeBlock(STRAWBERRY_CAKE, Blocks.MAGENTA_CANDLE));
-    public static final Block STRAWBERRY_CANDLE_CAKE_LIGHT_BLUE = registerBlockWithoutItem("strawberry_candle_cake_light_blue", new MysticCandleCakeBlock(STRAWBERRY_CAKE, Blocks.LIGHT_BLUE_CANDLE));
-    public static final Block STRAWBERRY_CANDLE_CAKE_YELLOW = registerBlockWithoutItem("strawberry_candle_cake_yellow", new MysticCandleCakeBlock(STRAWBERRY_CAKE, Blocks.YELLOW_CANDLE));
-    public static final Block STRAWBERRY_CANDLE_CAKE_LIME = registerBlockWithoutItem("strawberry_candle_cake_lime", new MysticCandleCakeBlock(STRAWBERRY_CAKE, Blocks.LIME_CANDLE));
-    public static final Block STRAWBERRY_CANDLE_CAKE_PINK = registerBlockWithoutItem("strawberry_candle_cake_pink", new MysticCandleCakeBlock(STRAWBERRY_CAKE, Blocks.PINK_CANDLE));
-    public static final Block STRAWBERRY_CANDLE_CAKE_GRAY = registerBlockWithoutItem("strawberry_candle_cake_gray", new MysticCandleCakeBlock(STRAWBERRY_CAKE, Blocks.GRAY_CANDLE));
-    public static final Block STRAWBERRY_CANDLE_CAKE_LIGHT_GRAY = registerBlockWithoutItem("strawberry_candle_cake_light_gray", new MysticCandleCakeBlock(STRAWBERRY_CAKE, Blocks.LIGHT_GRAY_CANDLE));
-    public static final Block STRAWBERRY_CANDLE_CAKE_CYAN = registerBlockWithoutItem("strawberry_candle_cake_cyan", new MysticCandleCakeBlock(STRAWBERRY_CAKE, Blocks.CYAN_CANDLE));
-    public static final Block STRAWBERRY_CANDLE_CAKE_PURPLE = registerBlockWithoutItem("strawberry_candle_cake_purple", new MysticCandleCakeBlock(STRAWBERRY_CAKE, Blocks.PURPLE_CANDLE));
-    public static final Block STRAWBERRY_CANDLE_CAKE_BLUE = registerBlockWithoutItem("strawberry_candle_cake_blue", new MysticCandleCakeBlock(STRAWBERRY_CAKE, Blocks.BLUE_CANDLE));
-    public static final Block STRAWBERRY_CANDLE_CAKE_BROWN = registerBlockWithoutItem("strawberry_candle_cake_brown", new MysticCandleCakeBlock(STRAWBERRY_CAKE, Blocks.BROWN_CANDLE));
-    public static final Block STRAWBERRY_CANDLE_CAKE_GREEN = registerBlockWithoutItem("strawberry_candle_cake_green", new MysticCandleCakeBlock(STRAWBERRY_CAKE, Blocks.GREEN_CANDLE));
-    public static final Block STRAWBERRY_CANDLE_CAKE_RED = registerBlockWithoutItem("strawberry_candle_cake_red", new MysticCandleCakeBlock(STRAWBERRY_CAKE, Blocks.RED_CANDLE));
-    public static final Block STRAWBERRY_CANDLE_CAKE_BLACK = registerBlockWithoutItem("strawberry_candle_cake_black", new MysticCandleCakeBlock(STRAWBERRY_CAKE, Blocks.BLACK_CANDLE));
+    public static final Block STRAWBERRY_CANDLE_CAKE = registerBlock("strawberry_candle_cake",  new MysticCandleCakeBlock(STRAWBERRY_CAKE, Blocks.CANDLE));
+    public static final Block STRAWBERRY_CANDLE_CAKE_WHITE = registerBlock("strawberry_candle_cake_white", new MysticCandleCakeBlock(STRAWBERRY_CAKE, Blocks.WHITE_CANDLE));
+    public static final Block STRAWBERRY_CANDLE_CAKE_ORANGE = registerBlock("strawberry_candle_cake_orange", new MysticCandleCakeBlock(STRAWBERRY_CAKE, Blocks.ORANGE_CANDLE));
+    public static final Block STRAWBERRY_CANDLE_CAKE_MAGENTA = registerBlock("strawberry_candle_cake_magenta", new MysticCandleCakeBlock(STRAWBERRY_CAKE, Blocks.MAGENTA_CANDLE));
+    public static final Block STRAWBERRY_CANDLE_CAKE_LIGHT_BLUE = registerBlock("strawberry_candle_cake_light_blue", new MysticCandleCakeBlock(STRAWBERRY_CAKE, Blocks.LIGHT_BLUE_CANDLE));
+    public static final Block STRAWBERRY_CANDLE_CAKE_YELLOW = registerBlock("strawberry_candle_cake_yellow", new MysticCandleCakeBlock(STRAWBERRY_CAKE, Blocks.YELLOW_CANDLE));
+    public static final Block STRAWBERRY_CANDLE_CAKE_LIME = registerBlock("strawberry_candle_cake_lime", new MysticCandleCakeBlock(STRAWBERRY_CAKE, Blocks.LIME_CANDLE));
+    public static final Block STRAWBERRY_CANDLE_CAKE_PINK = registerBlock("strawberry_candle_cake_pink", new MysticCandleCakeBlock(STRAWBERRY_CAKE, Blocks.PINK_CANDLE));
+    public static final Block STRAWBERRY_CANDLE_CAKE_GRAY = registerBlock("strawberry_candle_cake_gray", new MysticCandleCakeBlock(STRAWBERRY_CAKE, Blocks.GRAY_CANDLE));
+    public static final Block STRAWBERRY_CANDLE_CAKE_LIGHT_GRAY = registerBlock("strawberry_candle_cake_light_gray", new MysticCandleCakeBlock(STRAWBERRY_CAKE, Blocks.LIGHT_GRAY_CANDLE));
+    public static final Block STRAWBERRY_CANDLE_CAKE_CYAN = registerBlock("strawberry_candle_cake_cyan", new MysticCandleCakeBlock(STRAWBERRY_CAKE, Blocks.CYAN_CANDLE));
+    public static final Block STRAWBERRY_CANDLE_CAKE_PURPLE = registerBlock("strawberry_candle_cake_purple", new MysticCandleCakeBlock(STRAWBERRY_CAKE, Blocks.PURPLE_CANDLE));
+    public static final Block STRAWBERRY_CANDLE_CAKE_BLUE = registerBlock("strawberry_candle_cake_blue", new MysticCandleCakeBlock(STRAWBERRY_CAKE, Blocks.BLUE_CANDLE));
+    public static final Block STRAWBERRY_CANDLE_CAKE_BROWN = registerBlock("strawberry_candle_cake_brown", new MysticCandleCakeBlock(STRAWBERRY_CAKE, Blocks.BROWN_CANDLE));
+    public static final Block STRAWBERRY_CANDLE_CAKE_GREEN = registerBlock("strawberry_candle_cake_green", new MysticCandleCakeBlock(STRAWBERRY_CAKE, Blocks.GREEN_CANDLE));
+    public static final Block STRAWBERRY_CANDLE_CAKE_RED = registerBlock("strawberry_candle_cake_red", new MysticCandleCakeBlock(STRAWBERRY_CAKE, Blocks.RED_CANDLE));
+    public static final Block STRAWBERRY_CANDLE_CAKE_BLACK = registerBlock("strawberry_candle_cake_black", new MysticCandleCakeBlock(STRAWBERRY_CAKE, Blocks.BLACK_CANDLE));
 
     public static final Block VANILLA_CAKE = registerBlock("vanilla_cake", new MysticCakeBlock(AbstractBlock.Settings.create().solid().strength(0.5F).sounds(BlockSoundGroup.WOOL).pistonBehavior(PistonBehavior.DESTROY)));
-    public static final Block VANILLA_CANDLE_CAKE = registerBlockWithoutItem("vanilla_candle_cake",  new MysticCandleCakeBlock(VANILLA_CAKE, Blocks.CANDLE));
-    public static final Block VANILLA_CANDLE_CAKE_WHITE = registerBlockWithoutItem("vanilla_candle_cake_white", new MysticCandleCakeBlock(VANILLA_CAKE, Blocks.WHITE_CANDLE));
-    public static final Block VANILLA_CANDLE_CAKE_ORANGE = registerBlockWithoutItem("vanilla_candle_cake_orange", new MysticCandleCakeBlock(VANILLA_CAKE, Blocks.ORANGE_CANDLE));
-    public static final Block VANILLA_CANDLE_CAKE_MAGENTA = registerBlockWithoutItem("vanilla_candle_cake_magenta", new MysticCandleCakeBlock(VANILLA_CAKE, Blocks.MAGENTA_CANDLE));
-    public static final Block VANILLA_CANDLE_CAKE_LIGHT_BLUE = registerBlockWithoutItem("vanilla_candle_cake_light_blue", new MysticCandleCakeBlock(VANILLA_CAKE, Blocks.LIGHT_BLUE_CANDLE));
-    public static final Block VANILLA_CANDLE_CAKE_YELLOW = registerBlockWithoutItem("vanilla_candle_cake_yellow", new MysticCandleCakeBlock(VANILLA_CAKE, Blocks.YELLOW_CANDLE));
-    public static final Block VANILLA_CANDLE_CAKE_LIME = registerBlockWithoutItem("vanilla_candle_cake_lime", new MysticCandleCakeBlock(VANILLA_CAKE, Blocks.LIME_CANDLE));
-    public static final Block VANILLA_CANDLE_CAKE_PINK = registerBlockWithoutItem("vanilla_candle_cake_pink", new MysticCandleCakeBlock(VANILLA_CAKE, Blocks.PINK_CANDLE));
-    public static final Block VANILLA_CANDLE_CAKE_GRAY = registerBlockWithoutItem("vanilla_candle_cake_gray", new MysticCandleCakeBlock(VANILLA_CAKE, Blocks.GRAY_CANDLE));
-    public static final Block VANILLA_CANDLE_CAKE_LIGHT_GRAY = registerBlockWithoutItem("vanilla_candle_cake_light_gray", new MysticCandleCakeBlock(VANILLA_CAKE, Blocks.LIGHT_GRAY_CANDLE));
-    public static final Block VANILLA_CANDLE_CAKE_CYAN = registerBlockWithoutItem("vanilla_candle_cake_cyan", new MysticCandleCakeBlock(VANILLA_CAKE, Blocks.CYAN_CANDLE));
-    public static final Block VANILLA_CANDLE_CAKE_PURPLE = registerBlockWithoutItem("vanilla_candle_cake_purple", new MysticCandleCakeBlock(VANILLA_CAKE, Blocks.PURPLE_CANDLE));
-    public static final Block VANILLA_CANDLE_CAKE_BLUE = registerBlockWithoutItem("vanilla_candle_cake_blue", new MysticCandleCakeBlock(VANILLA_CAKE, Blocks.BLUE_CANDLE));
-    public static final Block VANILLA_CANDLE_CAKE_BROWN = registerBlockWithoutItem("vanilla_candle_cake_brown", new MysticCandleCakeBlock(VANILLA_CAKE, Blocks.BROWN_CANDLE));
-    public static final Block VANILLA_CANDLE_CAKE_GREEN = registerBlockWithoutItem("vanilla_candle_cake_green", new MysticCandleCakeBlock(VANILLA_CAKE, Blocks.GREEN_CANDLE));
-    public static final Block VANILLA_CANDLE_CAKE_RED = registerBlockWithoutItem("vanilla_candle_cake_red", new MysticCandleCakeBlock(VANILLA_CAKE, Blocks.RED_CANDLE));
-    public static final Block VANILLA_CANDLE_CAKE_BLACK = registerBlockWithoutItem("vanilla_candle_cake_black", new MysticCandleCakeBlock(VANILLA_CAKE, Blocks.BLACK_CANDLE));
+    public static final Block VANILLA_CANDLE_CAKE = registerBlock("vanilla_candle_cake",  new MysticCandleCakeBlock(VANILLA_CAKE, Blocks.CANDLE));
+    public static final Block VANILLA_CANDLE_CAKE_WHITE = registerBlock("vanilla_candle_cake_white", new MysticCandleCakeBlock(VANILLA_CAKE, Blocks.WHITE_CANDLE));
+    public static final Block VANILLA_CANDLE_CAKE_ORANGE = registerBlock("vanilla_candle_cake_orange", new MysticCandleCakeBlock(VANILLA_CAKE, Blocks.ORANGE_CANDLE));
+    public static final Block VANILLA_CANDLE_CAKE_MAGENTA = registerBlock("vanilla_candle_cake_magenta", new MysticCandleCakeBlock(VANILLA_CAKE, Blocks.MAGENTA_CANDLE));
+    public static final Block VANILLA_CANDLE_CAKE_LIGHT_BLUE = registerBlock("vanilla_candle_cake_light_blue", new MysticCandleCakeBlock(VANILLA_CAKE, Blocks.LIGHT_BLUE_CANDLE));
+    public static final Block VANILLA_CANDLE_CAKE_YELLOW = registerBlock("vanilla_candle_cake_yellow", new MysticCandleCakeBlock(VANILLA_CAKE, Blocks.YELLOW_CANDLE));
+    public static final Block VANILLA_CANDLE_CAKE_LIME = registerBlock("vanilla_candle_cake_lime", new MysticCandleCakeBlock(VANILLA_CAKE, Blocks.LIME_CANDLE));
+    public static final Block VANILLA_CANDLE_CAKE_PINK = registerBlock("vanilla_candle_cake_pink", new MysticCandleCakeBlock(VANILLA_CAKE, Blocks.PINK_CANDLE));
+    public static final Block VANILLA_CANDLE_CAKE_GRAY = registerBlock("vanilla_candle_cake_gray", new MysticCandleCakeBlock(VANILLA_CAKE, Blocks.GRAY_CANDLE));
+    public static final Block VANILLA_CANDLE_CAKE_LIGHT_GRAY = registerBlock("vanilla_candle_cake_light_gray", new MysticCandleCakeBlock(VANILLA_CAKE, Blocks.LIGHT_GRAY_CANDLE));
+    public static final Block VANILLA_CANDLE_CAKE_CYAN = registerBlock("vanilla_candle_cake_cyan", new MysticCandleCakeBlock(VANILLA_CAKE, Blocks.CYAN_CANDLE));
+    public static final Block VANILLA_CANDLE_CAKE_PURPLE = registerBlock("vanilla_candle_cake_purple", new MysticCandleCakeBlock(VANILLA_CAKE, Blocks.PURPLE_CANDLE));
+    public static final Block VANILLA_CANDLE_CAKE_BLUE = registerBlock("vanilla_candle_cake_blue", new MysticCandleCakeBlock(VANILLA_CAKE, Blocks.BLUE_CANDLE));
+    public static final Block VANILLA_CANDLE_CAKE_BROWN = registerBlock("vanilla_candle_cake_brown", new MysticCandleCakeBlock(VANILLA_CAKE, Blocks.BROWN_CANDLE));
+    public static final Block VANILLA_CANDLE_CAKE_GREEN = registerBlock("vanilla_candle_cake_green", new MysticCandleCakeBlock(VANILLA_CAKE, Blocks.GREEN_CANDLE));
+    public static final Block VANILLA_CANDLE_CAKE_RED = registerBlock("vanilla_candle_cake_red", new MysticCandleCakeBlock(VANILLA_CAKE, Blocks.RED_CANDLE));
+    public static final Block VANILLA_CANDLE_CAKE_BLACK = registerBlock("vanilla_candle_cake_black", new MysticCandleCakeBlock(VANILLA_CAKE, Blocks.BLACK_CANDLE));
 
     public static final Block CHOCOLATE_CAKE = registerBlock("chocolate_cake", new MysticCakeBlock(AbstractBlock.Settings.create().solid().strength(0.5F).sounds(BlockSoundGroup.WOOL).pistonBehavior(PistonBehavior.DESTROY)));
-    public static final Block CHOCOLATE_CANDLE_CAKE = registerBlockWithoutItem("chocolate_candle_cake",  new MysticCandleCakeBlock(CHOCOLATE_CAKE, Blocks.CANDLE));
-    public static final Block CHOCOLATE_CANDLE_CAKE_WHITE = registerBlockWithoutItem("chocolate_candle_cake_white", new MysticCandleCakeBlock(CHOCOLATE_CAKE, Blocks.WHITE_CANDLE));
-    public static final Block CHOCOLATE_CANDLE_CAKE_ORANGE = registerBlockWithoutItem("chocolate_candle_cake_orange", new MysticCandleCakeBlock(CHOCOLATE_CAKE, Blocks.ORANGE_CANDLE));
-    public static final Block CHOCOLATE_CANDLE_CAKE_MAGENTA = registerBlockWithoutItem("chocolate_candle_cake_magenta", new MysticCandleCakeBlock(CHOCOLATE_CAKE, Blocks.MAGENTA_CANDLE));
-    public static final Block CHOCOLATE_CANDLE_CAKE_LIGHT_BLUE = registerBlockWithoutItem("chocolate_candle_cake_light_blue", new MysticCandleCakeBlock(CHOCOLATE_CAKE, Blocks.LIGHT_BLUE_CANDLE));
-    public static final Block CHOCOLATE_CANDLE_CAKE_YELLOW = registerBlockWithoutItem("chocolate_candle_cake_yellow", new MysticCandleCakeBlock(CHOCOLATE_CAKE, Blocks.YELLOW_CANDLE));
-    public static final Block CHOCOLATE_CANDLE_CAKE_LIME = registerBlockWithoutItem("chocolate_candle_cake_lime", new MysticCandleCakeBlock(CHOCOLATE_CAKE, Blocks.LIME_CANDLE));
-    public static final Block CHOCOLATE_CANDLE_CAKE_PINK = registerBlockWithoutItem("chocolate_candle_cake_pink", new MysticCandleCakeBlock(CHOCOLATE_CAKE, Blocks.PINK_CANDLE));
-    public static final Block CHOCOLATE_CANDLE_CAKE_GRAY = registerBlockWithoutItem("chocolate_candle_cake_gray", new MysticCandleCakeBlock(CHOCOLATE_CAKE, Blocks.GRAY_CANDLE));
-    public static final Block CHOCOLATE_CANDLE_CAKE_LIGHT_GRAY = registerBlockWithoutItem("chocolate_candle_cake_light_gray", new MysticCandleCakeBlock(CHOCOLATE_CAKE, Blocks.LIGHT_GRAY_CANDLE));
-    public static final Block CHOCOLATE_CANDLE_CAKE_CYAN = registerBlockWithoutItem("chocolate_candle_cake_cyan", new MysticCandleCakeBlock(CHOCOLATE_CAKE, Blocks.CYAN_CANDLE));
-    public static final Block CHOCOLATE_CANDLE_CAKE_PURPLE = registerBlockWithoutItem("chocolate_candle_cake_purple", new MysticCandleCakeBlock(CHOCOLATE_CAKE, Blocks.PURPLE_CANDLE));
-    public static final Block CHOCOLATE_CANDLE_CAKE_BLUE = registerBlockWithoutItem("chocolate_candle_cake_blue", new MysticCandleCakeBlock(CHOCOLATE_CAKE, Blocks.BLUE_CANDLE));
-    public static final Block CHOCOLATE_CANDLE_CAKE_BROWN = registerBlockWithoutItem("chocolate_candle_cake_brown", new MysticCandleCakeBlock(CHOCOLATE_CAKE, Blocks.BROWN_CANDLE));
-    public static final Block CHOCOLATE_CANDLE_CAKE_GREEN = registerBlockWithoutItem("chocolate_candle_cake_green", new MysticCandleCakeBlock(CHOCOLATE_CAKE, Blocks.GREEN_CANDLE));
-    public static final Block CHOCOLATE_CANDLE_CAKE_RED = registerBlockWithoutItem("chocolate_candle_cake_red", new MysticCandleCakeBlock(CHOCOLATE_CAKE, Blocks.RED_CANDLE));
-    public static final Block CHOCOLATE_CANDLE_CAKE_BLACK = registerBlockWithoutItem("chocolate_candle_cake_black", new MysticCandleCakeBlock(CHOCOLATE_CAKE, Blocks.BLACK_CANDLE));
+    public static final Block CHOCOLATE_CANDLE_CAKE = registerBlock("chocolate_candle_cake",  new MysticCandleCakeBlock(CHOCOLATE_CAKE, Blocks.CANDLE));
+    public static final Block CHOCOLATE_CANDLE_CAKE_WHITE = registerBlock("chocolate_candle_cake_white", new MysticCandleCakeBlock(CHOCOLATE_CAKE, Blocks.WHITE_CANDLE));
+    public static final Block CHOCOLATE_CANDLE_CAKE_ORANGE = registerBlock("chocolate_candle_cake_orange", new MysticCandleCakeBlock(CHOCOLATE_CAKE, Blocks.ORANGE_CANDLE));
+    public static final Block CHOCOLATE_CANDLE_CAKE_MAGENTA = registerBlock("chocolate_candle_cake_magenta", new MysticCandleCakeBlock(CHOCOLATE_CAKE, Blocks.MAGENTA_CANDLE));
+    public static final Block CHOCOLATE_CANDLE_CAKE_LIGHT_BLUE = registerBlock("chocolate_candle_cake_light_blue", new MysticCandleCakeBlock(CHOCOLATE_CAKE, Blocks.LIGHT_BLUE_CANDLE));
+    public static final Block CHOCOLATE_CANDLE_CAKE_YELLOW = registerBlock("chocolate_candle_cake_yellow", new MysticCandleCakeBlock(CHOCOLATE_CAKE, Blocks.YELLOW_CANDLE));
+    public static final Block CHOCOLATE_CANDLE_CAKE_LIME = registerBlock("chocolate_candle_cake_lime", new MysticCandleCakeBlock(CHOCOLATE_CAKE, Blocks.LIME_CANDLE));
+    public static final Block CHOCOLATE_CANDLE_CAKE_PINK = registerBlock("chocolate_candle_cake_pink", new MysticCandleCakeBlock(CHOCOLATE_CAKE, Blocks.PINK_CANDLE));
+    public static final Block CHOCOLATE_CANDLE_CAKE_GRAY = registerBlock("chocolate_candle_cake_gray", new MysticCandleCakeBlock(CHOCOLATE_CAKE, Blocks.GRAY_CANDLE));
+    public static final Block CHOCOLATE_CANDLE_CAKE_LIGHT_GRAY = registerBlock("chocolate_candle_cake_light_gray", new MysticCandleCakeBlock(CHOCOLATE_CAKE, Blocks.LIGHT_GRAY_CANDLE));
+    public static final Block CHOCOLATE_CANDLE_CAKE_CYAN = registerBlock("chocolate_candle_cake_cyan", new MysticCandleCakeBlock(CHOCOLATE_CAKE, Blocks.CYAN_CANDLE));
+    public static final Block CHOCOLATE_CANDLE_CAKE_PURPLE = registerBlock("chocolate_candle_cake_purple", new MysticCandleCakeBlock(CHOCOLATE_CAKE, Blocks.PURPLE_CANDLE));
+    public static final Block CHOCOLATE_CANDLE_CAKE_BLUE = registerBlock("chocolate_candle_cake_blue", new MysticCandleCakeBlock(CHOCOLATE_CAKE, Blocks.BLUE_CANDLE));
+    public static final Block CHOCOLATE_CANDLE_CAKE_BROWN = registerBlock("chocolate_candle_cake_brown", new MysticCandleCakeBlock(CHOCOLATE_CAKE, Blocks.BROWN_CANDLE));
+    public static final Block CHOCOLATE_CANDLE_CAKE_GREEN = registerBlock("chocolate_candle_cake_green", new MysticCandleCakeBlock(CHOCOLATE_CAKE, Blocks.GREEN_CANDLE));
+    public static final Block CHOCOLATE_CANDLE_CAKE_RED = registerBlock("chocolate_candle_cake_red", new MysticCandleCakeBlock(CHOCOLATE_CAKE, Blocks.RED_CANDLE));
+    public static final Block CHOCOLATE_CANDLE_CAKE_BLACK = registerBlock("chocolate_candle_cake_black", new MysticCandleCakeBlock(CHOCOLATE_CAKE, Blocks.BLACK_CANDLE));
 
     public static final Block PINK_FROSTED_CAKE = registerBlock("pink_frosted_cake", new MysticCakeBlock(AbstractBlock.Settings.create().solid().strength(0.5F).sounds(BlockSoundGroup.WOOL).pistonBehavior(PistonBehavior.DESTROY)));
-    public static final Block PINK_FROSTED_CANDLE_CAKE = registerBlockWithoutItem("pink_frosted_candle_cake",  new MysticCandleCakeBlock(PINK_FROSTED_CAKE, Blocks.CANDLE));
-    public static final Block PINK_FROSTED_CANDLE_CAKE_WHITE = registerBlockWithoutItem("pink_frosted_candle_cake_white", new MysticCandleCakeBlock(PINK_FROSTED_CAKE, Blocks.WHITE_CANDLE));
-    public static final Block PINK_FROSTED_CANDLE_CAKE_ORANGE = registerBlockWithoutItem("pink_frosted_candle_cake_orange", new MysticCandleCakeBlock(PINK_FROSTED_CAKE, Blocks.ORANGE_CANDLE));
-    public static final Block PINK_FROSTED_CANDLE_CAKE_MAGENTA = registerBlockWithoutItem("pink_frosted_candle_cake_magenta", new MysticCandleCakeBlock(PINK_FROSTED_CAKE, Blocks.MAGENTA_CANDLE));
-    public static final Block PINK_FROSTED_CANDLE_CAKE_LIGHT_BLUE = registerBlockWithoutItem("pink_frosted_candle_cake_light_blue", new MysticCandleCakeBlock(PINK_FROSTED_CAKE, Blocks.LIGHT_BLUE_CANDLE));
-    public static final Block PINK_FROSTED_CANDLE_CAKE_YELLOW = registerBlockWithoutItem("pink_frosted_candle_cake_yellow", new MysticCandleCakeBlock(PINK_FROSTED_CAKE, Blocks.YELLOW_CANDLE));
-    public static final Block PINK_FROSTED_CANDLE_CAKE_LIME = registerBlockWithoutItem("pink_frosted_candle_cake_lime", new MysticCandleCakeBlock(PINK_FROSTED_CAKE, Blocks.LIME_CANDLE));
-    public static final Block PINK_FROSTED_CANDLE_CAKE_PINK = registerBlockWithoutItem("pink_frosted_candle_cake_pink", new MysticCandleCakeBlock(PINK_FROSTED_CAKE, Blocks.PINK_CANDLE));
-    public static final Block PINK_FROSTED_CANDLE_CAKE_GRAY = registerBlockWithoutItem("pink_frosted_candle_cake_gray", new MysticCandleCakeBlock(PINK_FROSTED_CAKE, Blocks.GRAY_CANDLE));
-    public static final Block PINK_FROSTED_CANDLE_CAKE_LIGHT_GRAY = registerBlockWithoutItem("pink_frosted_candle_cake_light_gray", new MysticCandleCakeBlock(PINK_FROSTED_CAKE, Blocks.LIGHT_GRAY_CANDLE));
-    public static final Block PINK_FROSTED_CANDLE_CAKE_CYAN = registerBlockWithoutItem("pink_frosted_candle_cake_cyan", new MysticCandleCakeBlock(PINK_FROSTED_CAKE, Blocks.CYAN_CANDLE));
-    public static final Block PINK_FROSTED_CANDLE_CAKE_PURPLE = registerBlockWithoutItem("pink_frosted_candle_cake_purple", new MysticCandleCakeBlock(PINK_FROSTED_CAKE, Blocks.PURPLE_CANDLE));
-    public static final Block PINK_FROSTED_CANDLE_CAKE_BLUE = registerBlockWithoutItem("pink_frosted_candle_cake_blue", new MysticCandleCakeBlock(PINK_FROSTED_CAKE, Blocks.BLUE_CANDLE));
-    public static final Block PINK_FROSTED_CANDLE_CAKE_BROWN = registerBlockWithoutItem("pink_frosted_candle_cake_brown", new MysticCandleCakeBlock(PINK_FROSTED_CAKE, Blocks.BROWN_CANDLE));
-    public static final Block PINK_FROSTED_CANDLE_CAKE_GREEN = registerBlockWithoutItem("pink_frosted_candle_cake_green", new MysticCandleCakeBlock(PINK_FROSTED_CAKE, Blocks.GREEN_CANDLE));
-    public static final Block PINK_FROSTED_CANDLE_CAKE_RED = registerBlockWithoutItem("pink_frosted_candle_cake_red", new MysticCandleCakeBlock(PINK_FROSTED_CAKE, Blocks.RED_CANDLE));
-    public static final Block PINK_FROSTED_CANDLE_CAKE_BLACK = registerBlockWithoutItem("pink_frosted_candle_cake_black", new MysticCandleCakeBlock(PINK_FROSTED_CAKE, Blocks.BLACK_CANDLE));
+    public static final Block PINK_FROSTED_CANDLE_CAKE = registerBlock("pink_frosted_candle_cake",  new MysticCandleCakeBlock(PINK_FROSTED_CAKE, Blocks.CANDLE));
+    public static final Block PINK_FROSTED_CANDLE_CAKE_WHITE = registerBlock("pink_frosted_candle_cake_white", new MysticCandleCakeBlock(PINK_FROSTED_CAKE, Blocks.WHITE_CANDLE));
+    public static final Block PINK_FROSTED_CANDLE_CAKE_ORANGE = registerBlock("pink_frosted_candle_cake_orange", new MysticCandleCakeBlock(PINK_FROSTED_CAKE, Blocks.ORANGE_CANDLE));
+    public static final Block PINK_FROSTED_CANDLE_CAKE_MAGENTA = registerBlock("pink_frosted_candle_cake_magenta", new MysticCandleCakeBlock(PINK_FROSTED_CAKE, Blocks.MAGENTA_CANDLE));
+    public static final Block PINK_FROSTED_CANDLE_CAKE_LIGHT_BLUE = registerBlock("pink_frosted_candle_cake_light_blue", new MysticCandleCakeBlock(PINK_FROSTED_CAKE, Blocks.LIGHT_BLUE_CANDLE));
+    public static final Block PINK_FROSTED_CANDLE_CAKE_YELLOW = registerBlock("pink_frosted_candle_cake_yellow", new MysticCandleCakeBlock(PINK_FROSTED_CAKE, Blocks.YELLOW_CANDLE));
+    public static final Block PINK_FROSTED_CANDLE_CAKE_LIME = registerBlock("pink_frosted_candle_cake_lime", new MysticCandleCakeBlock(PINK_FROSTED_CAKE, Blocks.LIME_CANDLE));
+    public static final Block PINK_FROSTED_CANDLE_CAKE_PINK = registerBlock("pink_frosted_candle_cake_pink", new MysticCandleCakeBlock(PINK_FROSTED_CAKE, Blocks.PINK_CANDLE));
+    public static final Block PINK_FROSTED_CANDLE_CAKE_GRAY = registerBlock("pink_frosted_candle_cake_gray", new MysticCandleCakeBlock(PINK_FROSTED_CAKE, Blocks.GRAY_CANDLE));
+    public static final Block PINK_FROSTED_CANDLE_CAKE_LIGHT_GRAY = registerBlock("pink_frosted_candle_cake_light_gray", new MysticCandleCakeBlock(PINK_FROSTED_CAKE, Blocks.LIGHT_GRAY_CANDLE));
+    public static final Block PINK_FROSTED_CANDLE_CAKE_CYAN = registerBlock("pink_frosted_candle_cake_cyan", new MysticCandleCakeBlock(PINK_FROSTED_CAKE, Blocks.CYAN_CANDLE));
+    public static final Block PINK_FROSTED_CANDLE_CAKE_PURPLE = registerBlock("pink_frosted_candle_cake_purple", new MysticCandleCakeBlock(PINK_FROSTED_CAKE, Blocks.PURPLE_CANDLE));
+    public static final Block PINK_FROSTED_CANDLE_CAKE_BLUE = registerBlock("pink_frosted_candle_cake_blue", new MysticCandleCakeBlock(PINK_FROSTED_CAKE, Blocks.BLUE_CANDLE));
+    public static final Block PINK_FROSTED_CANDLE_CAKE_BROWN = registerBlock("pink_frosted_candle_cake_brown", new MysticCandleCakeBlock(PINK_FROSTED_CAKE, Blocks.BROWN_CANDLE));
+    public static final Block PINK_FROSTED_CANDLE_CAKE_GREEN = registerBlock("pink_frosted_candle_cake_green", new MysticCandleCakeBlock(PINK_FROSTED_CAKE, Blocks.GREEN_CANDLE));
+    public static final Block PINK_FROSTED_CANDLE_CAKE_RED = registerBlock("pink_frosted_candle_cake_red", new MysticCandleCakeBlock(PINK_FROSTED_CAKE, Blocks.RED_CANDLE));
+    public static final Block PINK_FROSTED_CANDLE_CAKE_BLACK = registerBlock("pink_frosted_candle_cake_black", new MysticCandleCakeBlock(PINK_FROSTED_CAKE, Blocks.BLACK_CANDLE));
 
     public static final Block ORANGE_FROSTED_CAKE = registerBlock("orange_frosted_cake", new MysticCakeBlock(AbstractBlock.Settings.create().solid().strength(0.5F).sounds(BlockSoundGroup.WOOL).pistonBehavior(PistonBehavior.DESTROY)));
-    public static final Block ORANGE_FROSTED_CANDLE_CAKE = registerBlockWithoutItem("orange_frosted_candle_cake",  new MysticCandleCakeBlock(ORANGE_FROSTED_CAKE, Blocks.CANDLE));
-    public static final Block ORANGE_FROSTED_CANDLE_CAKE_WHITE = registerBlockWithoutItem("orange_frosted_candle_cake_white", new MysticCandleCakeBlock(ORANGE_FROSTED_CAKE, Blocks.WHITE_CANDLE));
-    public static final Block ORANGE_FROSTED_CANDLE_CAKE_ORANGE = registerBlockWithoutItem("orange_frosted_candle_cake_orange", new MysticCandleCakeBlock(ORANGE_FROSTED_CAKE, Blocks.ORANGE_CANDLE));
-    public static final Block ORANGE_FROSTED_CANDLE_CAKE_MAGENTA = registerBlockWithoutItem("orange_frosted_candle_cake_magenta", new MysticCandleCakeBlock(ORANGE_FROSTED_CAKE, Blocks.MAGENTA_CANDLE));
-    public static final Block ORANGE_FROSTED_CANDLE_CAKE_LIGHT_BLUE = registerBlockWithoutItem("orange_frosted_candle_cake_light_blue", new MysticCandleCakeBlock(ORANGE_FROSTED_CAKE, Blocks.LIGHT_BLUE_CANDLE));
-    public static final Block ORANGE_FROSTED_CANDLE_CAKE_YELLOW = registerBlockWithoutItem("orange_frosted_candle_cake_yellow", new MysticCandleCakeBlock(ORANGE_FROSTED_CAKE, Blocks.YELLOW_CANDLE));
-    public static final Block ORANGE_FROSTED_CANDLE_CAKE_LIME = registerBlockWithoutItem("orange_frosted_candle_cake_lime", new MysticCandleCakeBlock(ORANGE_FROSTED_CAKE, Blocks.LIME_CANDLE));
-    public static final Block ORANGE_FROSTED_CANDLE_CAKE_PINK = registerBlockWithoutItem("orange_frosted_candle_cake_pink", new MysticCandleCakeBlock(ORANGE_FROSTED_CAKE, Blocks.PINK_CANDLE));
-    public static final Block ORANGE_FROSTED_CANDLE_CAKE_GRAY = registerBlockWithoutItem("orange_frosted_candle_cake_gray", new MysticCandleCakeBlock(ORANGE_FROSTED_CAKE, Blocks.GRAY_CANDLE));
-    public static final Block ORANGE_FROSTED_CANDLE_CAKE_LIGHT_GRAY = registerBlockWithoutItem("orange_frosted_candle_cake_light_gray", new MysticCandleCakeBlock(ORANGE_FROSTED_CAKE, Blocks.LIGHT_GRAY_CANDLE));
-    public static final Block ORANGE_FROSTED_CANDLE_CAKE_CYAN = registerBlockWithoutItem("orange_frosted_candle_cake_cyan", new MysticCandleCakeBlock(ORANGE_FROSTED_CAKE, Blocks.CYAN_CANDLE));
-    public static final Block ORANGE_FROSTED_CANDLE_CAKE_PURPLE = registerBlockWithoutItem("orange_frosted_candle_cake_purple", new MysticCandleCakeBlock(ORANGE_FROSTED_CAKE, Blocks.PURPLE_CANDLE));
-    public static final Block ORANGE_FROSTED_CANDLE_CAKE_BLUE = registerBlockWithoutItem("orange_frosted_candle_cake_blue", new MysticCandleCakeBlock(ORANGE_FROSTED_CAKE, Blocks.BLUE_CANDLE));
-    public static final Block ORANGE_FROSTED_CANDLE_CAKE_BROWN = registerBlockWithoutItem("orange_frosted_candle_cake_brown", new MysticCandleCakeBlock(ORANGE_FROSTED_CAKE, Blocks.BROWN_CANDLE));
-    public static final Block ORANGE_FROSTED_CANDLE_CAKE_GREEN = registerBlockWithoutItem("orange_frosted_candle_cake_green", new MysticCandleCakeBlock(ORANGE_FROSTED_CAKE, Blocks.GREEN_CANDLE));
-    public static final Block ORANGE_FROSTED_CANDLE_CAKE_RED = registerBlockWithoutItem("orange_frosted_candle_cake_red", new MysticCandleCakeBlock(ORANGE_FROSTED_CAKE, Blocks.RED_CANDLE));
-    public static final Block ORANGE_FROSTED_CANDLE_CAKE_BLACK = registerBlockWithoutItem("orange_frosted_candle_cake_black", new MysticCandleCakeBlock(ORANGE_FROSTED_CAKE, Blocks.BLACK_CANDLE));
+    public static final Block ORANGE_FROSTED_CANDLE_CAKE = registerBlock("orange_frosted_candle_cake",  new MysticCandleCakeBlock(ORANGE_FROSTED_CAKE, Blocks.CANDLE));
+    public static final Block ORANGE_FROSTED_CANDLE_CAKE_WHITE = registerBlock("orange_frosted_candle_cake_white", new MysticCandleCakeBlock(ORANGE_FROSTED_CAKE, Blocks.WHITE_CANDLE));
+    public static final Block ORANGE_FROSTED_CANDLE_CAKE_ORANGE = registerBlock("orange_frosted_candle_cake_orange", new MysticCandleCakeBlock(ORANGE_FROSTED_CAKE, Blocks.ORANGE_CANDLE));
+    public static final Block ORANGE_FROSTED_CANDLE_CAKE_MAGENTA = registerBlock("orange_frosted_candle_cake_magenta", new MysticCandleCakeBlock(ORANGE_FROSTED_CAKE, Blocks.MAGENTA_CANDLE));
+    public static final Block ORANGE_FROSTED_CANDLE_CAKE_LIGHT_BLUE = registerBlock("orange_frosted_candle_cake_light_blue", new MysticCandleCakeBlock(ORANGE_FROSTED_CAKE, Blocks.LIGHT_BLUE_CANDLE));
+    public static final Block ORANGE_FROSTED_CANDLE_CAKE_YELLOW = registerBlock("orange_frosted_candle_cake_yellow", new MysticCandleCakeBlock(ORANGE_FROSTED_CAKE, Blocks.YELLOW_CANDLE));
+    public static final Block ORANGE_FROSTED_CANDLE_CAKE_LIME = registerBlock("orange_frosted_candle_cake_lime", new MysticCandleCakeBlock(ORANGE_FROSTED_CAKE, Blocks.LIME_CANDLE));
+    public static final Block ORANGE_FROSTED_CANDLE_CAKE_PINK = registerBlock("orange_frosted_candle_cake_pink", new MysticCandleCakeBlock(ORANGE_FROSTED_CAKE, Blocks.PINK_CANDLE));
+    public static final Block ORANGE_FROSTED_CANDLE_CAKE_GRAY = registerBlock("orange_frosted_candle_cake_gray", new MysticCandleCakeBlock(ORANGE_FROSTED_CAKE, Blocks.GRAY_CANDLE));
+    public static final Block ORANGE_FROSTED_CANDLE_CAKE_LIGHT_GRAY = registerBlock("orange_frosted_candle_cake_light_gray", new MysticCandleCakeBlock(ORANGE_FROSTED_CAKE, Blocks.LIGHT_GRAY_CANDLE));
+    public static final Block ORANGE_FROSTED_CANDLE_CAKE_CYAN = registerBlock("orange_frosted_candle_cake_cyan", new MysticCandleCakeBlock(ORANGE_FROSTED_CAKE, Blocks.CYAN_CANDLE));
+    public static final Block ORANGE_FROSTED_CANDLE_CAKE_PURPLE = registerBlock("orange_frosted_candle_cake_purple", new MysticCandleCakeBlock(ORANGE_FROSTED_CAKE, Blocks.PURPLE_CANDLE));
+    public static final Block ORANGE_FROSTED_CANDLE_CAKE_BLUE = registerBlock("orange_frosted_candle_cake_blue", new MysticCandleCakeBlock(ORANGE_FROSTED_CAKE, Blocks.BLUE_CANDLE));
+    public static final Block ORANGE_FROSTED_CANDLE_CAKE_BROWN = registerBlock("orange_frosted_candle_cake_brown", new MysticCandleCakeBlock(ORANGE_FROSTED_CAKE, Blocks.BROWN_CANDLE));
+    public static final Block ORANGE_FROSTED_CANDLE_CAKE_GREEN = registerBlock("orange_frosted_candle_cake_green", new MysticCandleCakeBlock(ORANGE_FROSTED_CAKE, Blocks.GREEN_CANDLE));
+    public static final Block ORANGE_FROSTED_CANDLE_CAKE_RED = registerBlock("orange_frosted_candle_cake_red", new MysticCandleCakeBlock(ORANGE_FROSTED_CAKE, Blocks.RED_CANDLE));
+    public static final Block ORANGE_FROSTED_CANDLE_CAKE_BLACK = registerBlock("orange_frosted_candle_cake_black", new MysticCandleCakeBlock(ORANGE_FROSTED_CAKE, Blocks.BLACK_CANDLE));
 
     public static final Block YELLOW_FROSTED_CAKE = registerBlock("yellow_frosted_cake", new MysticCakeBlock(AbstractBlock.Settings.create().solid().strength(0.5F).sounds(BlockSoundGroup.WOOL).pistonBehavior(PistonBehavior.DESTROY)));
-    public static final Block YELLOW_FROSTED_CANDLE_CAKE = registerBlockWithoutItem("yellow_frosted_candle_cake",  new MysticCandleCakeBlock(YELLOW_FROSTED_CAKE, Blocks.CANDLE));
-    public static final Block YELLOW_FROSTED_CANDLE_CAKE_WHITE = registerBlockWithoutItem("yellow_frosted_candle_cake_white", new MysticCandleCakeBlock(YELLOW_FROSTED_CAKE, Blocks.WHITE_CANDLE));
-    public static final Block YELLOW_FROSTED_CANDLE_CAKE_ORANGE = registerBlockWithoutItem("yellow_frosted_candle_cake_orange", new MysticCandleCakeBlock(YELLOW_FROSTED_CAKE, Blocks.ORANGE_CANDLE));
-    public static final Block YELLOW_FROSTED_CANDLE_CAKE_MAGENTA = registerBlockWithoutItem("yellow_frosted_candle_cake_magenta", new MysticCandleCakeBlock(YELLOW_FROSTED_CAKE, Blocks.MAGENTA_CANDLE));
-    public static final Block YELLOW_FROSTED_CANDLE_CAKE_LIGHT_BLUE = registerBlockWithoutItem("yellow_frosted_candle_cake_light_blue", new MysticCandleCakeBlock(YELLOW_FROSTED_CAKE, Blocks.LIGHT_BLUE_CANDLE));
-    public static final Block YELLOW_FROSTED_CANDLE_CAKE_YELLOW = registerBlockWithoutItem("yellow_frosted_candle_cake_yellow", new MysticCandleCakeBlock(YELLOW_FROSTED_CAKE, Blocks.YELLOW_CANDLE));
-    public static final Block YELLOW_FROSTED_CANDLE_CAKE_LIME = registerBlockWithoutItem("yellow_frosted_candle_cake_lime", new MysticCandleCakeBlock(YELLOW_FROSTED_CAKE, Blocks.LIME_CANDLE));
-    public static final Block YELLOW_FROSTED_CANDLE_CAKE_PINK = registerBlockWithoutItem("yellow_frosted_candle_cake_pink", new MysticCandleCakeBlock(YELLOW_FROSTED_CAKE, Blocks.PINK_CANDLE));
-    public static final Block YELLOW_FROSTED_CANDLE_CAKE_GRAY = registerBlockWithoutItem("yellow_frosted_candle_cake_gray", new MysticCandleCakeBlock(YELLOW_FROSTED_CAKE, Blocks.GRAY_CANDLE));
-    public static final Block YELLOW_FROSTED_CANDLE_CAKE_LIGHT_GRAY = registerBlockWithoutItem("yellow_frosted_candle_cake_light_gray", new MysticCandleCakeBlock(YELLOW_FROSTED_CAKE, Blocks.LIGHT_GRAY_CANDLE));
-    public static final Block YELLOW_FROSTED_CANDLE_CAKE_CYAN = registerBlockWithoutItem("yellow_frosted_candle_cake_cyan", new MysticCandleCakeBlock(YELLOW_FROSTED_CAKE, Blocks.CYAN_CANDLE));
-    public static final Block YELLOW_FROSTED_CANDLE_CAKE_PURPLE = registerBlockWithoutItem("yellow_frosted_candle_cake_purple", new MysticCandleCakeBlock(YELLOW_FROSTED_CAKE, Blocks.PURPLE_CANDLE));
-    public static final Block YELLOW_FROSTED_CANDLE_CAKE_BLUE = registerBlockWithoutItem("yellow_frosted_candle_cake_blue", new MysticCandleCakeBlock(YELLOW_FROSTED_CAKE, Blocks.BLUE_CANDLE));
-    public static final Block YELLOW_FROSTED_CANDLE_CAKE_BROWN = registerBlockWithoutItem("yellow_frosted_candle_cake_brown", new MysticCandleCakeBlock(YELLOW_FROSTED_CAKE, Blocks.BROWN_CANDLE));
-    public static final Block YELLOW_FROSTED_CANDLE_CAKE_GREEN = registerBlockWithoutItem("yellow_frosted_candle_cake_green", new MysticCandleCakeBlock(YELLOW_FROSTED_CAKE, Blocks.GREEN_CANDLE));
-    public static final Block YELLOW_FROSTED_CANDLE_CAKE_RED = registerBlockWithoutItem("yellow_frosted_candle_cake_red", new MysticCandleCakeBlock(YELLOW_FROSTED_CAKE, Blocks.RED_CANDLE));
-    public static final Block YELLOW_FROSTED_CANDLE_CAKE_BLACK = registerBlockWithoutItem("yellow_frosted_candle_cake_black", new MysticCandleCakeBlock(YELLOW_FROSTED_CAKE, Blocks.BLACK_CANDLE));
+    public static final Block YELLOW_FROSTED_CANDLE_CAKE = registerBlock("yellow_frosted_candle_cake",  new MysticCandleCakeBlock(YELLOW_FROSTED_CAKE, Blocks.CANDLE));
+    public static final Block YELLOW_FROSTED_CANDLE_CAKE_WHITE = registerBlock("yellow_frosted_candle_cake_white", new MysticCandleCakeBlock(YELLOW_FROSTED_CAKE, Blocks.WHITE_CANDLE));
+    public static final Block YELLOW_FROSTED_CANDLE_CAKE_ORANGE = registerBlock("yellow_frosted_candle_cake_orange", new MysticCandleCakeBlock(YELLOW_FROSTED_CAKE, Blocks.ORANGE_CANDLE));
+    public static final Block YELLOW_FROSTED_CANDLE_CAKE_MAGENTA = registerBlock("yellow_frosted_candle_cake_magenta", new MysticCandleCakeBlock(YELLOW_FROSTED_CAKE, Blocks.MAGENTA_CANDLE));
+    public static final Block YELLOW_FROSTED_CANDLE_CAKE_LIGHT_BLUE = registerBlock("yellow_frosted_candle_cake_light_blue", new MysticCandleCakeBlock(YELLOW_FROSTED_CAKE, Blocks.LIGHT_BLUE_CANDLE));
+    public static final Block YELLOW_FROSTED_CANDLE_CAKE_YELLOW = registerBlock("yellow_frosted_candle_cake_yellow", new MysticCandleCakeBlock(YELLOW_FROSTED_CAKE, Blocks.YELLOW_CANDLE));
+    public static final Block YELLOW_FROSTED_CANDLE_CAKE_LIME = registerBlock("yellow_frosted_candle_cake_lime", new MysticCandleCakeBlock(YELLOW_FROSTED_CAKE, Blocks.LIME_CANDLE));
+    public static final Block YELLOW_FROSTED_CANDLE_CAKE_PINK = registerBlock("yellow_frosted_candle_cake_pink", new MysticCandleCakeBlock(YELLOW_FROSTED_CAKE, Blocks.PINK_CANDLE));
+    public static final Block YELLOW_FROSTED_CANDLE_CAKE_GRAY = registerBlock("yellow_frosted_candle_cake_gray", new MysticCandleCakeBlock(YELLOW_FROSTED_CAKE, Blocks.GRAY_CANDLE));
+    public static final Block YELLOW_FROSTED_CANDLE_CAKE_LIGHT_GRAY = registerBlock("yellow_frosted_candle_cake_light_gray", new MysticCandleCakeBlock(YELLOW_FROSTED_CAKE, Blocks.LIGHT_GRAY_CANDLE));
+    public static final Block YELLOW_FROSTED_CANDLE_CAKE_CYAN = registerBlock("yellow_frosted_candle_cake_cyan", new MysticCandleCakeBlock(YELLOW_FROSTED_CAKE, Blocks.CYAN_CANDLE));
+    public static final Block YELLOW_FROSTED_CANDLE_CAKE_PURPLE = registerBlock("yellow_frosted_candle_cake_purple", new MysticCandleCakeBlock(YELLOW_FROSTED_CAKE, Blocks.PURPLE_CANDLE));
+    public static final Block YELLOW_FROSTED_CANDLE_CAKE_BLUE = registerBlock("yellow_frosted_candle_cake_blue", new MysticCandleCakeBlock(YELLOW_FROSTED_CAKE, Blocks.BLUE_CANDLE));
+    public static final Block YELLOW_FROSTED_CANDLE_CAKE_BROWN = registerBlock("yellow_frosted_candle_cake_brown", new MysticCandleCakeBlock(YELLOW_FROSTED_CAKE, Blocks.BROWN_CANDLE));
+    public static final Block YELLOW_FROSTED_CANDLE_CAKE_GREEN = registerBlock("yellow_frosted_candle_cake_green", new MysticCandleCakeBlock(YELLOW_FROSTED_CAKE, Blocks.GREEN_CANDLE));
+    public static final Block YELLOW_FROSTED_CANDLE_CAKE_RED = registerBlock("yellow_frosted_candle_cake_red", new MysticCandleCakeBlock(YELLOW_FROSTED_CAKE, Blocks.RED_CANDLE));
+    public static final Block YELLOW_FROSTED_CANDLE_CAKE_BLACK = registerBlock("yellow_frosted_candle_cake_black", new MysticCandleCakeBlock(YELLOW_FROSTED_CAKE, Blocks.BLACK_CANDLE));
 
     public static final Block LIME_FROSTED_CAKE = registerBlock("lime_frosted_cake", new MysticCakeBlock(AbstractBlock.Settings.create().solid().strength(0.5F).sounds(BlockSoundGroup.WOOL).pistonBehavior(PistonBehavior.DESTROY)));
-    public static final Block LIME_FROSTED_CANDLE_CAKE = registerBlockWithoutItem("lime_frosted_candle_cake",  new MysticCandleCakeBlock(LIME_FROSTED_CAKE, Blocks.CANDLE));
-    public static final Block LIME_FROSTED_CANDLE_CAKE_WHITE = registerBlockWithoutItem("lime_frosted_candle_cake_white", new MysticCandleCakeBlock(LIME_FROSTED_CAKE, Blocks.WHITE_CANDLE));
-    public static final Block LIME_FROSTED_CANDLE_CAKE_ORANGE = registerBlockWithoutItem("lime_frosted_candle_cake_orange", new MysticCandleCakeBlock(LIME_FROSTED_CAKE, Blocks.ORANGE_CANDLE));
-    public static final Block LIME_FROSTED_CANDLE_CAKE_MAGENTA = registerBlockWithoutItem("lime_frosted_candle_cake_magenta", new MysticCandleCakeBlock(LIME_FROSTED_CAKE, Blocks.MAGENTA_CANDLE));
-    public static final Block LIME_FROSTED_CANDLE_CAKE_LIGHT_BLUE = registerBlockWithoutItem("lime_frosted_candle_cake_light_blue", new MysticCandleCakeBlock(LIME_FROSTED_CAKE, Blocks.LIGHT_BLUE_CANDLE));
-    public static final Block LIME_FROSTED_CANDLE_CAKE_YELLOW = registerBlockWithoutItem("lime_frosted_candle_cake_yellow", new MysticCandleCakeBlock(LIME_FROSTED_CAKE, Blocks.YELLOW_CANDLE));
-    public static final Block LIME_FROSTED_CANDLE_CAKE_LIME = registerBlockWithoutItem("lime_frosted_candle_cake_lime", new MysticCandleCakeBlock(LIME_FROSTED_CAKE, Blocks.LIME_CANDLE));
-    public static final Block LIME_FROSTED_CANDLE_CAKE_PINK = registerBlockWithoutItem("lime_frosted_candle_cake_pink", new MysticCandleCakeBlock(LIME_FROSTED_CAKE, Blocks.PINK_CANDLE));
-    public static final Block LIME_FROSTED_CANDLE_CAKE_GRAY = registerBlockWithoutItem("lime_frosted_candle_cake_gray", new MysticCandleCakeBlock(LIME_FROSTED_CAKE, Blocks.GRAY_CANDLE));
-    public static final Block LIME_FROSTED_CANDLE_CAKE_LIGHT_GRAY = registerBlockWithoutItem("lime_frosted_candle_cake_light_gray", new MysticCandleCakeBlock(LIME_FROSTED_CAKE, Blocks.LIGHT_GRAY_CANDLE));
-    public static final Block LIME_FROSTED_CANDLE_CAKE_CYAN = registerBlockWithoutItem("lime_frosted_candle_cake_cyan", new MysticCandleCakeBlock(LIME_FROSTED_CAKE, Blocks.CYAN_CANDLE));
-    public static final Block LIME_FROSTED_CANDLE_CAKE_PURPLE = registerBlockWithoutItem("lime_frosted_candle_cake_purple", new MysticCandleCakeBlock(LIME_FROSTED_CAKE, Blocks.PURPLE_CANDLE));
-    public static final Block LIME_FROSTED_CANDLE_CAKE_BLUE = registerBlockWithoutItem("lime_frosted_candle_cake_blue", new MysticCandleCakeBlock(LIME_FROSTED_CAKE, Blocks.BLUE_CANDLE));
-    public static final Block LIME_FROSTED_CANDLE_CAKE_BROWN = registerBlockWithoutItem("lime_frosted_candle_cake_brown", new MysticCandleCakeBlock(LIME_FROSTED_CAKE, Blocks.BROWN_CANDLE));
-    public static final Block LIME_FROSTED_CANDLE_CAKE_GREEN = registerBlockWithoutItem("lime_frosted_candle_cake_green", new MysticCandleCakeBlock(LIME_FROSTED_CAKE, Blocks.GREEN_CANDLE));
-    public static final Block LIME_FROSTED_CANDLE_CAKE_RED = registerBlockWithoutItem("lime_frosted_candle_cake_red", new MysticCandleCakeBlock(LIME_FROSTED_CAKE, Blocks.RED_CANDLE));
-    public static final Block LIME_FROSTED_CANDLE_CAKE_BLACK = registerBlockWithoutItem("lime_frosted_candle_cake_black", new MysticCandleCakeBlock(LIME_FROSTED_CAKE, Blocks.BLACK_CANDLE));
+    public static final Block LIME_FROSTED_CANDLE_CAKE = registerBlock("lime_frosted_candle_cake",  new MysticCandleCakeBlock(LIME_FROSTED_CAKE, Blocks.CANDLE));
+    public static final Block LIME_FROSTED_CANDLE_CAKE_WHITE = registerBlock("lime_frosted_candle_cake_white", new MysticCandleCakeBlock(LIME_FROSTED_CAKE, Blocks.WHITE_CANDLE));
+    public static final Block LIME_FROSTED_CANDLE_CAKE_ORANGE = registerBlock("lime_frosted_candle_cake_orange", new MysticCandleCakeBlock(LIME_FROSTED_CAKE, Blocks.ORANGE_CANDLE));
+    public static final Block LIME_FROSTED_CANDLE_CAKE_MAGENTA = registerBlock("lime_frosted_candle_cake_magenta", new MysticCandleCakeBlock(LIME_FROSTED_CAKE, Blocks.MAGENTA_CANDLE));
+    public static final Block LIME_FROSTED_CANDLE_CAKE_LIGHT_BLUE = registerBlock("lime_frosted_candle_cake_light_blue", new MysticCandleCakeBlock(LIME_FROSTED_CAKE, Blocks.LIGHT_BLUE_CANDLE));
+    public static final Block LIME_FROSTED_CANDLE_CAKE_YELLOW = registerBlock("lime_frosted_candle_cake_yellow", new MysticCandleCakeBlock(LIME_FROSTED_CAKE, Blocks.YELLOW_CANDLE));
+    public static final Block LIME_FROSTED_CANDLE_CAKE_LIME = registerBlock("lime_frosted_candle_cake_lime", new MysticCandleCakeBlock(LIME_FROSTED_CAKE, Blocks.LIME_CANDLE));
+    public static final Block LIME_FROSTED_CANDLE_CAKE_PINK = registerBlock("lime_frosted_candle_cake_pink", new MysticCandleCakeBlock(LIME_FROSTED_CAKE, Blocks.PINK_CANDLE));
+    public static final Block LIME_FROSTED_CANDLE_CAKE_GRAY = registerBlock("lime_frosted_candle_cake_gray", new MysticCandleCakeBlock(LIME_FROSTED_CAKE, Blocks.GRAY_CANDLE));
+    public static final Block LIME_FROSTED_CANDLE_CAKE_LIGHT_GRAY = registerBlock("lime_frosted_candle_cake_light_gray", new MysticCandleCakeBlock(LIME_FROSTED_CAKE, Blocks.LIGHT_GRAY_CANDLE));
+    public static final Block LIME_FROSTED_CANDLE_CAKE_CYAN = registerBlock("lime_frosted_candle_cake_cyan", new MysticCandleCakeBlock(LIME_FROSTED_CAKE, Blocks.CYAN_CANDLE));
+    public static final Block LIME_FROSTED_CANDLE_CAKE_PURPLE = registerBlock("lime_frosted_candle_cake_purple", new MysticCandleCakeBlock(LIME_FROSTED_CAKE, Blocks.PURPLE_CANDLE));
+    public static final Block LIME_FROSTED_CANDLE_CAKE_BLUE = registerBlock("lime_frosted_candle_cake_blue", new MysticCandleCakeBlock(LIME_FROSTED_CAKE, Blocks.BLUE_CANDLE));
+    public static final Block LIME_FROSTED_CANDLE_CAKE_BROWN = registerBlock("lime_frosted_candle_cake_brown", new MysticCandleCakeBlock(LIME_FROSTED_CAKE, Blocks.BROWN_CANDLE));
+    public static final Block LIME_FROSTED_CANDLE_CAKE_GREEN = registerBlock("lime_frosted_candle_cake_green", new MysticCandleCakeBlock(LIME_FROSTED_CAKE, Blocks.GREEN_CANDLE));
+    public static final Block LIME_FROSTED_CANDLE_CAKE_RED = registerBlock("lime_frosted_candle_cake_red", new MysticCandleCakeBlock(LIME_FROSTED_CAKE, Blocks.RED_CANDLE));
+    public static final Block LIME_FROSTED_CANDLE_CAKE_BLACK = registerBlock("lime_frosted_candle_cake_black", new MysticCandleCakeBlock(LIME_FROSTED_CAKE, Blocks.BLACK_CANDLE));
 
     public static final Block CYAN_FROSTED_CAKE = registerBlock("cyan_frosted_cake", new MysticCakeBlock(AbstractBlock.Settings.create().solid().strength(0.5F).sounds(BlockSoundGroup.WOOL).pistonBehavior(PistonBehavior.DESTROY)));
-    public static final Block CYAN_FROSTED_CANDLE_CAKE = registerBlockWithoutItem("cyan_frosted_candle_cake",  new MysticCandleCakeBlock(CYAN_FROSTED_CAKE, Blocks.CANDLE));
-    public static final Block CYAN_FROSTED_CANDLE_CAKE_WHITE = registerBlockWithoutItem("cyan_frosted_candle_cake_white", new MysticCandleCakeBlock(CYAN_FROSTED_CAKE, Blocks.WHITE_CANDLE));
-    public static final Block CYAN_FROSTED_CANDLE_CAKE_ORANGE = registerBlockWithoutItem("cyan_frosted_candle_cake_orange", new MysticCandleCakeBlock(CYAN_FROSTED_CAKE, Blocks.ORANGE_CANDLE));
-    public static final Block CYAN_FROSTED_CANDLE_CAKE_MAGENTA = registerBlockWithoutItem("cyan_frosted_candle_cake_magenta", new MysticCandleCakeBlock(CYAN_FROSTED_CAKE, Blocks.MAGENTA_CANDLE));
-    public static final Block CYAN_FROSTED_CANDLE_CAKE_LIGHT_BLUE = registerBlockWithoutItem("cyan_frosted_candle_cake_light_blue", new MysticCandleCakeBlock(CYAN_FROSTED_CAKE, Blocks.LIGHT_BLUE_CANDLE));
-    public static final Block CYAN_FROSTED_CANDLE_CAKE_YELLOW = registerBlockWithoutItem("cyan_frosted_candle_cake_yellow", new MysticCandleCakeBlock(CYAN_FROSTED_CAKE, Blocks.YELLOW_CANDLE));
-    public static final Block CYAN_FROSTED_CANDLE_CAKE_LIME = registerBlockWithoutItem("cyan_frosted_candle_cake_lime", new MysticCandleCakeBlock(CYAN_FROSTED_CAKE, Blocks.LIME_CANDLE));
-    public static final Block CYAN_FROSTED_CANDLE_CAKE_PINK = registerBlockWithoutItem("cyan_frosted_candle_cake_pink", new MysticCandleCakeBlock(CYAN_FROSTED_CAKE, Blocks.PINK_CANDLE));
-    public static final Block CYAN_FROSTED_CANDLE_CAKE_GRAY = registerBlockWithoutItem("cyan_frosted_candle_cake_gray", new MysticCandleCakeBlock(CYAN_FROSTED_CAKE, Blocks.GRAY_CANDLE));
-    public static final Block CYAN_FROSTED_CANDLE_CAKE_LIGHT_GRAY = registerBlockWithoutItem("cyan_frosted_candle_cake_light_gray", new MysticCandleCakeBlock(CYAN_FROSTED_CAKE, Blocks.LIGHT_GRAY_CANDLE));
-    public static final Block CYAN_FROSTED_CANDLE_CAKE_CYAN = registerBlockWithoutItem("cyan_frosted_candle_cake_cyan", new MysticCandleCakeBlock(CYAN_FROSTED_CAKE, Blocks.CYAN_CANDLE));
-    public static final Block CYAN_FROSTED_CANDLE_CAKE_PURPLE = registerBlockWithoutItem("cyan_frosted_candle_cake_purple", new MysticCandleCakeBlock(CYAN_FROSTED_CAKE, Blocks.PURPLE_CANDLE));
-    public static final Block CYAN_FROSTED_CANDLE_CAKE_BLUE = registerBlockWithoutItem("cyan_frosted_candle_cake_blue", new MysticCandleCakeBlock(CYAN_FROSTED_CAKE, Blocks.BLUE_CANDLE));
-    public static final Block CYAN_FROSTED_CANDLE_CAKE_BROWN = registerBlockWithoutItem("cyan_frosted_candle_cake_brown", new MysticCandleCakeBlock(CYAN_FROSTED_CAKE, Blocks.BROWN_CANDLE));
-    public static final Block CYAN_FROSTED_CANDLE_CAKE_GREEN = registerBlockWithoutItem("cyan_frosted_candle_cake_green", new MysticCandleCakeBlock(CYAN_FROSTED_CAKE, Blocks.GREEN_CANDLE));
-    public static final Block CYAN_FROSTED_CANDLE_CAKE_RED = registerBlockWithoutItem("cyan_frosted_candle_cake_red", new MysticCandleCakeBlock(CYAN_FROSTED_CAKE, Blocks.RED_CANDLE));
-    public static final Block CYAN_FROSTED_CANDLE_CAKE_BLACK = registerBlockWithoutItem("cyan_frosted_candle_cake_black", new MysticCandleCakeBlock(CYAN_FROSTED_CAKE, Blocks.BLACK_CANDLE));
+    public static final Block CYAN_FROSTED_CANDLE_CAKE = registerBlock("cyan_frosted_candle_cake",  new MysticCandleCakeBlock(CYAN_FROSTED_CAKE, Blocks.CANDLE));
+    public static final Block CYAN_FROSTED_CANDLE_CAKE_WHITE = registerBlock("cyan_frosted_candle_cake_white", new MysticCandleCakeBlock(CYAN_FROSTED_CAKE, Blocks.WHITE_CANDLE));
+    public static final Block CYAN_FROSTED_CANDLE_CAKE_ORANGE = registerBlock("cyan_frosted_candle_cake_orange", new MysticCandleCakeBlock(CYAN_FROSTED_CAKE, Blocks.ORANGE_CANDLE));
+    public static final Block CYAN_FROSTED_CANDLE_CAKE_MAGENTA = registerBlock("cyan_frosted_candle_cake_magenta", new MysticCandleCakeBlock(CYAN_FROSTED_CAKE, Blocks.MAGENTA_CANDLE));
+    public static final Block CYAN_FROSTED_CANDLE_CAKE_LIGHT_BLUE = registerBlock("cyan_frosted_candle_cake_light_blue", new MysticCandleCakeBlock(CYAN_FROSTED_CAKE, Blocks.LIGHT_BLUE_CANDLE));
+    public static final Block CYAN_FROSTED_CANDLE_CAKE_YELLOW = registerBlock("cyan_frosted_candle_cake_yellow", new MysticCandleCakeBlock(CYAN_FROSTED_CAKE, Blocks.YELLOW_CANDLE));
+    public static final Block CYAN_FROSTED_CANDLE_CAKE_LIME = registerBlock("cyan_frosted_candle_cake_lime", new MysticCandleCakeBlock(CYAN_FROSTED_CAKE, Blocks.LIME_CANDLE));
+    public static final Block CYAN_FROSTED_CANDLE_CAKE_PINK = registerBlock("cyan_frosted_candle_cake_pink", new MysticCandleCakeBlock(CYAN_FROSTED_CAKE, Blocks.PINK_CANDLE));
+    public static final Block CYAN_FROSTED_CANDLE_CAKE_GRAY = registerBlock("cyan_frosted_candle_cake_gray", new MysticCandleCakeBlock(CYAN_FROSTED_CAKE, Blocks.GRAY_CANDLE));
+    public static final Block CYAN_FROSTED_CANDLE_CAKE_LIGHT_GRAY = registerBlock("cyan_frosted_candle_cake_light_gray", new MysticCandleCakeBlock(CYAN_FROSTED_CAKE, Blocks.LIGHT_GRAY_CANDLE));
+    public static final Block CYAN_FROSTED_CANDLE_CAKE_CYAN = registerBlock("cyan_frosted_candle_cake_cyan", new MysticCandleCakeBlock(CYAN_FROSTED_CAKE, Blocks.CYAN_CANDLE));
+    public static final Block CYAN_FROSTED_CANDLE_CAKE_PURPLE = registerBlock("cyan_frosted_candle_cake_purple", new MysticCandleCakeBlock(CYAN_FROSTED_CAKE, Blocks.PURPLE_CANDLE));
+    public static final Block CYAN_FROSTED_CANDLE_CAKE_BLUE = registerBlock("cyan_frosted_candle_cake_blue", new MysticCandleCakeBlock(CYAN_FROSTED_CAKE, Blocks.BLUE_CANDLE));
+    public static final Block CYAN_FROSTED_CANDLE_CAKE_BROWN = registerBlock("cyan_frosted_candle_cake_brown", new MysticCandleCakeBlock(CYAN_FROSTED_CAKE, Blocks.BROWN_CANDLE));
+    public static final Block CYAN_FROSTED_CANDLE_CAKE_GREEN = registerBlock("cyan_frosted_candle_cake_green", new MysticCandleCakeBlock(CYAN_FROSTED_CAKE, Blocks.GREEN_CANDLE));
+    public static final Block CYAN_FROSTED_CANDLE_CAKE_RED = registerBlock("cyan_frosted_candle_cake_red", new MysticCandleCakeBlock(CYAN_FROSTED_CAKE, Blocks.RED_CANDLE));
+    public static final Block CYAN_FROSTED_CANDLE_CAKE_BLACK = registerBlock("cyan_frosted_candle_cake_black", new MysticCandleCakeBlock(CYAN_FROSTED_CAKE, Blocks.BLACK_CANDLE));
 
     public static final Block PURPLE_FROSTED_CAKE = registerBlock("purple_frosted_cake", new MysticCakeBlock(AbstractBlock.Settings.create().solid().strength(0.5F).sounds(BlockSoundGroup.WOOL).pistonBehavior(PistonBehavior.DESTROY)));
-    public static final Block PURPLE_FROSTED_CANDLE_CAKE = registerBlockWithoutItem("purple_frosted_candle_cake",  new MysticCandleCakeBlock(PURPLE_FROSTED_CAKE, Blocks.CANDLE));
-    public static final Block PURPLE_FROSTED_CANDLE_CAKE_WHITE = registerBlockWithoutItem("purple_frosted_candle_cake_white", new MysticCandleCakeBlock(PURPLE_FROSTED_CAKE, Blocks.WHITE_CANDLE));
-    public static final Block PURPLE_FROSTED_CANDLE_CAKE_ORANGE = registerBlockWithoutItem("purple_frosted_candle_cake_orange", new MysticCandleCakeBlock(PURPLE_FROSTED_CAKE, Blocks.ORANGE_CANDLE));
-    public static final Block PURPLE_FROSTED_CANDLE_CAKE_MAGENTA = registerBlockWithoutItem("purple_frosted_candle_cake_magenta", new MysticCandleCakeBlock(PURPLE_FROSTED_CAKE, Blocks.MAGENTA_CANDLE));
-    public static final Block PURPLE_FROSTED_CANDLE_CAKE_LIGHT_BLUE = registerBlockWithoutItem("purple_frosted_candle_cake_light_blue", new MysticCandleCakeBlock(PURPLE_FROSTED_CAKE, Blocks.LIGHT_BLUE_CANDLE));
-    public static final Block PURPLE_FROSTED_CANDLE_CAKE_YELLOW = registerBlockWithoutItem("purple_frosted_candle_cake_yellow", new MysticCandleCakeBlock(PURPLE_FROSTED_CAKE, Blocks.YELLOW_CANDLE));
-    public static final Block PURPLE_FROSTED_CANDLE_CAKE_LIME = registerBlockWithoutItem("purple_frosted_candle_cake_lime", new MysticCandleCakeBlock(PURPLE_FROSTED_CAKE, Blocks.LIME_CANDLE));
-    public static final Block PURPLE_FROSTED_CANDLE_CAKE_PINK = registerBlockWithoutItem("purple_frosted_candle_cake_pink", new MysticCandleCakeBlock(PURPLE_FROSTED_CAKE, Blocks.PINK_CANDLE));
-    public static final Block PURPLE_FROSTED_CANDLE_CAKE_GRAY = registerBlockWithoutItem("purple_frosted_candle_cake_gray", new MysticCandleCakeBlock(PURPLE_FROSTED_CAKE, Blocks.GRAY_CANDLE));
-    public static final Block PURPLE_FROSTED_CANDLE_CAKE_LIGHT_GRAY = registerBlockWithoutItem("purple_frosted_candle_cake_light_gray", new MysticCandleCakeBlock(PURPLE_FROSTED_CAKE, Blocks.LIGHT_GRAY_CANDLE));
-    public static final Block PURPLE_FROSTED_CANDLE_CAKE_CYAN = registerBlockWithoutItem("purple_frosted_candle_cake_cyan", new MysticCandleCakeBlock(PURPLE_FROSTED_CAKE, Blocks.CYAN_CANDLE));
-    public static final Block PURPLE_FROSTED_CANDLE_CAKE_PURPLE = registerBlockWithoutItem("purple_frosted_candle_cake_purple", new MysticCandleCakeBlock(PURPLE_FROSTED_CAKE, Blocks.PURPLE_CANDLE));
-    public static final Block PURPLE_FROSTED_CANDLE_CAKE_BLUE = registerBlockWithoutItem("purple_frosted_candle_cake_blue", new MysticCandleCakeBlock(PURPLE_FROSTED_CAKE, Blocks.BLUE_CANDLE));
-    public static final Block PURPLE_FROSTED_CANDLE_CAKE_BROWN = registerBlockWithoutItem("purple_frosted_candle_cake_brown", new MysticCandleCakeBlock(PURPLE_FROSTED_CAKE, Blocks.BROWN_CANDLE));
-    public static final Block PURPLE_FROSTED_CANDLE_CAKE_GREEN = registerBlockWithoutItem("purple_frosted_candle_cake_green", new MysticCandleCakeBlock(PURPLE_FROSTED_CAKE, Blocks.GREEN_CANDLE));
-    public static final Block PURPLE_FROSTED_CANDLE_CAKE_RED = registerBlockWithoutItem("purple_frosted_candle_cake_red", new MysticCandleCakeBlock(PURPLE_FROSTED_CAKE, Blocks.RED_CANDLE));
-    public static final Block PURPLE_FROSTED_CANDLE_CAKE_BLACK = registerBlockWithoutItem("purple_frosted_candle_cake_black", new MysticCandleCakeBlock(PURPLE_FROSTED_CAKE, Blocks.BLACK_CANDLE));
+    public static final Block PURPLE_FROSTED_CANDLE_CAKE = registerBlock("purple_frosted_candle_cake",  new MysticCandleCakeBlock(PURPLE_FROSTED_CAKE, Blocks.CANDLE));
+    public static final Block PURPLE_FROSTED_CANDLE_CAKE_WHITE = registerBlock("purple_frosted_candle_cake_white", new MysticCandleCakeBlock(PURPLE_FROSTED_CAKE, Blocks.WHITE_CANDLE));
+    public static final Block PURPLE_FROSTED_CANDLE_CAKE_ORANGE = registerBlock("purple_frosted_candle_cake_orange", new MysticCandleCakeBlock(PURPLE_FROSTED_CAKE, Blocks.ORANGE_CANDLE));
+    public static final Block PURPLE_FROSTED_CANDLE_CAKE_MAGENTA = registerBlock("purple_frosted_candle_cake_magenta", new MysticCandleCakeBlock(PURPLE_FROSTED_CAKE, Blocks.MAGENTA_CANDLE));
+    public static final Block PURPLE_FROSTED_CANDLE_CAKE_LIGHT_BLUE = registerBlock("purple_frosted_candle_cake_light_blue", new MysticCandleCakeBlock(PURPLE_FROSTED_CAKE, Blocks.LIGHT_BLUE_CANDLE));
+    public static final Block PURPLE_FROSTED_CANDLE_CAKE_YELLOW = registerBlock("purple_frosted_candle_cake_yellow", new MysticCandleCakeBlock(PURPLE_FROSTED_CAKE, Blocks.YELLOW_CANDLE));
+    public static final Block PURPLE_FROSTED_CANDLE_CAKE_LIME = registerBlock("purple_frosted_candle_cake_lime", new MysticCandleCakeBlock(PURPLE_FROSTED_CAKE, Blocks.LIME_CANDLE));
+    public static final Block PURPLE_FROSTED_CANDLE_CAKE_PINK = registerBlock("purple_frosted_candle_cake_pink", new MysticCandleCakeBlock(PURPLE_FROSTED_CAKE, Blocks.PINK_CANDLE));
+    public static final Block PURPLE_FROSTED_CANDLE_CAKE_GRAY = registerBlock("purple_frosted_candle_cake_gray", new MysticCandleCakeBlock(PURPLE_FROSTED_CAKE, Blocks.GRAY_CANDLE));
+    public static final Block PURPLE_FROSTED_CANDLE_CAKE_LIGHT_GRAY = registerBlock("purple_frosted_candle_cake_light_gray", new MysticCandleCakeBlock(PURPLE_FROSTED_CAKE, Blocks.LIGHT_GRAY_CANDLE));
+    public static final Block PURPLE_FROSTED_CANDLE_CAKE_CYAN = registerBlock("purple_frosted_candle_cake_cyan", new MysticCandleCakeBlock(PURPLE_FROSTED_CAKE, Blocks.CYAN_CANDLE));
+    public static final Block PURPLE_FROSTED_CANDLE_CAKE_PURPLE = registerBlock("purple_frosted_candle_cake_purple", new MysticCandleCakeBlock(PURPLE_FROSTED_CAKE, Blocks.PURPLE_CANDLE));
+    public static final Block PURPLE_FROSTED_CANDLE_CAKE_BLUE = registerBlock("purple_frosted_candle_cake_blue", new MysticCandleCakeBlock(PURPLE_FROSTED_CAKE, Blocks.BLUE_CANDLE));
+    public static final Block PURPLE_FROSTED_CANDLE_CAKE_BROWN = registerBlock("purple_frosted_candle_cake_brown", new MysticCandleCakeBlock(PURPLE_FROSTED_CAKE, Blocks.BROWN_CANDLE));
+    public static final Block PURPLE_FROSTED_CANDLE_CAKE_GREEN = registerBlock("purple_frosted_candle_cake_green", new MysticCandleCakeBlock(PURPLE_FROSTED_CAKE, Blocks.GREEN_CANDLE));
+    public static final Block PURPLE_FROSTED_CANDLE_CAKE_RED = registerBlock("purple_frosted_candle_cake_red", new MysticCandleCakeBlock(PURPLE_FROSTED_CAKE, Blocks.RED_CANDLE));
+    public static final Block PURPLE_FROSTED_CANDLE_CAKE_BLACK = registerBlock("purple_frosted_candle_cake_black", new MysticCandleCakeBlock(PURPLE_FROSTED_CAKE, Blocks.BLACK_CANDLE));
 
     private static Block registerBlock(String name, Block block) {
-        Registry.register(Registries.ITEM, MysticsBiomes.modLoc(name), new BlockItem(block, new Item.Settings()));
-
-        return Registry.register(Registries.BLOCK, MysticsBiomes.modLoc(name), block);
-    }
-
-    private static Block registerBlockWithoutItem(String name, Block block) {
         return Registry.register(Registries.BLOCK, MysticsBiomes.modLoc(name), block);
     }
 

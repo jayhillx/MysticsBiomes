@@ -16,10 +16,6 @@ public class BlockDataUtils {
         ComposterBlock.ITEM_TO_LEVEL_INCREASE_CHANCE.put(item.asItem(), chance);
     }
 
-    public static void compostable(Block block, float chance) {
-        ComposterBlock.ITEM_TO_LEVEL_INCREASE_CHANCE.put(block.asItem(), chance);
-    }
-
     public static void strippable(Block wood, Block strippedWood) {
         StrippableBlockRegistry.register(wood, strippedWood);
     }

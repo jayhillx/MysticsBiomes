@@ -144,57 +144,57 @@ public class MysticVanillaCompat {
 
     public static void registerCompostables() {
         // Leaves & Saplings 0.3 | Flower Leaves 0.6 | Flowers 0.65
-        BlockDataUtils.compostable(MysticBlocks.STRAWBERRY_BLOSSOMS, 0.6F);
-        BlockDataUtils.compostable(MysticBlocks.STRAWBERRY_SAPLING, 0.3F);
+        BlockDataUtils.compostable(MysticItems.STRAWBERRY_BLOSSOMS, 0.6F);
+        BlockDataUtils.compostable(MysticItems.STRAWBERRY_SAPLING, 0.3F);
         BlockDataUtils.compostable(MysticItems.STRAWBERRY, 0.4F);
         BlockDataUtils.compostable(MysticItems.SWEET_STRAWBERRY, 1.0F);
         BlockDataUtils.compostable(MysticItems.STRAWBERRY_CAKE, 2.0F);
 
-        BlockDataUtils.compostable(MysticBlocks.PINK_CHERRY_BLOSSOMS, 0.6F);
-        BlockDataUtils.compostable(MysticBlocks.PINK_CHERRY_BLOSSOM_SAPLING, 0.3F);
-        BlockDataUtils.compostable(MysticBlocks.WHITE_CHERRY_BLOSSOMS, 0.6F);
-        BlockDataUtils.compostable(MysticBlocks.WHITE_CHERRY_BLOSSOM_SAPLING, 0.3F);
-        BlockDataUtils.compostable(MysticBlocks.BUDDING_PEONY_LEAVES, 0.6F);
-        BlockDataUtils.compostable(MysticBlocks.PEONY_LEAVES, 0.3F);
-        BlockDataUtils.compostable(MysticBlocks.PEONY_BUSH, 0.65F);
+        BlockDataUtils.compostable(MysticItems.PINK_CHERRY_BLOSSOMS, 0.6F);
+        BlockDataUtils.compostable(MysticItems.PINK_CHERRY_BLOSSOM_SAPLING, 0.3F);
+        BlockDataUtils.compostable(MysticItems.WHITE_CHERRY_BLOSSOMS, 0.6F);
+        BlockDataUtils.compostable(MysticItems.WHITE_CHERRY_BLOSSOM_SAPLING, 0.3F);
+        BlockDataUtils.compostable(MysticItems.BUDDING_PEONY_LEAVES, 0.6F);
+        BlockDataUtils.compostable(MysticItems.PEONY_LEAVES, 0.3F);
+        BlockDataUtils.compostable(MysticItems.PEONY_BUSH, 0.65F);
         BlockDataUtils.compostable(MysticItems.CHERRIES, 0.4F);
         BlockDataUtils.compostable(MysticItems.CHERRY_PIE, 2.0F);
 
-        BlockDataUtils.compostable(MysticBlocks.PEACH_LEAVES, 0.6F);
-        BlockDataUtils.compostable(MysticBlocks.PEACH_SAPLING, 0.3F);
-        BlockDataUtils.compostable(MysticBlocks.DESERT_GRASS, 0.3F);
-        BlockDataUtils.compostable(MysticBlocks.SAGUARO_BLOSSOM, 0.65F);
-        BlockDataUtils.compostable(MysticBlocks.WILDFLOWER, 0.65F);
+        BlockDataUtils.compostable(MysticItems.PEACH_LEAVES, 0.6F);
+        BlockDataUtils.compostable(MysticItems.PEACH_SAPLING, 0.3F);
+        BlockDataUtils.compostable(MysticItems.DESERT_GRASS, 0.3F);
+        BlockDataUtils.compostable(MysticItems.SAGUARO_BLOSSOM, 0.65F);
+        BlockDataUtils.compostable(MysticItems.WILDFLOWER, 0.65F);
         BlockDataUtils.compostable(MysticItems.PEACH, 0.4F);
         BlockDataUtils.compostable(MysticItems.PEACH_PIE, 2.0F);
 
-        BlockDataUtils.compostable(MysticBlocks.MAPLE_LEAVES, 0.3F);
-        BlockDataUtils.compostable(MysticBlocks.MAPLE_LEAF_PILE, 0.2F);
-        BlockDataUtils.compostable(MysticBlocks.MAPLE_SAPLING, 0.3F);
-        BlockDataUtils.compostable(MysticBlocks.ORANGE_MAPLE_LEAVES, 0.3F);
-        BlockDataUtils.compostable(MysticBlocks.ORANGE_MAPLE_LEAF_PILE, 0.2F);
-        BlockDataUtils.compostable(MysticBlocks.ORANGE_MAPLE_SAPLING, 0.3F);
-        BlockDataUtils.compostable(MysticBlocks.YELLOW_MAPLE_LEAVES, 0.3F);
-        BlockDataUtils.compostable(MysticBlocks.YELLOW_MAPLE_LEAF_PILE, 0.2F);
-        BlockDataUtils.compostable(MysticBlocks.YELLOW_MAPLE_SAPLING, 0.3F);
+        BlockDataUtils.compostable(MysticItems.MAPLE_LEAVES, 0.3F);
+        BlockDataUtils.compostable(MysticItems.MAPLE_LEAF_PILE, 0.2F);
+        BlockDataUtils.compostable(MysticItems.MAPLE_SAPLING, 0.3F);
+        BlockDataUtils.compostable(MysticItems.ORANGE_MAPLE_LEAVES, 0.3F);
+        BlockDataUtils.compostable(MysticItems.ORANGE_MAPLE_LEAF_PILE, 0.2F);
+        BlockDataUtils.compostable(MysticItems.ORANGE_MAPLE_SAPLING, 0.3F);
+        BlockDataUtils.compostable(MysticItems.YELLOW_MAPLE_LEAVES, 0.3F);
+        BlockDataUtils.compostable(MysticItems.YELLOW_MAPLE_LEAF_PILE, 0.2F);
+        BlockDataUtils.compostable(MysticItems.YELLOW_MAPLE_SAPLING, 0.3F);
 
-        BlockDataUtils.compostable(MysticBlocks.SEA_SHRUB_LEAVES, 0.3F);
-        BlockDataUtils.compostable(MysticBlocks.SEA_SHRUB, 0.65F);
-        BlockDataUtils.compostable(MysticBlocks.SEA_OATS, 0.65F);
-        BlockDataUtils.compostable(MysticBlocks.MILKWEED, 0.65F);
+        BlockDataUtils.compostable(MysticItems.SEA_SHRUB_LEAVES, 0.3F);
+        BlockDataUtils.compostable(MysticItems.SEA_SHRUB, 0.65F);
+        BlockDataUtils.compostable(MysticItems.SEA_OATS, 0.65F);
+        BlockDataUtils.compostable(MysticItems.MILKWEED, 0.65F);
 
-        BlockDataUtils.compostable(MysticBlocks.TROPICAL_LEAVES, 0.3F);
-        BlockDataUtils.compostable(MysticBlocks.TROPICAL_SAPLING, 0.3F);
-        BlockDataUtils.compostable(MysticBlocks.HYDRANGEA_LEAVES, 0.6F);
-        BlockDataUtils.compostable(MysticBlocks.HYDRANGEA_BUSH, 0.65F);
+        BlockDataUtils.compostable(MysticItems.TROPICAL_LEAVES, 0.3F);
+        BlockDataUtils.compostable(MysticItems.TROPICAL_SAPLING, 0.3F);
+        BlockDataUtils.compostable(MysticItems.HYDRANGEA_LEAVES, 0.6F);
+        BlockDataUtils.compostable(MysticItems.HYDRANGEA_BUSH, 0.65F);
         BlockDataUtils.compostable(MysticItems.VANILLA_BEANS, 0.65F);
         BlockDataUtils.compostable(MysticItems.VANILLA_CAKE, 2.0F);
         BlockDataUtils.compostable(MysticItems.CHOCOLATE_CAKE, 2.0F);
 
-        BlockDataUtils.compostable(MysticBlocks.JACARANDA_BLOSSOMS, 0.6F);
-        BlockDataUtils.compostable(MysticBlocks.JACARANDA_LEAVES, 0.3F);
-        BlockDataUtils.compostable(MysticBlocks.JACARANDA_SAPLING, 0.3F);
-        BlockDataUtils.compostable(MysticBlocks.LAVENDER, 0.65F);
+        BlockDataUtils.compostable(MysticItems.JACARANDA_BLOSSOMS, 0.6F);
+        BlockDataUtils.compostable(MysticItems.JACARANDA_LEAVES, 0.3F);
+        BlockDataUtils.compostable(MysticItems.JACARANDA_SAPLING, 0.3F);
+        BlockDataUtils.compostable(MysticItems.LAVENDER, 0.65F);
 
         BlockDataUtils.compostable(MysticItems.PINK_FROSTED_CAKE, 2.0F);
         BlockDataUtils.compostable(MysticItems.ORANGE_FROSTED_CAKE, 2.0F);
@@ -229,65 +229,72 @@ public class MysticVanillaCompat {
     }
     
     public static void registerRenderLayers() {
-        BlockRenderLayerMap.INSTANCE.putBlock(MysticBlocks.STRAWBERRY_BLOSSOMS, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(MysticBlocks.STRAWBERRY_BLOSSOMS, RenderLayer.getCutoutMipped());
         BlockRenderLayerMap.INSTANCE.putBlock(MysticBlocks.STRAWBERRY_SAPLING, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(MysticBlocks.STRAWBERRY_DOOR, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(MysticBlocks.STRAWBERRY_TRAPDOOR, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(MysticBlocks.STRAWBERRY_BUSH, RenderLayer.getCutout());
 
-        BlockRenderLayerMap.INSTANCE.putBlock(MysticBlocks.PINK_CHERRY_BLOSSOMS, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(MysticBlocks.PINK_CHERRY_BLOSSOMS, RenderLayer.getCutoutMipped());
         BlockRenderLayerMap.INSTANCE.putBlock(MysticBlocks.PINK_CHERRY_BLOSSOM_SAPLING, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(MysticBlocks.WHITE_CHERRY_BLOSSOMS, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(MysticBlocks.WHITE_CHERRY_BLOSSOMS, RenderLayer.getCutoutMipped());
         BlockRenderLayerMap.INSTANCE.putBlock(MysticBlocks.WHITE_CHERRY_BLOSSOM_SAPLING, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(MysticBlocks.CHERRY_DOOR, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(MysticBlocks.CHERRY_TRAPDOOR, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(MysticBlocks.CHERRY_PLANT, RenderLayer.getCutout());
-
-        BlockRenderLayerMap.INSTANCE.putBlock(MysticBlocks.PEONY_LEAVES, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(MysticBlocks.BUDDING_PEONY_LEAVES, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(MysticBlocks.CHERRY_PIE, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(MysticBlocks.PEONY_LEAVES, RenderLayer.getCutoutMipped());
+        BlockRenderLayerMap.INSTANCE.putBlock(MysticBlocks.BUDDING_PEONY_LEAVES, RenderLayer.getCutoutMipped());
         BlockRenderLayerMap.INSTANCE.putBlock(MysticBlocks.PEONY_BUSH, RenderLayer.getCutout());
-
         BlockRenderLayerMap.INSTANCE.putBlock(MysticBlocks.SPRING_BAMBOO, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(MysticBlocks.SPRING_BAMBOO_SAPLING, RenderLayer.getCutout());
 
-        BlockRenderLayerMap.INSTANCE.putBlock(MysticBlocks.PEACH_LEAVES, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(MysticBlocks.PEACH_LEAVES, RenderLayer.getCutoutMipped());
         BlockRenderLayerMap.INSTANCE.putBlock(MysticBlocks.PEACH_SAPLING, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(MysticBlocks.PEACH_DOOR, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(MysticBlocks.PEACH_TRAPDOOR, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(MysticBlocks.PEACH_PLANT, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(MysticBlocks.PEACH_PIE, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(MysticBlocks.WILDFLOWER, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(MysticBlocks.DESERT_GRASS, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(MysticBlocks.SAGUARO_BLOSSOM, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(MysticBlocks.SAGUARO_CACTUS, RenderLayer.getCutout());
 
-        BlockRenderLayerMap.INSTANCE.putBlock(MysticBlocks.MAPLE_LEAVES, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(MysticBlocks.MAPLE_LEAF_PILE, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(MysticBlocks.MAPLE_LEAVES, RenderLayer.getCutoutMipped());
+        BlockRenderLayerMap.INSTANCE.putBlock(MysticBlocks.MAPLE_LEAF_PILE, RenderLayer.getCutoutMipped());
         BlockRenderLayerMap.INSTANCE.putBlock(MysticBlocks.MAPLE_SAPLING, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(MysticBlocks.ORANGE_MAPLE_LEAVES, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(MysticBlocks.ORANGE_MAPLE_LEAF_PILE, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(MysticBlocks.ORANGE_MAPLE_LEAVES, RenderLayer.getCutoutMipped());
+        BlockRenderLayerMap.INSTANCE.putBlock(MysticBlocks.ORANGE_MAPLE_LEAF_PILE, RenderLayer.getCutoutMipped());
         BlockRenderLayerMap.INSTANCE.putBlock(MysticBlocks.ORANGE_MAPLE_SAPLING, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(MysticBlocks.YELLOW_MAPLE_LEAVES, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(MysticBlocks.YELLOW_MAPLE_LEAF_PILE, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(MysticBlocks.YELLOW_MAPLE_LEAVES, RenderLayer.getCutoutMipped());
+        BlockRenderLayerMap.INSTANCE.putBlock(MysticBlocks.YELLOW_MAPLE_LEAF_PILE, RenderLayer.getCutoutMipped());
         BlockRenderLayerMap.INSTANCE.putBlock(MysticBlocks.YELLOW_MAPLE_SAPLING, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(MysticBlocks.MAPLE_DOOR, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(MysticBlocks.MAPLE_TRAPDOOR, RenderLayer.getCutout());
 
-        BlockRenderLayerMap.INSTANCE.putBlock(MysticBlocks.SEA_SHRUB_LEAVES, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(MysticBlocks.SEA_SHRUB_LEAVES, RenderLayer.getCutoutMipped());
         BlockRenderLayerMap.INSTANCE.putBlock(MysticBlocks.SEA_SHRUB, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(MysticBlocks.SEA_FOAM_DOOR, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(MysticBlocks.SEA_FOAM_TRAPDOOR, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(MysticBlocks.SEA_OATS, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(MysticBlocks.MILKWEED, RenderLayer.getCutout());
 
-        BlockRenderLayerMap.INSTANCE.putBlock(MysticBlocks.TROPICAL_LEAVES, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(MysticBlocks.TROPICAL_LEAVES, RenderLayer.getCutoutMipped());
         BlockRenderLayerMap.INSTANCE.putBlock(MysticBlocks.TROPICAL_SAPLING, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(MysticBlocks.TROPICAL_DOOR, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(MysticBlocks.TROPICAL_TRAPDOOR, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(MysticBlocks.HYDRANGEA_LEAVES, RenderLayer.getCutoutMipped());
+        BlockRenderLayerMap.INSTANCE.putBlock(MysticBlocks.HYDRANGEA_BUSH, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(MysticBlocks.VANILLA_ORCHID, RenderLayer.getCutout());
 
-        BlockRenderLayerMap.INSTANCE.putBlock(MysticBlocks.JACARANDA_LEAVES, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(MysticBlocks.JACARANDA_BLOSSOMS, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(MysticBlocks.JACARANDA_LEAVES, RenderLayer.getCutoutMipped());
+        BlockRenderLayerMap.INSTANCE.putBlock(MysticBlocks.JACARANDA_BLOSSOMS, RenderLayer.getCutoutMipped());
         BlockRenderLayerMap.INSTANCE.putBlock(MysticBlocks.JACARANDA_SAPLING, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(MysticBlocks.JACARANDA_DOOR, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(MysticBlocks.JACARANDA_TRAPDOOR, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(MysticBlocks.LAVENDER, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(MysticBlocks.BUTTERFLY_NEST, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(MysticBlocks.GLASS_JAR, RenderLayer.getCutout());
 
         BlockRenderLayerMap.INSTANCE.putBlock(MysticBlocks.POTTED_STRAWBERRY_SAPLING, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(MysticBlocks.POTTED_PINK_CHERRY_BLOSSOM_SAPLING, RenderLayer.getCutout());
@@ -299,7 +306,6 @@ public class MysticVanillaCompat {
         BlockRenderLayerMap.INSTANCE.putBlock(MysticBlocks.POTTED_SEA_SHRUB, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(MysticBlocks.POTTED_TROPICAL_SAPLING, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(MysticBlocks.POTTED_JACARANDA_SAPLING, RenderLayer.getCutout());
-
         BlockRenderLayerMap.INSTANCE.putBlock(MysticBlocks.POTTED_PEONY_BUSH, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(MysticBlocks.POTTED_HYDRANGEA_BUSH, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(MysticBlocks.POTTED_LAVENDER, RenderLayer.getCutout());

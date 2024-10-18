@@ -10,4 +10,8 @@ public class MysticPoiTypes {
 
     public static final PointOfInterestType BUTTERFLY_NEST = Registry.register(Registries.POINT_OF_INTEREST_TYPE, MysticsBiomes.modLoc("butterfly_nest"), new PointOfInterestType(ImmutableSet.copyOf(MysticBlocks.BUTTERFLY_NEST.getStateManager().getStates()), 0, 1));
 
+    public static void registerPoiTypes() {
+        MysticsBiomes.LOGGER.info("mystic's biomes ~ registering poi types");
+    }
+
 }

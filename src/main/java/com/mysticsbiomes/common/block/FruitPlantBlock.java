@@ -26,12 +26,14 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldView;
 import net.minecraft.world.event.GameEvent;
 
+import java.util.function.Supplier;
+
 public class FruitPlantBlock extends PlantBlock implements Fertilizable {
     public static final IntProperty AGE = Properties.AGE_4;
     public static final BooleanProperty CUT = BooleanProperty.of("cropped");
-    private final Item fruitItem;
+    private final Supplier<Item> fruitItem;
 
-    public FruitPlantBlock(Item fruitItem, AbstractBlock.Settings properties) {
+    public FruitPlantBlock(Supplier<Item> fruitItem, AbstractBlock.Settings properties) {
         super(properties);
         this.setDefaultState(this.stateManager.getDefaultState().with(AGE, 0).with(CUT, false));
         this.fruitItem = fruitItem;
@@ -39,7 +41,7 @@ public class FruitPlantBlock extends PlantBlock implements Fertilizable {
 
     @Override
     public ItemStack getPickStack(BlockView getter, BlockPos pos, BlockState state) {
-        return new ItemStack(this.fruitItem);
+        return new ItemStack(this.fruitItem.get());
     }
 
     @Override
@@ -65,14 +67,14 @@ public class FruitPlantBlock extends PlantBlock implements Fertilizable {
             }
 
             level.setBlockState(pos, state.with(CUT, Boolean.TRUE), 11);
-            stack.damage(1, player, (blockState) -> blockState.getStackInHand(hand));
+            stack.damage(1, player, (blockState) -> blockState.sendToolBreakStatus(hand));
             level.playSound(player, pos, SoundEvents.BLOCK_GROWING_PLANT_CROP, SoundCategory.BLOCKS, 1.0F, 1.0F);
             return ActionResult.success(level.isClient);
         }
 
         int age = state.get(AGE);
         if (age == 4) {
-            dropStack(level, pos, new ItemStack(this.fruitItem, 1));
+            dropStack(level, pos, new ItemStack(this.fruitItem.get(), 1));
             level.setBlockState(pos, state.with(AGE, 0), 2);
             level.playSound(null, pos, SoundEvents.BLOCK_SWEET_BERRY_BUSH_PICK_BERRIES, SoundCategory.BLOCKS, 1.0F, 0.8F + level.random.nextFloat() * 0.4F);
             return ActionResult.success(level.isClient);

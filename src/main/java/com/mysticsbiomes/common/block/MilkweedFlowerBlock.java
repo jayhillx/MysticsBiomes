@@ -7,7 +7,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
-import net.minecraft.world.WorldView;
 
 public class MilkweedFlowerBlock extends TallFlowerBlock {
 
@@ -25,7 +24,7 @@ public class MilkweedFlowerBlock extends TallFlowerBlock {
     }
 
     @Override
-    public boolean canPlaceAt(BlockState state, WorldView level, BlockPos pos) {
+    protected boolean canPlantOnTop(BlockState state, BlockView level, BlockPos pos) {
         return state.isIn(BlockTags.SAND) || state.isIn(BlockTags.DIRT) || state.isOf(Blocks.FARMLAND);
     }
 

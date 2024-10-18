@@ -10,10 +10,8 @@ import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
 import net.minecraft.world.gen.feature.PlacedFeature;
 import net.minecraft.world.gen.feature.PlacedFeatures;
-import net.minecraft.world.gen.placementmodifier.BiomePlacementModifier;
-import net.minecraft.world.gen.placementmodifier.CountPlacementModifier;
-import net.minecraft.world.gen.placementmodifier.NoiseBasedCountPlacementModifier;
-import net.minecraft.world.gen.placementmodifier.SquarePlacementModifier;
+import net.minecraft.world.gen.feature.VegetationPlacedFeatures;
+import net.minecraft.world.gen.placementmodifier.*;
 
 import static com.mysticsbiomes.init.MysticFeatures.Placed.createKey;
 
@@ -68,29 +66,29 @@ public class MysticVegetationPlacements {
         RegistryEntry<ConfiguredFeature<?, ?>> TREES_MAPLE = getter.getOrThrow(MysticVegetationFeatures.TREES_MAPLE);
         RegistryEntry<ConfiguredFeature<?, ?>> BUSH_PEONY = getter.getOrThrow(MysticVegetationFeatures.BUSH_PEONY);
 
-        PlacedFeatures.register(context, MysticVegetationPlacements.PATCH_GRASS_LIGHT, PATCH_GRASS_LIGHT, CountPlacementModifier.of(8));
-        PlacedFeatures.register(context, MysticVegetationPlacements.PATCH_GRASS_DENSE, PATCH_GRASS_DENSE, CountPlacementModifier.of(22));
-        PlacedFeatures.register(context, MysticVegetationPlacements.PATCH_DESERT_GRASS, PATCH_DESERT_GRASS, CountPlacementModifier.of(2), SquarePlacementModifier.of(), PlacedFeatures.WORLD_SURFACE_WG_HEIGHTMAP, BiomePlacementModifier.of());
-        PlacedFeatures.register(context, MysticVegetationPlacements.PATCH_SEA_OATS, PATCH_SEA_OATS, CountPlacementModifier.of(1), SquarePlacementModifier.of(), PlacedFeatures.WORLD_SURFACE_WG_HEIGHTMAP, BiomePlacementModifier.of());
-        PlacedFeatures.register(context, MysticVegetationPlacements.PATCH_FERN, PATCH_FERN, CountPlacementModifier.of(1), SquarePlacementModifier.of(), PlacedFeatures.WORLD_SURFACE_WG_HEIGHTMAP, BiomePlacementModifier.of());
-        PlacedFeatures.register(context, MysticVegetationPlacements.PATCH_LARGE_FERN, PATCH_LARGE_FERN, CountPlacementModifier.of(1), SquarePlacementModifier.of(), PlacedFeatures.WORLD_SURFACE_WG_HEIGHTMAP, BiomePlacementModifier.of());
-        PlacedFeatures.register(context, MysticVegetationPlacements.PATCH_STRAWBERRY_BUSH, PATCH_STRAWBERRY_BUSH, CountPlacementModifier.of(1), SquarePlacementModifier.of(), PlacedFeatures.WORLD_SURFACE_WG_HEIGHTMAP, BiomePlacementModifier.of());
-        PlacedFeatures.register(context, MysticVegetationPlacements.PATCH_SPRING_BAMBOO, PATCH_SPRING_BAMBOO, NoiseBasedCountPlacementModifier.of(200, 120.0D, 0.6D), CountPlacementModifier.of(222), SquarePlacementModifier.of(), PlacedFeatures.WORLD_SURFACE_WG_HEIGHTMAP, BiomePlacementModifier.of());
-        PlacedFeatures.register(context, MysticVegetationPlacements.PATCH_SAGUARO_CACTUS, PATCH_SAGUARO_CACTUS, CountPlacementModifier.of(2), SquarePlacementModifier.of(), PlacedFeatures.WORLD_SURFACE_WG_HEIGHTMAP, BiomePlacementModifier.of());
-        PlacedFeatures.register(context, MysticVegetationPlacements.PATCH_PUMPKINS, PATCH_PUMPKINS, CountPlacementModifier.of(5), SquarePlacementModifier.of(), PlacedFeatures.WORLD_SURFACE_WG_HEIGHTMAP, BiomePlacementModifier.of());
+        PlacedFeatures.register(context, MysticVegetationPlacements.PATCH_GRASS_LIGHT, PATCH_GRASS_LIGHT, VegetationPlacedFeatures.modifiers(8));
+        PlacedFeatures.register(context, MysticVegetationPlacements.PATCH_GRASS_DENSE, PATCH_GRASS_DENSE, VegetationPlacedFeatures.modifiers(22));
+        PlacedFeatures.register(context, MysticVegetationPlacements.PATCH_DESERT_GRASS, PATCH_DESERT_GRASS, RarityFilterPlacementModifier.of(2), SquarePlacementModifier.of(), PlacedFeatures.WORLD_SURFACE_WG_HEIGHTMAP, BiomePlacementModifier.of());
+        PlacedFeatures.register(context, MysticVegetationPlacements.PATCH_SEA_OATS, PATCH_SEA_OATS, RarityFilterPlacementModifier.of(1), SquarePlacementModifier.of(), PlacedFeatures.WORLD_SURFACE_WG_HEIGHTMAP, BiomePlacementModifier.of());
+        PlacedFeatures.register(context, MysticVegetationPlacements.PATCH_FERN, PATCH_FERN, RarityFilterPlacementModifier.of(1), SquarePlacementModifier.of(), PlacedFeatures.WORLD_SURFACE_WG_HEIGHTMAP, BiomePlacementModifier.of());
+        PlacedFeatures.register(context, MysticVegetationPlacements.PATCH_LARGE_FERN, PATCH_LARGE_FERN, RarityFilterPlacementModifier.of(1), SquarePlacementModifier.of(), PlacedFeatures.WORLD_SURFACE_WG_HEIGHTMAP, BiomePlacementModifier.of());
+        PlacedFeatures.register(context, MysticVegetationPlacements.PATCH_STRAWBERRY_BUSH, PATCH_STRAWBERRY_BUSH, RarityFilterPlacementModifier.of(1), SquarePlacementModifier.of(), PlacedFeatures.WORLD_SURFACE_WG_HEIGHTMAP, BiomePlacementModifier.of());
+        PlacedFeatures.register(context, MysticVegetationPlacements.PATCH_SPRING_BAMBOO, PATCH_SPRING_BAMBOO, NoiseBasedCountPlacementModifier.of(200, 120.0D, 0.6D), RarityFilterPlacementModifier.of(222), SquarePlacementModifier.of(), PlacedFeatures.WORLD_SURFACE_WG_HEIGHTMAP, BiomePlacementModifier.of());
+        PlacedFeatures.register(context, MysticVegetationPlacements.PATCH_SAGUARO_CACTUS, PATCH_SAGUARO_CACTUS, RarityFilterPlacementModifier.of(2), SquarePlacementModifier.of(), PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP, BiomePlacementModifier.of());
+        PlacedFeatures.register(context, MysticVegetationPlacements.PATCH_PUMPKINS, PATCH_PUMPKINS, RarityFilterPlacementModifier.of(5), SquarePlacementModifier.of(), PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP, BiomePlacementModifier.of());
 
-        PlacedFeatures.register(context, MysticVegetationPlacements.FLOWER_PINK_TULIP, FLOWER_PINK_TULIP, CountPlacementModifier.of(1), SquarePlacementModifier.of(), PlacedFeatures.WORLD_SURFACE_WG_HEIGHTMAP, BiomePlacementModifier.of());
-        PlacedFeatures.register(context, MysticVegetationPlacements.FLOWER_WHITE_TULIP, FLOWER_WHITE_TULIP, CountPlacementModifier.of(1), SquarePlacementModifier.of(), PlacedFeatures.WORLD_SURFACE_WG_HEIGHTMAP, BiomePlacementModifier.of());
-        PlacedFeatures.register(context, MysticVegetationPlacements.FLOWER_ALLIUM, FLOWER_ALLIUM, CountPlacementModifier.of(1), SquarePlacementModifier.of(), PlacedFeatures.WORLD_SURFACE_WG_HEIGHTMAP, BiomePlacementModifier.of());
-        PlacedFeatures.register(context, MysticVegetationPlacements.FLOWER_LILAC, FLOWER_LILAC, CountPlacementModifier.of(2), SquarePlacementModifier.of(), PlacedFeatures.WORLD_SURFACE_WG_HEIGHTMAP, BiomePlacementModifier.of());
-        PlacedFeatures.register(context, MysticVegetationPlacements.FLOWER_LAVENDER, FLOWER_LAVENDER, CountPlacementModifier.of(48));
-        PlacedFeatures.register(context, MysticVegetationPlacements.FLOWER_WILDFLOWER, FLOWER_WILDFLOWER, CountPlacementModifier.of(3), SquarePlacementModifier.of(), PlacedFeatures.WORLD_SURFACE_WG_HEIGHTMAP, BiomePlacementModifier.of());
-        PlacedFeatures.register(context, MysticVegetationPlacements.FLOWER_MILKWEED, FLOWER_MILKWEED, CountPlacementModifier.of(2), SquarePlacementModifier.of(), PlacedFeatures.WORLD_SURFACE_WG_HEIGHTMAP, BiomePlacementModifier.of());
-        PlacedFeatures.register(context, MysticVegetationPlacements.FLOWER_PITCHER_PLANT, FLOWER_PITCHER_PLANT, CountPlacementModifier.of(2), SquarePlacementModifier.of(), PlacedFeatures.WORLD_SURFACE_WG_HEIGHTMAP, BiomePlacementModifier.of());
+        PlacedFeatures.register(context, MysticVegetationPlacements.FLOWER_PINK_TULIP, FLOWER_PINK_TULIP, RarityFilterPlacementModifier.of(1), SquarePlacementModifier.of(), PlacedFeatures.WORLD_SURFACE_WG_HEIGHTMAP, BiomePlacementModifier.of());
+        PlacedFeatures.register(context, MysticVegetationPlacements.FLOWER_WHITE_TULIP, FLOWER_WHITE_TULIP, RarityFilterPlacementModifier.of(1), SquarePlacementModifier.of(), PlacedFeatures.WORLD_SURFACE_WG_HEIGHTMAP, BiomePlacementModifier.of());
+        PlacedFeatures.register(context, MysticVegetationPlacements.FLOWER_ALLIUM, FLOWER_ALLIUM, RarityFilterPlacementModifier.of(1), SquarePlacementModifier.of(), PlacedFeatures.WORLD_SURFACE_WG_HEIGHTMAP, BiomePlacementModifier.of());
+        PlacedFeatures.register(context, MysticVegetationPlacements.FLOWER_LILAC, FLOWER_LILAC, RarityFilterPlacementModifier.of(2), SquarePlacementModifier.of(), PlacedFeatures.WORLD_SURFACE_WG_HEIGHTMAP, BiomePlacementModifier.of());
+        PlacedFeatures.register(context, MysticVegetationPlacements.FLOWER_LAVENDER, FLOWER_LAVENDER, VegetationPlacedFeatures.modifiers(48));
+        PlacedFeatures.register(context, MysticVegetationPlacements.FLOWER_WILDFLOWER, FLOWER_WILDFLOWER, RarityFilterPlacementModifier.of(3), SquarePlacementModifier.of(), PlacedFeatures.WORLD_SURFACE_WG_HEIGHTMAP, BiomePlacementModifier.of());
+        PlacedFeatures.register(context, MysticVegetationPlacements.FLOWER_MILKWEED, FLOWER_MILKWEED, RarityFilterPlacementModifier.of(2), SquarePlacementModifier.of(), PlacedFeatures.WORLD_SURFACE_WG_HEIGHTMAP, BiomePlacementModifier.of());
+        PlacedFeatures.register(context, MysticVegetationPlacements.FLOWER_PITCHER_PLANT, FLOWER_PITCHER_PLANT, RarityFilterPlacementModifier.of(2), SquarePlacementModifier.of(), PlacedFeatures.WORLD_SURFACE_WG_HEIGHTMAP, BiomePlacementModifier.of());
 
-        PlacedFeatures.register(context, MysticVegetationPlacements.TREES_CHERRY_BLOSSOM, TREES_CHERRY_BLOSSOM, NoiseBasedCountPlacementModifier.of(10, 0.3D, 1), PlacedFeatures.wouldSurvive(MysticBlocks.PINK_CHERRY_BLOSSOM_SAPLING)); // 5, 0.4D, 1
-        PlacedFeatures.register(context, MysticVegetationPlacements.TREES_MAPLE, TREES_MAPLE, NoiseBasedCountPlacementModifier.of(8, 0.3D, 1), PlacedFeatures.wouldSurvive(MysticBlocks.MAPLE_SAPLING));
-        PlacedFeatures.register(context, MysticVegetationPlacements.BUSH_PEONY, BUSH_PEONY, NoiseBasedCountPlacementModifier.of(32, 0.2D, 1), PlacedFeatures.wouldSurvive(MysticBlocks.PEONY_BUSH));
+        PlacedFeatures.register(context, MysticVegetationPlacements.TREES_CHERRY_BLOSSOM, TREES_CHERRY_BLOSSOM, MysticTreePlacements.treePlacement(NoiseBasedCountPlacementModifier.of(10, 0.3D, 1), MysticBlocks.PINK_CHERRY_BLOSSOM_SAPLING)); // 5, 0.4D, 1
+        PlacedFeatures.register(context, MysticVegetationPlacements.TREES_MAPLE, TREES_MAPLE, MysticTreePlacements.treePlacement(NoiseBasedCountPlacementModifier.of(8, 0.3D, 1), MysticBlocks.MAPLE_SAPLING));
+        PlacedFeatures.register(context, MysticVegetationPlacements.BUSH_PEONY, BUSH_PEONY, MysticTreePlacements.treePlacement(NoiseBasedCountPlacementModifier.of(32, 0.2D, 1), MysticBlocks.PEONY_BUSH));
     }
 
 }

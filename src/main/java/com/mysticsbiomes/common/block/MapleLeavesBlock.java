@@ -1,9 +1,9 @@
 package com.mysticsbiomes.common.block;
 
+import com.mysticsbiomes.init.MysticBlocks;
 import com.mysticsbiomes.init.MysticParticles;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.util.ParticleUtil;
-import net.minecraft.particle.ParticleEffect;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -11,11 +11,9 @@ import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 
 public class MapleLeavesBlock extends MysticLeavesBlock {
-    private final ParticleEffect particle;
 
-    public MapleLeavesBlock(ParticleEffect particle, BlockSoundGroup soundType) {
+    public MapleLeavesBlock(BlockSoundGroup soundType) {
         super(soundType);
-        this.particle = particle;
     }
 
     @Override
@@ -26,7 +24,13 @@ public class MapleLeavesBlock extends MysticLeavesBlock {
 
         if (!isFaceFullSquare(belowState.getCollisionShape(level, belowPos), Direction.UP)) {
             if (random.nextInt(82) == 0) {
-                ParticleUtil.spawnParticle(level, pos, random, this.particle);
+                if (this == MysticBlocks.MAPLE_LEAVES) {
+                    ParticleUtil.spawnParticle(level, pos, random, MysticParticles.MAPLE_LEAF);
+                } else if (this == MysticBlocks.ORANGE_MAPLE_LEAVES) {
+                    ParticleUtil.spawnParticle(level, pos, random, MysticParticles.ORANGE_MAPLE_LEAF);
+                } else if (this == MysticBlocks.YELLOW_MAPLE_LEAVES) {
+                    ParticleUtil.spawnParticle(level, pos, random, MysticParticles.YELLOW_MAPLE_LEAF);
+                }
             }
 
             if (random.nextInt(3000) == 0) {

@@ -46,8 +46,11 @@ public class SaguaroCactusBlock extends CactusBlock {
         boolean hasBlossomAbove = level.getBlockState(abovePos).isOf(MysticBlocks.SAGUARO_BLOSSOM);
 
         if (!state.get(NATURAL) && !state.get(CUT) && (level.isAir(abovePos) || hasBlossomAbove)) {
-            int height;
-            for (height = 1; level.getBlockState(pos.down(height)).isOf(this); ++height) {}
+            int height = 1;
+
+            while (level.getBlockState(pos.down(height)).isOf(this)) {
+                height++;
+            }
 
             if (height < 5) {
                 int age = state.get(AGE);
@@ -57,13 +60,13 @@ public class SaguaroCactusBlock extends CactusBlock {
                     BlockState blockState = this.getDefaultState();
                     if (state.get(BRANCH)) {
                         if (height < 2) {
-                            level.setBlockState(abovePos, blockState.with(ATTACHMENT, BranchShape.BRANCH).with(BRANCH, true));
+                            level.setBlockState(abovePos, blockState.with(ATTACHMENT, BranchShape.BRANCH).with(BRANCH, true), 3);
                         }
                     } else {
-                        level.setBlockState(abovePos, blockState.with(ATTACHMENT, BranchShape.BASE));
+                        level.setBlockState(abovePos, blockState.with(ATTACHMENT, BranchShape.BASE), 3);
 
                         if (hasBlossomAbove) {
-                            level.setBlockState(abovePos.up(), MysticBlocks.SAGUARO_BLOSSOM.getDefaultState());
+                            level.setBlockState(abovePos.up(), MysticBlocks.SAGUARO_BLOSSOM.getDefaultState(), 3);
                         }
                     }
 
@@ -72,14 +75,14 @@ public class SaguaroCactusBlock extends CactusBlock {
                             if (random.nextInt(2) == 0) {
                                 BlockPos branchPos = pos.offset(direction);
                                 if (level.isAir(branchPos)) {
-                                    level.setBlockState(branchPos, blockState.with(FACING, direction.getOpposite()).with(ATTACHMENT, BranchShape.BASE_BRANCH).with(BRANCH, true));
+                                    level.setBlockState(branchPos, blockState.with(FACING, direction.getOpposite()).with(ATTACHMENT, BranchShape.BASE_BRANCH).with(BRANCH, true), 3);
                                 }
                             }
                         }
                     }
 
                     if (random.nextInt(8) == 0 && !hasBlossomAbove) {
-                        level.setBlockState(abovePos, MysticBlocks.SAGUARO_BLOSSOM.getDefaultState());
+                        level.setBlockState(abovePos, MysticBlocks.SAGUARO_BLOSSOM.getDefaultState(), 3);
                     }
                 } else {
                     level.setBlockState(pos, state.with(AGE, age + 1), 4);
@@ -92,11 +95,9 @@ public class SaguaroCactusBlock extends CactusBlock {
     public boolean canPlaceAt(BlockState state, WorldView level, BlockPos pos) {
         for (Direction direction : Direction.Type.HORIZONTAL) {
             BlockState relativeState = level.getBlockState(pos.offset(direction));
-            if (relativeState.isSolid()) {
-                if (relativeState.getBlock() instanceof SaguaroCactusBlock) {
-                    if (!level.getBlockState(pos.down()).isAir() || state.get(ATTACHMENT) == BranchShape.BASE_BRANCH || state.get(ATTACHMENT) == BranchShape.BASE_BRANCH_UPWARD) {
-                        return state.get(BRANCH) || (!state.get(BRANCH) && relativeState.get(BRANCH));
-                    }
+            if (relativeState.isSolid() && relativeState.getBlock() instanceof SaguaroCactusBlock) {
+                if (!level.getBlockState(pos.down()).isAir() || state.get(ATTACHMENT) == BranchShape.BASE_BRANCH || state.get(ATTACHMENT) == BranchShape.BASE_BRANCH_UPWARD) {
+                    return state.get(BRANCH) || (!state.get(BRANCH) && relativeState.get(BRANCH));
                 }
             }
         }
@@ -121,7 +122,7 @@ public class SaguaroCactusBlock extends CactusBlock {
     }
 
     @Override
-    public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState state2, WorldAccess level, BlockPos pos, BlockPos pos1) {
+    public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState state1, WorldAccess level, BlockPos pos, BlockPos pos1) {
         if (state.getBlock() instanceof SaguaroCactusBlock) {
             if (state.get(ATTACHMENT) == BranchShape.BASE_BRANCH) {
                 return state.with(ATTACHMENT, BranchShape.BASE_BRANCH_UPWARD);
@@ -135,7 +136,7 @@ public class SaguaroCactusBlock extends CactusBlock {
         }
 
         if (!state.canPlaceAt(level, pos)) {
-            level.breakBlock(pos, true);
+            level.scheduleBlockTick(pos, this, 1);
         }
         return state;
     }
@@ -165,12 +166,12 @@ public class SaguaroCactusBlock extends CactusBlock {
     }
 
     @Override
-    public VoxelShape getCollisionShape(BlockState state, BlockView getter, BlockPos pos, ShapeContext context) {
-        return this.getOutlineShape(state, getter, pos, context);
+    public VoxelShape getCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+        return this.getOutlineShape(state, world, pos, context);
     }
 
     @Override
-    public VoxelShape getOutlineShape(BlockState state, BlockView getter, BlockPos pos, ShapeContext context) {
+    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         if (state.get(ATTACHMENT) == BranchShape.BASE_BRANCH) {
             return switch (state.get(FACING)) {
                 case NORTH -> Block.createCuboidShape(3.0D, 2.0D, -2.0D, 13.0D, 12.0D, 13.0D);
@@ -199,7 +200,7 @@ public class SaguaroCactusBlock extends CactusBlock {
         if (stack.isOf(Items.SHEARS) && !state.get(CUT)) {
             level.setBlockState(pos, state.with(CUT, true), 11);
             if (!player.isCreative()) {
-                stack.damage(1, player, (p) -> p.getStackInHand(hand));
+                stack.damage(1, player, (p) -> p.sendToolBreakStatus(hand));
             }
 
             level.playSound(player, pos, SoundEvents.BLOCK_GROWING_PLANT_CROP, SoundCategory.BLOCKS, 1.0F, 1.0F);

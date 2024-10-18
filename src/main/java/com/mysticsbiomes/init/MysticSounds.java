@@ -7,11 +7,15 @@ import net.minecraft.sound.SoundEvent;
 
 public class MysticSounds {
 
-    public static final SoundEvent BUTTERFLY_NEST_ENTER = registerSound("block.butterfly_nest.enter", SoundEvent.of(MysticsBiomes.modLoc("block.butterfly_nest.enter")));
-    public static final SoundEvent BUTTERFLY_NEST_EXIT = registerSound("block.butterfly_nest.exit", SoundEvent.of(MysticsBiomes.modLoc("block.butterfly_nest.exit")));
+    public static final SoundEvent BUTTERFLY_NEST_ENTER = registerSound("block.butterfly_nest.enter");
+    public static final SoundEvent BUTTERFLY_NEST_EXIT = registerSound("block.butterfly_nest.exit");
 
-    private static SoundEvent registerSound(String name, SoundEvent sound) {
-        return Registry.register(Registries.SOUND_EVENT, MysticsBiomes.modLoc(name), sound);
+    private static SoundEvent registerSound(String name) {
+        return Registry.register(Registries.SOUND_EVENT, MysticsBiomes.modLoc(name), SoundEvent.of(MysticsBiomes.modLoc(name)));
+    }
+
+    public static void registerSounds() {
+        MysticsBiomes.LOGGER.info("mystic's biomes ~ registering sounds");
     }
 
 }

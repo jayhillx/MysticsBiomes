@@ -7,6 +7,7 @@ import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.state.StateManager;
@@ -21,6 +22,8 @@ import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
+
+import java.util.OptionalInt;
 
 public class MysticLeavesBlock extends Block implements Waterloggable {
     public static final IntProperty DISTANCE = IntProperty.of("distance", 1, 16);
@@ -74,6 +77,7 @@ public class MysticLeavesBlock extends Block implements Waterloggable {
         if (i != 1 || state.get(DISTANCE) != i) {
             world.scheduleBlockTick(pos, this, 1);
         }
+
         return state;
     }
 
@@ -93,7 +97,15 @@ public class MysticLeavesBlock extends Block implements Waterloggable {
     }
 
     private static int getDistanceFromLog(BlockState state) {
-        return LeavesBlock.getOptionalDistanceFromLog(state).orElse(16);
+        return getOptionalDistanceFromLog(state).orElse(16);
+    }
+
+    public static OptionalInt getOptionalDistanceFromLog(BlockState state) {
+        if (state.isIn(BlockTags.LOGS)) {
+            return OptionalInt.of(0);
+        } else {
+            return state.contains(DISTANCE) ? OptionalInt.of(state.get(DISTANCE)) : OptionalInt.empty();
+        }
     }
 
     @Override
@@ -105,9 +117,9 @@ public class MysticLeavesBlock extends Block implements Waterloggable {
     public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
         if (world.hasRain(pos.up())) {
             if (random.nextInt(15) == 1) {
-                BlockPos belowPos = pos.down();
-                BlockState belowState = world.getBlockState(belowPos);
-                if (!belowState.isOpaque() || !belowState.isSideSolidFullSquare(world, belowPos, Direction.UP)) {
+                BlockPos blockPos = pos.down();
+                BlockState blockState = world.getBlockState(blockPos);
+                if (!blockState.isOpaque() || !blockState.isSideSolidFullSquare(world, blockPos, Direction.UP)) {
                     ParticleUtil.spawnParticle(world, pos, random, ParticleTypes.DRIPPING_WATER);
                 }
             }

@@ -7,11 +7,11 @@
   ],
   "key": {
     "#": {
-      "item": "mysticsbiomes:stripped_jacaranda_log"
+      "item": "mysticsbiomes:stripped_maple_log"
     }
   },
   "result": {
-    "item": "mysticsbiomes:stripped_jacaranda_wood",
+    "item": "mysticsbiomes:stripped_maple_wood",
     "count": 3
   }
 }

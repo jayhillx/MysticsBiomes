@@ -56,7 +56,7 @@ public class RedPanda extends AnimalEntity {
     private static final TrackedData<Optional<UUID>> DATA_TRUSTED_ID = DataTracker.registerData(RedPanda.class, TrackedDataHandlerRegistry.OPTIONAL_UUID);
     private static final Predicate<ItemEntity> ALLOWED_ITEMS = (item) -> {
         ItemStack stack = item.getStack();
-        return (stack.isOf(Items.BAMBOO) || stack.isOf(MysticItems.SPRING_BAMBOO) || stack.isOf(MysticItems.CHERRIES)) && !item.cannotPickup() && item.isAlive();
+        return (stack.isOf(Items.BAMBOO) || stack.isOf(MysticBlocks.SPRING_BAMBOO.asItem()) || stack.isOf(MysticItems.CHERRIES)) && !item.cannotPickup() && item.isAlive();
     };
     public final AnimationState idleAnimationState = new AnimationState();
     public final AnimationState sleepingAnimationState = new AnimationState();
@@ -82,6 +82,7 @@ public class RedPanda extends AnimalEntity {
 
     @Override
     protected void initGoals() {
+        this.goalSelector.add(0, new SwimGoal(this));
         this.goalSelector.add(0, new RedPanda.RedPandaEscapeDangerGoal(this, 2.0D));
         this.goalSelector.add(1, new RedPanda.SleepGoal());
         this.goalSelector.add(1, new RedPanda.EatBambooGoal());
@@ -99,7 +100,7 @@ public class RedPanda extends AnimalEntity {
     }
 
     public static DefaultAttributeContainer.Builder createAttributes() {
-        return DefaultAttributeContainer.builder().add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.125F).add(EntityAttributes.GENERIC_MAX_HEALTH, 10.0D).add(EntityAttributes.GENERIC_FOLLOW_RANGE, 32.0D).add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 8.0D);
+        return MobEntity.createMobAttributes().add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.125F).add(EntityAttributes.GENERIC_MAX_HEALTH, 10.0D).add(EntityAttributes.GENERIC_FOLLOW_RANGE, 20.0D).add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 8.0D);
     }
 
     @Override
@@ -297,7 +298,7 @@ public class RedPanda extends AnimalEntity {
     }
 
     public boolean isFood(ItemStack stack) {
-        return stack.isOf(Items.BAMBOO) || stack.isOf(MysticItems.SPRING_BAMBOO);
+        return stack.isOf(Items.BAMBOO) || stack.isOf(MysticBlocks.SPRING_BAMBOO.asItem());
     }
 
     @Override
@@ -309,7 +310,7 @@ public class RedPanda extends AnimalEntity {
     @Override
     protected void loot(ItemEntity entity) {
         ItemStack stack = entity.getStack();
-        if ((this.getMainHandStack().isEmpty() || !this.getMainHandStack().isOf(MysticItems.SPRING_BAMBOO)) && ALLOWED_ITEMS.test(entity)) {
+        if ((this.getMainHandStack().isEmpty() || !this.getMainHandStack().isOf(MysticBlocks.SPRING_BAMBOO.asItem())) && ALLOWED_ITEMS.test(entity)) {
             this.triggerItemPickedUpByEntityCriteria(entity);
 
             this.spitOutItem(this.getEquippedStack(EquipmentSlot.MAINHAND));

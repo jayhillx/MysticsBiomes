@@ -1,7 +1,6 @@
 package com.mysticsbiomes.common.block;
 
 import com.mysticsbiomes.init.MysticBlocks;
-import com.mysticsbiomes.init.MysticItems;
 import net.minecraft.block.*;
 import net.minecraft.block.enums.BambooLeaves;
 import net.minecraft.entity.player.PlayerEntity;
@@ -59,7 +58,7 @@ public class SpringBambooSaplingBlock extends Block implements Fertilizable {
 
     @Override
     public ItemStack getPickStack(BlockView getter, BlockPos pos, BlockState state) {
-        return new ItemStack(MysticItems.SPRING_BAMBOO);
+        return new ItemStack(MysticBlocks.SPRING_BAMBOO);
     }
 
     @Override

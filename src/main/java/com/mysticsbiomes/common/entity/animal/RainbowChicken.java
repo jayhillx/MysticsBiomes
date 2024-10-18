@@ -144,10 +144,10 @@ public class RainbowChicken extends AnimalEntity {
         return super.initialize(accessor, instance, type, data, tag);
     }
 
-    @Override
-    public Text getName() {
-        return Text.translatable("entity.mysticsbiomes.rainbow_chicken." + this.getVariant().type);
-    }
+    //@Override
+    //public Text getName() {
+    //    return Text.translatable("entity.mysticsbiomes.rainbow_chicken." + this.getVariant().type);
+    //}
 
     @Override
     public void tickMovement() {

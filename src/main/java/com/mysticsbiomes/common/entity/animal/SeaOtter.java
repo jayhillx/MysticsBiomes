@@ -57,10 +57,10 @@ public class SeaOtter extends AnimalEntity {
 
     public SeaOtter(EntityType<? extends SeaOtter> type, World level) {
         super(type, level);
-        this.setPathfindingPenalty(PathNodeType.WATER, -1.0F);
+        this.setPathfindingPenalty(PathNodeType.WATER, 0.0F);
         this.setStepHeight(1.0F);
-        this.moveControl = new SeaOtterMoveControl(this);
-        this.lookControl = new SeaOtterLookControl(this);
+        this.moveControl = new SeaOtter.SeaOtterMoveControl(this);
+        this.lookControl = new SeaOtter.SeaOtterLookControl(this);
     }
 
     @Override
@@ -73,18 +73,17 @@ public class SeaOtter extends AnimalEntity {
     @Override
     protected void initGoals() {
         this.goalSelector.add(0, new EscapeDangerGoal(this, 2.0D));
-        this.goalSelector.add(0, new SwimToSurfaceGoal(this, 1.0D, 16));
-        this.goalSelector.add(0, new MoveToWaterGoal(this, 1.0D, 16));
+        this.goalSelector.add(0, new SeaOtter.SwimToSurfaceGoal(this, 1.0D, 16));
+        this.goalSelector.add(0, new SeaOtter.MoveToWaterGoal(this, 1.0D, 16));
         this.goalSelector.add(1, new TemptGoal(this, 1.0D, Ingredient.ofItems(MysticBlocks.MILKWEED), false));
-        this.goalSelector.add(2, new SeaOtter.FloatGoal());
         this.goalSelector.add(3, new SeaOtter.SeaOtterSwimAroundGoal(this, 1.0D, 10));
         this.goalSelector.add(4, new LookAtEntityGoal(this, PlayerEntity.class, 6.0F, 0.02F, true));
         this.goalSelector.add(5, new LookAroundGoal(this));
-        this.goalSelector.add(6, new SwimGoal(this));
+        this.goalSelector.add(6, new SeaOtter.FloatGoal());
     }
 
     public static DefaultAttributeContainer.Builder createAttributes() {
-        return DefaultAttributeContainer.builder().add(EntityAttributes.GENERIC_MAX_HEALTH, 16.0F).add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 1.0D);
+        return MobEntity.createMobAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 16.0F).add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 1.0D);
     }
 
     @Override
@@ -176,7 +175,7 @@ public class SeaOtter extends AnimalEntity {
         if (this.canMoveVoluntarily() && this.isTouchingWater()) {
             this.updateVelocity(this.getMovementSpeed(), vec3);
             this.move(MovementType.SELF, this.getVelocity());
-            this.setVelocity(this.getVelocity().add(0.0, 0.9, 0.0));
+            this.setVelocity(this.getVelocity().multiply(0.9));
         } else {
             super.travel(vec3);
         }
@@ -234,7 +233,7 @@ public class SeaOtter extends AnimalEntity {
         public boolean canStart() {
             return !SeaOtter.this.wantsToSwim() && SeaOtter.this.getSurfacePos() != null && SeaOtter.this.getSurfacePos().isWithinDistance(SeaOtter.this.getBlockPos(), 0);
         }
-        
+
         public void start() {
             SeaOtter.this.setFloating(true);
         }
@@ -278,7 +277,7 @@ public class SeaOtter extends AnimalEntity {
         }
 
         public void tick() {
-            this.shouldRunEveryTick();
+            this.ignoreChanceOnce();
             ++this.ticksSwimming;
         }
     }
@@ -314,7 +313,7 @@ public class SeaOtter extends AnimalEntity {
             }
 
             BlockPos pos = this.getMoveToTarget();
-            if (!pos.isWithinDistance(SeaOtter.this.getBlockPos(), 1.0D)) {
+            if (!pos.isWithinDistance(SeaOtter.this.getPos(), 1.0D)) {
                 SeaOtter.this.navigation.startMovingTo(pos.getX() + 0.5D, pos.getY(), pos.getZ() + 0.5D, this.speed);
             }
         }
@@ -396,8 +395,8 @@ public class SeaOtter extends AnimalEntity {
                     } else {
                         float f = (float)(MathHelper.atan2(d2, d0) * (double)(180F / (float)Math.PI)) - 90.0F;
                         SeaOtter.this.setYaw(this.wrapDegrees(SeaOtter.this.getYaw(), f, (float)10));
-                        SeaOtter.this.bodyYaw = SeaOtter.this.getYaw();
-                        SeaOtter.this.headYaw = SeaOtter.this.getYaw();
+                        SeaOtter.this.bodyYaw = this.entity.getYaw();
+                        SeaOtter.this.headYaw = this.entity.getYaw();
 
                         float speed = (float)(this.speed * SeaOtter.this.getAttributeValue(EntityAttributes.GENERIC_MOVEMENT_SPEED));
                         SeaOtter.this.setMovementSpeed(speed * 0.02F);
@@ -407,11 +406,6 @@ public class SeaOtter extends AnimalEntity {
                             float f3 = -((float)(MathHelper.atan2(d1, d4) * (double)(180F / (float)Math.PI)));
                             f3 = MathHelper.clamp(MathHelper.wrapDegrees(f3), (float)(-85), (float)85);
                             SeaOtter.this.setPitch(this.wrapDegrees(SeaOtter.this.getPitch(), f3, 5.0F));
-                        }
-
-                        if (d1 > (double)SeaOtter.this.getStepHeight() && d0 * d0 + d2 * d2 < 4.0F && d1 <= 1.0D && SeaOtter.this.getWorld().getBlockState(BlockPos.ofFloored(this.targetX, this.targetY, this.targetZ)).getFluidState().isEmpty()) {
-                            SeaOtter.this.getJumpControl().setActive();
-                            SeaOtter.this.setMovementSpeed(speed);
                         }
 
                         float f6 = MathHelper.cos(SeaOtter.this.getPitch() * ((float)Math.PI / 180F));
@@ -441,11 +435,11 @@ public class SeaOtter extends AnimalEntity {
         @Override
         public void tick() {
             if (!SeaOtter.this.isFloating()) {
-                if (SeaOtter.this.isSubmergedInWater()) {
+                if (SeaOtter.this.isTouchingWater()) {
                     if (this.lookAtTimer > 0) {
-                        --this.lookAtTimer;
-                        this.getTargetYaw().ifPresent((i) -> this.entity.headYaw = this.changeAngle(this.entity.headYaw, i + 20.0F, this.maxYawChange));
-                        this.getTargetPitch().ifPresent((i) -> this.entity.setPitch(this.changeAngle(this.entity.getPitch(), i + 10.0F, this.maxPitchChange)));
+                        this.lookAtTimer--;
+                        this.getTargetYaw().ifPresent(yaw -> this.entity.headYaw = this.changeAngle(this.entity.headYaw, yaw + 20.0F, this.maxYawChange));
+                        this.getTargetPitch().ifPresent(pitch -> this.entity.setPitch(this.changeAngle(this.entity.getPitch(), pitch + 10.0F, this.maxPitchChange)));
                     } else {
                         if (this.entity.getNavigation().isIdle()) {
                             this.entity.setPitch(this.changeAngle(this.entity.getPitch(), 0.0F, 5.0F));
@@ -474,16 +468,6 @@ public class SeaOtter extends AnimalEntity {
 
         @Override
         protected boolean isAtValidPosition() {
-            return true;
-        }
-
-        @Override
-        protected boolean isInLiquid() {
-            return super.isInLiquid();
-        }
-
-        @Override
-        public boolean canSwim() {
             return true;
         }
 

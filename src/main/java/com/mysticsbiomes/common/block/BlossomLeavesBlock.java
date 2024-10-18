@@ -9,10 +9,12 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 
-public class BlossomLeavesBlock extends MysticLeavesBlock {
-    private final ParticleEffect particle;
+import java.util.function.Supplier;
 
-    public BlossomLeavesBlock(ParticleEffect particle, BlockSoundGroup soundType) {
+public class BlossomLeavesBlock extends MysticLeavesBlock {
+    private final Supplier<ParticleEffect> particle;
+
+    public BlossomLeavesBlock(Supplier<ParticleEffect> particle, BlockSoundGroup soundType) {
         super(soundType);
         this.particle = particle;
     }
@@ -25,7 +27,9 @@ public class BlossomLeavesBlock extends MysticLeavesBlock {
 
         if (random.nextInt(48) == 0) {
             if (!isFaceFullSquare(belowState.getCollisionShape(world, belowPos), Direction.UP)) {
-                ParticleUtil.spawnParticle(world, pos, random, this.particle);
+                if (this.particle != null) {
+                    ParticleUtil.spawnParticle(world, pos, random, this.particle.get());
+                }
             }
         }
     }

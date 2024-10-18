@@ -9,11 +9,12 @@ import net.minecraft.particle.DefaultParticleType;
 @Environment(EnvType.CLIENT)
 public class AcornParticle extends SpriteBillboardParticle {
 
-    protected AcornParticle(ClientWorld level, double x, double y, double z) {
+    public AcornParticle(ClientWorld level, double x, double y, double z, SpriteProvider spriteProvider) {
         super(level, x, y, z);
         this.scale *= 1.25F;
         this.maxAge = 200;
         this.gravityStrength = 0.06F;
+        this.setSpriteForAge(spriteProvider);
     }
 
     @Override
@@ -30,6 +31,7 @@ public class AcornParticle extends SpriteBillboardParticle {
             if (this.age >= this.maxAge - 20 && this.alpha > 0.01F) {
                 this.alpha -= 0.2F;
             }
+
             this.move(this.velocityX * 0.99, this.velocityY, this.velocityZ * 0.99);
             this.velocityX *= 0.99;
             this.velocityZ *= 0.99;
@@ -50,11 +52,8 @@ public class AcornParticle extends SpriteBillboardParticle {
             this.sprite = spriteProvider;
         }
 
-        @Override
         public Particle createParticle(DefaultParticleType type, ClientWorld world, double x, double y, double z, double velocityX, double velocityY, double velocityZ) {
-            AcornParticle particle = new AcornParticle(world, x, y, z);
-            particle.setSprite(this.sprite);
-            return particle;
+            return new AcornParticle(world, x, y, z, this.sprite);
         }
     }
 

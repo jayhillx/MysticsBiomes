@@ -58,10 +58,10 @@ public class RedPandaModel<T extends RedPanda> extends SinglePartEntityModel<T> 
     @Override
     public void setAngles(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float headYaw, float headPitch) {
         this.getPart().traverse().forEach(ModelPart::resetTransform);
-        this.head.pivotX = headPitch * ((float)Math.PI / 180F);
-        this.head.pivotY = headYaw * ((float)Math.PI / 180F);
-        this.headStanding.pivotX = this.head.pivotX;
-        this.headStanding.pivotY = this.head.pivotY;
+        this.head.pitch = headPitch * (float) (Math.PI / 180.0);
+        this.head.yaw = headYaw * (float) (Math.PI / 180.0);
+        this.headStanding.pitch = headPitch * ((float)Math.PI / 180F);
+        this.headStanding.yaw = headYaw * ((float)Math.PI / 180F);
         this.head.visible = !entity.isEating();
         this.headStanding.visible = entity.isEating();
 

@@ -62,7 +62,7 @@ public class ButterflyNestDecorator extends TreeDecorator {
                             int c = random.nextInt(Butterfly.Type.values().length);
 
                             tag.putInt("TypeId", c);
-                            tag.putString("id", Registries.ENTITY_TYPE.getKey(MysticEntities.BUTTERFLY).toString());
+                            tag.putString("id", Registries.ENTITY_TYPE.getId(MysticEntities.BUTTERFLY).toString());
                             blockEntity.storeButterfly(tag, random.nextInt(599), false);
                         }
                     });

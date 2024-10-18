@@ -107,7 +107,7 @@ public class StrawberryBushBlock extends PlantBlock implements Fertilizable {
             }
 
             level.setBlockState(pos, state.with(CUT, Boolean.TRUE), 11);
-            stack.damage(1, player, (blockState) -> blockState.getStackInHand(hand));
+            stack.damage(1, player, (blockState) -> blockState.sendToolBreakStatus(hand));
             level.playSound(player, pos, SoundEvents.BLOCK_GROWING_PLANT_CROP, SoundCategory.BLOCKS, 1.0F, 1.0F);
             return ActionResult.success(level.isClient);
         }

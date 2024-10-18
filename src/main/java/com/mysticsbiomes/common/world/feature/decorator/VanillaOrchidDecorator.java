@@ -44,7 +44,7 @@ public class VanillaOrchidDecorator extends TreeDecorator {
 
                             int randomHeight = random.nextInt(3);
                             for (int h = 0; h < 3 + randomHeight; h++) {
-                                if (context.isAir(vanillaPos.up(h)) && context.getWorld().testBlockState(vanillaPos.up(h).add(opposite.getOffsetX(), 0, opposite.getOffsetZ()), state -> !state.isAir())) {
+                                if (context.isAir(vanillaPos.up(h)) && context.getWorld().testBlockState(vanillaPos.up(h).add(direction.getOffsetX(), 0, direction.getOffsetZ()), state -> !state.isAir())) {
                                     context.replace(vanillaPos.up(h), MysticBlocks.VANILLA_ORCHID.getDefaultState().with(VanillaOrchidBlock.FACING, direction));
                                 }
                             }

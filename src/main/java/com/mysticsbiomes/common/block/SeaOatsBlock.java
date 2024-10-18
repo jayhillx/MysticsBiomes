@@ -6,7 +6,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
-import net.minecraft.world.WorldView;
 
 public class SeaOatsBlock extends TallPlantBlock {
 
@@ -21,7 +20,7 @@ public class SeaOatsBlock extends TallPlantBlock {
     }
 
     @Override
-    public boolean canPlaceAt(BlockState state, WorldView level, BlockPos pos) {
+    protected boolean canPlantOnTop(BlockState state, BlockView level, BlockPos pos) {
         return state.isIn(BlockTags.SAND);
     }
 

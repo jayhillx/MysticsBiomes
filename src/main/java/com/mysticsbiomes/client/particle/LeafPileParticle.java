@@ -2,10 +2,7 @@ package com.mysticsbiomes.client.particle;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.client.particle.Particle;
-import net.minecraft.client.particle.ParticleFactory;
-import net.minecraft.client.particle.RainSplashParticle;
-import net.minecraft.client.particle.SpriteProvider;
+import net.minecraft.client.particle.*;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.particle.DefaultParticleType;
 
@@ -13,9 +10,10 @@ import net.minecraft.particle.DefaultParticleType;
 public class LeafPileParticle extends RainSplashParticle {
     private final float rotSpeed;
 
-    LeafPileParticle(ClientWorld level, double x, double y, double z, double xd, double yd, double zd) {
+    public LeafPileParticle(ClientWorld level, double x, double y, double z, double xd, double yd, double zd, SpriteProvider spriteProvider) {
         super(level, x, y, z);
         this.setBoundingBoxSpacing(0.7F, 0.7F);
+        this.setSpriteForAge(spriteProvider);
         this.gravityStrength = 0.025F;
         this.maxAge = 90;
         this.rotSpeed = ((float) Math.random() - 0.5F) * 0.1F;
@@ -24,6 +22,11 @@ public class LeafPileParticle extends RainSplashParticle {
             this.velocityY = 0.1D;
             this.velocityZ = zd;
         }
+    }
+
+    @Override
+    public ParticleTextureSheet getType() {
+        return ParticleTextureSheet.PARTICLE_SHEET_TRANSLUCENT;
     }
 
     @Override
@@ -48,11 +51,8 @@ public class LeafPileParticle extends RainSplashParticle {
             this.sprite = spriteProvider;
         }
 
-        @Override
         public Particle createParticle(DefaultParticleType type, ClientWorld world, double x, double y, double z, double velocityX, double velocityY, double velocityZ) {
-            LeafPileParticle particle = new LeafPileParticle(world, x, y, z, velocityX, velocityY, velocityZ);
-            particle.setSprite(this.sprite);
-            return particle;
+            return new LeafPileParticle(world, x, y, z, velocityX, velocityY, velocityZ, this.sprite);
         }
     }
 

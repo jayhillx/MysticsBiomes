@@ -37,7 +37,7 @@ public class SaguaroCactusFeature extends Feature<BlockColumnFeatureConfig> {
             }
 
             for (int j = 0; j < height; ++j) {
-                level.setBlockState(mutablePos, configuration.layers().get(i).state().get(random, mutablePos), 2 | 16);
+                level.setBlockState(mutablePos, configuration.layers().get(i).state().get(random, mutablePos).with(SaguaroCactusBlock.NATURAL, true), 2 | 16);
                 mutablePos.move(configuration.direction());
             }
 
@@ -47,7 +47,7 @@ public class SaguaroCactusFeature extends Feature<BlockColumnFeatureConfig> {
 
             for (int branchHeight = 0; branchHeight < 3; ++branchHeight) {
                 Direction direction = Direction.Type.HORIZONTAL.random(random);
-                this.placeBranch(level, mutablePos.move(direction).up().down(height), direction, height, random);
+                this.placeBranch(level, mutablePos.offset(direction).up().down(height), direction, height, random);
             }
         }
         return true;

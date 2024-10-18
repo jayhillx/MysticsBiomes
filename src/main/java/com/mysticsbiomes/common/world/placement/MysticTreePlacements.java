@@ -1,16 +1,22 @@
 package com.mysticsbiomes.common.world.placement;
 
+import com.google.common.collect.ImmutableList;
 import com.mysticsbiomes.common.world.feature.MysticTreeFeatures;
 import com.mysticsbiomes.init.MysticBlocks;
+import net.minecraft.block.Block;
 import net.minecraft.registry.Registerable;
 import net.minecraft.registry.RegistryEntryLookup;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.entry.RegistryEntry;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.gen.blockpredicate.BlockPredicate;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
 import net.minecraft.world.gen.feature.PlacedFeature;
 import net.minecraft.world.gen.feature.PlacedFeatures;
-import net.minecraft.world.gen.placementmodifier.CountMultilayerPlacementModifier;
+import net.minecraft.world.gen.placementmodifier.*;
+
+import java.util.List;
 
 import static com.mysticsbiomes.init.MysticFeatures.Placed.createKey;
 
@@ -48,20 +54,28 @@ public class MysticTreePlacements {
         RegistryEntry<ConfiguredFeature<?, ?>> JUNGLE_SHRUB = getter.getOrThrow(MysticTreeFeatures.JUNGLE_SHRUB);
         RegistryEntry<ConfiguredFeature<?, ?>> JACARANDA_TREE = getter.getOrThrow(MysticTreeFeatures.JACARANDA_TREE);
 
-        PlacedFeatures.register(context, STRAWBERRY_TREE_CHECKED, STRAWBERRY_TREE, CountMultilayerPlacementModifier.of(3), PlacedFeatures.wouldSurvive(MysticBlocks.STRAWBERRY_SAPLING));
+        PlacedFeatures.register(context, STRAWBERRY_TREE_CHECKED, STRAWBERRY_TREE, treePlacement(RarityFilterPlacementModifier.of(3), MysticBlocks.STRAWBERRY_SAPLING));
         PlacedFeatures.register(context, PINK_CHERRY_TREE_CHECKED, PINK_CHERRY_TREE, PlacedFeatures.wouldSurvive(MysticBlocks.PINK_CHERRY_BLOSSOM_SAPLING));
         PlacedFeatures.register(context, WHITE_CHERRY_TREE_CHECKED, WHITE_CHERRY_TREE, PlacedFeatures.wouldSurvive(MysticBlocks.WHITE_CHERRY_BLOSSOM_SAPLING));
         PlacedFeatures.register(context, PEONY_BUSH_CHECKED, PEONY_BUSH, PlacedFeatures.wouldSurvive(MysticBlocks.PEONY_BUSH));
-        PlacedFeatures.register(context, PEACH_TREE_CHECKED, PEACH_TREE, CountMultilayerPlacementModifier.of(3), PlacedFeatures.wouldSurvive(MysticBlocks.PEACH_SAPLING));
-        PlacedFeatures.register(context, DESERT_SHRUB_CHECKED, DESERT_SHRUB, PlacedFeatures.createCountExtraModifier(2, 0.1F, 1), PlacedFeatures.wouldSurvive(MysticBlocks.PEACH_SAPLING));
+        PlacedFeatures.register(context, PEACH_TREE_CHECKED, PEACH_TREE, treePlacement(RarityFilterPlacementModifier.of(3), MysticBlocks.PEACH_SAPLING));
+        PlacedFeatures.register(context, DESERT_SHRUB_CHECKED, DESERT_SHRUB, treePlacement(PlacedFeatures.createCountExtraModifier(2, 0.1F, 1), MysticBlocks.PEACH_SAPLING));
         PlacedFeatures.register(context, MAPLE_TREE_CHECKED, MAPLE_TREE, PlacedFeatures.wouldSurvive(MysticBlocks.MAPLE_SAPLING));
         PlacedFeatures.register(context, ORANGE_MAPLE_TREE_CHECKED, ORANGE_MAPLE_TREE, PlacedFeatures.wouldSurvive(MysticBlocks.ORANGE_MAPLE_SAPLING));
         PlacedFeatures.register(context, YELLOW_MAPLE_TREE_CHECKED, YELLOW_MAPLE_TREE, PlacedFeatures.wouldSurvive(MysticBlocks.YELLOW_MAPLE_SAPLING));
-        PlacedFeatures.register(context, SEA_SHRUB_CHECKED, SEA_SHRUB, PlacedFeatures.createCountExtraModifier(3, 0.1F, 1), PlacedFeatures.wouldSurvive(MysticBlocks.SEA_SHRUB));
-        PlacedFeatures.register(context, TROPICAL_TREE_CHECKED, TROPICAL_TREE, PlacedFeatures.createCountExtraModifier(7, 0.1F, 1), PlacedFeatures.wouldSurvive(MysticBlocks.TROPICAL_SAPLING));
-        PlacedFeatures.register(context, HYDRANGEA_BUSH_CHECKED, HYDRANGEA_BUSH, PlacedFeatures.createCountExtraModifier(12, 0.1F, 1), PlacedFeatures.wouldSurvive(MysticBlocks.HYDRANGEA_BUSH));
-        PlacedFeatures.register(context, JUNGLE_SHRUB_CHECKED, JUNGLE_SHRUB, PlacedFeatures.createCountExtraModifier(16, 0.1F, 1), PlacedFeatures.wouldSurvive(MysticBlocks.HYDRANGEA_BUSH));
-        PlacedFeatures.register(context, JACARANDA_TREE_CHECKED, JACARANDA_TREE, CountMultilayerPlacementModifier.of(2), PlacedFeatures.wouldSurvive(MysticBlocks.JACARANDA_SAPLING));
+        PlacedFeatures.register(context, SEA_SHRUB_CHECKED, SEA_SHRUB, treePlacement(PlacedFeatures.createCountExtraModifier(3, 0.1F, 1), MysticBlocks.SEA_SHRUB));
+        PlacedFeatures.register(context, TROPICAL_TREE_CHECKED, TROPICAL_TREE, treePlacement(PlacedFeatures.createCountExtraModifier(7, 0.1F, 1), MysticBlocks.TROPICAL_SAPLING));
+        PlacedFeatures.register(context, HYDRANGEA_BUSH_CHECKED, HYDRANGEA_BUSH, treePlacement(PlacedFeatures.createCountExtraModifier(12, 0.1F, 1), MysticBlocks.HYDRANGEA_BUSH));
+        PlacedFeatures.register(context, JUNGLE_SHRUB_CHECKED, JUNGLE_SHRUB, treePlacement(PlacedFeatures.createCountExtraModifier(16, 0.1F, 1), MysticBlocks.HYDRANGEA_BUSH));
+        PlacedFeatures.register(context, JACARANDA_TREE_CHECKED, JACARANDA_TREE, treePlacement(RarityFilterPlacementModifier.of(2), MysticBlocks.JACARANDA_SAPLING));
     }
 
+    public static List<PlacementModifier> treePlacement(PlacementModifier modifier, Block block) {
+        return treePlacementBase(modifier).add(BlockFilterPlacementModifier.of(BlockPredicate.wouldSurvive(block.getDefaultState(), BlockPos.ZERO))).build();
+    }
+
+    private static ImmutableList.Builder<PlacementModifier> treePlacementBase(PlacementModifier modifier) {
+        return ImmutableList.<PlacementModifier>builder().add(modifier).add(SquarePlacementModifier.of()).add(SurfaceWaterDepthFilterPlacementModifier.of(0)).add(PlacedFeatures.OCEAN_FLOOR_HEIGHTMAP).add(BiomePlacementModifier.of());
+    }
+    
 }
