@@ -20,7 +20,7 @@
         "Name": "mysticsbiomes:hydrangea_leaves",
         "Properties": {
           "distance": "16",
-          "persistent": "false",
+          "persistent": "true",
           "waterlogged": "false"
         }
       }

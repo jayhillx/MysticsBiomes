@@ -21,7 +21,7 @@
         "Name": "mysticsbiomes:pink_cherry_blossoms",
         "Properties": {
           "distance": "16",
-          "persistent": "false",
+          "persistent": "true",
           "waterlogged": "false"
         }
       }
