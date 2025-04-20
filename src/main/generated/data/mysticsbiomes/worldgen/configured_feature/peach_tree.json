@@ -27,7 +27,7 @@
         "Name": "mysticsbiomes:peach_leaves",
         "Properties": {
           "distance": "16",
-          "persistent": "false",
+          "persistent": "true",
           "waterlogged": "false"
         }
       }

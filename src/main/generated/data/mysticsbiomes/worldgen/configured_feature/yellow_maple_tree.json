@@ -21,7 +21,7 @@
         "Name": "mysticsbiomes:yellow_maple_leaves",
         "Properties": {
           "distance": "16",
-          "persistent": "false",
+          "persistent": "true",
           "waterlogged": "false"
         }
       }

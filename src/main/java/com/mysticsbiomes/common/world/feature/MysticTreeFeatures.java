@@ -13,6 +13,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.registry.Registerable;
 import net.minecraft.registry.RegistryKey;
+import net.minecraft.state.property.Properties;
 import net.minecraft.util.collection.DataPool;
 import net.minecraft.util.math.intprovider.ConstantIntProvider;
 import net.minecraft.util.math.intprovider.IntProvider;
@@ -71,11 +72,11 @@ public class MysticTreeFeatures {
     }
 
     private static TreeFeatureConfig.Builder bushyTree(Block log, Block leaves, int baseHeight, int heightRandomA, int foliageAttempts) {
-        return new TreeFeatureConfig.Builder(BlockStateProvider.of(log), new LargeOakTrunkPlacer(baseHeight, heightRandomA, 0), BlockStateProvider.of(leaves), new RandomSpreadFoliagePlacer(ConstantIntProvider.create(3), ConstantIntProvider.create(0), ConstantIntProvider.create(3), foliageAttempts), new TwoLayersFeatureSize(1, 0, 1));
+        return new TreeFeatureConfig.Builder(BlockStateProvider.of(log), new LargeOakTrunkPlacer(baseHeight, heightRandomA, 0), BlockStateProvider.of(leaves.getDefaultState().with(Properties.PERSISTENT, true)), new RandomSpreadFoliagePlacer(ConstantIntProvider.create(3), ConstantIntProvider.create(0), ConstantIntProvider.create(3), foliageAttempts), new TwoLayersFeatureSize(1, 0, 1));
     }
 
     private static TreeFeatureConfig.Builder cherryTree(Block leaves) {
-        return base(BlockStateProvider.of(MysticBlocks.CHERRY_LOG), new CherryTrunkPlacer(7, 3, 0, new WeightedListIntProvider(DataPool.<IntProvider>builder().add(ConstantIntProvider.create(2), 1).add(ConstantIntProvider.create(2), 1).add(ConstantIntProvider.create(3), 1).build()), UniformIntProvider.create(2, 3), UniformIntProvider.create(-4, -3), UniformIntProvider.create(-1, 0)), BlockStateProvider.of(leaves), new RandomSpreadFoliagePlacer(ConstantIntProvider.create(3), ConstantIntProvider.create(0), ConstantIntProvider.create(3), 164), new TwoLayersFeatureSize(1, 0, 2)).ignoreVines();
+        return base(BlockStateProvider.of(MysticBlocks.CHERRY_LOG), new CherryTrunkPlacer(7, 3, 0, new WeightedListIntProvider(DataPool.<IntProvider>builder().add(ConstantIntProvider.create(2), 1).add(ConstantIntProvider.create(2), 1).add(ConstantIntProvider.create(3), 1).build()), UniformIntProvider.create(2, 3), UniformIntProvider.create(-4, -3), UniformIntProvider.create(-1, 0)), BlockStateProvider.of(leaves.getDefaultState().with(Properties.PERSISTENT, true)), new RandomSpreadFoliagePlacer(ConstantIntProvider.create(3), ConstantIntProvider.create(0), ConstantIntProvider.create(3), 164), new TwoLayersFeatureSize(1, 0, 2)).ignoreVines();
     }
 
     private static TreeFeatureConfig.Builder bush(BlockStateProvider log, BlockStateProvider leaves) {
@@ -95,7 +96,7 @@ public class MysticTreeFeatures {
     }
 
     private static BlockStateProvider randomFoliage(Block leaves, int weight, Block leaves2, int weight2) {
-        return new WeightedBlockStateProvider(DataPool.<BlockState>builder().add(leaves.getDefaultState(), weight).add(leaves2.getDefaultState(), weight2));
+        return new WeightedBlockStateProvider(DataPool.<BlockState>builder().add(leaves.getDefaultState().with(Properties.PERSISTENT, true), weight).add(leaves2.getDefaultState().with(Properties.PERSISTENT, true), weight2));
     }
 
 }
