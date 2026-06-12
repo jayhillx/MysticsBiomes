@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/template_potted_azalea_bush",
-  "render_type": "minecraft:cutout",
-  "textures": {
-    "top": "mysticsbiomes:block/potted_peony_bush_top",
-    "side": "mysticsbiomes:block/potted_peony_bush_side"
-  }
-}

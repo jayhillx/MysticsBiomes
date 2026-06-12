@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/door_top_right",
-  "textures": {
-    "bottom": "mysticsbiomes:block/jacaranda_door_bottom",
-    "top": "mysticsbiomes:block/jacaranda_door_top"
-  }
-}

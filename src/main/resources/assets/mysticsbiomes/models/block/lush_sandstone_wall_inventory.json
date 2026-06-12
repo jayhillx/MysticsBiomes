@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/wall_inventory",
-  "textures": {
-    "wall": "mysticsbiomes:block/lush_sandstone"
-  }
-}

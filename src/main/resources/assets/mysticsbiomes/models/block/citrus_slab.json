@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab",
-  "textures": {
-    "bottom": "mysticsbiomes:block/citrus_planks",
-    "top": "mysticsbiomes:block/citrus_planks",
-    "side": "mysticsbiomes:block/citrus_planks"
-  }
-}

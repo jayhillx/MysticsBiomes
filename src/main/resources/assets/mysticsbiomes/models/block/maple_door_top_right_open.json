@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/door_top_right_open",
-  "textures": {
-    "bottom": "mysticsbiomes:block/maple_door_bottom",
-    "top": "mysticsbiomes:block/maple_door_top"
-  }
-}

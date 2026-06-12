@@ -1,0 +1,32 @@
+{
+	"schemaVersion": 1,
+	"id": "${mod_id}",
+	"version": "${mod_version}",
+	"name": "${mod_name}",
+	"description": "${mod_description}",
+	"authors": [
+		"${mod_authors}"
+	],
+	"contact": {
+		"homepage": "${mod_page_url}",
+		"sources": "${mod_github_url}"
+	},
+	"license": "${mod_license}",
+	"icon": "logo.png",
+	"environment": "*",
+	"entrypoints": {
+		"terrablender": [
+			"com.mysticsbiomes.fabric.MysticsBiomesFabric"
+		]
+	},
+	"mixins": [
+		"${mod_id}.mixins.json"
+	],
+	"depends": {
+		"java": ">=21",
+		"minecraft": "~${minecraft_version}",
+		"fabricloader": ">=${fabric_loader_version}",
+		"terrablender": ">=${terrablender_version}"
+	},
+	"accessWidener": "${mod_id}.accesswidener"
+}

@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/outer_stairs",
-  "textures": {
-    "bottom": "mysticsbiomes:block/maple_planks",
-    "top": "mysticsbiomes:block/maple_planks",
-    "side": "mysticsbiomes:block/maple_planks"
-  }
-}
