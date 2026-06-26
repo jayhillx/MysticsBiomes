@@ -9,6 +9,7 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.levelgen.carver.ConfiguredWorldCarver;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
+import terrablender.api.Regions;
 
 public class MysticBiomes {
 
@@ -46,11 +47,11 @@ public class MysticBiomes {
     }
 
     public static void registerRegionProvider() {
-        //Regions.register(new MysticBiomeProvider(MysticConfig.COMMON.biomeRegionWeight.get()));
+        ///Regions.register(new MysticBiomeProvider(MysticConfig.COMMON.biomeRegionWeight.get()));
     }
 
     public static void registerSurfaceRules() {
-        //SurfaceRuleManager.addSurfaceRules(SurfaceRuleManager.RuleCategory.OVERWORLD, MysticsBiomes.modId, MysticSurfaceRules.overworld());
+        ///SurfaceRuleManager.addSurfaceRules(SurfaceRuleManager.RuleCategory.OVERWORLD, MysticsBiomes.modId, MysticSurfaceRules.overworld());
     }
 
 }

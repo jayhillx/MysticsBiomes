@@ -12,10 +12,10 @@ import java.util.function.Supplier;
 
 public class ForgeRegistryHelper implements RegistryHelper {
     private final Map<ResourceKey<?>, DeferredRegister<?>> registers = new HashMap<>();
-    private final String modid;
+    private final String modId;
 
     public ForgeRegistryHelper(String modid) {
-        this.modid = modid;
+        this.modId = modid;
     }
 
     @Override
@@ -26,7 +26,7 @@ public class ForgeRegistryHelper implements RegistryHelper {
 
     @SuppressWarnings("unchecked")
     private <T> DeferredRegister<T> getRegister(ResourceKey<?> key) {
-        return (DeferredRegister<T>) this.registers.computeIfAbsent(key, k -> DeferredRegister.create((ResourceKey)key, this.modid));
+        return (DeferredRegister<T>) this.registers.computeIfAbsent(key, k -> DeferredRegister.create((ResourceKey)key, this.modId));
     }
 
     public void attachToModEventBus(IEventBus bus) {
