@@ -3,7 +3,7 @@ plugins {
     id "org.spongepowered.mixin" version "0.7-SNAPSHOT"
 }
 
-base.archivesName.set("${mod_name}-forge")
+base.archivesName.set("${mod_id}-forge")
 
 mixin {
     add sourceSets.main, "${mod_id}.refmap.json"

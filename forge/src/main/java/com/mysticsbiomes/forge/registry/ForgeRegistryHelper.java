@@ -1,5 +1,7 @@
 package com.mysticsbiomes.forge.registry;
 
+import com.mysticsbiomes.MysticsBiomes;
+import com.mysticsbiomes.core.registry.RegistryObject;
 import com.mysticsbiomes.core.registry.RegistryHelper;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
@@ -14,14 +16,14 @@ public class ForgeRegistryHelper implements RegistryHelper {
     private final Map<ResourceKey<?>, DeferredRegister<?>> registers = new HashMap<>();
     private final String modId;
 
-    public ForgeRegistryHelper(String modid) {
-        this.modId = modid;
+    public ForgeRegistryHelper(String modId) {
+        this.modId = modId;
     }
 
     @Override
-    public <T> Supplier<T> register(Registry<T> registry, String name, Supplier<T> entry) {
-        ResourceKey<?> key = registry.key();
-        return this.getRegister(key).register(name, entry);
+    public <R, T extends R> RegistryObject<T> register(Registry<R> registry, String name, Supplier<T> entry) {
+        DeferredRegister<R> register = this.getRegister(registry.key());
+        return new RegistryObject<>(MysticsBiomes.modLoc(name), register.register(name, entry));
     }
 
     @SuppressWarnings("unchecked")

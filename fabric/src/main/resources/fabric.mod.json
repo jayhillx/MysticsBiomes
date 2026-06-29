@@ -18,6 +18,9 @@
 		"main": [
 			"com.mysticsbiomes.fabric.MysticsBiomesFabric"
 		],
+		"client": [
+			"com.mysticsbiomes.fabric.MysticsBiomesFabric"
+		],
 		"terrablender": [
 			"com.mysticsbiomes.fabric.MysticsBiomesFabric"
 		]

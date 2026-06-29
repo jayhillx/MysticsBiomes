@@ -25,7 +25,7 @@ public class MysticWallHangingSignBlock extends WallHangingSignBlock {
 
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> type) {
-        return createTickerHelper(type, (BlockEntityType<MysticSignBlockEntity>)MysticBlockEntities.HANGING_SIGN.get(), MysticSignBlockEntity::tick);
+        return createTickerHelper(type, MysticBlockEntities.HANGING_SIGN.get(), MysticSignBlockEntity::tick);
     }
 
 }

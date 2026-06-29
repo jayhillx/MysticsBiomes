@@ -1,5 +1,6 @@
 package com.mysticsbiomes.fabric.registry;
 
+import com.mysticsbiomes.core.registry.RegistryObject;
 import com.mysticsbiomes.core.registry.RegistryHelper;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
@@ -14,10 +15,11 @@ public class FabricRegistryHelper implements RegistryHelper {
     }
 
     @Override
-    public <T> Supplier<T> register(Registry<T> registry, String name, Supplier<T> entry) {
+    public <R, T extends R> RegistryObject<T> register(Registry<R> registry, String name, Supplier<T> entry) {
         T value = entry.get();
-        Registry.register(registry, new ResourceLocation(this.modId, name), value);
-        return () -> value;
+        ResourceLocation id = new ResourceLocation(this.modId, name);
+        Registry.register(registry, id, value);
+        return new RegistryObject<>(id, () -> value);
     }
 
 }

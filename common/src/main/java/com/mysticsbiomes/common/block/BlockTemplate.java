@@ -2,7 +2,6 @@ package com.mysticsbiomes.common.block;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.*;
@@ -22,17 +21,29 @@ public interface BlockTemplate {
     }
 
     static Block log(MapColor mapColor) {
-        return log(mapColor, mapColor);
+        return log(mapColor, mapColor, SoundType.WOOD);
+    }
+
+    static Block log(MapColor mapColor, SoundType soundType) {
+        return log(mapColor, mapColor, soundType);
     }
 
     static Block log(MapColor yColor, MapColor xzColor) {
-        return new RotatedPillarBlock(logProperties(yColor, xzColor));
+        return new RotatedPillarBlock(logProperties(yColor, xzColor, SoundType.WOOD));
+    }
+
+    static Block log(MapColor yColor, MapColor xzColor, SoundType soundType) {
+        return new RotatedPillarBlock(logProperties(yColor, xzColor, soundType));
     }
 
     static Block planks(MapColor mapColor) {
+        return planks(mapColor, SoundType.WOOD);
+    }
+
+    static Block planks(MapColor mapColor, SoundType soundType) {
         return new Block(BlockBehaviour.Properties.of()
                 .mapColor(mapColor)
-                .sound(SoundType.WOOD)
+                .sound(soundType)
                 .strength(2.0F, 3.0F)
                 .ignitedByLava()
                 .instrument(NoteBlockInstrument.BASS)
@@ -91,12 +102,46 @@ public interface BlockTemplate {
         return new WallBlock(copy(block).forceSolidOn());
     }
 
+    static Block leaves(SoundType soundType) {
+        return new LeavesBlock(leafProperties(soundType));
+    }
+
+    ///static Block leafPile(MapColor mapColor) {
+    ///    return new MapleLeafPileBlock(
+    ///            BlockBehaviour.Properties.of()
+    ///                    .mapColor(mapColor)
+    ///                    .noCollission()
+    ///                    .noOcclusion()
+    ///                    .replaceable()
+    ///                    .strength(0.1F)
+    ///                    .sound(SoundType.GRASS)
+    ///                    .pushReaction(PushReaction.DESTROY)
+    ///    );
+    ///}
+
+    ///static Block leafLitter(MapColor mapColor) {
+    ///    return new MapleLeafLitterBlock(
+    ///            BlockBehaviour.Properties.of()
+    ///                    .mapColor(mapColor)
+    ///                    .noCollission()
+    ///                    .noOcclusion()
+    ///                    .replaceable()
+    ///                    .instabreak()
+    ///                    .sound(SoundType.GRASS)
+    ///                    .pushReaction(PushReaction.DESTROY)
+    ///    );
+    ///}
+
     static Block sapling(AbstractTreeGrower grower) {
+        return sapling(grower, SoundType.GRASS);
+    }
+
+    static Block sapling(AbstractTreeGrower grower, SoundType soundType) {
         return new SaplingBlock(
                 grower,
                 BlockBehaviour.Properties.of()
                         .mapColor(MapColor.PLANT)
-                        .sound(SoundType.GRASS)
+                        .sound(soundType)
                         .randomTicks()
                         .noCollission()
                         .instabreak()
@@ -146,10 +191,10 @@ public interface BlockTemplate {
                 .pushReaction(PushReaction.DESTROY);
     }
 
-    static BlockBehaviour.Properties logProperties(MapColor yColor, MapColor xzColor) {
+    static BlockBehaviour.Properties logProperties(MapColor yColor, MapColor xzColor, SoundType soundType) {
         return BlockBehaviour.Properties.of()
                 .mapColor(state -> state.getValue(RotatedPillarBlock.AXIS) == Direction.Axis.Y ? yColor : xzColor)
-                .sound(SoundType.WOOD)
+                .sound(soundType)
                 .strength(2.0F)
                 .ignitedByLava()
                 .instrument(NoteBlockInstrument.BASS);
@@ -208,6 +253,20 @@ public interface BlockTemplate {
                 .sound(SoundType.GRASS)
                 .instabreak()
                 .noCollission()
+                .offsetType(BlockBehaviour.OffsetType.XZ)
+                .pushReaction(PushReaction.DESTROY);
+    }
+
+    static BlockBehaviour.Properties bambooProperties(SoundType soundType) {
+        return BlockBehaviour.Properties.of()
+                .mapColor(MapColor.PLANT)
+                .randomTicks()
+                .sound(soundType)
+                .strength(1.0F)
+                .noOcclusion()
+                .dynamicShape()
+                .forceSolidOn()
+                .ignitedByLava()
                 .offsetType(BlockBehaviour.OffsetType.XZ)
                 .pushReaction(PushReaction.DESTROY);
     }
