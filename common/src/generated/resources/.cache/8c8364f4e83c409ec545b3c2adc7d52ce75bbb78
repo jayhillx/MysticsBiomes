@@ -1,3 +1,29 @@
-// 1.20.1	2026-06-25T20:26:49.8283327	Tags for minecraft:item mod id vanilla
-1ef256d0c28972519d308df72c1c258e64082f50 data/minecraft/tags/items/logs_that_burn.json
+// 1.20.1	2026-06-29T07:01:32.5261177	Tags for minecraft:item mod id vanilla
+8eb9a152ca1eecead230e4bcc00ccff050ad67fb data/minecraft/tags/items/dirt.json
+1fb76f12e66fdfdcde0f36c7686a90d4e23210a0 data/minecraft/tags/items/fence_gates.json
+0129995081a42bcee787656baf56d4ebb677e67e data/minecraft/tags/items/flowers.json
+5d6d04c70c6964d52d2c38cb2c2952a022a901f7 data/minecraft/tags/items/hanging_signs.json
+f33b840444355cb66b2acf9346009d42ba00f86f data/minecraft/tags/items/leaves.json
+597a3e5f557b47963ef7874bacd40793e4013e03 data/minecraft/tags/items/logs_that_burn.json
+2a219a530b4b01e3e9f4d9e5ed9f43a7c9406db8 data/minecraft/tags/items/planks.json
+f1a6f816d0a2e92ddfc340dcd92ed8f0ab00c878 data/minecraft/tags/items/saplings.json
+3985c3a1b3cc54ecae5f786bfa5bf223ffbbef01 data/minecraft/tags/items/signs.json
+cc76e1477642556a26ec4c09ab7fc5a6cbbb2ee9 data/minecraft/tags/items/slabs.json
+90ec9b775c9df362ea533239161624de69b1ef1c data/minecraft/tags/items/stairs.json
+58a3a3c8ddfa9f61e2634a07e2bd353e4c3c53ae data/minecraft/tags/items/walls.json
+37c9ad5b4cdadd38c55cc5cd16faaa399d809fcc data/minecraft/tags/items/wooden_buttons.json
+b2176d180d0f7d40611f03787e1df7aed73650ed data/minecraft/tags/items/wooden_doors.json
+a7f822ec7d6dded04ae225be033152538701cd70 data/minecraft/tags/items/wooden_fences.json
+95cd9a693fa8857f4fb029dc0749706f8e5b56bd data/minecraft/tags/items/wooden_pressure_plates.json
+46580eed77bd15347496002f6e3acff699599695 data/minecraft/tags/items/wooden_slabs.json
+0a7a8e3723d296e241a322b384cd3117bc3be3af data/minecraft/tags/items/wooden_stairs.json
+705e3a0a48d5c115d6f359bb44a85d862a5ce020 data/minecraft/tags/items/wooden_trapdoors.json
+765109a9f188b6f88db254c290e381a7ae8c88aa data/mysticsbiomes/tags/items/black_cherry_logs.json
+806fd4d76fda8ac805422ea3c5f7087844727378 data/mysticsbiomes/tags/items/lavender_logs.json
+8785646ce91555f0d72caed8a3761a869206fdae data/mysticsbiomes/tags/items/maple_logs.json
+020bdd349b52c8f3bd970a6b3f4c29423ccb7056 data/mysticsbiomes/tags/items/peach_logs.json
+9db8c55bbc986a09f00925fea64b8727717e69fb data/mysticsbiomes/tags/items/sea_foam_logs.json
+fc7d0c6fcce39d1634a879ca5311454815d56fe3 data/mysticsbiomes/tags/items/spring_logs.json
 05c2d95a61b8d3337c29a98f2b8c6213cb801630 data/mysticsbiomes/tags/items/strawberry_logs.json
+eb3eb7d6c0e4e4357be94d7b938ce4cecb8b9068 data/mysticsbiomes/tags/items/tropical_logs.json
+07b38cd25fc4a52f429fca8fcb002eb8f28dd3ff data/mysticsbiomes/tags/items/vanilla_logs.json

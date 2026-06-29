@@ -1,21 +1,15 @@
 package com.mysticsbiomes;
 
 import com.mysticsbiomes.core.registry.RegistryHelper;
-import com.mysticsbiomes.init.MysticBiomes;
-import com.mysticsbiomes.init.MysticBlockEntities;
-import com.mysticsbiomes.init.MysticBlocks;
-import com.mysticsbiomes.init.MysticItems;
-import net.minecraft.core.HolderLookup;
-import net.minecraft.data.DataGenerator;
-import net.minecraft.data.PackOutput;
+import com.mysticsbiomes.init.*;
+import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 
-import java.util.concurrent.CompletableFuture;
+import java.util.List;
 
 public class MysticsBiomes {
-    public static final String modId = "mysticsbiomes";
-
     public static RegistryHelper REGISTRY;
+    public static final String modId = "mysticsbiomes";
 
     public static ResourceLocation modLoc(String path) {
         return new ResourceLocation(modId, path);
@@ -24,11 +18,31 @@ public class MysticsBiomes {
     public static void init() {
         MysticBlocks.registerBlocks();
         MysticBlockEntities.registerBlockEntities();
+        MysticEntities.registerEntities();
         MysticItems.registerItems();
+        MysticTabs.registerCreativeTabs();
+    }
+
+    public static void setupCommon() {
+        MysticCompat.registerFlammables();
+        MysticCompat.registerCompostables();
+        MysticCompat.registerStrippables();
+    }
+
+    public static void setupClient() {
+        MysticClient.registerRenderLayers();
+        MysticClient.registerWoodTypes();
     }
 
     public static void setupTerraBlender() {
-        ///MysticBiomes.registerRegionProvider();
+        MysticBiomes.registerRegionProvider();
+        MysticBiomes.registerSurfaceRules();
+    }
+
+    public static <T> List<T> getEntriesFromRegistry(Registry<T> registry) {
+        return registry.stream()
+                .filter(entry -> modId.equals(registry.getKey(entry).getNamespace()))
+                .toList();
     }
 
 }

@@ -1,5 +1,13 @@
 {
   "values": [
-    "#mysticsbiomes:strawberry_logs"
+    "#mysticsbiomes:strawberry_logs",
+    "#mysticsbiomes:black_cherry_logs",
+    "#mysticsbiomes:lavender_logs",
+    "#mysticsbiomes:vanilla_logs",
+    "#mysticsbiomes:peach_logs",
+    "#mysticsbiomes:maple_logs",
+    "#mysticsbiomes:spring_logs",
+    "#mysticsbiomes:sea_foam_logs",
+    "#mysticsbiomes:tropical_logs"
   ]
 }
