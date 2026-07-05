@@ -9,6 +9,8 @@ import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.minecraft.client.model.BoatModel;
 import net.minecraft.client.model.ChestBoatModel;
+import net.minecraft.client.model.ChestRaftModel;
+import net.minecraft.client.model.RaftModel;
 
 @Environment(EnvType.CLIENT)
 public class MysticClientFabric {
@@ -24,15 +26,13 @@ public class MysticClientFabric {
         ///EntityModelLayerRegistry.registerModelLayer(MysticModelLayers.CATERPILLAR, CaterpillarModel::createBodyLayer);
 
         for (MysticBoat.Type type : MysticBoat.Type.values()) {
-            ///if (type == MysticBoat.Type.SPRING) {
-            ///    EntityModelLayerRegistry.registerModelLayer(MysticBoatRenderer.createBoatModelName(type), RaftModel::createBodyModel);
-            ///    EntityModelLayerRegistry.registerModelLayer(MysticBoatRenderer.createChestBoatModelName(type), ChestRaftModel::createBodyModel);
-            ///} else {
-            ///    EntityModelLayerRegistry.registerModelLayer(MysticBoatRenderer.createBoatModelName(type), BoatModel::createBodyModel);
-            ///    EntityModelLayerRegistry.registerModelLayer(MysticBoatRenderer.createChestBoatModelName(type), ChestBoatModel::createBodyModel);
-            ///}
-            EntityModelLayerRegistry.registerModelLayer(MysticBoatRenderer.createBoatModelName(type), BoatModel::createBodyModel);
-            EntityModelLayerRegistry.registerModelLayer(MysticBoatRenderer.createChestBoatModelName(type), ChestBoatModel::createBodyModel);
+            if (type == MysticBoat.Type.SPRING) {
+                EntityModelLayerRegistry.registerModelLayer(MysticBoatRenderer.createBoatModelName(type), RaftModel::createBodyModel);
+                EntityModelLayerRegistry.registerModelLayer(MysticBoatRenderer.createChestBoatModelName(type), ChestRaftModel::createBodyModel);
+            } else {
+                EntityModelLayerRegistry.registerModelLayer(MysticBoatRenderer.createBoatModelName(type), BoatModel::createBodyModel);
+                EntityModelLayerRegistry.registerModelLayer(MysticBoatRenderer.createChestBoatModelName(type), ChestBoatModel::createBodyModel);
+            }
         }
     }
 

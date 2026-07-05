@@ -172,6 +172,16 @@ public interface BlockTemplate {
         );
     }
 
+    static Block cake() {
+        return new MysticCakeBlock(
+                BlockBehaviour.Properties.of()
+                        .forceSolidOn()
+                        .strength(0.5F)
+                        .sound(SoundType.WOOL)
+                        .pushReaction(PushReaction.DESTROY)
+        );
+    }
+
     static BlockBehaviour.Properties copy(Block block) {
         return BlockBehaviour.Properties.copy(block);
     }

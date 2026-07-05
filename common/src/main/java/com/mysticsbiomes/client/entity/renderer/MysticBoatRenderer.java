@@ -51,12 +51,11 @@ public class MysticBoatRenderer extends EntityRenderer<Boat> {
     private ListModel<Boat> createBoatModel(EntityRendererProvider.Context context, MysticBoat.Type type, boolean hasChest) {
         ModelLayerLocation location = hasChest ? createChestBoatModelName(type) : createBoatModelName(type);
         ModelPart baked = context.bakeLayer(location);
-        ///if (type == MysticBoat.Type.SPRING) {
-        ///    return hasChest ? new ChestRaftModel(baked) : new RaftModel(baked);
-        ///} else {
-        ///    return hasChest ? new ChestBoatModel(baked) : new BoatModel(baked);
-        ///}
-        return hasChest ? new ChestBoatModel(baked) : new BoatModel(baked);
+        if (type == MysticBoat.Type.SPRING) {
+            return hasChest ? new ChestRaftModel(baked) : new RaftModel(baked);
+        } else {
+            return hasChest ? new ChestBoatModel(baked) : new BoatModel(baked);
+        }
     }
 
     private static String getTextureLocation(MysticBoat.Type type, boolean hasChest) {

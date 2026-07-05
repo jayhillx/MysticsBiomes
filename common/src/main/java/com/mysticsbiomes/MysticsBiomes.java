@@ -1,6 +1,6 @@
 package com.mysticsbiomes;
 
-import com.mysticsbiomes.core.registry.RegistryHelper;
+import com.mysticsbiomes.core.registry.DeferredRegisterFactory;
 import com.mysticsbiomes.init.*;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
@@ -8,7 +8,7 @@ import net.minecraft.resources.ResourceLocation;
 import java.util.List;
 
 public class MysticsBiomes {
-    public static RegistryHelper REGISTRY;
+    public static DeferredRegisterFactory REGISTRY_FACTORY;
     public static final String modId = "mysticsbiomes";
 
     public static ResourceLocation modLoc(String path) {
@@ -16,11 +16,11 @@ public class MysticsBiomes {
     }
 
     public static void init() {
-        MysticBlocks.registerBlocks();
-        MysticBlockEntities.registerBlockEntities();
-        MysticEntities.registerEntities();
-        MysticItems.registerItems();
-        MysticTabs.registerCreativeTabs();
+        MysticBlocks.init();
+        MysticBlockEntities.init();
+        MysticEntities.init();
+        MysticItems.init();
+        MysticTabs.init();
     }
 
     public static void setupCommon() {

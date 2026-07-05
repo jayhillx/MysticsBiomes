@@ -1,0 +1,33 @@
+{
+	"render_type": "minecraft:cutout",
+	"textures": {
+		"top": "mysticsbiomes:block/peach_pie_top",
+		"side": "mysticsbiomes:block/peach_pie_side",
+		"inner": "mysticsbiomes:block/peach_pie_inner",
+		"bottom": "mysticsbiomes:block/peach_pie_bottom",
+		"particle": "mysticsbiomes:block/peach_pie_bottom"
+	},
+	"elements": [
+		{
+			"from": [2, 0, 2],
+			"to": [8, 4, 8],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 3, 8]},
+			"faces": {
+				"north": {"uv": [8, 12, 14, 16], "texture": "#side"},
+				"east": {"uv": [8, 12, 14, 16], "texture": "#inner"},
+				"south": {"uv": [2, 12, 8, 16], "texture": "#inner"},
+				"west": {"uv": [2, 12, 8, 16], "texture": "#side"},
+				"down": {"uv": [8, 2, 14, 8], "rotation": 180, "texture": "#bottom"}
+			}
+		},
+		{
+			"from": [1, 4, 1],
+			"to": [8, 4, 8],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 3, 8]},
+			"faces": {
+				"up": {"uv": [1, 1, 8, 8], "texture": "#top"},
+				"down": {"uv": [1, 1, 8, 8], "rotation": 270, "texture": "#top"}
+			}
+		}
+	]
+}

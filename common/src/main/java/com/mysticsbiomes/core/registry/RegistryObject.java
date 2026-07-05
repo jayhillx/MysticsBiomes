@@ -7,35 +7,27 @@ import java.util.function.Supplier;
 
 public final class RegistryObject<T> {
     private final ResourceLocation location;
-    private final Supplier<T> resolver;
-    private T cached;
+    private final Supplier<T> supplier;
+    private T value;
     private boolean resolved = false;
 
-    public RegistryObject(ResourceLocation id, Supplier<T> resolver) {
-        this.location = id;
-        this.resolver = resolver;
+    public RegistryObject(ResourceLocation location, Supplier<T> supplier) {
+        this.location = location;
+        this.supplier = supplier;
     }
 
     public T get() {
         if (!this.resolved) {
-            T value = this.resolver.get();
-            this.cached = Objects.requireNonNull(value, "RegistryHandle failed to resolve: " + this.location);
+            System.out.println("Resolving " + this.location);
+            this.value = Objects.requireNonNull(this.supplier.get(), "Failed to resolve registry object: " + this.location);
             this.resolved = true;
         }
-        return this.cached;
+
+        return this.value;
     }
 
-    public ResourceLocation id() {
+    public ResourceLocation getLocation() {
         return this.location;
-    }
-
-    public boolean isPresent() {
-        try {
-            this.get();
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
     }
 
 }

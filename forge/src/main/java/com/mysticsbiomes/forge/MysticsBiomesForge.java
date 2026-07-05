@@ -5,7 +5,7 @@ import com.mysticsbiomes.MysticsBiomes;
 import com.mysticsbiomes.forge.datagen.provider.*;
 import com.mysticsbiomes.datagen.provider.tag.MysticBlockTagProviders;
 import com.mysticsbiomes.datagen.provider.tag.MysticItemTagProviders;
-import com.mysticsbiomes.forge.registry.ForgeRegistryHelper;
+import com.mysticsbiomes.forge.registry.ForgeDeferredRegisterFactory;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.RegistrySetBuilder;
 import net.minecraft.data.DataGenerator;
@@ -35,9 +35,9 @@ public class MysticsBiomesForge {
         bus.addListener(this::clientSetup);
         bus.addListener(this::gatherData);
 
-        MysticsBiomes.REGISTRY = new ForgeRegistryHelper(MysticsBiomes.modId);
+        MysticsBiomes.REGISTRY_FACTORY = new ForgeDeferredRegisterFactory();
         MysticsBiomes.init();
-        ((ForgeRegistryHelper)MysticsBiomes.REGISTRY).attachToModEventBus(bus);
+        ((ForgeDeferredRegisterFactory)MysticsBiomes.REGISTRY_FACTORY).attachAll(bus);
     }
 
     private void commonSetup(FMLCommonSetupEvent event) {

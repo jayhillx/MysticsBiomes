@@ -1,4 +1,4 @@
-// 1.20.1	2026-06-29T07:01:32.5261177	Tags for minecraft:item mod id vanilla
+// 1.20.1	2026-07-03T22:10:33.6549267	Tags for minecraft:item mod id vanilla
 8eb9a152ca1eecead230e4bcc00ccff050ad67fb data/minecraft/tags/items/dirt.json
 1fb76f12e66fdfdcde0f36c7686a90d4e23210a0 data/minecraft/tags/items/fence_gates.json
 0129995081a42bcee787656baf56d4ebb677e67e data/minecraft/tags/items/flowers.json
@@ -6,7 +6,7 @@
 f33b840444355cb66b2acf9346009d42ba00f86f data/minecraft/tags/items/leaves.json
 597a3e5f557b47963ef7874bacd40793e4013e03 data/minecraft/tags/items/logs_that_burn.json
 2a219a530b4b01e3e9f4d9e5ed9f43a7c9406db8 data/minecraft/tags/items/planks.json
-f1a6f816d0a2e92ddfc340dcd92ed8f0ab00c878 data/minecraft/tags/items/saplings.json
+f32836cda4bc7cf6e731e00881aa5b91b6b11730 data/minecraft/tags/items/saplings.json
 3985c3a1b3cc54ecae5f786bfa5bf223ffbbef01 data/minecraft/tags/items/signs.json
 cc76e1477642556a26ec4c09ab7fc5a6cbbb2ee9 data/minecraft/tags/items/slabs.json
 90ec9b775c9df362ea533239161624de69b1ef1c data/minecraft/tags/items/stairs.json

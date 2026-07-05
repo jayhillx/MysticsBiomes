@@ -79,6 +79,17 @@ public class MysticItemModelProviders extends ItemModelProvider {
         this.generatedItem(MysticItems.TROPICAL_BOAT.get());
         this.generatedItem(MysticItems.TROPICAL_CHEST_BOAT.get());
 
+        this.generatedItem(MysticItems.STRAWBERRY_CAKE.get());
+        this.generatedItem(MysticItems.SWEET_STRAWBERRY_CAKE.get());
+        this.generatedItem(MysticItems.VANILLA_CAKE.get());
+        this.generatedItem(MysticItems.CHOCOLATE_CAKE.get());
+        this.generatedItem(MysticItems.PINK_FROSTED_CAKE.get());
+        this.generatedItem(MysticItems.ORANGE_FROSTED_CAKE.get());
+        this.generatedItem(MysticItems.YELLOW_FROSTED_CAKE.get());
+        this.generatedItem(MysticItems.LIME_FROSTED_CAKE.get());
+        this.generatedItem(MysticItems.CYAN_FROSTED_CAKE.get());
+        this.generatedItem(MysticItems.PURPLE_FROSTED_CAKE.get());
+
         ///this.spawnEggItem(MysticItems.STRAWBERRY_COW_SPAWN_EGG.get());
         ///this.spawnEggItem(MysticItems.VANILLA_COW_SPAWN_EGG.get());
         ///this.spawnEggItem(MysticItems.CHOCOLATE_COW_SPAWN_EGG.get());

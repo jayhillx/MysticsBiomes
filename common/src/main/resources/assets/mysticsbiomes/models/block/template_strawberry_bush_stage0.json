@@ -1,0 +1,69 @@
+{
+	"parent": "minecraft:block/block",
+	"ambientocclusion": false,
+	"textures": {
+		"particle": "#cross"
+	},
+	"elements": [
+		{
+			"from": [-1, 0, 8],
+			"to": [17, 16, 8],
+			"shade": false,
+			"rotation": {"angle": 45, "axis": "y", "origin": [8, 0, 8]},
+			"faces": {
+				"north": {"uv": [0, 0, 16, 16], "texture": "#cross"},
+				"south": {"uv": [0, 0, 16, 16], "texture": "#cross"}
+			}
+		},
+		{
+			"from": [8, 0, -1],
+			"to": [8, 16, 17],
+			"shade": false,
+			"rotation": {"angle": 45, "axis": "y", "origin": [8, 0, 8]},
+			"faces": {
+				"east": {"uv": [0, 0, 16, 16], "texture": "#cross"},
+				"west": {"uv": [0, 0, 16, 16], "texture": "#cross"}
+			}
+		},
+		{
+			"from": [5, 2, 9],
+			"to": [11, 2, 13],
+			"shade": false,
+			"rotation": {"angle": 22.5, "axis": "x", "origin": [8, 2, 9]},
+			"faces": {
+				"up": {"uv": [0, 1, 6, 5], "texture": "#layer"},
+				"down": {"uv": [6, 1, 0, 5], "rotation": 180, "texture": "#layer"}
+			}
+		},
+		{
+			"from": [9, 2, 5],
+			"to": [13, 2, 11],
+			"shade": false,
+			"rotation": {"angle": -22.5, "axis": "z", "origin": [9, 2, 8]},
+			"faces": {
+				"up": {"uv": [0, 1, 6, 5], "rotation": 270, "texture": "#layer"},
+				"down": {"uv": [6, 1, 0, 5], "rotation": 270, "texture": "#layer"}
+			}
+		},
+		{
+			"from": [5, 2, 3],
+			"to": [11, 2, 7],
+			"shade": false,
+			"rotation": {"angle": -22.5, "axis": "x", "origin": [8, 2, 7]},
+			"faces": {
+				"up": {"uv": [0, 1, 6, 5], "rotation": 180, "texture": "#layer"},
+				"down": {"uv": [6, 1, 0, 5], "texture": "#layer"}
+			}
+		},
+		{
+			"from": [3, 2, 5],
+			"to": [7, 2, 11],
+			"shade": false,
+			"rotation": {"angle": 22.5, "axis": "z", "origin": [7, 2, 9]},
+			"faces": {
+				"up": {"uv": [0, 1, 6, 5], "rotation": 90, "texture": "#layer"},
+				"down": {"uv": [6, 1, 0, 5], "rotation": 90, "texture": "#layer"}
+			}
+		}
+	]
+}

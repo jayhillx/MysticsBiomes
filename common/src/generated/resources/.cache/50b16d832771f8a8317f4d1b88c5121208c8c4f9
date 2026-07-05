@@ -1,4 +1,4 @@
-// 1.20.1	2026-06-29T07:01:32.5261177	Tags for minecraft:block mod id vanilla
+// 1.20.1	2026-07-03T22:10:33.6549267	Tags for minecraft:block mod id vanilla
 5d6d04c70c6964d52d2c38cb2c2952a022a901f7 data/minecraft/tags/blocks/ceiling_hanging_signs.json
 8eb9a152ca1eecead230e4bcc00ccff050ad67fb data/minecraft/tags/blocks/dirt.json
 1fb76f12e66fdfdcde0f36c7686a90d4e23210a0 data/minecraft/tags/blocks/fence_gates.json
@@ -10,7 +10,7 @@ bbf3696e0272fb7e19ca5a7540ab708535ca50ef data/minecraft/tags/blocks/mineable/axe
 b008755aa4a76d1364ed32ecb9487251cb98112a data/minecraft/tags/blocks/mineable/pickaxe.json
 83a6e0eb7ce8a0344db5586e52de5a331ba302a4 data/minecraft/tags/blocks/mineable/shovel.json
 2a219a530b4b01e3e9f4d9e5ed9f43a7c9406db8 data/minecraft/tags/blocks/planks.json
-f1a6f816d0a2e92ddfc340dcd92ed8f0ab00c878 data/minecraft/tags/blocks/saplings.json
+f32836cda4bc7cf6e731e00881aa5b91b6b11730 data/minecraft/tags/blocks/saplings.json
 cc76e1477642556a26ec4c09ab7fc5a6cbbb2ee9 data/minecraft/tags/blocks/slabs.json
 90ec9b775c9df362ea533239161624de69b1ef1c data/minecraft/tags/blocks/stairs.json
 3985c3a1b3cc54ecae5f786bfa5bf223ffbbef01 data/minecraft/tags/blocks/standing_signs.json

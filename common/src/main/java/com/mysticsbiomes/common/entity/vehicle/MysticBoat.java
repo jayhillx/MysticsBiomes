@@ -1,5 +1,6 @@
 package com.mysticsbiomes.common.entity.vehicle;
 
+import com.mysticsbiomes.core.registry.RegistryObject;
 import com.mysticsbiomes.init.MysticBlocks;
 import com.mysticsbiomes.init.MysticEntities;
 import com.mysticsbiomes.init.MysticItems;
@@ -18,6 +19,8 @@ import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
+
+import java.util.function.Supplier;
 
 public class MysticBoat extends Boat {
     private static final EntityDataAccessor<Integer> DATA_ID_TYPE = SynchedEntityData.defineId(MysticBoat.class, EntityDataSerializers.INT);
@@ -117,30 +120,30 @@ public class MysticBoat extends Boat {
     }
 
     public enum Type {
-        STRAWBERRY(MysticBlocks.STRAWBERRY_PLANKS.get(), "strawberry"),
-        BLACK_CHERRY(MysticBlocks.BLACK_CHERRY_PLANKS.get(), "black_cherry"),
-        LAVENDER(MysticBlocks.LAVENDER_PLANKS.get(), "lavender"),
-        VANILLA(MysticBlocks.VANILLA_PLANKS.get(), "vanilla"),
-        PEACH(MysticBlocks.PEACH_PLANKS.get(), "peach"),
-        MAPLE(MysticBlocks.MAPLE_PLANKS.get(), "maple"),
-        SPRING(MysticBlocks.SPRING_PLANKS.get(), "spring"),
-        SEA_FOAM(MysticBlocks.SEA_FOAM_PLANKS.get(), "sea_foam"),
-        TROPICAL(MysticBlocks.TROPICAL_PLANKS.get(), "tropical");
+        STRAWBERRY(MysticBlocks.STRAWBERRY_PLANKS, "strawberry"),
+        BLACK_CHERRY(MysticBlocks.BLACK_CHERRY_PLANKS, "black_cherry"),
+        LAVENDER(MysticBlocks.LAVENDER_PLANKS, "lavender"),
+        VANILLA(MysticBlocks.VANILLA_PLANKS, "vanilla"),
+        PEACH(MysticBlocks.PEACH_PLANKS, "peach"),
+        MAPLE(MysticBlocks.MAPLE_PLANKS, "maple"),
+        SPRING(MysticBlocks.SPRING_PLANKS, "spring"),
+        SEA_FOAM(MysticBlocks.SEA_FOAM_PLANKS, "sea_foam"),
+        TROPICAL(MysticBlocks.TROPICAL_PLANKS, "tropical");
 
+        private final RegistryObject<Block> planks;
         private final String name;
-        private final Block planks;
 
-        Type(Block block, String name) {
+        Type(RegistryObject<Block> block, String name) {
             this.name = name;
             this.planks = block;
         }
 
-        public String getName() {
-            return this.name;
+        public Block getPlanks() {
+            return this.planks.get();
         }
 
-        public Block getPlanks() {
-            return this.planks;
+        public String getName() {
+            return this.name;
         }
 
         public String toString() {
@@ -165,5 +168,6 @@ public class MysticBoat extends Boat {
             return types[0];
         }
     }
+
 
 }
