@@ -1,0 +1,67 @@
+{
+  "type": "mysticsbiomes:maple_tree",
+  "config": {
+    "decorators": [
+      {
+        "type": "mysticsbiomes:fallen_leaves",
+        "leaf_litter_provider": {
+          "type": "minecraft:simple_state_provider",
+          "state": {
+            "Name": "mysticsbiomes:maple_leaf_litter",
+            "Properties": {
+              "facing": "north",
+              "flower_amount": "1"
+            }
+          }
+        },
+        "leaf_pile_provider": {
+          "type": "minecraft:simple_state_provider",
+          "state": {
+            "Name": "mysticsbiomes:maple_leaf_pile",
+            "Properties": {
+              "layers": "1"
+            }
+          }
+        },
+        "probability": 0.7
+      }
+    ],
+    "dirt_provider": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "minecraft:dirt"
+      }
+    },
+    "foliage_provider": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "mysticsbiomes:maple_leaves",
+        "Properties": {
+          "distance": "7",
+          "persistent": "false",
+          "waterlogged": "false"
+        }
+      }
+    },
+    "minimum_size": {
+      "type": "minecraft:two_layers_feature_size",
+      "limit": 1,
+      "lower_size": 0,
+      "upper_size": 1
+    },
+    "trunk_provider": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "mysticsbiomes:maple_log",
+        "Properties": {
+          "axis": "y"
+        }
+      }
+    },
+    "trunk_shape": {
+      "base_height": 7,
+      "double_trunk": false,
+      "rand_height": 4
+    }
+  }
+}

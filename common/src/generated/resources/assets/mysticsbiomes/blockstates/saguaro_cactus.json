@@ -1,0 +1,129 @@
+{
+  "multipart": [
+    {
+      "apply": {
+        "model": "mysticsbiomes:block/saguaro_cactus"
+      },
+      "when": {
+        "shape": "trunk"
+      }
+    },
+    {
+      "apply": {
+        "model": "mysticsbiomes:block/saguaro_cactus_branch_vertical"
+      },
+      "when": {
+        "facing": "north",
+        "shape": "vertical"
+      }
+    },
+    {
+      "apply": {
+        "model": "mysticsbiomes:block/saguaro_cactus_branch_vertical",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "shape": "vertical"
+      }
+    },
+    {
+      "apply": {
+        "model": "mysticsbiomes:block/saguaro_cactus_branch_vertical",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "shape": "vertical"
+      }
+    },
+    {
+      "apply": {
+        "model": "mysticsbiomes:block/saguaro_cactus_branch_vertical",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "shape": "vertical"
+      }
+    },
+    {
+      "apply": {
+        "model": "mysticsbiomes:block/saguaro_cactus_branch_horizontal"
+      },
+      "when": {
+        "facing": "north",
+        "shape": "horizontal"
+      }
+    },
+    {
+      "apply": {
+        "model": "mysticsbiomes:block/saguaro_cactus_branch_horizontal",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "shape": "horizontal"
+      }
+    },
+    {
+      "apply": {
+        "model": "mysticsbiomes:block/saguaro_cactus_branch_horizontal",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "shape": "horizontal"
+      }
+    },
+    {
+      "apply": {
+        "model": "mysticsbiomes:block/saguaro_cactus_branch_horizontal",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "shape": "horizontal"
+      }
+    },
+    {
+      "apply": {
+        "model": "mysticsbiomes:block/saguaro_cactus_branch_curved"
+      },
+      "when": {
+        "facing": "north",
+        "shape": "curved"
+      }
+    },
+    {
+      "apply": {
+        "model": "mysticsbiomes:block/saguaro_cactus_branch_curved",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "shape": "curved"
+      }
+    },
+    {
+      "apply": {
+        "model": "mysticsbiomes:block/saguaro_cactus_branch_curved",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "shape": "curved"
+      }
+    },
+    {
+      "apply": {
+        "model": "mysticsbiomes:block/saguaro_cactus_branch_curved",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "shape": "curved"
+      }
+    }
+  ]
+}

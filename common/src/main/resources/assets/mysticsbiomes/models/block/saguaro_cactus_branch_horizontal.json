@@ -1,0 +1,39 @@
+{
+	"parent": "minecraft:block/block",
+	"render_type": "minecraft:cutout",
+	"textures": {
+		"top": "mysticsbiomes:block/saguaro_cactus_branch_top",
+		"side": "mysticsbiomes:block/saguaro_cactus_branch_side",
+		"inner": "mysticsbiomes:block/saguaro_cactus_branch_inner",
+		"particle": "#side"
+	},
+	"elements": [
+		{
+			"from": [3, 2, 3],
+			"to": [13, 14, 18],
+			"rotation": {"angle": 0, "axis": "x", "origin": [8, 8, 10]},
+			"faces": {
+				"east": {"uv": [14, 1, 2, 16], "rotation": 90, "texture": "#side"},
+				"west": {"uv": [2, 16, 14, 1], "rotation": 90, "texture": "#side"}
+			}
+		},
+		{
+			"from": [2, 3, 3],
+			"to": [14, 13, 18],
+			"rotation": {"angle": 0, "axis": "x", "origin": [8, 8, 10]},
+			"faces": {
+				"up": {"uv": [2, 16, 14, 1], "rotation": 180, "texture": "#side"},
+				"down": {"uv": [14, 1, 2, 16], "rotation": 180, "texture": "#side"}
+			}
+		},
+		{
+			"from": [2, 2, 3],
+			"to": [14, 14, 18],
+			"rotation": {"angle": 0, "axis": "x", "origin": [8, 8, 10]},
+			"faces": {
+				"north": {"uv": [14, 2, 2, 14], "texture": "#top"},
+				"south": {"uv": [14, 2, 2, 14], "texture": "#inner", "cullface": "north"}
+			}
+		}
+	]
+}

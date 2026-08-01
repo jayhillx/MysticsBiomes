@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:random_selector",
+  "config": {
+    "default": "mysticsbiomes:orange_maple_tree_checked",
+    "features": [
+      {
+        "chance": 0.3,
+        "feature": "mysticsbiomes:maple_tree_checked"
+      },
+      {
+        "chance": 0.2,
+        "feature": "mysticsbiomes:orange_maple_tree_checked"
+      },
+      {
+        "chance": 0.3,
+        "feature": "mysticsbiomes:yellow_maple_tree_checked"
+      }
+    ]
+  }
+}

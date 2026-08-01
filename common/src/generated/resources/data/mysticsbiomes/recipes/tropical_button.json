@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "redstone",
+  "group": "wooden_button",
+  "ingredients": [
+    {
+      "item": "mysticsbiomes:tropical_planks"
+    }
+  ],
+  "result": {
+    "item": "mysticsbiomes:tropical_button"
+  }
+}

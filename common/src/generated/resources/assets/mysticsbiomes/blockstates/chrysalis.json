@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "mysticsbiomes:block/chrysalis"
+    },
+    "facing=north": {
+      "model": "mysticsbiomes:block/chrysalis"
+    },
+    "facing=south": {
+      "model": "mysticsbiomes:block/chrysalis"
+    },
+    "facing=west": {
+      "model": "mysticsbiomes:block/chrysalis"
+    }
+  }
+}

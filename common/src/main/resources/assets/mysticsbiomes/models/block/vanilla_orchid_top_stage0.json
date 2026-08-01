@@ -1,0 +1,50 @@
+{
+	"parent": "minecraft:block/block",
+	"render_type": "minecraft:cutout_mipped",
+	"textures": {
+		"layer": "mysticsbiomes:block/vanilla_orchid_layer",
+		"plant": "mysticsbiomes:block/vanilla_orchid_top_stage0",
+		"particle": "#plant"
+	},
+	"elements": [
+		{
+			"from": [0, 0, 1],
+			"to": [16, 16, 1],
+			"shade": false,
+			"faces": {
+				"north": {"uv": [16, 0, 0, 16], "texture": "#plant"},
+				"south": {"uv": [0, 0, 16, 16], "texture": "#plant"}
+			}
+		},
+		{
+			"from": [8, 8, 1],
+			"to": [12, 12, 1],
+			"shade": false,
+			"rotation": {"angle": -22.5, "axis": "x", "origin": [8, 12, 1]},
+			"faces": {
+				"north": {"uv": [10, 4, 6, 8], "texture": "#layer"},
+				"south": {"uv": [6, 4, 10, 8], "texture": "#layer"}
+			}
+		},
+		{
+			"from": [2, 3, 1],
+			"to": [6, 7, 1],
+			"shade": false,
+			"rotation": {"angle": -22.5, "axis": "x", "origin": [6, 7, 1]},
+			"faces": {
+				"north": {"uv": [6, 4, 10, 8], "texture": "#layer"},
+				"south": {"uv": [10, 4, 6, 8], "texture": "#layer"}
+			}
+		},
+		{
+			"from": [8, -1, 1],
+			"to": [12, 5, 1],
+			"shade": false,
+			"rotation": {"angle": -22.5, "axis": "x", "origin": [8, 5, 1]},
+			"faces": {
+				"north": {"uv": [1, 7, 5, 13], "texture": "#layer"},
+				"south": {"uv": [5, 7, 1, 13], "texture": "#layer"}
+			}
+		}
+	]
+}

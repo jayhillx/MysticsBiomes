@@ -1,0 +1,9 @@
+{
+  "parent": "minecraft:block/template_potted_azalea_bush",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "plant": "mysticsbiomes:block/hydrangea_bush_plant_potted",
+    "side": "mysticsbiomes:block/hydrangea_bush_side_potted",
+    "top": "mysticsbiomes:block/hydrangea_bush_top_potted"
+  }
+}

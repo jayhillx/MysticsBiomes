@@ -1,0 +1,12 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "mysticsbiomes:block/sea_thrift"
+      },
+      {
+        "model": "mysticsbiomes:block/sea_thrift_variant"
+      }
+    ]
+  }
+}

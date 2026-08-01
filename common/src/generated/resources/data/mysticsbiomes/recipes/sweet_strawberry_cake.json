@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "E": {
+      "item": "minecraft:egg"
+    },
+    "I": {
+      "item": "mysticsbiomes:sweet_strawberry"
+    },
+    "M": {
+      "item": "mysticsbiomes:strawberry_milk_bucket"
+    },
+    "S": {
+      "item": "minecraft:sugar"
+    },
+    "W": {
+      "item": "minecraft:wheat"
+    }
+  },
+  "pattern": [
+    "MMM",
+    "SEI",
+    "WWW"
+  ],
+  "result": {
+    "item": "mysticsbiomes:sweet_strawberry_cake"
+  },
+  "show_notification": true
+}

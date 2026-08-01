@@ -2,7 +2,6 @@ package com.mysticsbiomes.forge.datagen.provider;
 
 import com.google.common.collect.ImmutableMap;
 import com.mysticsbiomes.MysticsBiomes;
-import com.mysticsbiomes.core.registry.RegistryObject;
 import com.mysticsbiomes.datagen.MysticBlockFamilies;
 import com.mysticsbiomes.datagen.MysticBlockFamily;
 import com.mysticsbiomes.init.MysticBlocks;
@@ -10,8 +9,10 @@ import com.mysticsbiomes.init.MysticItems;
 import com.mysticsbiomes.init.MysticTags;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
@@ -43,7 +44,18 @@ public class MysticRecipeProviders extends RecipeProvider {
 
     @Override
     protected void buildRecipes(@Nonnull Consumer<FinishedRecipe> output) {
-        MysticBlockFamilies.getAllFamilies().filter(MysticBlockFamily::shouldGenerateRecipe).forEach(family -> generateFor(output, family));
+        MysticBlockFamilies.getAllFamilies().forEach(family -> generateFor(output, family));
+        stonecutterResultFromBase(output, RecipeCategory.BUILDING_BLOCKS, MysticBlocks.LUSH_SANDSTONE_STAIRS.get(), MysticBlocks.LUSH_SANDSTONE.get());
+        stonecutterResultFromBase(output, RecipeCategory.BUILDING_BLOCKS, MysticBlocks.LUSH_SANDSTONE_SLAB.get(), MysticBlocks.LUSH_SANDSTONE.get(), 2);
+        stonecutterResultFromBase(output, RecipeCategory.DECORATIONS, MysticBlocks.LUSH_SANDSTONE_WALL.get(), MysticBlocks.LUSH_SANDSTONE.get());
+        stonecutterResultFromBase(output, RecipeCategory.BUILDING_BLOCKS, MysticBlocks.CHISELED_LUSH_SANDSTONE.get(), MysticBlocks.LUSH_SANDSTONE.get());
+        stonecutterResultFromBase(output, RecipeCategory.BUILDING_BLOCKS, MysticBlocks.CUT_LUSH_SANDSTONE.get(), MysticBlocks.LUSH_SANDSTONE.get());
+        stonecutterResultFromBase(output, RecipeCategory.BUILDING_BLOCKS, MysticBlocks.CUT_LUSH_SANDSTONE_SLAB.get(), MysticBlocks.LUSH_SANDSTONE.get(), 2);
+        stonecutterResultFromBase(output, RecipeCategory.BUILDING_BLOCKS, MysticBlocks.CUT_LUSH_SANDSTONE_SLAB.get(), MysticBlocks.CUT_LUSH_SANDSTONE.get(), 2);
+
+        stonecutterResultFromBase(output, RecipeCategory.BUILDING_BLOCKS, MysticBlocks.CUT_LUSH_SANDSTONE.get(), MysticBlocks.LUSH_SANDSTONE.get());
+        stonecutterResultFromBase(output, RecipeCategory.BUILDING_BLOCKS, MysticBlocks.CUT_LUSH_SANDSTONE_SLAB.get(), MysticBlocks.LUSH_SANDSTONE.get(), 2);
+
         planksFromLogs(output, MysticBlocks.STRAWBERRY_PLANKS.get(), MysticTags.Items.STRAWBERRY_LOGS);
         planksFromLogs(output, MysticBlocks.BLACK_CHERRY_PLANKS.get(), MysticTags.Items.BLACK_CHERRY_LOGS);
         planksFromLogs(output, MysticBlocks.LAVENDER_PLANKS.get(), MysticTags.Items.LAVENDER_LOGS);
@@ -73,8 +85,48 @@ public class MysticRecipeProviders extends RecipeProvider {
         chestBoat(output, MysticItems.SPRING_CHEST_RAFT.get(), MysticItems.SPRING_RAFT.get());
         chestBoat(output, MysticItems.SEA_FOAM_CHEST_BOAT.get(), MysticItems.SEA_FOAM_BOAT.get());
         chestBoat(output, MysticItems.TROPICAL_CHEST_BOAT.get(), MysticItems.TROPICAL_BOAT.get());
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, MysticItems.GLASS_JAR.get())
+                .define('W', ItemTags.PLANKS)
+                .define('G', Items.GLASS)
+                .pattern("GWG")
+                .pattern("G G")
+                .pattern("GGG")
+                .unlockedBy(getHasName(Items.GLASS), has(Items.GLASS))
+                .save(output, MysticsBiomes.modLoc(getSimpleRecipeName(MysticItems.GLASS_JAR.get())));
+
+        neapolitanCake(output, MysticItems.STRAWBERRY_CAKE.get(), MysticItems.STRAWBERRY_MILK_BUCKET.get(), MysticItems.STRAWBERRY.get());
+        neapolitanCake(output, MysticItems.SWEET_STRAWBERRY_CAKE.get(), MysticItems.STRAWBERRY_MILK_BUCKET.get(), MysticItems.SWEET_STRAWBERRY.get());
+        neapolitanCake(output, MysticItems.VANILLA_CAKE.get(), MysticItems.VANILLA_MILK_BUCKET.get(), MysticItems.VANILLA_BEANS.get());
+        neapolitanCake(output, MysticItems.CHOCOLATE_CAKE.get(), MysticItems.CHOCOLATE_MILK_BUCKET.get(), Items.COCOA_BEANS);
+        frostedCake(output, MysticItems.PINK_FROSTED_CAKE.get(), MysticItems.PINK_EGG.get());
+        frostedCake(output, MysticItems.ORANGE_FROSTED_CAKE.get(), MysticItems.ORANGE_EGG.get());
+        frostedCake(output, MysticItems.YELLOW_FROSTED_CAKE.get(), MysticItems.YELLOW_EGG.get());
+        frostedCake(output, MysticItems.LIME_FROSTED_CAKE.get(), MysticItems.LIME_EGG.get());
+        frostedCake(output, MysticItems.CYAN_FROSTED_CAKE.get(), MysticItems.CYAN_EGG.get());
+        frostedCake(output, MysticItems.PURPLE_FROSTED_CAKE.get(), MysticItems.PURPLE_EGG.get());
+        ///frostedCake(output, MysticItems.RAINBOW_FROSTED_CAKE.get(), MysticItems.RAINBOW_EGG.get());
+        fruitPie(output, MysticItems.CHERRY_PIE.get(), MysticItems.CHERRIES.get());
+        fruitPie(output, MysticItems.PEACH_PIE.get(), MysticItems.PEACH.get());
+
+        ///dyeFromFlowers(output, Items.PINK_DYE, MysticItems.PINK_DAISIES.get());
+        dyeFromFlowers(output, Items.PINK_DYE, MysticItems.PEONY_BUSH.get(), 2);
+        dyeFromFlowers(output, Items.PURPLE_DYE, MysticItems.LAVENDER.get());
+        dyeFromFlowers(output, Items.PURPLE_DYE, MysticItems.TALL_LAVENDER.get(), 2);
+        dyeFromFlowers(output, Items.MAGENTA_DYE, MysticItems.ASTER.get());
+        dyeFromFlowers(output, Items.YELLOW_DYE, MysticItems.GOLDENROD.get(), 2);
+        dyeFromFlowers(output, Items.WHITE_DYE, MysticItems.DESERT_LILY.get(), 2);
+        dyeFromFlowers(output, Items.MAGENTA_DYE, MysticItems.WILDFLOWER.get());
+        dyeFromFurnace(output, Items.LIME_DYE, MysticItems.SAGUARO_CACTUS.get());
+        dyeFromFlowers(output, Items.WHITE_DYE, MysticItems.SAGUARO_BLOSSOM.get());
+        ///dyeFromFurnace(output, Items.LIME_DYE, MysticItems.PRICKLY_CACTUS.get());
+        ///dyeFromFlowers(output, Items.PINK_DYE, MysticItems.PRICKLY_BLOSSOM.get());
+        dyeFromFlowers(output, Items.PINK_DYE, MysticItems.MILKWEED.get());
+        dyeFromFlowers(output, Items.PINK_DYE, MysticItems.SEA_THRIFT.get());
+        dyeFromFlowers(output, Items.LIGHT_BLUE_DYE, MysticItems.HYDRANGEA_BUSH.get(), 2);
+        dyeFromFlowers(output, Items.ORANGE_DYE, MysticItems.HIBISCUS.get());
     }
-    
+
     private static void generateFor(Consumer<FinishedRecipe> output, MysticBlockFamily family) {
         if (family != null) {
             family.getVariants().forEach((variant, block) -> {
@@ -82,19 +134,20 @@ public class MysticRecipeProviders extends RecipeProvider {
                 ItemLike source = family.get(variant.source()).get();
                 if (source != null) {
                     switch (variant) {
-                        case WOOD, SECONDARY_WOOD, STRIPPED_WOOD -> woodFromLogs(output, block, source);
-                        case HANGING_SIGN -> hangingSign(output, block, source);
+                        case WOOD, SECONDARY_WOOD, STRIPPED_WOOD -> woodFromLogs(output, block.get(), source);
+                        case HANGING_SIGN -> hangingSign(output, block.get(), source);
                     }
                 }
 
                 BiFunction<ItemLike, ItemLike, RecipeBuilder> function = SHAPE_BUILDERS.get(variant);
                 if (function != null) {
-                    RecipeBuilder builder = function.apply(block, baseBlock);
+                    RecipeBuilder builder = function.apply(block.get(), baseBlock);
                     family.getRecipeGroupPrefix().ifPresent(group -> {
                         if (variant != MysticBlockFamily.Variant.CUT) {
                             builder.group(group + "_" + variant.getRecipeGroup());
                         }
                     });
+
                     builder.unlockedBy(family.getRecipeUnlockedBy().orElseGet(() -> getHasName(baseBlock)), has(baseBlock));
                     builder.save(output);
                 }
@@ -132,12 +185,54 @@ public class MysticRecipeProviders extends RecipeProvider {
         dyeFromFlowers(output, resultItem, inputItem, 1);
     }
 
-    protected static void dyeFromFlowers(Consumer<FinishedRecipe> output, ItemLike resultItem, ItemLike inputItem, int amount) {
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, resultItem, amount)
+    protected static void dyeFromFlowers(Consumer<FinishedRecipe> output, ItemLike resultItem, ItemLike inputItem, int resultCount) {
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, resultItem, resultCount)
                 .requires(inputItem)
                 .group(getItemName(resultItem))
                 .unlockedBy(getHasName(inputItem), has(inputItem))
                 .save(output, MysticsBiomes.modLoc(getConversionRecipeName(resultItem, inputItem)));
     }
-    
+
+    protected static void dyeFromFurnace(Consumer<FinishedRecipe> output, ItemLike resultItem, ItemLike inputItem) {
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(inputItem), RecipeCategory.MISC, resultItem, 1.0F, 200)
+                .unlockedBy(getHasName(inputItem), has(inputItem))
+                .save(output, MysticsBiomes.modLoc(getSimpleRecipeName(resultItem)));
+    }
+
+    protected static void neapolitanCake(Consumer<FinishedRecipe> output, ItemLike resultItem, ItemLike milkItem, ItemLike ingredientItem) {
+        ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, resultItem)
+                .define('M', milkItem)
+                .define('S', Items.SUGAR)
+                .define('W', Items.WHEAT)
+                .define('E', Items.EGG)
+                .define('I', ingredientItem)
+                .pattern("MMM")
+                .pattern("SEI")
+                .pattern("WWW")
+                .unlockedBy(getHasName(milkItem), has(milkItem))
+                .save(output, MysticsBiomes.modLoc(getSimpleRecipeName(resultItem)));
+    }
+
+    protected static void frostedCake(Consumer<FinishedRecipe> output, ItemLike resultItem, ItemLike eggItem) {
+        ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, resultItem)
+                .define('M', Items.MILK_BUCKET)
+                .define('S', Items.SUGAR)
+                .define('W', Items.WHEAT)
+                .define('E', eggItem)
+                .pattern("MMM")
+                .pattern("SES")
+                .pattern("WWW")
+                .unlockedBy(getHasName(eggItem), has(eggItem))
+                .save(output, MysticsBiomes.modLoc(getSimpleRecipeName(resultItem)));
+    }
+
+    protected static void fruitPie(Consumer<FinishedRecipe> output, ItemLike resultItem, ItemLike fruitItem) {
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, resultItem)
+                .requires(Items.SUGAR)
+                .requires(Items.EGG)
+                .requires(fruitItem)
+                .unlockedBy(getHasName(fruitItem), has(fruitItem))
+                .save(output, MysticsBiomes.modLoc(getSimpleRecipeName(resultItem)));
+    }
+
 }

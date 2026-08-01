@@ -1,6 +1,6 @@
 package com.mysticsbiomes.common.item;
 
-import com.mysticsbiomes.common.entity.ThrownRainbowEgg;
+import com.mysticsbiomes.common.entity.animal.ThrownRainbowEgg;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;

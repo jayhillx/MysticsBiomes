@@ -1,0 +1,58 @@
+{
+  "type": "mysticsbiomes:peach_tree",
+  "config": {
+    "decorators": [
+      {
+        "type": "mysticsbiomes:fruit",
+        "plant_provider": {
+          "type": "minecraft:simple_state_provider",
+          "state": {
+            "Name": "mysticsbiomes:peach_plant",
+            "Properties": {
+              "age": "0",
+              "cropped": "false"
+            }
+          }
+        },
+        "probability": 0.75
+      }
+    ],
+    "dirt_provider": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "minecraft:dirt"
+      }
+    },
+    "foliage_provider": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "mysticsbiomes:peach_leaves",
+        "Properties": {
+          "distance": "7",
+          "persistent": "false",
+          "waterlogged": "false"
+        }
+      }
+    },
+    "minimum_size": {
+      "type": "minecraft:two_layers_feature_size",
+      "limit": 1,
+      "lower_size": 0,
+      "upper_size": 1
+    },
+    "trunk_provider": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "mysticsbiomes:peach_log",
+        "Properties": {
+          "axis": "y"
+        }
+      }
+    },
+    "trunk_shape": {
+      "base_height": 6,
+      "double_trunk": false,
+      "rand_height": 4
+    }
+  }
+}

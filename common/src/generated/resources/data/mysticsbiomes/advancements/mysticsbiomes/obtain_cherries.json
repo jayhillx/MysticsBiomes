@@ -1,0 +1,38 @@
+{
+  "parent": "mysticsbiomes:mysticsbiomes/root",
+  "criteria": {
+    "has_cherries": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mysticsbiomes:cherries"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.mysticsbiomes.obtain_cherries.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "mysticsbiomes:cherries"
+    },
+    "show_toast": false,
+    "title": {
+      "translate": "advancements.mysticsbiomes.obtain_cherries.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_cherries"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

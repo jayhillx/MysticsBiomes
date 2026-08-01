@@ -1,0 +1,9 @@
+{
+  "parent": "mysticsbiomes:block/template_bush",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "plant": "mysticsbiomes:block/sea_shrub_plant",
+    "side": "mysticsbiomes:block/sea_shrub_side",
+    "top": "mysticsbiomes:block/sea_shrub_top"
+  }
+}

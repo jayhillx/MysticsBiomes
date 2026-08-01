@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "group": "planks",
+  "ingredients": [
+    {
+      "tag": "mysticsbiomes:spring_logs"
+    }
+  ],
+  "result": {
+    "count": 4,
+    "item": "mysticsbiomes:spring_planks"
+  }
+}

@@ -19,7 +19,7 @@ public class MysticBlockTagProviders extends VanillaBlockTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.Provider provider) {
-        MysticBlockFamilies.getAllFamilies().filter(MysticBlockFamily::shouldGenerateModel).forEach(this::generateFor);
+        MysticBlockFamilies.getAllFamilies().forEach(this::generateFor);
         this.tag(MysticTags.Blocks.STRAWBERRY_LOGS).add(
                 MysticBlocks.STRAWBERRY_LOG.get(),
                 MysticBlocks.STRAWBERRY_WOOD.get(),
@@ -89,6 +89,8 @@ public class MysticBlockTagProviders extends VanillaBlockTagsProvider {
                 .addTag(MysticTags.Blocks.TROPICAL_LOGS);
         this.tag(BlockTags.DIRT)
                 .add(MysticBlocks.GRASSY_LUSH_SAND.get());
+        this.tag(BlockTags.SAND)
+                .add(MysticBlocks.LUSH_SAND.get());
         this.tag(BlockTags.MINEABLE_WITH_SHOVEL)
                 .add(MysticBlocks.GRASSY_LUSH_SAND.get())
                 .add(MysticBlocks.LUSH_SAND.get());
@@ -107,86 +109,91 @@ public class MysticBlockTagProviders extends VanillaBlockTagsProvider {
                 .add(MysticBlocks.SPRING_MOSAIC.get())
                 .add(MysticBlocks.SPRING_MOSAIC_STAIRS.get())
                 .add(MysticBlocks.SPRING_MOSAIC_SLAB.get());
-       this.tag(BlockTags.LEAVES)
+        this.tag(BlockTags.LEAVES)
                 .add(MysticBlocks.STRAWBERRY_BLOSSOMS.get())
                 .add(MysticBlocks.LAVENDER_BLOSSOMS.get())
+                ///.add(MysticBlocks.BUTTERFLY_BUSH_LEAVES.get())
                 .add(MysticBlocks.PINK_CHERRY_BLOSSOMS.get())
                 .add(MysticBlocks.WHITE_CHERRY_BLOSSOMS.get())
-                ///.add(MysticBlocks.PEONY_BUSH_LEAVES.get())
+                .add(MysticBlocks.PEONY_BUSH_LEAVES.get())
                 .add(MysticBlocks.MAPLE_LEAVES.get())
-                .add(MysticBlocks.SPICED_MAPLE_LEAVES.get())
                 .add(MysticBlocks.ORANGE_MAPLE_LEAVES.get())
                 .add(MysticBlocks.YELLOW_MAPLE_LEAVES.get())
                 .add(MysticBlocks.PEACH_LEAVES.get())
                 .add(MysticBlocks.SEA_SHRUB_LEAVES.get())
                 .add(MysticBlocks.TROPICAL_LEAVES.get())
-                .add(MysticBlocks.VANILLA_LEAVES.get());
-                ///.add(MysticBlocks.HYDRANGEA_BUSH_LEAVES.get());
+                .add(MysticBlocks.VANILLA_LEAVES.get())
+                .add(MysticBlocks.HYDRANGEA_BUSH_LEAVES.get());
         this.tag(BlockTags.SAPLINGS)
                 .add(MysticBlocks.STRAWBERRY_BLOSSOM_SAPLING.get())
                 .add(MysticBlocks.LAVENDER_BLOSSOM_SAPLING.get())
                 .add(MysticBlocks.PINK_CHERRY_BLOSSOM_SAPLING.get())
                 .add(MysticBlocks.WHITE_CHERRY_BLOSSOM_SAPLING.get())
-                ///.add(MysticBlocks.PEONY_BUSH.get())
+                .add(MysticBlocks.PEONY_BUSH.get())
                 .add(MysticBlocks.MAPLE_SAPLING.get())
-                .add(MysticBlocks.SPICED_MAPLE_SAPLING.get())
                 .add(MysticBlocks.ORANGE_MAPLE_SAPLING.get())
                 .add(MysticBlocks.YELLOW_MAPLE_SAPLING.get())
                 .add(MysticBlocks.PEACH_SAPLING.get())
                 .add(MysticBlocks.SEA_SHRUB.get())
                 .add(MysticBlocks.TROPICAL_SAPLING.get())
-                .add(MysticBlocks.VANILLA_SAPLING.get());
-                ///.add(MysticBlocks.HYDRANGEA_BUSH.get());
+                .add(MysticBlocks.VANILLA_SAPLING.get())
+                .add(MysticBlocks.HYDRANGEA_BUSH.get());
         this.tag(BlockTags.FLOWERS)
                 .add(MysticBlocks.STRAWBERRY_BLOSSOMS.get())
                 .add(MysticBlocks.LAVENDER_BLOSSOMS.get())
                 .add(MysticBlocks.PINK_CHERRY_BLOSSOMS.get())
-                .add(MysticBlocks.WHITE_CHERRY_BLOSSOMS.get());
-                ///.add(MysticBlocks.PEONY_BUSH_LEAVES.get())
-                ///.add(MysticBlocks.HYDRANGEA_BUSH_LEAVES.get());
-        ///this.tag(BlockTags.SMALL_FLOWERS)
-        ///        .add(MysticBlocks.PINK_DAISIES.get())
-        ///        .add(MysticBlocks.PINK_CHERRY_PETALS.get())
-        ///        .add(MysticBlocks.WHITE_CHERRY_PETALS.get())
-        ///        .add(MysticBlocks.ASTER.get())
-        ///        .add(MysticBlocks.LAVENDER.get())
-        ///        .add(MysticBlocks.WILDFLOWER.get())
-        ///        .add(MysticBlocks.SAGUARO_BLOSSOM.get())
-        ///        .add(MysticBlocks.PRICKLY_BLOSSOM.get())
-        ///        .add(MysticBlocks.SEA_THRIFT.get())
-        ///        .add(MysticBlocks.HIBISCUS.get());
-        ///this.tag(BlockTags.TALL_FLOWERS)
-        ///        .add(MysticBlocks.TALL_LAVENDER.get())
-        ///        .add(MysticBlocks.DESERT_LILY.get())
-        ///        .add(MysticBlocks.MILKWEED.get())
-        ///        .add(MysticBlocks.GOLDENROD.get());
-        ///this.tag(BlockTags.CROPS)
-        ///        .add(MysticBlocks.STRAWBERRY_BUSH.get())
-        ///        .add(MysticBlocks.CHERRY_PLANT.get())
-        ///        .add(MysticBlocks.PEACH_PLANT.get())
-        ///        .add(MysticBlocks.PRICKLY_PEAR.get())
-        ///        .add(MysticBlocks.VANILLA_ORCHID.get());
-        ///this.tag(BlockTags.CANDLE_CAKES);
+                .add(MysticBlocks.WHITE_CHERRY_BLOSSOMS.get())
+                .add(MysticBlocks.PEONY_BUSH_LEAVES.get())
+                .add(MysticBlocks.HYDRANGEA_BUSH_LEAVES.get());
+        this.tag(BlockTags.SMALL_FLOWERS)
+                ///.add(MysticBlocks.PINK_DAISIES.get())
+                ///.add(MysticBlocks.PINK_CHERRY_PETALS.get())
+                ///.add(MysticBlocks.WHITE_CHERRY_PETALS.get())
+                .add(MysticBlocks.ASTER.get())
+                .add(MysticBlocks.LAVENDER.get())
+                .add(MysticBlocks.WILDFLOWER.get())
+                .add(MysticBlocks.SAGUARO_BLOSSOM.get())
+                ///.add(MysticBlocks.PRICKLY_BLOSSOM.get())
+                .add(MysticBlocks.SEA_THRIFT.get())
+                .add(MysticBlocks.HIBISCUS.get());
+        this.tag(BlockTags.TALL_FLOWERS)
+                .add(MysticBlocks.TALL_LAVENDER.get())
+                .add(MysticBlocks.DESERT_LILY.get())
+                .add(MysticBlocks.MILKWEED.get())
+                .add(MysticBlocks.GOLDENROD.get());
+        this.tag(BlockTags.CROPS)
+                .add(MysticBlocks.STRAWBERRY_BUSH.get())
+                .add(MysticBlocks.CHERRY_PLANT.get())
+                .add(MysticBlocks.PEACH_PLANT.get())
+                ///.add(MysticBlocks.PRICKLY_PEAR.get())
+                .add(MysticBlocks.VANILLA_ORCHID.get());
+        this.tag(BlockTags.BEE_GROWABLES)
+                .add(MysticBlocks.WILD_STRAWBERRY_BUSH.get())
+                .add(MysticBlocks.STRAWBERRY_BUSH.get())
+                .add(MysticBlocks.CHERRY_PLANT.get())
+                .add(MysticBlocks.PEACH_PLANT.get())
+                ///.add(MysticBlocks.PRICKLY_PEAR.get())
+                .add(MysticBlocks.VANILLA_ORCHID.get());
     }
 
     private void generateFor(MysticBlockFamily family) {
         family.getVariants().forEach((variant, block) -> {
             boolean flammable = family.isFlammable();
             switch (variant) {
-                case PLANKS -> this.tag(BlockTags.PLANKS).add(block);
-                case STAIRS -> this.tag(flammable ? BlockTags.WOODEN_STAIRS : BlockTags.STAIRS).add(block);
-                case SLAB -> this.tag(flammable ? BlockTags.WOODEN_SLABS : BlockTags.SLABS).add(block);
-                case FENCE -> this.tag(flammable ? BlockTags.WOODEN_FENCES : BlockTags.FENCES).add(block);
-                case FENCE_GATE -> this.tag(BlockTags.FENCE_GATES).add(block);
-                case BUTTON -> this.tag(flammable ? BlockTags.WOODEN_BUTTONS : BlockTags.STONE_BUTTONS).add(block);
-                case PRESSURE_PLATE -> this.tag(flammable ? BlockTags.WOODEN_PRESSURE_PLATES : BlockTags.STONE_PRESSURE_PLATES).add(block);
-                case TRAPDOOR -> this.tag(flammable ? BlockTags.WOODEN_TRAPDOORS : BlockTags.TRAPDOORS).add(block);
-                case DOOR -> this.tag(flammable ? BlockTags.WOODEN_DOORS : BlockTags.DOORS).add(block);
-                case SIGN -> this.tag(BlockTags.STANDING_SIGNS).add(block);
-                case WALL_SIGN -> this.tag(BlockTags.WALL_SIGNS).add(block);
-                case HANGING_SIGN -> this.tag(BlockTags.CEILING_HANGING_SIGNS).add(block);
-                case WALL_HANGING_SIGN -> this.tag(BlockTags.WALL_HANGING_SIGNS).add(block);
-                case WALL -> this.tag(BlockTags.WALLS).add(block);
+                case PLANKS -> this.tag(BlockTags.PLANKS).add(block.get());
+                case STAIRS -> this.tag(flammable ? BlockTags.WOODEN_STAIRS : BlockTags.STAIRS).add(block.get());
+                case SLAB -> this.tag(flammable ? BlockTags.WOODEN_SLABS : BlockTags.SLABS).add(block.get());
+                case FENCE -> this.tag(flammable ? BlockTags.WOODEN_FENCES : BlockTags.FENCES).add(block.get());
+                case FENCE_GATE -> this.tag(BlockTags.FENCE_GATES).add(block.get());
+                case BUTTON -> this.tag(flammable ? BlockTags.WOODEN_BUTTONS : BlockTags.STONE_BUTTONS).add(block.get());
+                case PRESSURE_PLATE -> this.tag(flammable ? BlockTags.WOODEN_PRESSURE_PLATES : BlockTags.STONE_PRESSURE_PLATES).add(block.get());
+                case TRAPDOOR -> this.tag(flammable ? BlockTags.WOODEN_TRAPDOORS : BlockTags.TRAPDOORS).add(block.get());
+                case DOOR -> this.tag(flammable ? BlockTags.WOODEN_DOORS : BlockTags.DOORS).add(block.get());
+                case SIGN -> this.tag(BlockTags.STANDING_SIGNS).add(block.get());
+                case WALL_SIGN -> this.tag(BlockTags.WALL_SIGNS).add(block.get());
+                case HANGING_SIGN -> this.tag(BlockTags.CEILING_HANGING_SIGNS).add(block.get());
+                case WALL_HANGING_SIGN -> this.tag(BlockTags.WALL_HANGING_SIGNS).add(block.get());
+                case WALL -> this.tag(BlockTags.WALLS).add(block.get());
             }
         });
     }

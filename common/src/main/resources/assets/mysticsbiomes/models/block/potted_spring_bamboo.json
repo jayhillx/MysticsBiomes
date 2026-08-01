@@ -1,0 +1,46 @@
+{
+	"render_type": "minecraft:cutout",
+	"ambientocclusion": false,
+	"textures": {
+		"flowerpot": "minecraft:block/flower_pot",
+		"plant": "mysticsbiomes:block/spring_bamboo_potted",
+		"particle": "#flowerpot"
+	},
+	"elements": [
+		{
+			"from": [5, 0, 5],
+			"to": [11, 6, 11],
+			"faces": {
+				"north": {"uv": [5, 10, 11, 16], "texture": "#flowerpot"},
+				"east": {"uv": [5, 10, 11, 16], "texture": "#flowerpot"},
+				"south": {"uv": [5, 10, 11, 16], "texture": "#flowerpot"},
+				"west": {"uv": [5, 10, 11, 16], "texture": "#flowerpot"},
+				"up": {"uv": [5, 5, 11, 11], "texture": "#flowerpot"},
+				"down": {"uv": [5, 5, 6, 11], "texture": "#flowerpot", "cullface": "down"}
+			}
+		},
+		{
+			"from": [6, 5, 6],
+			"to": [10, 16, 10],
+			"faces": {
+				"up": {"uv": [6, 0, 10, 4], "texture": "#plant", "cullface": "up"}
+			}
+		},
+		{
+			"from": [6, 5, 3],
+			"to": [10, 16, 13],
+			"faces": {
+				"east": {"uv": [3, 5, 13, 16], "texture": "#plant"},
+				"west": {"uv": [3, 5, 13, 16], "texture": "#plant"}
+			}
+		},
+		{
+			"from": [3, 5, 6],
+			"to": [13, 16, 10],
+			"faces": {
+				"north": {"uv": [3, 5, 13, 16], "texture": "#plant"},
+				"south": {"uv": [3, 5, 13, 16], "texture": "#plant"}
+			}
+		}
+	]
+}

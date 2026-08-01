@@ -1,0 +1,17 @@
+{
+	"parent": "mysticsbiomes:block/glass_jar",
+	"elements": [
+		{
+			"from": [5, 1, 5],
+			"to": [11, 9, 11],
+			"faces": {
+				"north": {"uv": [1, 4, 7, 12], "texture": "#contents"},
+				"east": {"uv": [1, 4, 7, 12], "texture": "#contents"},
+				"south": {"uv": [1, 4, 7, 12], "texture": "#contents"},
+				"west": {"uv": [1, 4, 7, 12], "texture": "#contents"},
+				"up": {"uv": [9, 1, 15, 7], "texture": "#contents"},
+				"down": {"uv": [9, 9, 15, 15], "texture": "#contents"}
+			}
+		}
+	]
+}

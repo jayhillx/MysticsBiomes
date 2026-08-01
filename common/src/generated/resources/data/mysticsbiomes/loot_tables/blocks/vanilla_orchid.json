@@ -1,0 +1,49 @@
+{
+  "type": "minecraft:block",
+  "functions": [
+    {
+      "function": "minecraft:explosion_decay"
+    }
+  ],
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "block": "mysticsbiomes:vanilla_orchid",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "age": "2"
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "mysticsbiomes:vanilla_beans"
+        }
+      ],
+      "functions": [
+        {
+          "add": false,
+          "count": {
+            "type": "minecraft:uniform",
+            "max": 2.0,
+            "min": 1.0
+          },
+          "function": "minecraft:set_count"
+        },
+        {
+          "enchantment": "minecraft:fortune",
+          "formula": "minecraft:uniform_bonus_count",
+          "function": "minecraft:apply_bonus",
+          "parameters": {
+            "bonusMultiplier": 1
+          }
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "mysticsbiomes:blocks/vanilla_orchid"
+}

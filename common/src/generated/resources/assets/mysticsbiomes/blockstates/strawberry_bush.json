@@ -1,0 +1,40 @@
+{
+  "variants": {
+    "age=0,sweet=false": {
+      "model": "mysticsbiomes:block/strawberry_bush_stage0"
+    },
+    "age=0,sweet=true": {
+      "model": "mysticsbiomes:block/sweet_strawberry_bush_stage0"
+    },
+    "age=1,sweet=false": {
+      "model": "mysticsbiomes:block/strawberry_bush_stage1"
+    },
+    "age=1,sweet=true": {
+      "model": "mysticsbiomes:block/sweet_strawberry_bush_stage1"
+    },
+    "age=2,sweet=false": {
+      "model": "mysticsbiomes:block/strawberry_bush_stage2"
+    },
+    "age=2,sweet=true": {
+      "model": "mysticsbiomes:block/sweet_strawberry_bush_stage2"
+    },
+    "age=3,sweet=false": {
+      "model": "mysticsbiomes:block/strawberry_bush_stage3"
+    },
+    "age=3,sweet=true": {
+      "model": "mysticsbiomes:block/sweet_strawberry_bush_stage3"
+    },
+    "age=4,sweet=false": {
+      "model": "mysticsbiomes:block/strawberry_bush_stage4"
+    },
+    "age=4,sweet=true": {
+      "model": "mysticsbiomes:block/sweet_strawberry_bush_stage4"
+    },
+    "age=5,sweet=false": {
+      "model": "mysticsbiomes:block/strawberry_bush_stage5"
+    },
+    "age=5,sweet=true": {
+      "model": "mysticsbiomes:block/sweet_strawberry_bush_stage5"
+    }
+  }
+}

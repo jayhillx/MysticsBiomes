@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "G": {
+      "item": "minecraft:glass"
+    },
+    "W": {
+      "tag": "minecraft:planks"
+    }
+  },
+  "pattern": [
+    "GWG",
+    "G G",
+    "GGG"
+  ],
+  "result": {
+    "item": "mysticsbiomes:glass_jar"
+  },
+  "show_notification": true
+}

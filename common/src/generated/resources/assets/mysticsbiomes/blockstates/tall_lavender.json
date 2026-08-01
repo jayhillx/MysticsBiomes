@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "half=lower": {
+      "model": "mysticsbiomes:block/lavender_bottom"
+    },
+    "half=upper": {
+      "model": "mysticsbiomes:block/lavender_top"
+    }
+  }
+}

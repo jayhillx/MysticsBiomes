@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "chest_boat",
+  "ingredients": [
+    {
+      "item": "minecraft:chest"
+    },
+    {
+      "item": "mysticsbiomes:lavender_boat"
+    }
+  ],
+  "result": {
+    "item": "mysticsbiomes:lavender_chest_boat"
+  }
+}

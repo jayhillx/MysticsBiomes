@@ -1,0 +1,20 @@
+{
+  "variants": {
+    "half=lower": [
+      {
+        "model": "mysticsbiomes:block/sea_oats_bottom"
+      },
+      {
+        "model": "mysticsbiomes:block/sea_oats_bottom_variant"
+      }
+    ],
+    "half=upper": [
+      {
+        "model": "mysticsbiomes:block/sea_oats_top"
+      },
+      {
+        "model": "mysticsbiomes:block/sea_oats_top_variant"
+      }
+    ]
+  }
+}

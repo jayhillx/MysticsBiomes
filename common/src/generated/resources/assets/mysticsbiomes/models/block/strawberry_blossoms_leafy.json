@@ -1,0 +1,10 @@
+{
+  "parent": "mysticsbiomes:block/template_bushy_leaves_top_bottom",
+  "render_type": "minecraft:cutout_mipped",
+  "textures": {
+    "bottom": "mysticsbiomes:block/strawberry_blossoms_leaves",
+    "bushy": "mysticsbiomes:block/strawberry_blossoms_leafy_bushy",
+    "side": "mysticsbiomes:block/strawberry_blossoms_leafy",
+    "top": "mysticsbiomes:block/strawberry_blossoms"
+  }
+}

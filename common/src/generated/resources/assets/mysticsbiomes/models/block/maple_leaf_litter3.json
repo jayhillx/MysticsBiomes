@@ -1,0 +1,7 @@
+{
+  "parent": "mysticsbiomes:block/template_leaf_litter3",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "texture": "mysticsbiomes:block/maple_leaf_litter"
+  }
+}

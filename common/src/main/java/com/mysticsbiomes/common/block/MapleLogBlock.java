@@ -1,0 +1,5 @@
+package com.mysticsbiomes.common.block;
+
+public class MapleLogBlock {
+
+}

@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "mysticsbiomes:block/lavender_wood_horizontal",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "mysticsbiomes:block/lavender_wood"
+    },
+    "axis=z": {
+      "model": "mysticsbiomes:block/lavender_wood_horizontal",
+      "x": 90
+    }
+  }
+}

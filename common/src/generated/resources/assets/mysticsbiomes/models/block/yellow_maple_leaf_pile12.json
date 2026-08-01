@@ -1,0 +1,7 @@
+{
+  "parent": "mysticsbiomes:block/template_leaf_pile12",
+  "render_type": "minecraft:cutout_mipped",
+  "textures": {
+    "texture": "mysticsbiomes:block/yellow_maple_leaves"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "parent": "mysticsbiomes:block/template_milkweed",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "plant": "mysticsbiomes:block/milkweed_top",
+    "plant_leaf": "mysticsbiomes:block/milkweed_top_leaf"
+  }
+}

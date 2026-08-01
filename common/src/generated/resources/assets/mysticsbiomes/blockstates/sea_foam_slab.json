@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "mysticsbiomes:block/sea_foam_slab"
+    },
+    "type=double": {
+      "model": "mysticsbiomes:block/sea_foam_planks"
+    },
+    "type=top": {
+      "model": "mysticsbiomes:block/sea_foam_slab_top"
+    }
+  }
+}

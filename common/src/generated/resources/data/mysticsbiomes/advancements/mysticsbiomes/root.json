@@ -1,0 +1,156 @@
+{
+  "criteria": {
+    "autumnal_grove": {
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "biome": "mysticsbiomes:autumnal_grove"
+              }
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:location"
+    },
+    "bamboo_blossom_forest": {
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "biome": "mysticsbiomes:bamboo_blossom_forest"
+              }
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:location"
+    },
+    "lagoon": {
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "biome": "mysticsbiomes:lagoon"
+              }
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:location"
+    },
+    "lavender_meadow": {
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "biome": "mysticsbiomes:lavender_meadow"
+              }
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:location"
+    },
+    "lush_oasis": {
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "biome": "mysticsbiomes:lush_oasis"
+              }
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:location"
+    },
+    "strawberry_fields": {
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "biome": "mysticsbiomes:strawberry_fields"
+              }
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:location"
+    },
+    "tropics": {
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "biome": "mysticsbiomes:tropics"
+              }
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:location"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "background": "mysticsbiomes:textures/block/stripped_tropical_log.png",
+    "description": {
+      "translate": "advancements.mysticsbiomes.root.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "mysticsbiomes:logo"
+    },
+    "show_toast": false,
+    "title": {
+      "translate": "advancements.mysticsbiomes.root.title"
+    }
+  },
+  "requirements": [
+    [
+      "strawberry_fields"
+    ],
+    [
+      "lavender_meadow"
+    ],
+    [
+      "bamboo_blossom_forest"
+    ],
+    [
+      "autumnal_grove"
+    ],
+    [
+      "lush_oasis"
+    ],
+    [
+      "lagoon"
+    ],
+    [
+      "tropics"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

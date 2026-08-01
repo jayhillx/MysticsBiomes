@@ -1,0 +1,44 @@
+{
+  "parent": "mysticsbiomes:mysticsbiomes/craft_frosted_cakes",
+  "criteria": {
+    "chocolate_cake": {
+      "conditions": {},
+      "trigger": "mysticsbiomes:crafted_items"
+    },
+    "strawberry_cake": {
+      "conditions": {},
+      "trigger": "mysticsbiomes:crafted_items"
+    },
+    "vanilla_cake": {
+      "conditions": {},
+      "trigger": "mysticsbiomes:crafted_items"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.mysticsbiomes.craft_neapolitan_cakes.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "mysticsbiomes:neapolitan_cakes"
+    },
+    "show_toast": false,
+    "title": {
+      "translate": "advancements.mysticsbiomes.craft_neapolitan_cakes.title"
+    }
+  },
+  "requirements": [
+    [
+      "strawberry_cake"
+    ],
+    [
+      "vanilla_cake"
+    ],
+    [
+      "chocolate_cake"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

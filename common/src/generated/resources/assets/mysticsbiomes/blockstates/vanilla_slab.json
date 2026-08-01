@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "mysticsbiomes:block/vanilla_slab"
+    },
+    "type=double": {
+      "model": "mysticsbiomes:block/vanilla_planks"
+    },
+    "type=top": {
+      "model": "mysticsbiomes:block/vanilla_slab_top"
+    }
+  }
+}

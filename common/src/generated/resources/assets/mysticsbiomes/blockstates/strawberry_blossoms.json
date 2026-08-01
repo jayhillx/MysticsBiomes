@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "leafy=false,snipped=false": {
+      "model": "mysticsbiomes:block/strawberry_blossoms"
+    },
+    "leafy=false,snipped=true": {
+      "model": "mysticsbiomes:block/strawberry_blossoms_leaves"
+    },
+    "leafy=true,snipped=false": {
+      "model": "mysticsbiomes:block/strawberry_blossoms_leafy"
+    },
+    "leafy=true,snipped=true": {
+      "model": "mysticsbiomes:block/strawberry_blossoms"
+    }
+  }
+}

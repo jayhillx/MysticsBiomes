@@ -1,0 +1,11 @@
+{
+  "parent": "mysticsbiomes:block/template_pie",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "bottom": "mysticsbiomes:block/peach_pie_bottom",
+    "inside": "mysticsbiomes:block/peach_pie_inner",
+    "particle": "mysticsbiomes:block/peach_pie_side",
+    "side": "mysticsbiomes:block/peach_pie_side",
+    "top": "mysticsbiomes:block/peach_pie_top"
+  }
+}

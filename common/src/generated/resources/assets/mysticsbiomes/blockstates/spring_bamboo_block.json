@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "mysticsbiomes:block/spring_bamboo_block_horizontal",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "mysticsbiomes:block/spring_bamboo_block"
+    },
+    "axis=z": {
+      "model": "mysticsbiomes:block/spring_bamboo_block_horizontal",
+      "x": 90
+    }
+  }
+}

@@ -6,6 +6,9 @@
   "mixins": [
 
   ],
+  "client": [
+    "client.HangingSignEditScreenMixin"
+  ],
   "injectors": {
     "defaultRequire": 1
   },

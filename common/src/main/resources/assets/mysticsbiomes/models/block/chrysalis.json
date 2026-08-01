@@ -1,0 +1,21 @@
+{
+	"parent": "minecraft:block/block",
+	"textures": {
+		"all": "mysticsbiomes:block/chrysalis",
+		"particle": "mysticsbiomes:block/chrysalis"
+	},
+	"elements": [
+		{
+			"from": [6, 4, 12],
+			"to": [10, 12, 16],
+			"faces": {
+				"north": {"uv": [12, 4, 16, 12], "texture": "#all"},
+				"east": {"uv": [8, 4, 12, 12], "texture": "#all"},
+				"south": {"uv": [4, 4, 8, 12], "texture": "#all"},
+				"west": {"uv": [12, 4, 8, 12], "texture": "#all"},
+				"up": {"uv": [4, 12, 0, 8], "texture": "#all"},
+				"down": {"uv": [4, 4, 0, 8], "texture": "#all"}
+			}
+		}
+	]
+}

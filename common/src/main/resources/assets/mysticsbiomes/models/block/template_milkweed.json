@@ -1,0 +1,49 @@
+{
+	"ambientocclusion": false,
+	"render_type": "minecraft:cutout",
+	"textures": {
+		"particle": "#plant"
+	},
+	"elements": [
+		{
+			"from": [-2, 0, 8],
+			"to": [18, 16, 8],
+			"shade": false,
+			"rotation": {"angle": 45, "axis": "y", "origin": [8, 1, 8]},
+			"faces": {
+				"north": {"uv": [0, 0, 16, 16], "texture": "#plant"},
+				"south": {"uv": [0, 0, 16, 16], "texture": "#plant"}
+			}
+		},
+		{
+			"from": [8, 0, -2],
+			"to": [8, 16, 18],
+			"shade": false,
+			"rotation": {"angle": 45, "axis": "y", "origin": [8, 1, 8]},
+			"faces": {
+				"east": {"uv": [0, 0, 16, 16], "texture": "#plant"},
+				"west": {"uv": [0, 0, 16, 16], "texture": "#plant"}
+			}
+		},
+		{
+			"from": [0, 0, 8],
+			"to": [16, 16, 8],
+			"shade": false,
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 1, 8]},
+			"faces": {
+				"north": {"uv": [0, 0, 16, 16], "texture": "#plant_leaf"},
+				"south": {"uv": [0, 0, 16, 16], "texture": "#plant_leaf"}
+			}
+		},
+		{
+			"from": [8, 0, 0],
+			"to": [8, 16, 16],
+			"shade": false,
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 1, 8]},
+			"faces": {
+				"east": {"uv": [0, 0, 16, 16], "texture": "#plant_leaf"},
+				"west": {"uv": [0, 0, 16, 16], "texture": "#plant_leaf"}
+			}
+		}
+	]
+}

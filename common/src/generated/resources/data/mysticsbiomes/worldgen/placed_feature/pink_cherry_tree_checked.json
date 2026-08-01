@@ -1,0 +1,36 @@
+{
+  "feature": "mysticsbiomes:pink_cherry_tree",
+  "placement": [
+    {
+      "type": "minecraft:block_predicate_filter",
+      "predicate": {
+        "type": "minecraft:would_survive",
+        "state": {
+          "Name": "mysticsbiomes:pink_cherry_blossom_sapling",
+          "Properties": {
+            "stage": "0"
+          }
+        }
+      }
+    },
+    {
+      "type": "minecraft:block_predicate_filter",
+      "predicate": {
+        "type": "minecraft:matching_blocks",
+        "blocks": "minecraft:air"
+      }
+    },
+    {
+      "type": "minecraft:block_predicate_filter",
+      "predicate": {
+        "type": "minecraft:matching_blocks",
+        "blocks": "minecraft:grass_block",
+        "offset": [
+          0,
+          -1,
+          0
+        ]
+      }
+    }
+  ]
+}

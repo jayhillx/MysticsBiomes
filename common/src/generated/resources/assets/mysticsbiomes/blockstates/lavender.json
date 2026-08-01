@@ -1,0 +1,12 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "mysticsbiomes:block/lavender"
+      },
+      {
+        "model": "mysticsbiomes:block/lavender_variant"
+      }
+    ]
+  }
+}

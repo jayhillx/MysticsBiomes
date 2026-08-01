@@ -1,0 +1,35 @@
+{
+	"parent": "mysticsbiomes:block/glass_jar",
+	"elements": [
+		{
+			"from": [4, 5, 8],
+			"to": [12, 10, 8],
+			"rotation": {"angle": 45, "axis": "y", "origin": [8, 5, 8]},
+			"faces": {
+				"north": {"uv": [0, 2, 8, 7], "texture": "#contents"},
+				"south": {"uv": [0, 2, 8, 7], "texture": "#contents"}
+			}
+		},
+		{
+			"from": [4, 5, 8],
+			"to": [12, 10, 8],
+			"rotation": {"angle": -45, "axis": "y", "origin": [8, 5, 8]},
+			"faces": {
+				"north": {"uv": [0, 2, 8, 7], "texture": "#contents"},
+				"south": {"uv": [0, 2, 8, 7], "texture": "#contents"}
+			}
+		},
+		{
+			"from": [5, 1, 5],
+			"to": [11, 5, 11],
+			"faces": {
+				"north": {"uv": [9, 3, 15, 7], "texture": "#contents"},
+				"east": {"uv": [9, 3, 15, 7], "texture": "#contents"},
+				"south": {"uv": [9, 3, 15, 7], "texture": "#contents"},
+				"west": {"uv": [9, 3, 15, 7], "texture": "#contents"},
+				"up": {"uv": [1, 9, 7, 15], "texture": "#contents"},
+				"down": {"uv": [9, 9, 15, 15], "texture": "#contents"}
+			}
+		}
+	]
+}

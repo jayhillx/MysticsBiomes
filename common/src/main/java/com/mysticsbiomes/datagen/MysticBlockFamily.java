@@ -1,52 +1,46 @@
 package com.mysticsbiomes.datagen;
 
 import com.google.common.collect.Maps;
-import com.mysticsbiomes.core.registry.RegistryObject;
+import api.mystanica.registry.RegistryEntry;
 import net.minecraft.util.StringUtil;
 import net.minecraft.world.level.block.Block;
 
-import java.util.HashMap;
+import java.util.Collections;
 import java.util.Map;
 import java.util.Optional;
 
 public class MysticBlockFamily {
-    private final RegistryObject<Block> baseBlock;
-    private final Map<Variant, RegistryObject<Block>> variants = Maps.newHashMap();
+    private final RegistryEntry<Block> baseBlock;
+    private final Map<Variant, RegistryEntry<Block>> variants = Maps.newHashMap();
     private boolean generateModel = true;
-    private boolean generateRecipe = true;
+    ///private boolean generateRecipe = true;
     private boolean flammable = false;
     private String recipeGroupPrefix;
     private String recipeUnlockedBy;
 
-    public MysticBlockFamily(RegistryObject<Block> block) {
+    public MysticBlockFamily(RegistryEntry<Block> block) {
         this.baseBlock = block;
     }
 
-    public RegistryObject<Block> getBaseBlock() {
+    public RegistryEntry<Block> getBaseBlock() {
         return this.baseBlock;
     }
 
-    public Map<Variant, Block> getVariants() {
-        Map<Variant, Block> result = new HashMap<>();
-
-        for (var entry : this.variants.entrySet()) {
-            result.put(entry.getKey(), entry.getValue().get());
-        }
-
-        return result;
+    public Map<Variant, RegistryEntry<Block>> getVariants() {
+        return Collections.unmodifiableMap(this.variants);
     }
 
-    public RegistryObject<Block> get(Variant variant) {
+    public RegistryEntry<Block> get(Variant variant) {
         return this.variants.get(variant);
     }
-    
+
     public boolean shouldGenerateModel() {
         return this.generateModel;
     }
 
-    public boolean shouldGenerateRecipe() {
-        return this.generateRecipe;
-    }
+    ///public boolean shouldGenerateRecipe() {
+    ///    return this.generateRecipe;
+    ///}
 
     /**
      * @return determine whether the blocks will be sorted into the wooden tags or not. (i.e. wooden_stairs or stairs.)
@@ -66,7 +60,7 @@ public class MysticBlockFamily {
     public static class Builder {
         private final MysticBlockFamily family;
 
-        public Builder(RegistryObject<Block> block) {
+        public Builder(RegistryEntry<Block> block) {
             this.family = new MysticBlockFamily(block);
         }
 
@@ -74,109 +68,109 @@ public class MysticBlockFamily {
             return this.family;
         }
 
-        public Builder log(RegistryObject<Block> block) {
+        public Builder log(RegistryEntry<Block> block) {
             this.family.variants.put(Variant.LOG, block);
             return this;
         }
 
-        public Builder wood(RegistryObject<Block> block) {
+        public Builder wood(RegistryEntry<Block> block) {
             this.family.variants.put(Variant.WOOD, block);
             return this;
         }
 
-        public Builder secondaryLog(RegistryObject<Block> block) {
+        public Builder secondaryLog(RegistryEntry<Block> block) {
             this.family.variants.put(Variant.SECONDARY_LOG, block);
             return this;
         }
 
-        public Builder secondaryWood(RegistryObject<Block> block) {
+        public Builder secondaryWood(RegistryEntry<Block> block) {
             this.family.variants.put(Variant.SECONDARY_WOOD, block);
             return this;
         }
 
-        public Builder strippedLog(RegistryObject<Block> block) {
+        public Builder strippedLog(RegistryEntry<Block> block) {
             this.family.variants.put(Variant.STRIPPED_LOG, block);
             return this;
         }
 
-        public Builder strippedWood(RegistryObject<Block> block) {
+        public Builder strippedWood(RegistryEntry<Block> block) {
             this.family.variants.put(Variant.STRIPPED_WOOD, block);
             return this;
         }
 
-        public Builder planks(RegistryObject<Block> block) {
+        public Builder planks(RegistryEntry<Block> block) {
             this.family.variants.put(Variant.PLANKS, block);
             return this;
         }
 
-        public Builder stairs(RegistryObject<Block> block) {
+        public Builder stairs(RegistryEntry<Block> block) {
             this.family.variants.put(Variant.STAIRS, block);
             return this;
         }
 
-        public Builder slab(RegistryObject<Block> block) {
+        public Builder slab(RegistryEntry<Block> block) {
             this.family.variants.put(Variant.SLAB, block);
             return this;
         }
 
-        public Builder fence(RegistryObject<Block> block) {
+        public Builder fence(RegistryEntry<Block> block) {
             this.family.variants.put(Variant.FENCE, block);
             return this;
         }
 
-        public Builder fenceGate(RegistryObject<Block> block) {
+        public Builder fenceGate(RegistryEntry<Block> block) {
             this.family.variants.put(Variant.FENCE_GATE, block);
             return this;
         }
 
-        public Builder button(RegistryObject<Block> block) {
+        public Builder button(RegistryEntry<Block> block) {
             this.family.variants.put(Variant.BUTTON, block);
             return this;
         }
 
-        public Builder pressurePlate(RegistryObject<Block> block) {
+        public Builder pressurePlate(RegistryEntry<Block> block) {
             this.family.variants.put(Variant.PRESSURE_PLATE, block);
             return this;
         }
 
-        public Builder trapdoor(RegistryObject<Block> block) {
+        public Builder trapdoor(RegistryEntry<Block> block) {
             this.family.variants.put(Variant.TRAPDOOR, block);
             return this;
         }
 
-        public Builder door(RegistryObject<Block> block) {
+        public Builder door(RegistryEntry<Block> block) {
             this.family.variants.put(Variant.DOOR, block);
             return this;
         }
 
-        public Builder sign(RegistryObject<Block> standingSign, RegistryObject<Block> wallSign) {
+        public Builder sign(RegistryEntry<Block> standingSign, RegistryEntry<Block> wallSign) {
             this.family.variants.put(Variant.SIGN, standingSign);
             this.family.variants.put(Variant.WALL_SIGN, wallSign);
             return this;
         }
 
-        public Builder hangingSign(RegistryObject<Block> hangingSign, RegistryObject<Block> wallHangingSign) {
+        public Builder hangingSign(RegistryEntry<Block> hangingSign, RegistryEntry<Block> wallHangingSign) {
             this.family.variants.put(Variant.HANGING_SIGN, hangingSign);
             this.family.variants.put(Variant.WALL_HANGING_SIGN, wallHangingSign);
             return this;
         }
 
-        public Builder wall(RegistryObject<Block> block) {
+        public Builder wall(RegistryEntry<Block> block) {
             this.family.variants.put(Variant.WALL, block);
             return this;
         }
 
-        public Builder full(RegistryObject<Block> block) {
+        public Builder full(RegistryEntry<Block> block) {
             this.family.variants.put(Variant.FULL, block);
             return this;
         }
 
-        public Builder chiseled(RegistryObject<Block> block) {
+        public Builder chiseled(RegistryEntry<Block> block) {
             this.family.variants.put(Variant.CHISELED, block);
             return this;
         }
 
-        public Builder cut(RegistryObject<Block> block) {
+        public Builder cut(RegistryEntry<Block> block) {
             this.family.variants.put(Variant.CUT, block);
             return this;
         }
@@ -186,10 +180,10 @@ public class MysticBlockFamily {
             return this;
         }
 
-        public Builder dontGenerateRecipe() {
-            this.family.generateRecipe = false;
-            return this;
-        }
+        ///public Builder dontGenerateRecipe() {
+        ///    this.family.generateRecipe = false;
+        ///    return this;
+        ///}
 
         public Builder flammable() {
             this.family.flammable = true;
@@ -206,7 +200,7 @@ public class MysticBlockFamily {
             return this;
         }
     }
-    
+
     public enum Variant {
         LOG("log"),
         WOOD("wood"),
@@ -242,11 +236,15 @@ public class MysticBlockFamily {
             return this.recipeGroup;
         }
 
+        /**
+         * @return the block that would need to be gotten, like if this current variant is wood, it will need the log block name.
+         */
         public Variant source() {
             return switch (this) {
                 case WOOD -> LOG;
                 case SECONDARY_WOOD -> SECONDARY_LOG;
-                case STRIPPED_WOOD, HANGING_SIGN -> STRIPPED_LOG;
+                case STRIPPED_WOOD -> STRIPPED_LOG;
+                case HANGING_SIGN -> WALL_HANGING_SIGN;
                 case SIGN -> WALL_SIGN;
                 default -> this;
             };

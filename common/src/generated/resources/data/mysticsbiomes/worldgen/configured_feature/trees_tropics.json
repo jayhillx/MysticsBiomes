@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:random_selector",
+  "config": {
+    "default": "mysticsbiomes:tropical_tree_checked",
+    "features": [
+      {
+        "chance": 0.4,
+        "feature": "mysticsbiomes:tropical_tree_checked"
+      },
+      {
+        "chance": 0.4,
+        "feature": "mysticsbiomes:large_tropical_tree_checked"
+      },
+      {
+        "chance": 0.3,
+        "feature": "mysticsbiomes:vanilla_tree_checked"
+      }
+    ]
+  }
+}

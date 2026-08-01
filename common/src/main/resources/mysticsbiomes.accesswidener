@@ -3,6 +3,8 @@ accessWidener v1 named
 accessible field net/minecraft/world/item/AxeItem STRIPPABLES Ljava/util/Map;
 mutable field net/minecraft/world/item/AxeItem STRIPPABLES Ljava/util/Map;
 
+accessible method net/minecraft/advancements/CriteriaTriggers register (Lnet/minecraft/advancements/CriterionTrigger;)Lnet/minecraft/advancements/CriterionTrigger;
+
 accessible class net/minecraft/world/level/block/entity/BlockEntityType$BlockEntitySupplier
 accessible method net/minecraft/world/level/block/state/properties/BlockSetType register (Lnet/minecraft/world/level/block/state/properties/BlockSetType;)Lnet/minecraft/world/level/block/state/properties/BlockSetType;
 accessible method net/minecraft/world/level/block/state/properties/WoodType register (Lnet/minecraft/world/level/block/state/properties/WoodType;)Lnet/minecraft/world/level/block/state/properties/WoodType;
@@ -23,6 +25,9 @@ accessible method net/minecraft/world/level/block/FireBlock setFlammable (Lnet/m
 
 accessible method net/minecraft/world/level/block/state/properties/WoodType register (Lnet/minecraft/world/level/block/state/properties/WoodType;)Lnet/minecraft/world/level/block/state/properties/WoodType;
 accessible method net/minecraft/world/level/block/state/properties/BlockSetType	register (Lnet/minecraft/world/level/block/state/properties/BlockSetType;)Lnet/minecraft/world/level/block/state/properties/BlockSetType;
+
+accessible class net/minecraft/world/level/levelgen/feature/treedecorators/TreeDecoratorType
+accessible method net/minecraft/world/level/levelgen/feature/treedecorators/TreeDecoratorType <init> (Lcom/mojang/serialization/Codec;)V
 
 extendable method net/minecraft/world/entity/Entity getViewVector (F)Lnet/minecraft/world/phys/Vec3;
 

@@ -1,0 +1,30 @@
+{
+  "parent": "mysticsbiomes:mysticsbiomes/obtain_sweet_strawberry",
+  "criteria": {
+    "has_sweet_strawberry_cake": {
+      "conditions": {},
+      "trigger": "mysticsbiomes:crafted_items"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.mysticsbiomes.craft_sweet_strawberry_cake.description"
+    },
+    "frame": "challenge",
+    "hidden": false,
+    "icon": {
+      "item": "mysticsbiomes:sweet_strawberry_cake"
+    },
+    "show_toast": false,
+    "title": {
+      "translate": "advancements.mysticsbiomes.craft_sweet_strawberry_cake.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_sweet_strawberry_cake"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

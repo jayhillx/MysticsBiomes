@@ -1,6 +1,6 @@
 package com.mysticsbiomes;
 
-import com.mysticsbiomes.core.registry.DeferredRegisterFactory;
+import com.mysticsbiomes.init.MysticClient;
 import com.mysticsbiomes.init.*;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
@@ -8,7 +8,6 @@ import net.minecraft.resources.ResourceLocation;
 import java.util.List;
 
 public class MysticsBiomes {
-    public static DeferredRegisterFactory REGISTRY_FACTORY;
     public static final String modId = "mysticsbiomes";
 
     public static ResourceLocation modLoc(String path) {
@@ -19,7 +18,11 @@ public class MysticsBiomes {
         MysticBlocks.init();
         MysticBlockEntities.init();
         MysticEntities.init();
+        MysticFeatures.init();
         MysticItems.init();
+        MysticParticles.init();
+        MysticPoiTypes.init();
+        MysticSounds.init();
         MysticTabs.init();
     }
 
@@ -27,6 +30,8 @@ public class MysticsBiomes {
         MysticCompat.registerFlammables();
         MysticCompat.registerCompostables();
         MysticCompat.registerStrippables();
+
+        MysticCriteriaTriggers.registerCriteriaTriggers();
     }
 
     public static void setupClient() {
@@ -40,9 +45,10 @@ public class MysticsBiomes {
     }
 
     public static <T> List<T> getEntriesFromRegistry(Registry<T> registry) {
-        return registry.stream()
-                .filter(entry -> modId.equals(registry.getKey(entry).getNamespace()))
-                .toList();
+        return registry.stream().filter(entry -> {
+            ResourceLocation key = registry.getKey(entry);
+            return key != null && key.getNamespace().equals(modId);
+        }).toList();
     }
 
 }

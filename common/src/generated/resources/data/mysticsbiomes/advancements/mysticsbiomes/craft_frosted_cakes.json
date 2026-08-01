@@ -1,0 +1,65 @@
+{
+  "parent": "mysticsbiomes:mysticsbiomes/root",
+  "criteria": {
+    "cyan_frosted_cake": {
+      "conditions": {},
+      "trigger": "mysticsbiomes:crafted_items"
+    },
+    "lime_frosted_cake": {
+      "conditions": {},
+      "trigger": "mysticsbiomes:crafted_items"
+    },
+    "orange_frosted_cake": {
+      "conditions": {},
+      "trigger": "mysticsbiomes:crafted_items"
+    },
+    "pink_frosted_cake": {
+      "conditions": {},
+      "trigger": "mysticsbiomes:crafted_items"
+    },
+    "purple_frosted_cake": {
+      "conditions": {},
+      "trigger": "mysticsbiomes:crafted_items"
+    },
+    "yellow_frosted_cake": {
+      "conditions": {},
+      "trigger": "mysticsbiomes:crafted_items"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.mysticsbiomes.craft_frosted_cakes.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "mysticsbiomes:frosted_cakes"
+    },
+    "show_toast": false,
+    "title": {
+      "translate": "advancements.mysticsbiomes.craft_frosted_cakes.title"
+    }
+  },
+  "requirements": [
+    [
+      "pink_frosted_cake"
+    ],
+    [
+      "orange_frosted_cake"
+    ],
+    [
+      "yellow_frosted_cake"
+    ],
+    [
+      "lime_frosted_cake"
+    ],
+    [
+      "cyan_frosted_cake"
+    ],
+    [
+      "purple_frosted_cake"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

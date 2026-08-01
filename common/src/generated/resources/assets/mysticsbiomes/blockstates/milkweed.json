@@ -1,0 +1,192 @@
+{
+  "multipart": [
+    {
+      "apply": {
+        "model": "mysticsbiomes:block/milkweed_bottom"
+      },
+      "when": {
+        "half": "lower"
+      }
+    },
+    {
+      "apply": {
+        "model": "mysticsbiomes:block/milkweed_top"
+      },
+      "when": {
+        "half": "upper"
+      }
+    },
+    {
+      "apply": {
+        "model": "mysticsbiomes:block/milkweed_flower1"
+      },
+      "when": {
+        "facing": "north",
+        "flower_amount": "1",
+        "half": "lower"
+      }
+    },
+    {
+      "apply": {
+        "model": "mysticsbiomes:block/milkweed_flower1",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "flower_amount": "1",
+        "half": "lower"
+      }
+    },
+    {
+      "apply": {
+        "model": "mysticsbiomes:block/milkweed_flower1",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "flower_amount": "1",
+        "half": "lower"
+      }
+    },
+    {
+      "apply": {
+        "model": "mysticsbiomes:block/milkweed_flower1",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "flower_amount": "1",
+        "half": "lower"
+      }
+    },
+    {
+      "apply": {
+        "model": "mysticsbiomes:block/milkweed_flower2"
+      },
+      "when": {
+        "facing": "north",
+        "flower_amount": "2",
+        "half": "lower"
+      }
+    },
+    {
+      "apply": {
+        "model": "mysticsbiomes:block/milkweed_flower2",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "flower_amount": "2",
+        "half": "lower"
+      }
+    },
+    {
+      "apply": {
+        "model": "mysticsbiomes:block/milkweed_flower2",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "flower_amount": "2",
+        "half": "lower"
+      }
+    },
+    {
+      "apply": {
+        "model": "mysticsbiomes:block/milkweed_flower2",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "flower_amount": "2",
+        "half": "lower"
+      }
+    },
+    {
+      "apply": {
+        "model": "mysticsbiomes:block/milkweed_flower3"
+      },
+      "when": {
+        "facing": "north",
+        "flower_amount": "3",
+        "half": "lower"
+      }
+    },
+    {
+      "apply": {
+        "model": "mysticsbiomes:block/milkweed_flower3",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "flower_amount": "3",
+        "half": "lower"
+      }
+    },
+    {
+      "apply": {
+        "model": "mysticsbiomes:block/milkweed_flower3",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "flower_amount": "3",
+        "half": "lower"
+      }
+    },
+    {
+      "apply": {
+        "model": "mysticsbiomes:block/milkweed_flower3",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "flower_amount": "3",
+        "half": "lower"
+      }
+    },
+    {
+      "apply": {
+        "model": "mysticsbiomes:block/milkweed_flower4"
+      },
+      "when": {
+        "facing": "north",
+        "flower_amount": "4",
+        "half": "lower"
+      }
+    },
+    {
+      "apply": {
+        "model": "mysticsbiomes:block/milkweed_flower4",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "flower_amount": "4",
+        "half": "lower"
+      }
+    },
+    {
+      "apply": {
+        "model": "mysticsbiomes:block/milkweed_flower4",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "flower_amount": "4",
+        "half": "lower"
+      }
+    },
+    {
+      "apply": {
+        "model": "mysticsbiomes:block/milkweed_flower4",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "flower_amount": "4",
+        "half": "lower"
+      }
+    }
+  ]
+}

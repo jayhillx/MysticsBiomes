@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "mysticsbiomes:block/vanilla_log_top",
+    "side": "mysticsbiomes:block/vanilla_log"
+  }
+}

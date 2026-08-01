@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "half=lower": {
+      "model": "mysticsbiomes:block/desert_lily_bottom"
+    },
+    "half=upper": {
+      "model": "mysticsbiomes:block/desert_lily_top"
+    }
+  }
+}

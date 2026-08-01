@@ -5,9 +5,6 @@ import com.mysticsbiomes.init.MysticItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
-import net.minecraft.network.syncher.EntityDataAccessor;
-import net.minecraft.network.syncher.EntityDataSerializers;
-import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.vehicle.ChestBoat;
@@ -18,9 +15,8 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 
 public class MysticChestBoat extends ChestBoat {
-    private static final EntityDataAccessor<Integer> DATA_ID_TYPE = SynchedEntityData.defineId(MysticBoat.class, EntityDataSerializers.INT);
 
-    public MysticChestBoat(EntityType<? extends ChestBoat> entityType, Level level) {
+    public MysticChestBoat(EntityType<? extends MysticChestBoat> entityType, Level level) {
         super(entityType, level);
         this.blocksBuilding = true;
     }
@@ -36,18 +32,18 @@ public class MysticChestBoat extends ChestBoat {
     @Override
     protected void defineSynchedData() {
         super.defineSynchedData();
-        this.entityData.define(DATA_ID_TYPE, MysticBoat.Type.STRAWBERRY.ordinal());
+        this.entityData.define(MysticBoat.DATA_ID_TYPE, MysticBoat.Type.STRAWBERRY.ordinal());
     }
 
     @Override
     protected void addAdditionalSaveData(CompoundTag tag) {
-        tag.putString("model", this.getModel().getName());
+        tag.putString("Type", this.getModel().getName());
     }
 
     @Override
     protected void readAdditionalSaveData(CompoundTag tag) {
-        if (tag.contains("model", Tag.TAG_STRING)) {
-            this.entityData.set(DATA_ID_TYPE, Type.byName(tag.getString("model")).ordinal());
+        if (tag.contains("Type", Tag.TAG_STRING)) {
+            this.setModel(MysticBoat.Type.byName(tag.getString("Type")));
         }
     }
 
@@ -65,7 +61,7 @@ public class MysticChestBoat extends ChestBoat {
 
                     this.causeFallDamage(this.fallDistance, 1.0F, this.damageSources().fall());
 
-                    if (!this.level().isClientSide && !this.isRemoved()) {
+                    if (!this.level().isClientSide() && !this.isRemoved()) {
                         this.kill();
                         if (this.level().getGameRules().getBoolean(GameRules.RULE_DOENTITYDROPS)) {
                             for (int i = 0; i < 3; ++i) {
@@ -93,7 +89,7 @@ public class MysticChestBoat extends ChestBoat {
 
     @Override
     public Item getDropItem() {
-        return switch (MysticBoat.Type.byId(this.entityData.get(DATA_ID_TYPE))) {
+        return switch (MysticBoat.Type.byId(this.entityData.get(MysticBoat.DATA_ID_TYPE))) {
             case STRAWBERRY -> MysticItems.STRAWBERRY_BOAT.get();
             case BLACK_CHERRY -> MysticItems.BLACK_CHERRY_BOAT.get();
             case LAVENDER -> MysticItems.LAVENDER_BOAT.get();
@@ -107,11 +103,11 @@ public class MysticChestBoat extends ChestBoat {
     }
 
     public MysticBoat.Type getModel() {
-        return MysticBoat.Type.byId(this.entityData.get(DATA_ID_TYPE));
+        return MysticBoat.Type.byId(this.entityData.get(MysticBoat.DATA_ID_TYPE));
     }
 
     public void setModel(MysticBoat.Type type) {
-        this.entityData.set(DATA_ID_TYPE, type.ordinal());
+        this.entityData.set(MysticBoat.DATA_ID_TYPE, type.ordinal());
     }
 
 }

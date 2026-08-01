@@ -1,0 +1,6 @@
+{
+  "parent": "mysticsbiomes:block/template_candle_on_cake",
+  "textures": {
+    "candle": "minecraft:block/pink_candle_lit"
+  }
+}

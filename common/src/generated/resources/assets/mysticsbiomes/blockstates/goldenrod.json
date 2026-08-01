@@ -1,0 +1,20 @@
+{
+  "variants": {
+    "half=lower": [
+      {
+        "model": "mysticsbiomes:block/goldenrod_bottom"
+      },
+      {
+        "model": "mysticsbiomes:block/goldenrod_bottom_variant"
+      }
+    ],
+    "half=upper": [
+      {
+        "model": "mysticsbiomes:block/goldenrod_top"
+      },
+      {
+        "model": "mysticsbiomes:block/goldenrod_top_variant"
+      }
+    ]
+  }
+}

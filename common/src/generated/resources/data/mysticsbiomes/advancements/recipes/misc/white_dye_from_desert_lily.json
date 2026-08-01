@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_desert_lily": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mysticsbiomes:desert_lily"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "mysticsbiomes:white_dye_from_desert_lily"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_desert_lily",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "mysticsbiomes:white_dye_from_desert_lily"
+    ]
+  },
+  "sends_telemetry_event": false
+}

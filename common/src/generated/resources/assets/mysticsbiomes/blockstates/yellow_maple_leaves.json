@@ -1,0 +1,18 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "mysticsbiomes:block/yellow_maple_leaves",
+        "weight": 2
+      },
+      {
+        "model": "mysticsbiomes:block/yellow_maple_leaves_variant",
+        "weight": 2
+      },
+      {
+        "model": "mysticsbiomes:block/yellow_maple_leaves_variant2",
+        "weight": 2
+      }
+    ]
+  }
+}

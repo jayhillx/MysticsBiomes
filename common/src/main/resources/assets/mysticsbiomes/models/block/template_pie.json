@@ -1,10 +1,7 @@
 {
-	"render_type": "minecraft:cutout",
+	"parent": "minecraft:block/block",
 	"textures": {
-		"top": "mysticsbiomes:block/peach_pie_top",
-		"side": "mysticsbiomes:block/peach_pie_side",
-		"bottom": "mysticsbiomes:block/peach_pie_bottom",
-		"particle": "mysticsbiomes:block/peach_pie_top"
+		"particle": "#top"
 	},
 	"elements": [
 		{

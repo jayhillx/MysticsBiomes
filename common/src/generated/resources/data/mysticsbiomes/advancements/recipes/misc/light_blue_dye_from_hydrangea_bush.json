@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_hydrangea_bush": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mysticsbiomes:hydrangea_bush"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "mysticsbiomes:light_blue_dye_from_hydrangea_bush"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_hydrangea_bush",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "mysticsbiomes:light_blue_dye_from_hydrangea_bush"
+    ]
+  },
+  "sends_telemetry_event": false
+}

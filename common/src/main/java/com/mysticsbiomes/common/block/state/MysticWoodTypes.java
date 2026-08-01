@@ -1,6 +1,5 @@
 package com.mysticsbiomes.common.block.state;
 
-import com.mysticsbiomes.MysticsBiomes;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.level.block.SoundType;
@@ -20,11 +19,11 @@ public class MysticWoodTypes {
     public static final WoodType TROPICAL = register("tropical", MysticBlockSetTypes.TROPICAL);
 
     private static WoodType register(String name, BlockSetType type) {
-        return WoodType.register(new WoodType(MysticsBiomes.modId + ":" + name, type));
+        return WoodType.register(new WoodType(name, type));
     }
 
     private static WoodType register(String name, BlockSetType type, SoundType soundType, SoundType hangingSign, SoundEvent gateClose, SoundEvent gateOpen) {
-        return WoodType.register(new WoodType(MysticsBiomes.modId + ":" + name, type, soundType, hangingSign, gateClose, gateOpen));
+        return WoodType.register(new WoodType(name, type, soundType, hangingSign, gateClose, gateOpen));
     }
     
 }

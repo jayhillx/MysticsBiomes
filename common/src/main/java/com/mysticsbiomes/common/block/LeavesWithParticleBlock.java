@@ -1,15 +1,20 @@
 package com.mysticsbiomes.common.block;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.LeavesBlock;
 import net.minecraft.world.level.block.state.BlockState;
 
-public abstract class LeavesWithParticleBlock extends LeavesBlock {
+import java.util.function.Supplier;
 
-    public LeavesWithParticleBlock(Properties properties) {
+public abstract class LeavesWithParticleBlock extends LeavesBlock {
+    protected final Supplier<SimpleParticleType> particleType;
+
+    public LeavesWithParticleBlock(Supplier<SimpleParticleType> particleType, Properties properties) {
         super(properties);
+        this.particleType = particleType;
     }
 
     @Override

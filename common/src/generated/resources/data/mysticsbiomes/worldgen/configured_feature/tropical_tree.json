@@ -1,0 +1,48 @@
+{
+  "type": "mysticsbiomes:tropical_tree",
+  "config": {
+    "decorators": [
+      {
+        "type": "minecraft:cocoa",
+        "probability": 0.2
+      }
+    ],
+    "dirt_provider": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "minecraft:dirt"
+      }
+    },
+    "foliage_provider": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "mysticsbiomes:tropical_leaves",
+        "Properties": {
+          "distance": "7",
+          "persistent": "false",
+          "waterlogged": "false"
+        }
+      }
+    },
+    "minimum_size": {
+      "type": "minecraft:two_layers_feature_size",
+      "limit": 1,
+      "lower_size": 0,
+      "upper_size": 2
+    },
+    "trunk_provider": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "mysticsbiomes:tropical_log",
+        "Properties": {
+          "axis": "y"
+        }
+      }
+    },
+    "trunk_shape": {
+      "base_height": 10,
+      "double_trunk": false,
+      "rand_height": 4
+    }
+  }
+}

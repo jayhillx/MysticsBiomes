@@ -1,6 +1,6 @@
 package com.mysticsbiomes.common.entity.vehicle;
 
-import com.mysticsbiomes.core.registry.RegistryObject;
+import api.mystanica.registry.RegistryEntry;
 import com.mysticsbiomes.init.MysticBlocks;
 import com.mysticsbiomes.init.MysticEntities;
 import com.mysticsbiomes.init.MysticItems;
@@ -20,10 +20,8 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 
-import java.util.function.Supplier;
-
 public class MysticBoat extends Boat {
-    private static final EntityDataAccessor<Integer> DATA_ID_TYPE = SynchedEntityData.defineId(MysticBoat.class, EntityDataSerializers.INT);
+    public static final EntityDataAccessor<Integer> DATA_ID_TYPE = SynchedEntityData.defineId(MysticBoat.class, EntityDataSerializers.INT);
 
     public MysticBoat(EntityType<? extends MysticBoat> entityType, Level level) {
         super(entityType, level);
@@ -46,13 +44,13 @@ public class MysticBoat extends Boat {
 
     @Override
     protected void addAdditionalSaveData(CompoundTag tag) {
-        tag.putString("model", this.getModel().getName());
+        tag.putString("Type", this.getModel().getName());
     }
 
     @Override
     protected void readAdditionalSaveData(CompoundTag tag) {
-        if (tag.contains("model", Tag.TAG_STRING)) {
-            this.entityData.set(DATA_ID_TYPE, Type.byName(tag.getString("model")).ordinal());
+        if (tag.contains("Type", Tag.TAG_STRING)) {
+            this.setModel(Type.byName(tag.getString("Type")));
         }
     }
 
@@ -70,8 +68,9 @@ public class MysticBoat extends Boat {
 
                     this.causeFallDamage(this.fallDistance, 1.0F, this.damageSources().fall());
 
-                    if (!this.level().isClientSide && !this.isRemoved()) {
+                    if (!this.level().isClientSide() && !this.isRemoved()) {
                         this.kill();
+
                         if (this.level().getGameRules().getBoolean(GameRules.RULE_DOENTITYDROPS)) {
                             for (int i = 0; i < 3; ++i) {
                                 this.spawnAtLocation(this.getModel().getPlanks());
@@ -130,10 +129,10 @@ public class MysticBoat extends Boat {
         SEA_FOAM(MysticBlocks.SEA_FOAM_PLANKS, "sea_foam"),
         TROPICAL(MysticBlocks.TROPICAL_PLANKS, "tropical");
 
-        private final RegistryObject<Block> planks;
+        private final RegistryEntry<Block> planks;
         private final String name;
 
-        Type(RegistryObject<Block> block, String name) {
+        Type(RegistryEntry<Block> block, String name) {
             this.name = name;
             this.planks = block;
         }
@@ -155,6 +154,7 @@ public class MysticBoat extends Boat {
             if (id < 0 || id >= types.length) {
                 id = 0;
             }
+
             return types[id];
         }
 
@@ -165,9 +165,9 @@ public class MysticBoat extends Boat {
                     return type;
                 }
             }
+
             return types[0];
         }
     }
-
 
 }

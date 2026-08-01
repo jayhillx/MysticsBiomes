@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "mysticsbiomes:block/black_cherry_planks"
+  }
+}

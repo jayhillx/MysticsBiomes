@@ -1,0 +1,583 @@
+{
+  "multipart": [
+    {
+      "apply": {
+        "model": "mysticsbiomes:block/lime_frosted_cake"
+      },
+      "when": {
+        "bites": "0",
+        "facing": "north"
+      }
+    },
+    {
+      "apply": {
+        "model": "mysticsbiomes:block/lime_frosted_cake_slice1"
+      },
+      "when": {
+        "bites": "1",
+        "facing": "north"
+      }
+    },
+    {
+      "apply": {
+        "model": "mysticsbiomes:block/lime_frosted_cake_slice2"
+      },
+      "when": {
+        "bites": "2",
+        "facing": "north"
+      }
+    },
+    {
+      "apply": {
+        "model": "mysticsbiomes:block/lime_frosted_cake_slice3"
+      },
+      "when": {
+        "bites": "3",
+        "facing": "north"
+      }
+    },
+    {
+      "apply": {
+        "model": "mysticsbiomes:block/lime_frosted_cake_slice4"
+      },
+      "when": {
+        "bites": "4",
+        "facing": "north"
+      }
+    },
+    {
+      "apply": {
+        "model": "mysticsbiomes:block/lime_frosted_cake_slice5"
+      },
+      "when": {
+        "bites": "5",
+        "facing": "north"
+      }
+    },
+    {
+      "apply": {
+        "model": "mysticsbiomes:block/lime_frosted_cake_slice6"
+      },
+      "when": {
+        "bites": "6",
+        "facing": "north"
+      }
+    },
+    {
+      "apply": {
+        "model": "mysticsbiomes:block/lime_frosted_cake",
+        "y": 90
+      },
+      "when": {
+        "bites": "0",
+        "facing": "east"
+      }
+    },
+    {
+      "apply": {
+        "model": "mysticsbiomes:block/lime_frosted_cake_slice1",
+        "y": 90
+      },
+      "when": {
+        "bites": "1",
+        "facing": "east"
+      }
+    },
+    {
+      "apply": {
+        "model": "mysticsbiomes:block/lime_frosted_cake_slice2",
+        "y": 90
+      },
+      "when": {
+        "bites": "2",
+        "facing": "east"
+      }
+    },
+    {
+      "apply": {
+        "model": "mysticsbiomes:block/lime_frosted_cake_slice3",
+        "y": 90
+      },
+      "when": {
+        "bites": "3",
+        "facing": "east"
+      }
+    },
+    {
+      "apply": {
+        "model": "mysticsbiomes:block/lime_frosted_cake_slice4",
+        "y": 90
+      },
+      "when": {
+        "bites": "4",
+        "facing": "east"
+      }
+    },
+    {
+      "apply": {
+        "model": "mysticsbiomes:block/lime_frosted_cake_slice5",
+        "y": 90
+      },
+      "when": {
+        "bites": "5",
+        "facing": "east"
+      }
+    },
+    {
+      "apply": {
+        "model": "mysticsbiomes:block/lime_frosted_cake_slice6",
+        "y": 90
+      },
+      "when": {
+        "bites": "6",
+        "facing": "east"
+      }
+    },
+    {
+      "apply": {
+        "model": "mysticsbiomes:block/lime_frosted_cake",
+        "y": 180
+      },
+      "when": {
+        "bites": "0",
+        "facing": "south"
+      }
+    },
+    {
+      "apply": {
+        "model": "mysticsbiomes:block/lime_frosted_cake_slice1",
+        "y": 180
+      },
+      "when": {
+        "bites": "1",
+        "facing": "south"
+      }
+    },
+    {
+      "apply": {
+        "model": "mysticsbiomes:block/lime_frosted_cake_slice2",
+        "y": 180
+      },
+      "when": {
+        "bites": "2",
+        "facing": "south"
+      }
+    },
+    {
+      "apply": {
+        "model": "mysticsbiomes:block/lime_frosted_cake_slice3",
+        "y": 180
+      },
+      "when": {
+        "bites": "3",
+        "facing": "south"
+      }
+    },
+    {
+      "apply": {
+        "model": "mysticsbiomes:block/lime_frosted_cake_slice4",
+        "y": 180
+      },
+      "when": {
+        "bites": "4",
+        "facing": "south"
+      }
+    },
+    {
+      "apply": {
+        "model": "mysticsbiomes:block/lime_frosted_cake_slice5",
+        "y": 180
+      },
+      "when": {
+        "bites": "5",
+        "facing": "south"
+      }
+    },
+    {
+      "apply": {
+        "model": "mysticsbiomes:block/lime_frosted_cake_slice6",
+        "y": 180
+      },
+      "when": {
+        "bites": "6",
+        "facing": "south"
+      }
+    },
+    {
+      "apply": {
+        "model": "mysticsbiomes:block/lime_frosted_cake",
+        "y": 270
+      },
+      "when": {
+        "bites": "0",
+        "facing": "west"
+      }
+    },
+    {
+      "apply": {
+        "model": "mysticsbiomes:block/lime_frosted_cake_slice1",
+        "y": 270
+      },
+      "when": {
+        "bites": "1",
+        "facing": "west"
+      }
+    },
+    {
+      "apply": {
+        "model": "mysticsbiomes:block/lime_frosted_cake_slice2",
+        "y": 270
+      },
+      "when": {
+        "bites": "2",
+        "facing": "west"
+      }
+    },
+    {
+      "apply": {
+        "model": "mysticsbiomes:block/lime_frosted_cake_slice3",
+        "y": 270
+      },
+      "when": {
+        "bites": "3",
+        "facing": "west"
+      }
+    },
+    {
+      "apply": {
+        "model": "mysticsbiomes:block/lime_frosted_cake_slice4",
+        "y": 270
+      },
+      "when": {
+        "bites": "4",
+        "facing": "west"
+      }
+    },
+    {
+      "apply": {
+        "model": "mysticsbiomes:block/lime_frosted_cake_slice5",
+        "y": 270
+      },
+      "when": {
+        "bites": "5",
+        "facing": "west"
+      }
+    },
+    {
+      "apply": {
+        "model": "mysticsbiomes:block/lime_frosted_cake_slice6",
+        "y": 270
+      },
+      "when": {
+        "bites": "6",
+        "facing": "west"
+      }
+    },
+    {
+      "apply": {
+        "model": "mysticsbiomes:block/lime_frosted_cake_candle_lit"
+      },
+      "when": {
+        "candle": "candle",
+        "lit": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "mysticsbiomes:block/lime_frosted_cake_candle"
+      },
+      "when": {
+        "candle": "candle",
+        "lit": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "mysticsbiomes:block/lime_frosted_cake_white_candle_lit"
+      },
+      "when": {
+        "candle": "white_candle",
+        "lit": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "mysticsbiomes:block/lime_frosted_cake_white_candle"
+      },
+      "when": {
+        "candle": "white_candle",
+        "lit": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "mysticsbiomes:block/lime_frosted_cake_orange_candle_lit"
+      },
+      "when": {
+        "candle": "orange_candle",
+        "lit": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "mysticsbiomes:block/lime_frosted_cake_orange_candle"
+      },
+      "when": {
+        "candle": "orange_candle",
+        "lit": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "mysticsbiomes:block/lime_frosted_cake_magenta_candle_lit"
+      },
+      "when": {
+        "candle": "magenta_candle",
+        "lit": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "mysticsbiomes:block/lime_frosted_cake_magenta_candle"
+      },
+      "when": {
+        "candle": "magenta_candle",
+        "lit": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "mysticsbiomes:block/lime_frosted_cake_light_blue_candle_lit"
+      },
+      "when": {
+        "candle": "light_blue_candle",
+        "lit": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "mysticsbiomes:block/lime_frosted_cake_light_blue_candle"
+      },
+      "when": {
+        "candle": "light_blue_candle",
+        "lit": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "mysticsbiomes:block/lime_frosted_cake_yellow_candle_lit"
+      },
+      "when": {
+        "candle": "yellow_candle",
+        "lit": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "mysticsbiomes:block/lime_frosted_cake_yellow_candle"
+      },
+      "when": {
+        "candle": "yellow_candle",
+        "lit": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "mysticsbiomes:block/lime_frosted_cake_lime_candle_lit"
+      },
+      "when": {
+        "candle": "lime_candle",
+        "lit": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "mysticsbiomes:block/lime_frosted_cake_lime_candle"
+      },
+      "when": {
+        "candle": "lime_candle",
+        "lit": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "mysticsbiomes:block/lime_frosted_cake_pink_candle_lit"
+      },
+      "when": {
+        "candle": "pink_candle",
+        "lit": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "mysticsbiomes:block/lime_frosted_cake_pink_candle"
+      },
+      "when": {
+        "candle": "pink_candle",
+        "lit": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "mysticsbiomes:block/lime_frosted_cake_gray_candle_lit"
+      },
+      "when": {
+        "candle": "gray_candle",
+        "lit": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "mysticsbiomes:block/lime_frosted_cake_gray_candle"
+      },
+      "when": {
+        "candle": "gray_candle",
+        "lit": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "mysticsbiomes:block/lime_frosted_cake_light_gray_candle_lit"
+      },
+      "when": {
+        "candle": "light_gray_candle",
+        "lit": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "mysticsbiomes:block/lime_frosted_cake_light_gray_candle"
+      },
+      "when": {
+        "candle": "light_gray_candle",
+        "lit": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "mysticsbiomes:block/lime_frosted_cake_cyan_candle_lit"
+      },
+      "when": {
+        "candle": "cyan_candle",
+        "lit": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "mysticsbiomes:block/lime_frosted_cake_cyan_candle"
+      },
+      "when": {
+        "candle": "cyan_candle",
+        "lit": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "mysticsbiomes:block/lime_frosted_cake_purple_candle_lit"
+      },
+      "when": {
+        "candle": "purple_candle",
+        "lit": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "mysticsbiomes:block/lime_frosted_cake_purple_candle"
+      },
+      "when": {
+        "candle": "purple_candle",
+        "lit": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "mysticsbiomes:block/lime_frosted_cake_blue_candle_lit"
+      },
+      "when": {
+        "candle": "blue_candle",
+        "lit": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "mysticsbiomes:block/lime_frosted_cake_blue_candle"
+      },
+      "when": {
+        "candle": "blue_candle",
+        "lit": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "mysticsbiomes:block/lime_frosted_cake_brown_candle_lit"
+      },
+      "when": {
+        "candle": "brown_candle",
+        "lit": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "mysticsbiomes:block/lime_frosted_cake_brown_candle"
+      },
+      "when": {
+        "candle": "brown_candle",
+        "lit": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "mysticsbiomes:block/lime_frosted_cake_green_candle_lit"
+      },
+      "when": {
+        "candle": "green_candle",
+        "lit": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "mysticsbiomes:block/lime_frosted_cake_green_candle"
+      },
+      "when": {
+        "candle": "green_candle",
+        "lit": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "mysticsbiomes:block/lime_frosted_cake_red_candle_lit"
+      },
+      "when": {
+        "candle": "red_candle",
+        "lit": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "mysticsbiomes:block/lime_frosted_cake_red_candle"
+      },
+      "when": {
+        "candle": "red_candle",
+        "lit": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "mysticsbiomes:block/lime_frosted_cake_black_candle_lit"
+      },
+      "when": {
+        "candle": "black_candle",
+        "lit": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "mysticsbiomes:block/lime_frosted_cake_black_candle"
+      },
+      "when": {
+        "candle": "black_candle",
+        "lit": "false"
+      }
+    }
+  ]
+}

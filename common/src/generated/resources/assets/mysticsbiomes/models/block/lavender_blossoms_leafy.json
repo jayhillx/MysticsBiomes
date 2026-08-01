@@ -1,0 +1,10 @@
+{
+  "parent": "mysticsbiomes:block/template_bushy_leaves_top_bottom",
+  "render_type": "minecraft:cutout_mipped",
+  "textures": {
+    "bottom": "mysticsbiomes:block/lavender_blossoms_leaves",
+    "bushy": "mysticsbiomes:block/lavender_blossoms_leafy_bushy",
+    "side": "mysticsbiomes:block/lavender_blossoms_leafy",
+    "top": "mysticsbiomes:block/lavender_blossoms"
+  }
+}

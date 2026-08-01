@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/door_bottom_left",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "bottom": "mysticsbiomes:block/lavender_door_bottom",
+    "top": "mysticsbiomes:block/lavender_door_top"
+  }
+}

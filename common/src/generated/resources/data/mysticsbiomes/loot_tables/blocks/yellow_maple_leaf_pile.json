@@ -1,0 +1,189 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:alternatives",
+          "children": [
+            {
+              "type": "minecraft:item",
+              "conditions": [
+                {
+                  "block": "mysticsbiomes:yellow_maple_leaf_pile",
+                  "condition": "minecraft:block_state_property",
+                  "properties": {
+                    "layers": "1"
+                  }
+                }
+              ],
+              "functions": [
+                {
+                  "add": false,
+                  "count": 1.0,
+                  "function": "minecraft:set_count"
+                }
+              ],
+              "name": "mysticsbiomes:yellow_maple_leaf_pile"
+            },
+            {
+              "type": "minecraft:item",
+              "conditions": [
+                {
+                  "block": "mysticsbiomes:yellow_maple_leaf_pile",
+                  "condition": "minecraft:block_state_property",
+                  "properties": {
+                    "layers": "2"
+                  }
+                }
+              ],
+              "functions": [
+                {
+                  "add": false,
+                  "count": 2.0,
+                  "function": "minecraft:set_count"
+                }
+              ],
+              "name": "mysticsbiomes:yellow_maple_leaf_pile"
+            },
+            {
+              "type": "minecraft:item",
+              "conditions": [
+                {
+                  "block": "mysticsbiomes:yellow_maple_leaf_pile",
+                  "condition": "minecraft:block_state_property",
+                  "properties": {
+                    "layers": "3"
+                  }
+                }
+              ],
+              "functions": [
+                {
+                  "add": false,
+                  "count": 3.0,
+                  "function": "minecraft:set_count"
+                }
+              ],
+              "name": "mysticsbiomes:yellow_maple_leaf_pile"
+            },
+            {
+              "type": "minecraft:item",
+              "conditions": [
+                {
+                  "block": "mysticsbiomes:yellow_maple_leaf_pile",
+                  "condition": "minecraft:block_state_property",
+                  "properties": {
+                    "layers": "4"
+                  }
+                }
+              ],
+              "functions": [
+                {
+                  "add": false,
+                  "count": 4.0,
+                  "function": "minecraft:set_count"
+                }
+              ],
+              "name": "mysticsbiomes:yellow_maple_leaf_pile"
+            },
+            {
+              "type": "minecraft:item",
+              "conditions": [
+                {
+                  "block": "mysticsbiomes:yellow_maple_leaf_pile",
+                  "condition": "minecraft:block_state_property",
+                  "properties": {
+                    "layers": "5"
+                  }
+                }
+              ],
+              "functions": [
+                {
+                  "add": false,
+                  "count": 5.0,
+                  "function": "minecraft:set_count"
+                }
+              ],
+              "name": "mysticsbiomes:yellow_maple_leaf_pile"
+            },
+            {
+              "type": "minecraft:item",
+              "conditions": [
+                {
+                  "block": "mysticsbiomes:yellow_maple_leaf_pile",
+                  "condition": "minecraft:block_state_property",
+                  "properties": {
+                    "layers": "6"
+                  }
+                }
+              ],
+              "functions": [
+                {
+                  "add": false,
+                  "count": 6.0,
+                  "function": "minecraft:set_count"
+                }
+              ],
+              "name": "mysticsbiomes:yellow_maple_leaf_pile"
+            },
+            {
+              "type": "minecraft:item",
+              "conditions": [
+                {
+                  "block": "mysticsbiomes:yellow_maple_leaf_pile",
+                  "condition": "minecraft:block_state_property",
+                  "properties": {
+                    "layers": "7"
+                  }
+                }
+              ],
+              "functions": [
+                {
+                  "add": false,
+                  "count": 7.0,
+                  "function": "minecraft:set_count"
+                }
+              ],
+              "name": "mysticsbiomes:yellow_maple_leaf_pile"
+            },
+            {
+              "type": "minecraft:item",
+              "name": "mysticsbiomes:yellow_maple_leaves"
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "minecraft:any_of",
+              "terms": [
+                {
+                  "condition": "minecraft:match_tool",
+                  "predicate": {
+                    "items": [
+                      "minecraft:shears"
+                    ]
+                  }
+                },
+                {
+                  "condition": "minecraft:match_tool",
+                  "predicate": {
+                    "enchantments": [
+                      {
+                        "enchantment": "minecraft:silk_touch",
+                        "levels": {
+                          "min": 1
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "mysticsbiomes:blocks/yellow_maple_leaf_pile"
+}

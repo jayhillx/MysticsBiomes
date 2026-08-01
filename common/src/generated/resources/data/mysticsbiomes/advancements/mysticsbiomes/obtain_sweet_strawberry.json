@@ -1,0 +1,38 @@
+{
+  "parent": "mysticsbiomes:mysticsbiomes/root",
+  "criteria": {
+    "has_sweet_strawberry": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mysticsbiomes:sweet_strawberry"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.mysticsbiomes.obtain_sweet_strawberry.description"
+    },
+    "frame": "challenge",
+    "hidden": false,
+    "icon": {
+      "item": "mysticsbiomes:sweet_strawberry"
+    },
+    "show_toast": false,
+    "title": {
+      "translate": "advancements.mysticsbiomes.obtain_sweet_strawberry.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_sweet_strawberry"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

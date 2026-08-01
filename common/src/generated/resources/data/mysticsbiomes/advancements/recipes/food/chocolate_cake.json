@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_chocolate_milk_bucket": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mysticsbiomes:chocolate_milk_bucket"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "mysticsbiomes:chocolate_cake"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_chocolate_milk_bucket",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "mysticsbiomes:chocolate_cake"
+    ]
+  },
+  "sends_telemetry_event": false
+}

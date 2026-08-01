@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_saguaro_blossom": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mysticsbiomes:saguaro_blossom"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "mysticsbiomes:white_dye_from_saguaro_blossom"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_saguaro_blossom",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "mysticsbiomes:white_dye_from_saguaro_blossom"
+    ]
+  },
+  "sends_telemetry_event": false
+}

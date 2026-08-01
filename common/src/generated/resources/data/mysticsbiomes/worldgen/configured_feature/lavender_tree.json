@@ -1,0 +1,50 @@
+{
+  "type": "mysticsbiomes:bushy_tree",
+  "config": {
+    "decorators": [
+      {
+        "type": "mysticsbiomes:butterfly_nest",
+        "probability": 0.5
+      }
+    ],
+    "dirt_provider": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "minecraft:dirt"
+      }
+    },
+    "foliage_provider": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "mysticsbiomes:lavender_blossoms",
+        "Properties": {
+          "distance": "1",
+          "leafy": "false",
+          "persistent": "true",
+          "snipped": "false",
+          "waterlogged": "true"
+        }
+      }
+    },
+    "minimum_size": {
+      "type": "minecraft:two_layers_feature_size",
+      "limit": 1,
+      "lower_size": 0,
+      "upper_size": 1
+    },
+    "trunk_provider": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "mysticsbiomes:lavender_log",
+        "Properties": {
+          "axis": "y"
+        }
+      }
+    },
+    "trunk_shape": {
+      "base_height": 7,
+      "double_trunk": false,
+      "rand_height": 2
+    }
+  }
+}

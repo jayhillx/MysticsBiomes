@@ -1,0 +1,9 @@
+{
+  "parent": "minecraft:block/template_potted_azalea_bush",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "plant": "mysticsbiomes:block/sea_shrub_plant_potted",
+    "side": "mysticsbiomes:block/sea_shrub_side_potted",
+    "top": "mysticsbiomes:block/sea_shrub_top_potted"
+  }
+}

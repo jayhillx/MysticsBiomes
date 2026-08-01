@@ -1,6 +1,6 @@
 package com.mysticsbiomes.datagen;
 
-import com.mysticsbiomes.core.registry.RegistryObject;
+import api.mystanica.registry.RegistryEntry;
 import com.mysticsbiomes.init.MysticBlocks;
 import net.minecraft.world.level.block.Block;
 
@@ -9,8 +9,27 @@ import java.util.Map;
 import java.util.stream.Stream;
 
 public class MysticBlockFamilies {
-    private static final Map<RegistryObject<Block>, MysticBlockFamily> FAMILIES = new LinkedHashMap<>();
+    private static final Map<RegistryEntry<Block>, MysticBlockFamily> FAMILIES = new LinkedHashMap<>();
 
+    public static final MysticBlockFamily LUSH_SANDSTONE = familyBuilder(MysticBlocks.LUSH_SANDSTONE)
+            .full(MysticBlocks.LUSH_SANDSTONE)
+            .stairs(MysticBlocks.LUSH_SANDSTONE_STAIRS)
+            .slab(MysticBlocks.LUSH_SANDSTONE_SLAB)
+            .wall(MysticBlocks.LUSH_SANDSTONE_WALL)
+            .chiseled(MysticBlocks.CHISELED_LUSH_SANDSTONE)
+            .cut(MysticBlocks.CUT_LUSH_SANDSTONE)
+            .dontGenerateModel()
+            .build();
+    public static final MysticBlockFamily CUT_LUSH_SANDSTONE = familyBuilder(MysticBlocks.CUT_LUSH_SANDSTONE)
+            .slab(MysticBlocks.CUT_LUSH_SANDSTONE_SLAB)
+            .dontGenerateModel()
+            .build();
+    public static final MysticBlockFamily SMOOTH_LUSH_SANDSTONE = familyBuilder(MysticBlocks.SMOOTH_LUSH_SANDSTONE)
+            .full(MysticBlocks.SMOOTH_LUSH_SANDSTONE)
+            .stairs(MysticBlocks.SMOOTH_LUSH_SANDSTONE_STAIRS)
+            .slab(MysticBlocks.SMOOTH_LUSH_SANDSTONE_SLAB)
+            .dontGenerateModel()
+            .build();
     public static final MysticBlockFamily STRAWBERRY_WOOD = familyBuilder(MysticBlocks.STRAWBERRY_PLANKS)
             .log(MysticBlocks.STRAWBERRY_LOG)
             .wood(MysticBlocks.STRAWBERRY_WOOD)
@@ -90,22 +109,6 @@ public class MysticBlockFamilies {
             .recipeGroupPrefix("wooden")
             .recipeUnlockedBy("has_planks")
             .flammable()
-            .build();
-    public static final MysticBlockFamily LUSH_SANDSTONE = familyBuilder(MysticBlocks.LUSH_SANDSTONE)
-            .full(MysticBlocks.LUSH_SANDSTONE)
-            .stairs(MysticBlocks.LUSH_SANDSTONE_STAIRS)
-            .slab(MysticBlocks.LUSH_SANDSTONE_SLAB)
-            .wall(MysticBlocks.LUSH_SANDSTONE_WALL)
-            .chiseled(MysticBlocks.CHISELED_LUSH_SANDSTONE)
-            .cut(MysticBlocks.CUT_LUSH_SANDSTONE)
-            .build();
-    public static final MysticBlockFamily CUT_LUSH_SANDSTONE = familyBuilder(MysticBlocks.CUT_LUSH_SANDSTONE)
-            .slab(MysticBlocks.CUT_LUSH_SANDSTONE_SLAB)
-            .build();
-    public static final MysticBlockFamily SMOOTH_LUSH_SANDSTONE = familyBuilder(MysticBlocks.SMOOTH_LUSH_SANDSTONE)
-            .full(MysticBlocks.SMOOTH_LUSH_SANDSTONE)
-            .stairs(MysticBlocks.SMOOTH_LUSH_SANDSTONE_STAIRS)
-            .slab(MysticBlocks.SMOOTH_LUSH_SANDSTONE_SLAB)
             .build();
     public static final MysticBlockFamily PEACH_WOOD = familyBuilder(MysticBlocks.PEACH_PLANKS)
             .log(MysticBlocks.PEACH_LOG)
@@ -213,7 +216,7 @@ public class MysticBlockFamilies {
             .flammable()
             .build();
 
-    private static MysticBlockFamily.Builder familyBuilder(RegistryObject<Block> block) {
+    private static MysticBlockFamily.Builder familyBuilder(RegistryEntry<Block> block) {
         MysticBlockFamily.Builder builder = new MysticBlockFamily.Builder(block);
         FAMILIES.put(block, builder.build());
         return builder;

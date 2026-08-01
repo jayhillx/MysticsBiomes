@@ -1,0 +1,11 @@
+{
+  "parent": "mysticsbiomes:block/template_pie",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "bottom": "mysticsbiomes:block/cherry_pie_bottom",
+    "inside": "mysticsbiomes:block/cherry_pie_inner",
+    "particle": "mysticsbiomes:block/cherry_pie_side",
+    "side": "mysticsbiomes:block/cherry_pie_side",
+    "top": "mysticsbiomes:block/cherry_pie_top"
+  }
+}

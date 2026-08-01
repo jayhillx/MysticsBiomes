@@ -1,0 +1,9 @@
+{
+  "parent": "mysticsbiomes:block/template_bush",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "plant": "mysticsbiomes:block/peony_bush_plant",
+    "side": "mysticsbiomes:block/peony_bush_side",
+    "top": "mysticsbiomes:block/peony_bush_top"
+  }
+}

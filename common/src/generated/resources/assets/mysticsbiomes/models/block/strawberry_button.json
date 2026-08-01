@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/button",
+  "textures": {
+    "texture": "mysticsbiomes:block/strawberry_planks"
+  }
+}

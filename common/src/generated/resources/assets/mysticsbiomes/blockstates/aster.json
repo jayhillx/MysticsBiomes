@@ -1,0 +1,15 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "mysticsbiomes:block/aster"
+      },
+      {
+        "model": "mysticsbiomes:block/aster_variant"
+      },
+      {
+        "model": "mysticsbiomes:block/aster_variant2"
+      }
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "mysticsbiomes:block/hydrangea_bush_leaves",
+        "weight": 2
+      },
+      {
+        "model": "mysticsbiomes:block/hydrangea_bush_leaves_variant",
+        "weight": 2
+      },
+      {
+        "model": "mysticsbiomes:block/hydrangea_bush_leaves_variant2",
+        "weight": 2
+      },
+      {
+        "model": "mysticsbiomes:block/hydrangea_bush_leaves_variant3",
+        "weight": 2
+      }
+    ]
+  }
+}

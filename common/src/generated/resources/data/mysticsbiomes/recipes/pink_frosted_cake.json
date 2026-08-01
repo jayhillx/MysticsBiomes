@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "E": {
+      "item": "mysticsbiomes:pink_egg"
+    },
+    "M": {
+      "item": "minecraft:milk_bucket"
+    },
+    "S": {
+      "item": "minecraft:sugar"
+    },
+    "W": {
+      "item": "minecraft:wheat"
+    }
+  },
+  "pattern": [
+    "MMM",
+    "SES",
+    "WWW"
+  ],
+  "result": {
+    "item": "mysticsbiomes:pink_frosted_cake"
+  },
+  "show_notification": true
+}

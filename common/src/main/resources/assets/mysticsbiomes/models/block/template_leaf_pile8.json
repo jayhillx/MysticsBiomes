@@ -1,9 +1,7 @@
 {
 	"parent": "minecraft:block/thin_block",
-	"render_type": "minecraft:cutout_mipped",
 	"textures": {
-		"texture": "mysticsbiomes:block/maple_leaves",
-		"particle": "mysticsbiomes:block/maple_leaves"
+		"particle": "#texture"
 	},
 	"elements": [
 		{

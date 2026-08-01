@@ -1,13 +1,12 @@
 package com.mysticsbiomes.common.block;
 
 import com.google.common.collect.ImmutableList;
-import net.minecraft.Util;
+import com.mysticsbiomes.common.block.util.VoxelShapeUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.InteractionHand;
@@ -27,7 +26,6 @@ import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.level.storage.loot.LootParams;
-import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
@@ -43,38 +41,36 @@ public class MysticCakeBlock extends AbstractCandleBlock {
     public static final IntegerProperty BITES = BlockStateProperties.BITES;
     public static final EnumProperty<Candle> CANDLE = EnumProperty.create("candle", Candle.class);
     private static final VoxelShape CANDLE_SHAPE = Block.box(7.0D, 8.0D, 7.0D, 9.0D, 14.0D, 9.0D);
-    private static final VoxelShape[] CAKE_SHAPES = {Block.box(1.0D, 0.0D, 1.0D, 15.0D, 8.0D, 15.0D), Block.box(3.0D, 0.0D, 1.0D, 15.0D, 8.0D, 15.0D), Block.box(5.0D, 0.0D, 1.0D, 15.0D, 8.0D, 15.0D), Block.box(7.0D, 0.0D, 1.0D, 15.0D, 8.0D, 15.0D), Block.box(9.0D, 0.0D, 1.0D, 15.0D, 8.0D, 15.0D), Block.box(11.0D, 0.0D, 1.0D, 15.0D, 8.0D, 15.0D), Block.box(13.0D, 0.0D, 1.0D, 15.0D, 8.0D, 15.0D)};
-    private static final BiFunction<Direction, Integer, VoxelShape> SHAPE_BY_PROPERTIES = Util.memoize((direction, bites) -> {
-        VoxelShape shape = CAKE_SHAPES[bites];
+    private static final VoxelShape[] CAKE_SHAPES = {
+            Block.box(1.0D, 0.0D, 1.0D, 15.0D, 8.0D, 15.0D),
+            Block.box(3.0D, 0.0D, 1.0D, 15.0D, 8.0D, 15.0D),
+            Block.box(5.0D, 0.0D, 1.0D, 15.0D, 8.0D, 15.0D),
+            Block.box(7.0D, 0.0D, 1.0D, 15.0D, 8.0D, 15.0D),
+            Block.box(9.0D, 0.0D, 1.0D, 15.0D, 8.0D, 15.0D),
+            Block.box(11.0D, 0.0D, 1.0D, 15.0D, 8.0D, 15.0D),
+            Block.box(13.0D, 0.0D, 1.0D, 15.0D, 8.0D, 15.0D)
+    };
+    private static final BiFunction<Direction, Integer, VoxelShape> SHAPE_BY_PROPERTIES = VoxelShapeUtils.createShapeRotator(CAKE_SHAPES);
+    private final int foodLevel;
+    private final float saturationLevel;
 
-        if (direction == Direction.NORTH) {
-            return shape;
-        }
-
-        VoxelShape rotated = Shapes.empty();
-        for (AABB box : shape.toAabbs()) {
-            AABB rotatedBox = switch (direction) {
-                case EAST -> new AABB(1 - box.maxZ, box.minY, box.minX, 1 - box.minZ, box.maxY, box.maxX);
-                case SOUTH -> new AABB(1 - box.maxX, box.minY, 1 - box.maxZ, 1 - box.minX, box.maxY, 1 - box.minZ);
-                case WEST -> new AABB(box.minZ, box.minY, 1 - box.maxX, box.maxZ, box.maxY, 1 - box.minX);
-                default -> box;
-            };
-
-            rotated = Shapes.or(rotated, Shapes.create(rotatedBox));
-        }
-
-        return rotated.optimize();
-    });
-
-    public MysticCakeBlock(Properties properties) {
+    public MysticCakeBlock(int foodLevel, float saturationLevel, Properties properties) {
         super(properties);
         this.registerDefaultState(this.stateDefinition.any().setValue(BITES, 0).setValue(FACING, Direction.NORTH).setValue(CANDLE, Candle.NONE).setValue(LIT, false));
+        this.foodLevel = foodLevel;
+        this.saturationLevel = saturationLevel;
+    }
+
+    public MysticCakeBlock(Properties properties) {
+        this(6, 0.4F, properties);
     }
 
     @Override
     public List<ItemStack> getDrops(BlockState state, LootParams.Builder builder) {
         List<ItemStack> drops = new ArrayList<>();
-        drops.add(new ItemStack(this));
+        if (state.getValue(BITES) == 0) {
+            drops.add(new ItemStack(this));
+        }
 
         if (state.getValue(CANDLE) != Candle.NONE) {
             drops.add(new ItemStack(state.getValue(CANDLE).getCandle()));
@@ -98,7 +94,7 @@ public class MysticCakeBlock extends AbstractCandleBlock {
                 level.setBlockAndUpdate(pos, state.setValue(CANDLE, Candle.fromBlock(block)).setValue(LIT, false));
                 level.gameEvent(player, GameEvent.BLOCK_CHANGE, pos);
                 player.awardStat(Stats.ITEM_USED.get(stack.getItem()));
-                return InteractionResult.sidedSuccess(level.isClientSide);
+                return InteractionResult.sidedSuccess(level.isClientSide());
             }
         }
 
@@ -106,12 +102,12 @@ public class MysticCakeBlock extends AbstractCandleBlock {
             if (!state.getValue(LIT) && (stack.is(Items.FLINT_AND_STEEL) || stack.is(Items.FIRE_CHARGE)) && candleHit(hitResult)) {
                 level.setBlock(pos, state.setValue(LIT, true), 3);
                 level.playSound(null, pos, SoundEvents.FLINTANDSTEEL_USE, SoundSource.BLOCKS, 1.0F, level.random.nextFloat() * 0.4F + 0.8F);
-                return InteractionResult.sidedSuccess(level.isClientSide);
+                return InteractionResult.sidedSuccess(level.isClientSide());
             }
 
             if (state.getValue(LIT) && stack.isEmpty() && candleHit(hitResult)) {
                 extinguish(player, state, level, pos);
-                return InteractionResult.sidedSuccess(level.isClientSide);
+                return InteractionResult.sidedSuccess(level.isClientSide());
             }
         }
 
@@ -122,24 +118,23 @@ public class MysticCakeBlock extends AbstractCandleBlock {
         return hitResult.getLocation().y - (double)hitResult.getBlockPos().getY() > 0.5D;
     }
 
-    private static InteractionResult eat(LevelAccessor level, BlockPos pos, BlockState state, Player player) {
+    private InteractionResult eat(LevelAccessor level, BlockPos pos, BlockState state, Player player) {
         if (!player.canEat(false)) {
             return InteractionResult.PASS;
         } else {
-            player.awardStat(Stats.EAT_CAKE_SLICE);
-            player.getFoodData().eat(6, 0.4F);
-
             int bites = state.getValue(BITES);
-            level.gameEvent(player, GameEvent.EAT, pos);
-
-            BlockState newState = state.setValue(BITES, bites + 1);
             if (bites == 0 && state.getValue(CANDLE) != Candle.NONE) {
                 popResource((Level) level, pos, new ItemStack(state.getValue(CANDLE).getCandle()));
-                newState = newState.setValue(CANDLE, Candle.NONE).setValue(LIT, false);
+                state = state.setValue(CANDLE, Candle.NONE).setValue(LIT, false);
             }
 
             if (bites < 6) {
-                level.setBlock(pos, newState, 3);
+                /// adjust the food & saturation levels depending on the cake type; neapolitan or frosted.
+                player.getFoodData().eat(this.foodLevel, this.saturationLevel);
+                player.awardStat(Stats.EAT_CAKE_SLICE);
+
+                level.setBlock(pos, state.setValue(BITES, bites + 1), 3);
+                level.gameEvent(player, GameEvent.EAT, pos);
             } else {
                 level.removeBlock(pos, false);
                 level.gameEvent(player, GameEvent.BLOCK_DESTROY, pos);
@@ -176,14 +171,10 @@ public class MysticCakeBlock extends AbstractCandleBlock {
     }
 
     @Override
-    public void onProjectileHit(Level level, BlockState state, BlockHitResult result, Projectile projectile) {
-        if (!level.isClientSide && projectile.isOnFire() && this.canBeLit(state)) {
-            setLit(level, state, result.getBlockPos(), true);
+    public void onProjectileHit(Level level, BlockState state, BlockHitResult hitResult, Projectile projectile) {
+        if (!level.isClientSide() && projectile.isOnFire() && this.canBeLit(state)) {
+            setLit(level, state, hitResult.getBlockPos(), true);
         }
-    }
-
-    private static boolean canLight(BlockState state) {
-        return state.is(BlockTags.CANDLE_CAKES, (baseState) -> baseState.hasProperty(LIT) && !state.getValue(LIT));
     }
 
     private static void setLit(LevelAccessor level, BlockState state, BlockPos pos, boolean lit) {
@@ -201,7 +192,7 @@ public class MysticCakeBlock extends AbstractCandleBlock {
     }
 
     @Override
-    public boolean isPathfindable(BlockState state, BlockGetter getter, BlockPos pos, PathComputationType type) {
+    public boolean isPathfindable(BlockState state, BlockGetter level, BlockPos pos, PathComputationType type) {
         return false;
     }
 
@@ -212,7 +203,6 @@ public class MysticCakeBlock extends AbstractCandleBlock {
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        super.createBlockStateDefinition(builder);
         builder.add(FACING, BITES, CANDLE, LIT);
     }
 

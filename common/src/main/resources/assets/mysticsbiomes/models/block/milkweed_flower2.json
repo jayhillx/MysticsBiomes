@@ -1,0 +1,99 @@
+{
+	"ambientocclusion": false,
+	"render_type": "minecraft:cutout",
+	"textures": {
+		"flower": "mysticsbiomes:block/milkweed_flower_variant",
+		"particle": "#flower"
+	},
+	"elements": [
+		{
+			"from": [1.5, 13, 9.5],
+			"to": [6.5, 18, 14.5],
+			"shade": false,
+			"faces": {
+				"north": {"uv": [2, 2, 7, 7], "texture": "#flower"},
+				"east": {"uv": [2, 2, 7, 7], "texture": "#flower"},
+				"south": {"uv": [2, 2, 7, 7], "texture": "#flower"},
+				"west": {"uv": [2, 2, 7, 7], "texture": "#flower"},
+				"up": {"uv": [7, 14, 2, 9], "texture": "#flower"},
+				"down": {"uv": [7, 14, 2, 9], "texture": "#flower"}
+			}
+		},
+		{
+			"from": [1.75, 13.25, 9.75],
+			"to": [6.25, 17.75, 14.25],
+			"shade": false,
+			"faces": {
+				"north": {"uv": [10, 9, 14, 13], "texture": "#flower"},
+				"east": {"uv": [10, 9, 14, 13], "texture": "#flower"},
+				"south": {"uv": [10, 9, 14, 13], "texture": "#flower"},
+				"west": {"uv": [10, 9, 14, 13], "texture": "#flower"},
+				"up": {"uv": [14, 13, 10, 9], "texture": "#flower"},
+				"down": {"uv": [14, 13, 10, 9], "texture": "#flower"}
+			}
+		},
+		{
+			"from": [1.5, 13, 14.75],
+			"to": [6.5, 18, 14.75],
+			"shade": false,
+			"faces": {
+				"north": {"uv": [9, 2, 14, 7], "texture": "#flower"},
+				"south": {"uv": [9, 2, 14, 7], "texture": "#flower"}
+			}
+		},
+		{
+			"from": [1.25, 13, 9.5],
+			"to": [1.25, 18, 14.5],
+			"shade": false,
+			"faces": {
+				"east": {"uv": [9, 2, 14, 7], "texture": "#flower"},
+				"west": {"uv": [9, 2, 14, 7], "texture": "#flower"}
+			}
+		},
+		{
+			"from": [1.5, 13, 9.25],
+			"to": [6.5, 18, 9.25],
+			"shade": false,
+			"faces": {
+				"north": {"uv": [9, 2, 14, 7], "texture": "#flower"},
+				"south": {"uv": [9, 2, 14, 7], "texture": "#flower"}
+			}
+		},
+		{
+			"from": [1.5, 13, 14.5],
+			"to": [6.5, 18, 14.5],
+			"shade": false,
+			"faces": {
+				"north": {"uv": [9, 2, 14, 7], "texture": "#flower"},
+				"south": {"uv": [9, 2, 14, 7], "texture": "#flower"}
+			}
+		},
+		{
+			"from": [6.75, 13, 9.5],
+			"to": [6.75, 18, 14.5],
+			"shade": false,
+			"faces": {
+				"east": {"uv": [9, 2, 14, 7], "texture": "#flower"},
+				"west": {"uv": [9, 2, 14, 7], "texture": "#flower"}
+			}
+		},
+		{
+			"from": [1.5, 18.25, 9.5],
+			"to": [6.5, 18.25, 14.5],
+			"shade": false,
+			"faces": {
+				"up": {"uv": [14, 7, 9, 2], "texture": "#flower"},
+				"down": {"uv": [14, 7, 9, 2], "texture": "#flower"}
+			}
+		},
+		{
+			"from": [1.5, 12.75, 9.5],
+			"to": [6.5, 12.75, 14.5],
+			"shade": false,
+			"faces": {
+				"up": {"uv": [14, 7, 9, 2], "texture": "#flower"},
+				"down": {"uv": [14, 7, 9, 2], "texture": "#flower"}
+			}
+		}
+	]
+}

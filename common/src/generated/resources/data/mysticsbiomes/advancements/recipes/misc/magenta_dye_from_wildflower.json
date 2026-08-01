@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "mysticsbiomes:magenta_dye_from_wildflower"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_wildflower": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mysticsbiomes:wildflower"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_wildflower",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "mysticsbiomes:magenta_dye_from_wildflower"
+    ]
+  },
+  "sends_telemetry_event": false
+}
